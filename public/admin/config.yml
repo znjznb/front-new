@@ -6,7 +6,7 @@ backend:
   repo: znjznb/front-new
   branch: main
   auth_type: pkce
-  app_id: 填写GitHub OAuth App的ClientID
+  app_id: Ov23ct4DBS9aoHy03EUX
   # 使用 PKCE 授权码流，无需额外后端服务器
 
 # 图片上传路径
