@@ -1,0 +1,27 @@
+---
+import '../styles/global.css';
+import CookieConsent from '../components/CookieConsent.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = '海得宝 MarTempo — 敏感肌家庭的专业护理品牌', description = '深海珍宝，以自研CAPCS®凯普斯泰实现天然无激素止痒。全国1000+公立医院皮肤科临床验证。' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FAF6EE" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body>
+    <slot />
+    <CookieConsent />
+  </body>
+</html>

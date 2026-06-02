@@ -1,0 +1,115 @@
+---
+// Brand Atmosphere / Video Section
+---
+
+<section class="section video-section">
+  <div class="video-container reveal reveal-rise">
+    <div class="video-placeholder">
+      <div class="video-placeholder-bg">
+        <img
+          class="video-placeholder-img"
+          src="/assets/lifestyle-mother.jpg"
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
+      <div class="video-placeholder-overlay"></div>
+      <div class="video-placeholder-content">
+        <span class="video-icon" aria-hidden="true">▶</span>
+        <p class="video-label">深海 · 珍稀 · 守护</p>
+        <p class="video-desc">海得宝品牌故事</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-section {
+    padding: var(--space-4xl) var(--content-padding);
+    background: var(--color-bg);
+  }
+
+  .video-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .video-placeholder {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .video-placeholder-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    transition: transform var(--duration-slow) var(--ease-out-expo);
+  }
+
+  .video-container:hover .video-placeholder-bg {
+    transform: scale(1.02);
+  }
+
+  .video-placeholder-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-placeholder-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      oklch(0% 0 0 / 0.3),
+      oklch(0% 0 0 / 0.1) 50%,
+      oklch(0% 0 0 / 0.4)
+    );
+  }
+
+  .video-placeholder-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: var(--space-md);
+  }
+
+  .video-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+    transition: all var(--duration-medium) var(--ease-out-expo);
+  }
+
+  .video-container:hover .video-icon {
+    background: white;
+    color: var(--color-text);
+  }
+
+  .video-label {
+    font-size: var(--text-lg);
+    font-weight: 300;
+    letter-spacing: var(--tracking-wide);
+    color: rgba(255,255,255,0.9);
+  }
+
+  .video-desc {
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+  }
+</style>

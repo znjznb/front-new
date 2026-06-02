@@ -1,0 +1,235 @@
+---
+// Deep Sea Origin Story: Alternating magazine-style narrative panels
+
+const panels = [
+  {
+    id: 'origin',
+    eyebrow: '深海起源',
+    title: '深海中<br />的珍宝',
+    body: [
+      'MarTempo 海得宝，意为"深海中的珍宝"。源于创始人数十年的执着：走遍全球 50 多个纯净海域，历经 13 年研发和上万次测试，最终在全球不到 1% 的纯净海域中发现了珍稀贻贝。',
+      '通过独创的纯物理回流反渗技术，从 10000 只纯净贻贝中精粹出仅 1 克的灵魂成分——贻贝提取物（凯普斯泰 CAPCS<sup>®</sup>）。经全国 1000 家公立皮肤科长达 5 年验证，成为 30 秒舒缓红痒的天然止痒方案。',
+    ],
+    image: '/assets/lifestyle-mother.jpg',
+    imageAlt: '海得宝 · 母女温和相伴',
+    imageLeft: false,
+  },
+  {
+    id: 'nature',
+    eyebrow: '天然力量',
+    title: '来自深海的<br />自然馈赠',
+    body: [
+      '在全球不到 1% 的纯净海域中孕育的珍稀贻贝，蕴藏着大自然最纯粹的舒缓力量。海得宝坚持极简配方哲学——只添加必要的有效成分，不添加激素、抗生素、防腐剂。',
+      '独创的纯物理回流反渗萃取技术，全程无化学溶剂参与。从贻贝中提取的钙离子复合物 CAPCS<sup>®</sup>，通过干扰痒信号传导实现天然止痒，温和而高效。',
+    ],
+    image: '/assets/ingredient-honeysuckle.jpg',
+    imageAlt: '海得宝 · 天然草本成分',
+    imageLeft: true,
+  },
+  {
+    id: 'science',
+    eyebrow: '科研基石',
+    title: '13 年潜心<br />验证于临床',
+    body: [
+      '由生物学博士后团队领衔，13 年自主研发，上万次实验。海得宝的核心成分 CAPCS<sup>®</sup> 发表于《中华皮肤科杂志》与 SCI 期刊，机理与临床双重验证。',
+      '北京友谊医院双盲对照研究证实：止痒效果等同于弱效激素，止痒速度优于弱效激素。四川大学华西医院进一步证明，海得宝能提高激素有效率高达 6 倍。',
+    ],
+    image: '/assets/product-medical.jpg',
+    imageAlt: '海得宝 · 专业线产品',
+    imageLeft: false,
+  },
+  {
+    id: 'family',
+    eyebrow: '家庭之选',
+    title: '200 万家庭<br />的信赖之选',
+    body: [
+      '从新生儿的第一管面霜，到妈妈的日常修护，再到老人的换季止痒——海得宝为全家人提供一生相伴的敏感肌护理方案。',
+      '全国 1000+ 公立医院皮肤科临床使用，3000+ 皮肤科 / 儿科医生推荐。五维金标准安全检测：经口无毒、入眼无刺激，全家用得安心。',
+    ],
+    image: '/assets/scene-flatlay.jpg',
+    imageAlt: '海得宝 · 产品静物',
+    imageLeft: true,
+  },
+];
+---
+
+<section id="story" class="section story">
+  <div class="story-bg" aria-hidden="true"></div>
+  <div class="section-inner">
+    {panels.map((panel, i) => (
+      <div class="story-panel reveal">
+        <div class="story-grid" class:list={{ 'story-grid-reverse': panel.imageLeft }}>
+          <div class="story-text">
+            <span class="eyebrow">{panel.eyebrow}</span>
+            <h2 class="story-title" set:html={panel.title}></h2>
+            {panel.body.map((p) => (
+              <p class="story-body" set:html={p}></p>
+            ))}
+          </div>
+          <div class="story-visual">
+            <img
+              class="story-image"
+              src={panel.image}
+              alt={panel.imageAlt}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              width="600"
+              height="800"
+            />
+          </div>
+        </div>
+      </div>
+    ))}
+
+    <div class="story-numbers-row reveal">
+      <div class="story-number">
+        <span class="story-number-value">13</span>
+        <span class="story-number-label">年研发</span>
+      </div>
+      <div class="story-number">
+        <span class="story-number-value">10,000</span>
+        <span class="story-number-label">只贻贝 → 1克精华</span>
+      </div>
+      <div class="story-number">
+        <span class="story-number-value">1,000+</span>
+        <span class="story-number-label">公立医院验证</span>
+      </div>
+      <div class="story-number">
+        <span class="story-number-value">200万+</span>
+        <span class="story-number-label">敏感肌家庭信赖</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story {
+    position: relative;
+    background: var(--color-surface);
+    padding-top: var(--space-6xl);
+    padding-bottom: var(--space-6xl);
+  }
+
+  .story-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 80% at 80% 50%, oklch(90% 0.06 185 / 0.15), transparent);
+    pointer-events: none;
+  }
+
+  .story-panel + .story-panel {
+    margin-top: var(--space-5xl);
+    padding-top: var(--space-5xl);
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "text image";
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .story-grid-reverse {
+    grid-template-areas: "image text";
+  }
+
+  .story-text { grid-area: text; }
+  .story-visual { grid-area: image; }
+
+  .story-title {
+    font-size: var(--text-3xl);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-xl);
+    color: var(--color-text);
+  }
+
+  .story-body {
+    font-size: var(--text-base);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-lg);
+    max-width: 55ch;
+  }
+
+  .story-body:last-child {
+    margin-bottom: 0;
+  }
+
+  .story-visual {
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    overflow: hidden;
+  }
+
+  .story-image {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .story-numbers-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    margin-top: var(--space-5xl);
+    padding: var(--space-2xl);
+    background: oklch(97% 0.006 185 / 0.5);
+  }
+
+  .story-number {
+    text-align: center;
+    flex: 1;
+  }
+
+  .story-number-value {
+    display: block;
+    font-size: var(--text-4xl);
+    font-weight: 200;
+    color: var(--color-brand);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-sm);
+  }
+
+  .story-number-label {
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .story-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas: "text" "image";
+      gap: var(--space-2xl);
+    }
+    .story-grid-reverse {
+      grid-template-areas: "text" "image";
+    }
+    .story-image {
+      min-height: 300px;
+    }
+    .story-panel + .story-panel {
+      margin-top: var(--space-3xl);
+      padding-top: var(--space-3xl);
+    }
+    .story-numbers-row {
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      padding: var(--space-md);
+    }
+    .story-number {
+      flex: 1 1 40%;
+    }
+    .story-number-value {
+      font-size: var(--text-3xl);
+    }
+  }
+</style>

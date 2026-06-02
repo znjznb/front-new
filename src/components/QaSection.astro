@@ -1,0 +1,428 @@
+---
+// FAQ: Two-level accordion — click main category to reveal sub-questions, click sub-question to reveal answer
+
+interface SubItem {
+  q: string;
+  a: string;
+}
+
+interface Category {
+  title: string;
+  items: SubItem[];
+}
+
+const categories: Category[] = [
+  {
+    title: '关于海得宝',
+    items: [
+      {
+        q: '海得宝是什么品牌',
+        a: '海得宝（MarTempo）是中国领先的敏感肌护理品牌，由生物学博士后团队历经 13 年自主研发。品牌核心科技 CAPCS® 凯普斯泰（全球首创外用钙离子舒缓技术）取自深海贻贝，通过纯物理回流反渗技术萃取。海得宝产品被全国 1,000+ 公立医院皮肤科临床选用，获 3,000+ 皮肤科及儿科医生推荐，已成为 200 万+ 敏感肌家庭的信赖之选。',
+      },
+      {
+        q: '海得宝和别的品牌有什么不同',
+        a: '海得宝的核心差异化在于 CAPCS® 凯普斯泰技术——从深海贻贝中提取活性钙离子，通过物理渗透快速舒缓皮肤，而非依赖激素或药物成分。经临床验证，止痒效果等同于弱效激素（氢化可的松），止痒速度优于弱效激素，同时完全无激素副作用。此外，海得宝坚持五维金标准安全体系：无激素、无抗生素、无防腐剂，经口无毒、入眼无刺激、人体斑贴无刺激。',
+      },
+      {
+        q: '海得宝的产品为什么适合敏感肌',
+        a: '海得宝的产品专为敏感肌设计，所有配方均围绕 CAPCS® 钙离子舒缓技术构建。钙离子是人体天然存在的信号分子，能够快速调节神经末梢兴奋性，从根源缓解瘙痒、泛红、刺痛等敏感症状。同时产品配方极简，剔除 4000+ 争议成分，不含酒精、香精、色素等常见致敏原，降低过敏风险，适合屏障受损的敏感肌肤日常使用。',
+      },
+      {
+        q: '哪些人能用海得宝',
+        a: '海得宝产品覆盖全年龄段和多种肤质需求：婴幼儿（0 岁以上）、儿童、成人及老年人均可使用。品牌拥有四大产品线——专业线（针对中重度敏感肌）、婴童线（0-3 岁宝宝专属）、女性线（私密护理）、奢护线（高阶修护），无论您是干敏肌、油敏肌还是混合型敏感肌，都能找到适合的产品方案。',
+      },
+    ],
+  },
+  {
+    title: '海得宝大白管特护霜',
+    items: [
+      {
+        q: '海得宝特护霜是什么',
+        a: '大白管特护霜是海得宝的明星单品，属于专业线产品。它采用 CAPCS® 钙离子舒缓技术，配合多重保湿修护成分，专为中重度敏感肌设计。产品提供清爽和倍润两个版本，适用于干敏肌和受损肌的日常修护。经中山大学第五医院临床验证，治疗特应性皮炎有效率达 67%，止痒有效率达 79%。',
+      },
+      {
+        q: '海得宝特护霜有副作用吗',
+        a: '大白管特护霜经过严格的安全性测试：人体斑贴无刺激、多次皮肤刺激无刺激、入眼无刺激、经口无毒。配方不含激素、抗生素、防腐剂、酒精、香精和色素。临床应用中未见明显不良反应报道。如果您是极少数对海洋来源成分过敏的人群，建议使用前在耳后或手腕内侧做局部测试。',
+      },
+      {
+        q: '大白管特护霜能每天都用吗',
+        a: '可以。大白管特护霜专为日常长期使用设计，不含激素，不会产生依赖性或耐药性。建议每天使用 2-3 次，取适量涂抹于清洁后的皮肤。对于干燥敏感肌肤，可作为每日保湿修护产品长期使用；对于急性敏感期，可适当增加使用频率以加强舒缓效果。',
+      },
+    ],
+  },
+  {
+    title: '海得宝贻贝修护唇膏',
+    items: [
+      {
+        q: '唇炎可以用海得宝唇膏吗',
+        a: '可以。海得宝贻贝修护唇膏特别适合唇炎人群使用。唇炎的本质是唇部皮肤屏障受损引发的炎症反应，海得宝唇膏中的 CAPCS® 钙离子舒缓技术能够快速缓解唇部干痒、泛红、脱屑等不适感。临床反馈表明，其温和配方对唇炎修护有显著效果，且不含激素，可长期使用。',
+      },
+      {
+        q: '为什么海得宝唇膏这么贵',
+        a: '海得宝唇膏的核心成分 CAPCS® 凯普斯泰源自深海贻贝，采用纯物理回流反渗技术萃取，无化学溶剂参与，生产成本远高于传统唇膏。同时，配方经过严格的临床安全性验证，无激素、无防腐剂、无香精，达到食品级安全标准。其定价反映了研发投入、原料成本和安全验证的综合价值。',
+      },
+      {
+        q: '海得宝唇膏 8g 和 12g 有什么区别',
+        a: '8g 版为经典便携装，适合日常随身携带，方便随时补涂；12g 版为大容量家庭装，性价比更高，适合居家使用或唇部问题较为严重、需要频繁涂抹的用户。两者配方完全相同，均含有 CAPCS® 钙离子舒缓技术，仅在包装规格和使用场景上有所区别。',
+      },
+      {
+        q: '海得宝唇膏小孩可以用吗',
+        a: '可以。海得宝贻贝修护唇膏配方温和安全，无激素、无防腐剂、无香精，达到经口无毒安全标准，儿童可以放心使用。对于有舔唇习惯的儿童尤其适合——即使不慎少量入口也无安全风险。建议 3 岁以上儿童在成人监护下使用，每天涂抹 2-3 次以保持唇部滋润。',
+      },
+    ],
+  },
+  {
+    title: '购买海得宝产品',
+    items: [
+      {
+        q: '哪里可以买到海得宝产品',
+        a: '您可以通过以下官方渠道购买海得宝产品：天猫旗舰店（搜索"海得宝"进入官方店铺）、抖音商城、小红书店铺。此外，全国 1,000+ 公立医院皮肤科及药房也有销售。如需一对一顾问咨询，可联系海得宝官方客服，获取个性化的产品推荐和护肤指导。',
+      },
+    ],
+  },
+];
+---
+
+<section id="qa" class="section qa">
+  <div class="section-inner">
+    <div class="qa-header reveal reveal-rise">
+      <div class="qa-accent-line" aria-hidden="true"></div>
+      <h2 class="qa-title">常见问题</h2>
+      <p class="qa-subtitle">关于海得宝、产品功效与购买渠道的常见疑问</p>
+    </div>
+
+    <div class="qa-list">
+      {categories.map((cat, catIdx) => (
+        <div class="qa-category reveal reveal-rise">
+          <button class="qa-category-btn" data-category={catIdx} aria-expanded="false">
+            <span class="qa-category-title">{cat.title}</span>
+            <span class="qa-category-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="qa-category-body">
+            <div class="qa-sub-list">
+              {cat.items.map((item, itemIdx) => (
+                <div class="qa-sub-item">
+                  <button class="qa-sub-btn" data-category={catIdx} data-item={itemIdx} aria-expanded="false">
+                    <span class="qa-sub-icon" aria-hidden="true">Q</span>
+                    <span class="qa-sub-title">{item.q}</span>
+                  </button>
+                  <div class="qa-sub-body">
+                    <div class="qa-answer">
+                      <span class="qa-answer-label" aria-hidden="true">A</span>
+                      <p class="qa-answer-text">{item.a}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const CATEGORY_EXPANDED = 'qa-expanded';
+  const SUB_EXPANDED = 'qa-sub-expanded';
+
+  document.querySelectorAll('.qa-category-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.closest('.qa-category');
+      const isOpen = cat.classList.contains(CATEGORY_EXPANDED);
+
+      // Close other categories
+      document.querySelectorAll('.qa-category.' + CATEGORY_EXPANDED).forEach(other => {
+        if (other !== cat) {
+          other.classList.remove(CATEGORY_EXPANDED);
+          other.querySelector('.qa-category-btn').setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle this one
+      if (isOpen) {
+        cat.classList.remove(CATEGORY_EXPANDED);
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        cat.classList.add(CATEGORY_EXPANDED);
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.querySelectorAll('.qa-sub-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const subItem = btn.closest('.qa-sub-item');
+      const isOpen = subItem.classList.contains(SUB_EXPANDED);
+
+      if (isOpen) {
+        subItem.classList.remove(SUB_EXPANDED);
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        subItem.classList.add(SUB_EXPANDED);
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+});
+</script>
+
+<style>
+  .qa {
+    background: var(--color-bg);
+    padding-top: var(--space-6xl);
+    padding-bottom: var(--space-6xl);
+    position: relative;
+  }
+
+  .qa::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-brand-subtle), transparent);
+  }
+
+  /* ── Header ── */
+  .qa-header {
+    text-align: center;
+    margin-bottom: var(--space-5xl);
+  }
+
+  .qa-accent-line {
+    width: 40px;
+    height: 2px;
+    background: var(--color-brand);
+    margin: 0 auto var(--space-lg);
+  }
+
+  .qa-title {
+    font-size: var(--text-3xl);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-md);
+  }
+
+  .qa-subtitle {
+    font-size: var(--text-lg);
+    font-weight: 300;
+    color: var(--color-text-soft);
+  }
+
+  /* ── Category accordion ── */
+  .qa-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .qa-category {
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .qa-category:first-child {
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .qa-category-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--space-xl) 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .qa-category-btn:hover {
+    color: var(--color-brand-dark);
+  }
+
+  .qa-category-title {
+    font-size: var(--text-xl);
+    font-weight: 350;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+  }
+
+  .qa-category-btn:hover .qa-category-title {
+    color: var(--color-brand-dark);
+  }
+
+  .qa-category-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform 0.4s var(--ease-out-expo), color var(--duration-fast) ease;
+  }
+
+  .qa-expanded .qa-category-icon {
+    transform: rotate(45deg);
+    color: var(--color-brand-dark);
+  }
+
+  /* ── Category body (sub-questions) ── */
+  .qa-category-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s var(--ease-out-quart);
+  }
+
+  .qa-expanded .qa-category-body {
+    max-height: 1200px;
+  }
+
+  .qa-sub-list {
+    padding-bottom: var(--space-xl);
+    padding-left: 0;
+  }
+
+  /* ── Sub-question ── */
+  .qa-sub-item {
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .qa-sub-item:first-child {
+    border-top: none;
+  }
+
+  .qa-sub-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    width: 100%;
+    padding: var(--space-lg) 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .qa-sub-btn:hover {
+    color: var(--color-brand-dark);
+  }
+
+  .qa-sub-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-brand);
+    border: 1px solid var(--color-brand-subtle);
+    border-radius: 50%;
+  }
+
+  .qa-sub-title {
+    font-size: var(--text-base);
+    font-weight: 350;
+    color: var(--color-text-soft);
+    line-height: 1.5;
+    padding-top: 2px;
+  }
+
+  .qa-sub-btn:hover .qa-sub-title {
+    color: var(--color-brand-dark);
+  }
+
+  .qa-sub-btn::after {
+    content: '+';
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: var(--text-lg);
+    font-weight: 300;
+    color: var(--color-text-muted);
+    line-height: 1.3;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+
+  .qa-sub-expanded .qa-sub-btn::after {
+    content: '−';
+    color: var(--color-brand-dark);
+  }
+
+  /* ── Sub-question body (answer) ── */
+  .qa-sub-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s var(--ease-out-quart);
+  }
+
+  .qa-sub-expanded .qa-sub-body {
+    max-height: 600px;
+  }
+
+  .qa-answer {
+    display: flex;
+    gap: var(--space-md);
+    padding: 0 0 var(--space-xl);
+  }
+
+  .qa-answer-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-text-inverse);
+    background: var(--color-brand);
+    border-radius: 50%;
+  }
+
+  .qa-answer-text {
+    font-size: var(--text-sm);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-soft);
+    max-width: 70ch;
+    padding-top: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .qa-category-btn {
+      padding: var(--space-lg) 0;
+    }
+
+    .qa-category-title {
+      font-size: var(--text-lg);
+    }
+
+    .qa-sub-btn {
+      padding: var(--space-md) 0;
+      gap: var(--space-sm);
+    }
+
+    .qa-sub-title {
+      font-size: var(--text-sm);
+    }
+
+    .qa-answer {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+  }
+</style>

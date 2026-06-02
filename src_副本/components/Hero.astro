@@ -1,0 +1,202 @@
+---
+// Hero: Full-screen brand entry
+---
+
+<section class="hero section-full">
+  <div class="hero-bg-video" aria-hidden="true">
+    <video
+      class="hero-video"
+      src="/assets/brand-video.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
+    <div class="hero-video-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-logo reveal">
+      <img
+        src="/assets/logo.png"
+        alt="海得宝 MarTempo"
+        class="hero-logo-img"
+        width="600"
+        height="200"
+      />
+    </h1>
+    <p class="hero-subtitle reveal reveal-delay-2">
+      敏感肌家庭的专业功效护肤品牌
+    </p>
+    <p class="hero-desc reveal reveal-delay-3">
+      贻贝钙肽CAPCS 专研根源修护成分<br />
+      1000+ 公立医院皮肤科临床选用
+    </p>
+    <div class="hero-actions reveal reveal-delay-4">
+      <a href="#story" class="btn btn-outline">探索品牌故事</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span class="hero-scroll-text">滚动探索</span>
+    <span class="hero-scroll-line"></span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 120px;
+  }
+
+  .hero-bg-video {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      oklch(0% 0 0 / 0.55) 0%,
+      oklch(0% 0 0 / 0.35) 50%,
+      oklch(0% 0 0 / 0.6) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 var(--content-padding);
+  }
+
+  .hero-eyebrow {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 300;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-brand);
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-logo {
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-logo-img {
+    display: block;
+    width: clamp(240px, 50vw, 520px);
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: var(--text-5xl);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-xl);
+    font-weight: 400;
+    letter-spacing: var(--tracking-wide);
+    color: #fff;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-desc {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 1px 12px rgba(0,0,0,0.35);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-actions .btn-primary {
+    background: white;
+    color: var(--color-text);
+    border-color: white;
+  }
+
+  .hero-actions .btn-primary:hover {
+    background: transparent;
+    color: white;
+  }
+
+  .hero-actions .btn-outline {
+    border-color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.9);
+  }
+
+  .hero-actions .btn-outline:hover {
+    background: white;
+    color: var(--color-text);
+    border-color: white;
+  }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: var(--space-2xl);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    opacity: 0.4;
+    z-index: 1;
+  }
+
+  .hero-scroll-text {
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 32px;
+    background: rgba(255,255,255,0.5);
+    animation: scrollPulse 2s var(--ease-out-expo) infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  @media (max-width: 768px) {
+    .hero-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

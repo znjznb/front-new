@@ -1,0 +1,119 @@
+---
+// News detail page
+
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const news = await getCollection('news');
+  return news.map(item => ({
+    params: { slug: item.id.replace(/\.md$/, '') },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+
+<BaseLayout>
+  <Nav />
+  <main>
+  <article class="news-detail">
+    <div class="news-detail-inner">
+      <nav class="news-breadcrumb">
+        <a href="/#news">新闻动态</a>
+        <span class="news-breadcrumb-sep">/</span>
+        <span>{item.data.title}</span>
+      </nav>
+
+      <time class="news-detail-date">{new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(item.data.date)}</time>
+      <h1 class="news-detail-title">{item.data.title}</h1>
+
+      <div class="news-detail-body">
+        <Content />
+      </div>
+
+      <a href="/news/" class="news-detail-back">← 返回新闻列表</a>
+    </div>
+  </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .news-detail {
+    padding: 144px var(--content-padding) var(--space-6xl);
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+
+  .news-detail-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .news-breadcrumb {
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .news-breadcrumb a {
+    color: var(--color-brand-dark);
+    text-decoration: none;
+  }
+
+  .news-breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .news-breadcrumb-sep {
+    margin: 0 var(--space-sm);
+  }
+
+  .news-detail-date {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 400;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-brand);
+    margin-bottom: var(--space-lg);
+  }
+
+  .news-detail-title {
+    font-size: var(--text-3xl);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .news-detail-body {
+    font-size: var(--text-base);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-soft);
+  }
+
+  .news-detail-body p {
+    margin-bottom: var(--space-lg);
+  }
+
+  .news-detail-back {
+    display: inline-block;
+    margin-top: var(--space-3xl);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--color-brand-dark);
+    text-decoration: none;
+  }
+
+  .news-detail-back:hover {
+    text-decoration: underline;
+  }
+</style>

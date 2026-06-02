@@ -1,0 +1,50 @@
+---
+// News list — page 1
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import NewsList from '../../components/NewsList.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout>
+  <Nav />
+  <main>
+    <section class="section nl-page">
+      <div class="section-inner">
+        <div class="nl-page-header">
+          <h1 class="nl-page-title">新闻动态</h1>
+          <p class="nl-page-subtitle">品牌最新资讯与科研进展</p>
+        </div>
+
+        <NewsList page={1} pageSize={6} />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .nl-page {
+    padding-top: 144px;
+  }
+
+  .nl-page-header {
+    text-align: center;
+    margin-bottom: var(--space-4xl);
+  }
+
+  .nl-page-title {
+    font-size: var(--text-3xl);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-md);
+  }
+
+  .nl-page-subtitle {
+    font-size: var(--text-lg);
+    font-weight: 300;
+    color: var(--color-text-soft);
+  }
+</style>

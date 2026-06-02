@@ -1,0 +1,92 @@
+---
+// Cookie consent banner — lightweight, non-blocking
+---
+
+<div class="cookie-bar" id="cookieBar" role="alert" aria-label="Cookie 设置">
+  <p class="cookie-text">本网站使用 Cookie 以改善您的浏览体验。继续使用本网站即表示您同意。</p>
+  <button class="cookie-btn" id="cookieAccept">知道了</button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const bar = document.getElementById('cookieBar');
+  const btn = document.getElementById('cookieAccept');
+
+  if (localStorage.getItem('cookie-consent')) {
+    bar.style.display = 'none';
+    return;
+  }
+
+  // Show with slight delay for a smooth entrance
+  requestAnimationFrame(() => {
+    bar.classList.add('visible');
+  });
+
+  btn.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'accepted');
+    bar.classList.remove('visible');
+    setTimeout(() => { bar.style.display = 'none'; }, 400);
+  });
+});
+</script>
+
+<style>
+  .cookie-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-nav, 1000);
+    background: var(--color-text);
+    color: var(--color-text-inverse);
+    padding: var(--space-md) var(--content-padding);
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+    transform: translateY(100%);
+    transition: transform 0.4s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  .cookie-bar.visible {
+    display: flex;
+    transform: translateY(0);
+  }
+
+  .cookie-text {
+    font-size: var(--text-xs, 0.8rem);
+    font-weight: 300;
+    line-height: var(--leading-relaxed, 1.8);
+    color: oklch(85% 0.01 260);
+    max-width: 65ch;
+    margin: 0;
+  }
+
+  .cookie-btn {
+    flex-shrink: 0;
+    padding: 6px 20px;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs, 0.8rem);
+    font-weight: 400;
+    letter-spacing: var(--tracking-wider, 0.08em);
+    color: var(--color-text);
+    background: var(--color-text-inverse);
+    border: none;
+    cursor: pointer;
+    transition: opacity var(--duration-fast, 0.3s) ease;
+  }
+
+  .cookie-btn:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .cookie-bar {
+      flex-direction: column;
+      gap: var(--space-md);
+      text-align: center;
+      padding: var(--space-md);
+    }
+  }
+</style>

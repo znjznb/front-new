@@ -12,7 +12,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
 .env.production
@@ -22,3 +21,24 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Claude Code
+.claude/
+.agents/
+.impeccable/
+system-prompt.txt
+skills-lock.json
+
+# Demo / packaging
+haidebao-standalone/
+haidebao-standalone.zip
+haidebao-preview.*
+preview.html
+final.mp4
+logo_martempo.png
+20260529-181842.png
+PRODUCT.md
+
+# Source design assets
+2025海得宝MARTEMPO品牌VI手册.pdf
+图片素材/
