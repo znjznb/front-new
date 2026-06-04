@@ -24,6 +24,7 @@ jobs:
           script: |
             set -e
             export PATH="$PATH:/usr/local/bin:/usr/bin"
+            [ -f ~/.nvm/nvm.sh ] && . ~/.nvm/nvm.sh
             cd /www/wwwroot/martempo/front-new
             for i in 1 2 3; do
               git pull origin main && break
