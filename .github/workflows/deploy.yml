@@ -25,6 +25,9 @@ jobs:
             set -e
             export PATH="$PATH:/usr/local/bin:/usr/bin"
             cd /www/wwwroot/astro-project
-            git pull origin main
+            for i in 1 2 3; do
+              git pull origin main && break
+              sleep 3
+            done
             npm install --production
             npm run build
