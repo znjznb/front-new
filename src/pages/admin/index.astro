@@ -106,7 +106,7 @@
                 { label: '规格图片', name: 'image', widget: 'file', media_folder: '/public/assets', public_folder: '/assets', hint: '该规格对应的产品图' },
                 { label: '销售状态', name: 'status', widget: 'select', options: ['在售', '即将上市', '即将更换包装', '即将停售'], required: false, hint: '留空默认 "在售"' },
               ] },
-              { label: '产品成分', name: 'ingredients', widget: 'list', required: false, hint: '按浓度降序排列，每行一个成分' },
+              { label: '产品成分', name: 'ingredients', widget: 'text', required: false, hint: '一行一个，或用 "水"，"甘油"，... 格式（引号+顿号分隔）' },
 
               // ── Product details tab ──
               { label: '功效数据', name: 'can_claim', widget: 'text', required: false, hint: '详情页"产品详情"标签的数据来源。用 / 分隔每条数据，支持自动提取数值卡片和认证徽章' },
