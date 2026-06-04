@@ -18,6 +18,8 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
+            # Ensure git is installed
+            command -v git >/dev/null 2>&1 || yum install -y git
             cd /www/wwwroot/astro-project
             git pull origin main
             npm install --production
