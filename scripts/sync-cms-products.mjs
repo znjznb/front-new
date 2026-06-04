@@ -1,30 +1,55 @@
+/**
+ * Sync all base products to CMS-managed JSON files in src/cms-products/
+ *
+ * Populates every field from src/data/products.json into individual CMS files,
+ * so the Decap CMS editor shows complete product data.
+ *
+ * Run: node scripts/sync-cms-products.mjs
+ */
 import { readFileSync, readdirSync, writeFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const productsPath = resolve(__dirname, '../src/data/products.json');
-const cmsDir = resolve(__dirname, '../src/content/products/');
+const cmsDir = resolve(__dirname, '../src/cms-products/');
 
 const products = JSON.parse(readFileSync(productsPath, 'utf-8'));
 const baseProducts = products.filter(p => p.line && p.line !== 'None');
 
-// Existing CMS files (by name, not filename — read file content to get the name)
+// Existing CMS files indexed by product name
 const existingFiles = readdirSync(cmsDir).filter(f => f.endsWith('.json'));
-const existingNames = new Set(
-  existingFiles.map(f => {
-    try {
-      const data = JSON.parse(readFileSync(resolve(cmsDir, f), 'utf-8'));
-      return data.name;
-    } catch { return null; }
-  }).filter(Boolean)
-);
+const existingByName = new Map();
+for (const f of existingFiles) {
+  try {
+    const data = JSON.parse(readFileSync(resolve(cmsDir, f), 'utf-8'));
+    if (data.name) existingByName.set(data.name, f);
+  } catch { /* skip unparseable */ }
+}
 
 console.log(`Base products: ${baseProducts.length}`);
-console.log(`Existing CMS files: ${existingFiles.length} (${existingNames.size} with valid names)`);
+console.log(`Existing CMS files: ${existingFiles.length} (${existingByName.size} with valid names)`);
 
-// Map base product fields to CMS-friendly format
-function toCmsSlug(name) {
+// All CMS widget fields (in order of appearance in the admin form)
+const CMS_FIELDS = [
+  'name', 'nickname', 'desc', 'line', 'types', 'status',
+  'image', 'images',
+  'skin_type', 'audience', 'efficacy',
+  'skus', 'ingredients',
+  'can_claim', 'detail_description',
+  'buy_url', 'order',
+];
+
+// Internal line → CMS display line mapping
+const LINE_TO_DISPLAY = {
+  '专业线': '专业线｜Expert Collection',
+  '女性线-干敏肌': '女性线｜Féminine Collection',
+  '女性线-油敏肌': '女性线｜Féminine Collection',
+  '婴童线': '婴童线｜Primal Comfort',
+};
+
+// Infer a slug from product name (same logic as src/data/products.js)
+function productToSlug(name) {
   return name
     .replace(/[（(]/g, '-')
     .replace(/[）)]/g, '')
@@ -34,49 +59,91 @@ function toCmsSlug(name) {
     .toLowerCase();
 }
 
-// Fields the CMS expects
-const CMS_FIELDS = ['name', 'nickname', 'desc', 'line', 'types', 'status', 'image', 'images',
-  'skin_type', 'audience', 'efficacy', 'skus', 'ingredients', 'can_claim',
-  'detail_description', 'buy_url', 'order'];
+// Build a CMS-compatible data object from a base product
+function buildCmsData(p) {
+  const data = {};
 
-let created = 0;
-for (const p of baseProducts) {
-  if (existingNames.has(p.name)) {
-    console.log(`  ✓ ${p.name} — already exists`);
-    continue;
-  }
-
-  // Construct a CMS-compatible JSON file
-  const cmsData = {};
-
-  // Fields with direct mapping
   for (const field of CMS_FIELDS) {
-    if (p[field] !== undefined && p[field] !== null && p[field] !== '' && p[field] !== 'None') {
-      if (field === 'efficacy' && typeof p[field] === 'string' && p[field] !== 'None') {
-        cmsData[field] = p[field].split(',').map(s => s.trim()).filter(Boolean);
-      } else if ((field === 'skin_type' || field === 'audience') && typeof p[field] === 'string' && p[field] !== 'None') {
-        cmsData[field] = p[field];
-      } else if (field === 'images' && !Array.isArray(p[field])) {
-        cmsData[field] = [p[field]];
-      } else {
-        cmsData[field] = p[field];
-      }
+    const val = p[field];
+    if (val === undefined || val === null || val === '' || val === 'None') {
+      continue;  // skip empty — CMS will use its default
+    }
+
+    switch (field) {
+      case 'line':
+        // Store display format for CMS dropdown
+        data.line = LINE_TO_DISPLAY[val] || val;
+        break;
+
+      case 'efficacy':
+        // Base stores as comma-separated string; CMS expects a list
+        data.efficacy = typeof val === 'string'
+          ? val.split(',').map(s => s.trim()).filter(Boolean)
+          : val;
+        break;
+
+      case 'types':
+        // Pass through as-is (already an array)
+        data.types = Array.isArray(val) ? val : [val];
+        break;
+
+      case 'images':
+        // Ensure array
+        data.images = Array.isArray(val) ? val : (val ? [val] : []);
+        break;
+
+      case 'skus':
+        // Pass through as-is (array of objects or empty)
+        data.skus = Array.isArray(val) ? val : [];
+        break;
+
+      case 'ingredients':
+        // Keep as raw string; CMS list widget converts on save
+        data.ingredients = val;
+        break;
+
+      default:
+        data[field] = val;
     }
   }
 
-  // Map `description` → `desc` (but `desc` is for internal notes, so only copy if meaningful)
-  if (p.description && p.description !== '' && p.description !== 'None' && !cmsData.desc) {
-    cmsData.desc = p.description;
+  // Include base `description` as CMS `desc` (internal note)
+  if (!data.desc && p.description && p.description !== 'None') {
+    data.desc = p.description;
   }
 
-  // If no `types`, let CMS auto-infer
-  // If no `image` path, skip (CMS can set later)
+  // Ensure name is always present (merge key)
+  data.name = p.name;
 
-  const slug = toCmsSlug(p.name);
-  const filePath = resolve(cmsDir, `${slug}.json`);
-  writeFileSync(filePath, JSON.stringify(cmsData, null, 2) + '\n');
-  console.log(`  + ${p.name} → ${slug}.json`);
-  created++;
+  return data;
 }
 
-console.log(`\nDone. Created ${created} new CMS files. Total CMS files: ${existingFiles.length + created}`);
+let created = 0;
+let updated = 0;
+for (const p of baseProducts) {
+  const slug = productToSlug(p.name);
+  const filePath = resolve(cmsDir, `${slug}.json`);
+  const cmsData = buildCmsData(p);
+
+  const existingFile = existingByName.get(p.name);
+  if (existingFile) {
+    // Read existing, merge: keep any manually-set CMS values, fill missing from base
+    const existingPath = resolve(cmsDir, existingFile);
+    const existing = JSON.parse(readFileSync(existingPath, 'utf-8'));
+
+    // Merge: existing values take priority over base (user may have edited in CMS)
+    const merged = { ...cmsData, ...existing };
+    // But always keep the fresh `line` display mapping (CMS dropdown values)
+    if (p.line) merged.line = LINE_TO_DISPLAY[p.line] || p.line;
+    writeFileSync(filePath, JSON.stringify(merged, null, 2) + '\n');
+    updated++;
+    console.log(`  ~ ${p.name} — updated`);
+  } else {
+    // New file
+    writeFileSync(filePath, JSON.stringify(cmsData, null, 2) + '\n');
+    created++;
+    console.log(`  + ${p.name} — created`);
+  }
+}
+
+console.log(`\nDone. Created: ${created}, Updated: ${updated}. Total: ${existingFiles.length + created}`);
