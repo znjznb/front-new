@@ -42,7 +42,14 @@ const buyUrl = getProductBuyUrl(product);
 // Parse ingredients into array
 function parseIngredients(raw) {
   if (!raw || raw === '/' || raw === '') return [];
-  if (Array.isArray(raw)) return raw.filter(Boolean);
+  if (Array.isArray(raw)) {
+    // Elements contain quoted-comma fragments split across lines; join and reparse
+    if (raw.some(s => s.includes('"，'))) {
+      return raw.join(',').split(/，"?/).map(s => s.replace(/^"/, '').replace(/"$/, '').trim()).filter(Boolean);
+    }
+    // Each element is a standalone ingredient
+    return raw.map(s => s.trim()).filter(Boolean);
+  }
   // JSON array format: ["水"，"甘油"...]  (uses Chinese commas)
   if (raw.startsWith('[')) {
     try {
