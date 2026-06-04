@@ -3,7 +3,7 @@
 # 在 CMS 发布内容后拉取最新代码并构建
 set -e
 
-PROJECT_DIR="/www/wwwroot/astro-project"
+PROJECT_DIR="/www/wwwroot/martempo/front-new"
 cd "$PROJECT_DIR"
 
 # 拉取最新代码
