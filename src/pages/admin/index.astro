@@ -55,6 +55,7 @@
         media_folder: 'public/assets',
         public_folder: '/assets',
         locale: 'zh_Hans',
+        publish_mode: 'editorial_workflow',
         collections: [
           {
             name: 'news',
@@ -95,7 +96,7 @@
 
               // ── Media ──
               { label: '主图', name: 'image', widget: 'file', media_folder: '/public/assets', public_folder: '/assets', hint: '商品卡片和详情页主图' },
-              { label: '轮播图列表', name: 'images', widget: 'list', field: { label: '图片路径', name: 'src', widget: 'string', hint: '填写图片路径如 /assets/xxx.jpg' }, required: false, hint: '详情页多图轮播，留空自动组合' },
+              { label: '轮播图列表', name: 'images', widget: 'list', field: { label: '图片', name: 'src', widget: 'file', media_folder: '/public/assets', public_folder: '/assets', hint: '上传轮播图片' }, required: false, hint: '详情页多图轮播，留空自动组合' },
 
               // ── Product details ──
               { label: '适用肤质', name: 'skin_type', widget: 'string', required: false, hint: '如"干性和极干性, 敏感肌"（多值用逗号分隔）' },
@@ -114,7 +115,7 @@
 
               // ── Commerce ──
               { label: '购买链接', name: 'buy_url', widget: 'string', required: false, hint: '立即购买跳转链接，留空使用默认淘宝链接' },
-              { label: '排序', name: 'order', widget: 'number', value_type: 'int', hint: '数字越小越靠前' },
+              { label: '排序', name: 'order', widget: 'number', value_type: 'int', required: false, hint: '数字越小越靠前，留空则排在最后' },
             ],
           },
         ],

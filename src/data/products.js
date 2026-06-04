@@ -56,6 +56,9 @@ export function getAllProducts() {
     });
   }
 
+  // Sort by order field ascending; products without order stay at the end
+  merged.sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+
   return merged;
 }
 
