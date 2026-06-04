@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 海得宝网站自动部署脚本
+# 海得宝网站自动部署脚本（由 GitHub Actions 触发）
 # 在 CMS 发布内容后拉取最新代码并构建
 set -e
 
