@@ -1,27 +1,43 @@
 ---
-// Brand Atmosphere / Video Section
+// Brand Atmosphere Video — autoplay, muted, loop, no controls
 ---
-
-<section class="section video-section">
+<section class="video-section" id="brandVideoSection">
   <div class="video-container reveal reveal-rise">
-    <div class="video-placeholder">
-      <div class="video-placeholder-bg">
-        <img
-          class="video-placeholder-img"
-          src="/assets/lifestyle-mother.jpg"
-          alt=""
-          aria-hidden="true"
-        />
-      </div>
-      <div class="video-placeholder-overlay"></div>
-      <div class="video-placeholder-content">
-        <span class="video-icon" aria-hidden="true">▶</span>
-        <p class="video-label">深海 · 珍稀 · 守护</p>
-        <p class="video-desc">海得宝品牌故事</p>
-      </div>
+    <div class="video-wrapper">
+      <video
+        class="brand-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        aria-label="海得宝品牌故事视频"
+      >
+        <source src="/assets/brand-video.mp4" type="video/mp4" />
+      </video>
     </div>
   </div>
 </section>
+
+<script>
+  // 对于阻止自动播放的浏览器，滚动到可视区时手动播放
+  (() => {
+    const video = document.querySelector('.brand-video');
+    if (!video) return;
+
+    if (video.paused) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && video.paused) {
+            video.play().catch(() => {});
+          }
+        });
+      }, { threshold: 0.5 });
+      observer.observe(video);
+    }
+  })();
+</script>
 
 <style>
   .video-section {
@@ -34,82 +50,18 @@
     margin: 0 auto;
   }
 
-  .video-placeholder {
-    position: relative;
+  .video-wrapper {
     width: 100%;
     aspect-ratio: 16/9;
     overflow: hidden;
-    cursor: pointer;
+    border-radius: 12px;
+    background: #f0f0f0;
   }
 
-  .video-placeholder-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    transition: transform var(--duration-slow) var(--ease-out-expo);
-  }
-
-  .video-container:hover .video-placeholder-bg {
-    transform: scale(1.02);
-  }
-
-  .video-placeholder-img {
+  .brand-video {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .video-placeholder-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-      to bottom,
-      oklch(0% 0 0 / 0.3),
-      oklch(0% 0 0 / 0.1) 50%,
-      oklch(0% 0 0 / 0.4)
-    );
-  }
-
-  .video-placeholder-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    gap: var(--space-md);
-  }
-
-  .video-icon {
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.5);
-    border-radius: 50%;
-    transition: all var(--duration-medium) var(--ease-out-expo);
-  }
-
-  .video-container:hover .video-icon {
-    background: white;
-    color: var(--color-text);
-  }
-
-  .video-label {
-    font-size: var(--text-lg);
-    font-weight: 300;
-    letter-spacing: var(--tracking-wide);
-    color: rgba(255,255,255,0.9);
-  }
-
-  .video-desc {
-    font-size: var(--text-sm);
-    font-weight: 300;
-    color: rgba(255,255,255,0.6);
   }
 </style>

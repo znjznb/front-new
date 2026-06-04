@@ -1,0 +1,158 @@
+---
+import ProductLayout from '../../../layouts/ProductLayout.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import {
+  getProductsByType,
+  getTypeFromSlug,
+  getTypeSlug,
+  getTypeImage,
+  getTypeDescription,
+  PRODUCT_TYPES,
+} from '../../../data/products';
+
+export async function getStaticPaths() {
+  return PRODUCT_TYPES.map(type => ({
+    params: { slug: getTypeSlug(type) },
+    props: { type },
+  }));
+}
+
+const { type } = Astro.props;
+const products = getProductsByType(type);
+const imageSrc = getTypeImage(type);
+const description = getTypeDescription(type);
+
+const breadcrumbs = [
+  { label: '首页', href: '/' },
+  { label: '产品', href: '/products' },
+  { label: type },
+];
+---
+
+<ProductLayout
+  title={`${type} — 海得宝 MarTempo`}
+  description={description}
+  breadcrumbs={breadcrumbs}
+  showMore={products.length > 8}
+>
+  <section slot="hero" class="category-hero">
+    <div class="category-hero-bg">
+      <img src={imageSrc} alt={type} class="category-hero-img" />
+      <div class="category-hero-overlay"></div>
+    </div>
+    <div class="category-hero-content">
+      <h1 class="category-hero-title">{type}</h1>
+      <p class="category-hero-desc">{description}</p>
+    </div>
+  </section>
+  <section slot="content">
+    <div class="product-grid-header">
+      <p class="product-count">{products.length} 件产品</p>
+    </div>
+    <div class="product-grid-wrapper">
+      <div class="product-grid" data-show-more={products.length > 8 ? '8' : ''}>
+        {products.map(product => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+      {products.length > 8 && (
+        <button class="show-more-btn" type="button">显示更多 →</button>
+      )}
+    </div>
+  </section>
+</ProductLayout>
+
+<style>
+  .category-hero {
+    position: relative;
+    padding: var(--space-6xl) var(--content-padding) var(--space-5xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    overflow: hidden;
+  }
+
+  .category-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .category-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .category-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      oklch(96% 0.008 185 / 0.85) 0%,
+      oklch(96% 0.008 185 / 0.95) 100%
+    );
+  }
+
+  .category-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .category-hero-title {
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+  }
+
+  .category-hero-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .product-grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .product-count {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  @media (max-width: 768px) {
+    .category-hero {
+      min-height: 240px;
+      padding: var(--space-5xl) var(--content-padding) var(--space-4xl);
+    }
+    .category-hero-title {
+      font-size: var(--text-2xl);
+    }
+    .product-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

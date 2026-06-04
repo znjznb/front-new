@@ -1,0 +1,161 @@
+---
+import { getLineDisplayName, getProductImage, getProductSlug, hasSkus, getProductSkus } from '../data/products';
+
+const { product } = Astro.props;
+const imgSrc = getProductImage(product);
+const lineLabel = getLineDisplayName(product.line);
+const slug = getProductSlug(product);
+const skus = getProductSkus(product);
+const defaultStatus = skus && skus[0] && skus[0].status ? skus[0].status : (product.status || '');
+const efficacyTags = Array.isArray(product.efficacy)
+  ? product.efficacy.filter(Boolean)
+  : (product.efficacy && product.efficacy !== 'None'
+    ? product.efficacy.split(',').map(s => s.trim()).filter(Boolean)
+    : []);
+---
+
+<a class="product-card" href={`/products/detail/${slug}`}>
+  <div class="product-card-image">
+    <img src={imgSrc} alt={product.name} width="400" height="300" loading="lazy" />
+    {defaultStatus === '即将上市' && <span class="product-card-status">即将上市</span>}
+    {defaultStatus === '即将更换包装' && <span class="product-card-status card-status-warn">即将换新</span>}
+    {defaultStatus === '即将停售' && <span class="product-card-status card-status-muted">即将停售</span>}
+    {hasSkus(product) && <span class="product-card-sku-badge">多种规格</span>}
+  </div>
+  <div class="product-card-body">
+    <span class="product-card-line">{lineLabel}</span>
+    <h3 class="product-card-name">{product.name}</h3>
+    {product.nickname && (
+      <p class="product-card-desc">{product.nickname}</p>
+    )}
+    {efficacyTags.length > 0 && (
+      <div class="product-card-tags">
+        {efficacyTags.slice(0, 3).map(tag => (
+          <span class="product-card-tag">{tag}</span>
+        ))}
+      </div>
+    )}
+  </div>
+</a>
+
+<style>
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--duration-medium) var(--ease-out-expo);
+  }
+
+  .product-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .product-card-image {
+    position: relative;
+    background: oklch(96% 0.012 218);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 435.99px;
+    aspect-ratio: 435.99 / 401.11;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  .product-card-image img {
+    position: absolute;
+    left: 2%;
+    width: 96%;
+    height: auto;
+    max-height: 290px;
+    object-fit: contain;
+    bottom: -40px;
+    filter: drop-shadow(0 4px 16px oklch(0% 0 0 / 0.07));
+    transition: transform var(--duration-slow) var(--ease-out-expo);
+  }
+
+  .product-card:hover .product-card-image img {
+    transform: scale(1.04);
+  }
+
+  .product-card-status {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--color-brand);
+    color: #fff;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    padding: 4px 10px;
+    letter-spacing: var(--tracking-wider);
+    z-index: 1;
+    border-radius: var(--radius-sm);
+  }
+
+  .card-status-warn {
+    background: oklch(0.75 0.10 75);
+  }
+
+  .card-status-muted {
+    background: oklch(0.60 0.02 260);
+  }
+
+  .product-card-sku-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: oklch(60% 0.02 260 / 0.12);
+    color: var(--color-text-muted);
+    font-size: 0.65rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    letter-spacing: var(--tracking-wide);
+    z-index: 1;
+    border-radius: var(--radius-sm);
+    backdrop-filter: blur(4px);
+  }
+
+  .product-card-body {
+    padding: 48px var(--space-lg) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .product-card-line {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-brand);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+  }
+
+  .product-card-name {
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    color: var(--color-text);
+  }
+
+  .product-card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    line-height: var(--leading-normal);
+  }
+
+  .product-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: var(--space-xs);
+  }
+
+  .product-card-tag {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    background: var(--color-brand-subtle);
+    color: var(--color-brand-dark);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+  }
+</style>

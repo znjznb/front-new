@@ -1,0 +1,125 @@
+---
+// Dev server & production: Decap CMS admin page
+// Uses JS-based manual init instead of config.yml for reliability
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>海得宝 — 内容管理</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #555;
+    }
+    .loading {
+      text-align: center;
+    }
+    .loading h1 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .loading p {
+      font-size: 0.9rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="loading" id="loading">
+    <h1>海得宝 · 内容管理</h1>
+    <p>正在加载管理后台...</p>
+  </div>
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
+  <script src="https://unpkg.com/decap-cms@^3/dist/decap-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'znjznb/front-new',
+          branch: 'main',
+          auth_type: 'pkce',
+          app_id: 'Ov23ct4DBS9aoHy03EUX',
+        },
+        media_folder: 'public/assets',
+        public_folder: '/assets',
+        locale: 'zh_Hans',
+        collections: [
+          {
+            name: 'news',
+            label: '新闻',
+            label_singular: '新闻',
+            folder: 'src/content/news',
+            create: true,
+            delete: true,
+            format: 'frontmatter',
+            slug: '{{slug}}',
+            preview_path: 'news/{{slug}}/',
+            fields: [
+              { label: '标题', name: 'title', widget: 'string' },
+              { label: '发布日期', name: 'date', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false },
+              { label: '摘要', name: 'summary', widget: 'text', hint: '首页新闻卡片上显示的一两句话，建议不超过100字' },
+              { label: '正文', name: 'body', widget: 'markdown', hint: '新闻详情页的完整内容，支持多段落' },
+            ],
+          },
+          {
+            name: 'products',
+            label: '产品',
+            label_singular: '产品',
+            folder: 'src/cms-products',
+            create: true,
+            delete: true,
+            format: 'json',
+            slug: '{{slug}}',
+            fields: [
+              // ── Basic info ──
+              { label: '产品名称', name: 'name', widget: 'string' },
+              { label: '副标题', name: 'nickname', widget: 'string', required: false, hint: '商品名下方显示的一句话，如"5分钟即刻修护 一帖告别EMO唇"' },
+              { label: '描述', name: 'desc', widget: 'text', required: false, hint: '不影响详情页展示，仅作备注参考' },
+
+              // ── Classification ──
+              { label: '产品线', name: 'line', widget: 'select', options: ['专业线｜Expert Collection', '婴童线｜Primal Comfort', '女性线｜Féminine Collection', '医用敷料｜Biocellulaire Therapy'], required: false, hint: '仅供 CMS 标记，不影响网站显示' },
+              { label: '产品类型', name: 'types', widget: 'select', multiple: true, options: ['精华/面霜', '水/洁面', '身体护理', '唇部护理', '院线同款'], required: false, hint: '可多选，留空则根据名称自动推断' },
+              { label: '销售状态', name: 'status', widget: 'select', options: ['在售', '即将上市', '即将更换包装', '即将停售'], required: false, hint: '控制详情页是否显示状态徽章' },
+
+              // ── Media ──
+              { label: '主图', name: 'image', widget: 'file', media_folder: '/public/assets', public_folder: '/assets', hint: '商品卡片和详情页主图' },
+              { label: '轮播图列表', name: 'images', widget: 'list', field: { label: '图片路径', name: 'src', widget: 'string', hint: '填写图片路径如 /assets/xxx.jpg' }, required: false, hint: '详情页多图轮播，留空自动组合' },
+
+              // ── Product details ──
+              { label: '适用肤质', name: 'skin_type', widget: 'string', required: false, hint: '如"干性和极干性, 敏感肌"（多值用逗号分隔）' },
+              { label: '适用人群', name: 'audience', widget: 'string', required: false, hint: '如"成人, 儿童"（多值用逗号分隔）' },
+              { label: '功效标签', name: 'efficacy', widget: 'list', required: false, hint: '每行一个，如：保湿 / 舒缓 / 修护' },
+              { label: 'SKU 规格', name: 'skus', widget: 'list', required: false, hint: '如有多个容量或颜色，在此添加', fields: [
+                { label: '规格名称', name: 'label', widget: 'string', hint: '如 150g、350g、8g' },
+                { label: '规格图片', name: 'image', widget: 'file', media_folder: '/public/assets', public_folder: '/assets', hint: '该规格对应的产品图' },
+                { label: '销售状态', name: 'status', widget: 'select', options: ['在售', '即将上市', '即将更换包装', '即将停售'], required: false, hint: '留空默认 "在售"' },
+              ] },
+              { label: '产品成分', name: 'ingredients', widget: 'list', required: false, hint: '按浓度降序排列，每行一个成分' },
+
+              // ── Product details tab ──
+              { label: '功效数据', name: 'can_claim', widget: 'text', required: false, hint: '详情页"产品详情"标签的数据来源。用 / 分隔每条数据，支持自动提取数值卡片和认证徽章' },
+              { label: '产品详情（自定义）', name: 'detail_description', widget: 'markdown', required: false, hint: '填写后替代自动解析的功效数据，完全自定义"产品详情"标签内容' },
+
+              // ── Commerce ──
+              { label: '购买链接', name: 'buy_url', widget: 'string', required: false, hint: '立即购买跳转链接，留空使用默认淘宝链接' },
+              { label: '排序', name: 'order', widget: 'number', value_type: 'int', hint: '数字越小越靠前' },
+            ],
+          },
+        ],
+      },
+    });
+  </script>
+</body>
+</html>

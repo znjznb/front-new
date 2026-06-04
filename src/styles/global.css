@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700&display=swap');
-
 :root {
   /* Brand Colors - converted from brand VI */
   --color-brand: oklch(70% 0.18 185);
@@ -47,7 +45,7 @@
   --space-6xl: 192px;
 
   /* Typography */
-  --font-sans: 'Sora', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Sora', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
   --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
   --text-sm: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
   --text-base: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
@@ -81,6 +79,12 @@
   --duration-slow: 1.2s;
   --duration-very-slow: 2s;
 
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
   /* Layout */
   --content-max-width: 1200px;
   --content-padding: var(--space-lg);
@@ -103,6 +107,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
 }
 
 body {
@@ -157,6 +162,7 @@ button {
   text-transform: uppercase;
   transition: all var(--duration-medium) var(--ease-out-expo);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .btn-primary {

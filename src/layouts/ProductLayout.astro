@@ -1,0 +1,170 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  breadcrumbs?: { label: string; href?: string }[];
+  showMore?: boolean;
+}
+
+const { title, description, breadcrumbs = [], showMore = false } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Nav />
+  <main>
+    <div class="hero-area">
+      {breadcrumbs.length > 0 && (
+        <nav class="breadcrumb" aria-label="面包屑导航">
+          <div class="breadcrumb-inner">
+            {breadcrumbs.map((crumb, i) => (
+              <span class="breadcrumb-item">
+                {i > 0 && <span class="breadcrumb-sep">›</span>}
+                {crumb.href
+                  ? <a href={crumb.href} class="breadcrumb-link">{crumb.label}</a>
+                  : <span class="breadcrumb-current">{crumb.label}</span>
+                }
+              </span>
+            ))}
+          </div>
+        </nav>
+      )}
+      <slot name="hero" />
+    </div>
+    <div class="product-main">
+      <div class="section-inner">
+        <slot name="content" />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const grids = document.querySelectorAll('.product-grid[data-show-more]');
+  grids.forEach(grid => {
+    const items = grid.querySelectorAll('.product-card');
+    const threshold = parseInt(grid.dataset.showMore, 10) || 8;
+    if (items.length <= threshold) return;
+
+    const wrapper = grid.closest('.product-grid-wrapper');
+    const btn = wrapper?.querySelector('.show-more-btn');
+    if (!btn) return;
+
+    items.forEach((item, i) => {
+      if (i >= threshold) item.style.display = 'none';
+    });
+
+    let expanded = false;
+    btn.addEventListener('click', () => {
+      expanded = !expanded;
+      items.forEach((item, i) => {
+        if (i >= threshold) item.style.display = expanded ? '' : 'none';
+      });
+      btn.innerHTML = expanded ? '收起' : '显示更多 →';
+    });
+  });
+});
+</script>
+
+<style>
+  /* ── Main ── */
+  .product-main {
+    padding: var(--space-4xl) 16px var(--space-6xl);
+    background: #ffffff;
+  }
+
+  /* ── Hero area: wrapper for breadcrumb overlay + hero slot ── */
+  .hero-area {
+    position: relative;
+  }
+
+  /* ── Breadcrumb overlays on hero section ── */
+  .breadcrumb {
+    position: absolute;
+    top: 82px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: var(--space-sm) var(--content-padding);
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .breadcrumb-inner {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+
+  .breadcrumb-item {
+    pointer-events: auto;
+  }
+
+  .breadcrumb-sep {
+    margin: 0 6px;
+    color: oklch(50% 0.01 260 / 0.5);
+    font-size: var(--text-xs);
+  }
+
+  .breadcrumb-link {
+    font-size: var(--text-xs);
+    color: oklch(50% 0.01 260 / 0.6);
+    text-decoration: none;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-brand);
+  }
+
+  .breadcrumb-current {
+    font-size: var(--text-xs);
+    color: oklch(35% 0.015 260 / 0.7);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .product-main {
+      padding: var(--space-3xl) var(--content-padding) var(--space-5xl);
+    }
+
+    .breadcrumb {
+      top: 74px;
+      padding: var(--space-xs) var(--content-padding);
+    }
+  }
+</style>
+
+<style is:global>
+  /* ── Show more (global: lives in slot content) ── */
+  .product-grid-wrapper {
+    position: relative;
+  }
+
+  .show-more-btn {
+    display: block;
+    margin: var(--space-2xl) auto 0;
+    padding: 12px 40px;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    background: transparent;
+    cursor: pointer;
+    transition: all var(--duration-medium) var(--ease-out-expo);
+    letter-spacing: var(--tracking-wider);
+    border-radius: var(--radius-pill);
+    width: fit-content;
+  }
+
+  .show-more-btn:hover {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    color: var(--color-text-inverse);
+  }
+</style>

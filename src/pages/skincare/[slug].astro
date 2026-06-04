@@ -1,0 +1,159 @@
+---
+import SkincareLayout from '../../layouts/SkincareLayout.astro';
+import { SKINCARE_TOPICS, getSkincareTopic } from '../../data/skincare';
+
+export async function getStaticPaths() {
+  return SKINCARE_TOPICS.map(topic => ({
+    params: { slug: topic.slug },
+    props: { topic },
+  }));
+}
+
+const { topic } = Astro.props;
+const hasSections = topic.sections && topic.sections.length > 0;
+---
+
+<SkincareLayout
+  title={`${topic.title} — 海得宝科学护肤`}
+  description={hasSections ? topic.sections[0].body : topic.body}
+  category={topic.category}
+  topicSlug={topic.slug}
+>
+  <div class="topic-page">
+    <div class="topic-header">
+      <span class="topic-category">{topic.category}</span>
+      <h1 class="topic-title">{topic.title}</h1>
+      {topic.subtitle && <p class="topic-subtitle">{topic.subtitle}</p>}
+    </div>
+
+    <div class="topic-body">
+      <div class="topic-text">
+        {hasSections ? (
+          <div class="topic-sections">
+            {topic.sections.map(section => (
+              <div class="topic-section">
+                <h2 class="section-heading">{section.heading}</h2>
+                <p class="section-body">{section.body}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="topic-description">
+            <p>{topic.body}</p>
+          </div>
+        )}
+      </div>
+      <div class="topic-image">
+        <img src={topic.image} alt={topic.imageAlt || topic.title} width="600" height="450" loading="eager" />
+      </div>
+    </div>
+  </div>
+</SkincareLayout>
+
+<style>
+  .topic-page {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .topic-header {
+    margin-bottom: var(--space-3xl);
+    text-align: center;
+  }
+
+  .topic-category {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: var(--space-md);
+  }
+
+  .topic-title {
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .topic-subtitle {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .topic-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .topic-sections {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .topic-section {
+    padding-left: var(--space-lg);
+    border-left: 2px solid var(--color-brand-subtle);
+  }
+
+  .section-heading {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+    line-height: var(--leading-snug);
+  }
+
+  .section-body {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .topic-description {
+    font-size: var(--text-base);
+    color: var(--color-text-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .topic-image {
+    position: sticky;
+    top: 120px;
+  }
+
+  .topic-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    background: oklch(96% 0.012 218);
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .topic-body {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .topic-title {
+      font-size: var(--text-2xl);
+    }
+
+    .topic-image {
+      position: static;
+      order: -1;
+    }
+
+    .topic-image img {
+      max-height: 280px;
+    }
+  }
+</style>

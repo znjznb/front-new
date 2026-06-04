@@ -1,8 +1,20 @@
 // Scroll-triggered reveal animations
+function isInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const revealElements = document.querySelectorAll('.reveal');
 
   if (!revealElements.length) return;
+
+  // Eagerly reveal elements already in the viewport
+  // This prevents a flash-then-disappear when CSS (opacity:0) arrives
+  // after first paint — common in dev mode (Vite CSS injection).
+  revealElements.forEach((el) => {
+    if (isInViewport(el)) el.classList.add('visible');
+  });
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -19,5 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   );
 
-  revealElements.forEach((el) => observer.observe(el));
+  revealElements.forEach((el) => {
+    if (!el.classList.contains('visible')) observer.observe(el);
+  });
 });

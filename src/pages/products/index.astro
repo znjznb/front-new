@@ -1,0 +1,132 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getAllProducts, ALL_LINES, getProductsByLine, getLineDisplayName } from '../../data/products';
+
+const allProducts = getAllProducts();
+
+const breadcrumbs = [
+  { label: '首页', href: '/' },
+  { label: '全部产品' },
+];
+---
+
+<ProductLayout
+  title="全部产品 — 海得宝 MarTempo"
+  description="海得宝全系列产品，覆盖专业线、女性线、婴童线。"
+  breadcrumbs={breadcrumbs}
+>
+  <section slot="hero" class="all-hero">
+    <div class="all-hero-content">
+      <span class="eyebrow">全部产品</span>
+      <h1 class="all-hero-title">所有产品</h1>
+      <p class="all-hero-desc">海得宝全系列{allProducts.length}件产品，以CAPCS®凯普斯泰为核心，覆盖专业线、女性线、婴童线三大产品线，满足敏感肌家庭的全方位护理需求。</p>
+    </div>
+  </section>
+  <section slot="content">
+    {ALL_LINES.map(line => {
+      const lineProducts = getProductsByLine(line);
+      if (lineProducts.length === 0) return null;
+      return (
+        <div class="all-line-section">
+          <div class="all-line-header">
+            <h2 class="all-line-title">{getLineDisplayName(line)}</h2>
+            <a href={line === '专业线' ? '/products/professional' : line === '女性线-干敏肌' || line === '女性线-油敏肌' ? '/products/feminine' : `/products/${line === '婴童线' ? 'baby' : line}`} class="all-line-more">查看全部 →</a>
+          </div>
+          <div class="product-grid">
+            {lineProducts.slice(0, 4).map(product => (
+              <ProductCard product={product} />
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </section>
+</ProductLayout>
+
+<style>
+  .all-hero {
+    position: relative;
+    padding: var(--space-6xl) var(--content-padding) var(--space-5xl);
+    background: linear-gradient(135deg, oklch(96% 0.01 185) 0%, oklch(98% 0.005 185) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+  }
+
+  .all-hero-content {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .all-hero-title {
+    font-size: var(--text-3xl);
+    font-weight: 300;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+  }
+
+  .all-hero-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .all-line-section {
+    margin-bottom: var(--space-4xl);
+  }
+
+  .all-line-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-brand-subtle);
+  }
+
+  .all-line-title {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .all-line-more {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .all-line-more:hover {
+    color: var(--color-brand);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  @media (max-width: 768px) {
+    .all-hero {
+      min-height: 200px;
+      padding: var(--space-5xl) var(--content-padding) var(--space-4xl);
+    }
+    .all-hero-title {
+      font-size: var(--text-2xl);
+    }
+    .product-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

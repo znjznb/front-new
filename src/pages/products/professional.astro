@@ -1,0 +1,122 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getProductsByLine } from '../../data/products';
+
+const products = getProductsByLine('专业线');
+
+const breadcrumbs = [
+  { label: '首页', href: '/' },
+  { label: '产品', href: '/products' },
+  { label: '专业线' },
+];
+---
+
+<ProductLayout
+  title="专业线｜Expert Collection — 海得宝 MarTempo"
+  description="经全国1000+公立医院皮肤科临床验证的专业护肤方案，以CAPCS®凯普斯泰为核心成分。"
+  breadcrumbs={breadcrumbs}
+  showMore={products.length > 8}
+>
+  <section slot="hero" class="category-hero">
+    <div class="category-hero-bg"></div>
+    <div class="category-hero-content">
+      <h1 class="category-hero-title">专业线</h1>
+      <span class="category-hero-sub" style="color:oklch(0.70 0.15 218)">Expert Collection</span>
+      <p class="category-hero-desc">经全国1000+公立医院皮肤科临床验证的专业护肤方案，以CAPCS®凯普斯泰为核心成分，从根源舒缓敏感、修护皮肤屏障。全系列通过人体斑贴测试，0激素0防腐剂，脆弱敏感肌也能安心使用。</p>
+    </div>
+  </section>
+  <section slot="content">
+    <div class="product-grid-header">
+      <p class="product-count">{products.length} 件产品</p>
+    </div>
+    <div class="product-grid-wrapper">
+      <div class="product-grid" data-show-more="8">
+        {products.map(product => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+      <button class="show-more-btn" type="button">显示更多 →</button>
+    </div>
+  </section>
+</ProductLayout>
+
+<style>
+  .category-hero {
+    position: relative;
+    padding: var(--space-6xl) var(--content-padding) var(--space-5xl);
+    background: linear-gradient(135deg, oklch(96% 0.014 218) 0%, oklch(98% 0.007 218) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+  }
+
+  .category-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .category-hero-title {
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .category-hero-sub {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 400;
+    margin-bottom: var(--space-lg);
+  }
+
+  .category-hero-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .product-grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .product-count {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  @media (max-width: 768px) {
+    .category-hero {
+      min-height: 240px;
+      padding: var(--space-5xl) var(--content-padding) var(--space-4xl);
+    }
+    .category-hero-title {
+      font-size: var(--text-2xl);
+    }
+    .product-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

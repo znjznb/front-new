@@ -1,0 +1,96 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  category: string;
+  topicSlug: string;
+}
+
+const { title, description, category, topicSlug } = Astro.props;
+
+// Build breadcrumb links for skincare pages
+const categorySlugs = {
+  '敏感肌问题': '/skincare/dry-itch',
+  '敏感肌类型': '/skincare/dry-sensitive',
+};
+const categorySlug = categorySlugs[category] || '/skincare/dry-itch';
+---
+
+<BaseLayout title={title} description={description}>
+  <Nav />
+  <main>
+    <div class="skincare-hero">
+      <div class="skincare-hero-inner">
+        <nav class="breadcrumb" aria-label="面包屑导航">
+          <a href="/">首页</a>
+          <span class="sep">›</span>
+          <a href="/skincare/dry-itch">科学护肤</a>
+          <span class="sep">›</span>
+          <a href={categorySlug}>{category}</a>
+          <span class="sep">›</span>
+          <span class="current">{title}</span>
+        </nav>
+      </div>
+    </div>
+    <div class="skincare-main">
+      <div class="section-inner">
+        <slot />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .skincare-hero {
+    padding: 100px var(--content-padding) var(--space-xl);
+    background: linear-gradient(135deg, oklch(96% 0.01 185) 0%, oklch(98% 0.005 185) 100%);
+  }
+
+  .skincare-hero-inner {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    font-size: var(--text-xs);
+  }
+
+  .breadcrumb a {
+    color: oklch(50% 0.01 260 / 0.6);
+    text-decoration: none;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-brand);
+  }
+
+  .breadcrumb .sep {
+    margin: 0 6px;
+    color: oklch(50% 0.01 260 / 0.5);
+  }
+
+  .breadcrumb .current {
+    color: oklch(35% 0.015 260 / 0.7);
+    font-weight: 500;
+  }
+
+  .skincare-main {
+    padding: var(--space-5xl) var(--content-padding) var(--space-6xl);
+    background: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .skincare-hero {
+      padding: 90px var(--content-padding) var(--space-lg);
+    }
+    .skincare-main {
+      padding: var(--space-3xl) var(--content-padding) var(--space-5xl);
+    }
+  }
+</style>

@@ -1,0 +1,145 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getFeminineProducts } from '../../data/products';
+
+const products = getFeminineProducts();
+
+const breadcrumbs = [
+  { label: '首页', href: '/' },
+  { label: '产品', href: '/products' },
+  { label: '女性线' },
+];
+---
+
+<ProductLayout
+  title="女性线｜Féminine Collection — 海得宝 MarTempo"
+  description="专为女性敏感肌设计的温和护肤系列，覆盖干敏肌抗老修护与油敏肌控油祛痘。"
+  breadcrumbs={breadcrumbs}
+>
+  <section slot="hero" class="category-hero">
+    <div class="category-hero-bg"></div>
+    <div class="category-hero-content">
+      <h1 class="category-hero-title">女性线</h1>
+      <span class="category-hero-sub" style="color:oklch(0.70 0.14 166)">Féminine Collection</span>
+      <p class="category-hero-desc">专为女性敏感肌设计的完整护肤方案。干敏肌系列温和抗老、深层滋润；油敏肌系列控油祛痘、平衡微生态。每一款产品都经敏感肌验证，温和有效。</p>
+    </div>
+  </section>
+  <section slot="content">
+    <div class="product-grid-header">
+      <p class="product-count">{products.length} 件产品</p>
+    </div>
+    <div class="sub-line-section" id="dry-sensitive">
+      <h2 class="sub-line-title">干敏肌系列</h2>
+      <div class="product-grid">
+        {products.filter(p => p.line === '女性线-干敏肌').map(product => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    </div>
+    <div class="sub-line-section" id="oily-sensitive">
+      <h2 class="sub-line-title">油敏肌系列</h2>
+      <div class="product-grid">
+        {products.filter(p => p.line === '女性线-油敏肌').map(product => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    </div>
+  </section>
+</ProductLayout>
+
+<style>
+  .category-hero {
+    position: relative;
+    padding: var(--space-6xl) var(--content-padding) var(--space-5xl);
+    background: linear-gradient(135deg, oklch(96% 0.017 166) 0%, oklch(98% 0.008 166) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+  }
+
+  .category-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .category-hero-title {
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .category-hero-sub {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 400;
+    margin-bottom: var(--space-lg);
+  }
+
+  .category-hero-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .product-grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .product-count {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .sub-line-section {
+    margin-bottom: var(--space-4xl);
+  }
+
+  .sub-line-title {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-brand-subtle);
+    color: var(--color-text);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  @media (max-width: 768px) {
+    .category-hero {
+      min-height: 240px;
+      padding: var(--space-5xl) var(--content-padding) var(--space-4xl);
+    }
+    .category-hero-title {
+      font-size: var(--text-2xl);
+    }
+    .product-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

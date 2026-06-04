@@ -1,0 +1,243 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+
+const breadcrumbs = [
+  { label: '首页', href: '/' },
+  { label: '产品系列' },
+];
+
+const series = [
+  {
+    slug: 'professional',
+    name: '专业线',
+    enName: 'Expert Collection',
+    desc: '为复杂敏感状态构建的全链路修护方案。以源头舒敏为核心，联动屏障修护，覆盖从清洁、舒缓到保湿维稳的多场景需求；从面部到身体、急性敏感到日常维稳，提供更系统、完整的敏感肌护理解决方案。',
+    img: '/assets/product-professional.png',
+    color: 'pro',
+  },
+  {
+    slug: 'feminine',
+    name: '女性线',
+    enName: 'Féminine Collection',
+    desc: '为成人敏感肌在不同场景下的精细化需求而生。从面部到手部，从抗初老到维稳控油，围绕不同肌肤状态，提供更具针对性的修护体验，实现更精准、更细致的敏肌管理方案。',
+    img: '/assets/product-women.jpg',
+    color: 'fem',
+  },
+  {
+    slug: 'baby',
+    name: '婴童线',
+    enName: 'Primal Comfort',
+    desc: '专注婴幼儿敏感肌肤的温和护理体系。针对敏感宝宝的娇嫩肌肤及蝴蝶宝贝（EB），提供更安心、温和的护理方案；全线产品严格遵循儿童化妆品标准，精简配方，纯净无负担，守护婴童敏感肌健康。',
+    img: '/assets/product-kids.jpg',
+    color: 'baby',
+  },
+];
+---
+
+<ProductLayout
+  title="产品系列 — 海得宝 MarTempo"
+  description="海得宝三大产品系列：专业线、女性线、婴童线"
+  breadcrumbs={breadcrumbs}
+>
+  <section slot="hero" class="series-hero">
+    <div class="series-hero-content">
+      <h1 class="series-hero-title">产品系列</h1>
+      <span class="series-hero-sub">Product Series</span>
+      <p class="series-hero-desc">以CAPCS®凯普斯泰为核心，覆盖专业线、女性线与婴童线三大产品线，为敏感肌家庭提供全方位的专业护理方案。</p>
+    </div>
+  </section>
+  <section slot="content">
+    <div class="series-list">
+      {series.map((item, i) => (
+        <div id={item.slug} class={`series-block series-${item.color} ${i % 2 === 1 ? 'series-reverse' : ''}`}>
+          <div class="series-block-image">
+            <a href={`/products/${item.slug}`}>
+              <img src={item.img} alt={item.name} width="600" height="400" loading={i === 0 ? 'eager' : 'lazy'} />
+            </a>
+          </div>
+          <div class="series-block-text">
+            <span class="series-block-label">{item.name}</span>
+            <h2 class="series-block-title">{item.enName}</h2>
+            <p class="series-block-desc">{item.desc}</p>
+            <a href={`/products/${item.slug}`} class="series-block-link">查看全部产品 →</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</ProductLayout>
+
+<style>
+  /* ── Hero ── */
+  .series-hero {
+    padding: var(--space-6xl) var(--content-padding) var(--space-5xl);
+    background: linear-gradient(135deg, oklch(96% 0.01 185) 0%, oklch(98% 0.005 185) 100%);
+    text-align: center;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .series-hero-content {
+    max-width: 600px;
+  }
+
+  .series-hero-title {
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .series-hero-sub {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .series-hero-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Series list ── */
+  .series-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5xl);
+  }
+
+  .series-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+    scroll-margin-top: 100px;
+  }
+
+  .series-reverse .series-block-image {
+    order: 2;
+  }
+
+  /* ── Image ── */
+  .series-block-image {
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+
+  .series-block-image a {
+    display: block;
+  }
+
+  .series-block-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--duration-slow) var(--ease-out-expo);
+  }
+
+  .series-block-image a:hover img {
+    transform: scale(1.04);
+  }
+
+  /* ── Text ── */
+  .series-block-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .series-block-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .series-block-title {
+    font-size: var(--text-2xl);
+    font-weight: 300;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+  }
+
+  .series-block-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .series-block-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 10px 24px;
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius-pill);
+    width: fit-content;
+    transition: all var(--duration-medium) var(--ease-out-expo);
+    margin-top: var(--space-sm);
+  }
+
+  .series-block-link:hover {
+    background: var(--color-text);
+    color: var(--color-text-inverse);
+  }
+
+  /* ── Series accent colors ── */
+  .series-pro .series-block-label {
+    color: oklch(0.70 0.15 218);
+  }
+  .series-pro .series-block-link:hover {
+    background: oklch(0.70 0.15 218);
+    border-color: oklch(0.70 0.15 218);
+  }
+
+  .series-fem .series-block-label {
+    color: oklch(0.70 0.14 166);
+  }
+  .series-fem .series-block-link:hover {
+    background: oklch(0.70 0.14 166);
+    border-color: oklch(0.70 0.14 166);
+  }
+
+  .series-baby .series-block-label {
+    color: oklch(0.80 0.06 92);
+  }
+  .series-baby .series-block-link:hover {
+    background: oklch(0.80 0.06 92);
+    border-color: oklch(0.80 0.06 92);
+  }
+
+  @media (max-width: 768px) {
+    .series-hero {
+      min-height: 200px;
+      padding: var(--space-5xl) var(--content-padding) var(--space-4xl);
+    }
+    .series-hero-title {
+      font-size: var(--text-2xl);
+    }
+
+    .series-block {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .series-reverse .series-block-image {
+      order: 0;
+    }
+
+    .series-list {
+      gap: var(--space-4xl);
+    }
+  }
+</style>

@@ -14,16 +14,15 @@
     </a>
     <div class="nav-links" id="navLinks">
       <div class="nav-item">
-        <a href="#story" class="nav-link">品牌故事</a>
+        <a href="#story" class="nav-link">品牌探索</a>
         <div class="mega-menu">
           <div class="mega-menu-inner">
             <div class="mega-menu-content">
-              <a href="#" class="mega-link">品牌历程</a>
-              <a href="#" class="mega-link">代言人</a>
-              <a href="#" class="mega-link">公益</a>
-              <a href="#" class="mega-link">环保</a>
-              <a href="#" class="mega-link">新华社见证</a>
-              <a href="#" class="mega-link">新闻更新板块</a>
+              <a href="#" class="mega-link">关于品牌</a>
+              <a href="#" class="mega-link">品牌基因</a>
+              <a href="#" class="mega-link">公益责任</a>
+              <a href="#" class="mega-link">品牌好友</a>
+              <a href="#" class="mega-link">品牌资讯</a>
             </div>
           </div>
         </div>
@@ -33,24 +32,33 @@
         <div class="mega-menu">
           <div class="mega-menu-inner">
             <div class="mega-menu-content">
-              <a href="#" class="mega-link">成分来源及物理渗透原理</a>
-              <a href="#" class="mega-link">成分背书</a>
-              <a href="#" class="mega-link">科研实验</a>
-              <a href="#" class="mega-link">医院临床</a>
-              <a href="#" class="mega-link">工厂建设</a>
+              <a href="#" class="mega-link">成分百科</a>
+              <a href="#" class="mega-link">科研成果</a>
+              <a href="#" class="mega-link">成分实验室</a>
+              <a href="#" class="mega-link">共创实验室</a>
             </div>
           </div>
         </div>
       </div>
       <div class="nav-item">
-        <a href="#products" class="nav-link">产品矩阵</a>
+        <a href="#products" class="nav-link">产品</a>
         <div class="mega-menu">
           <div class="mega-menu-inner">
-            <div class="mega-menu-content">
-              <a href="#" class="mega-link">产品系列</a>
-              <a href="#" class="mega-link">肌肤类型</a>
-              <a href="#" class="mega-link">肌肤问题</a>
-              <a href="#" class="mega-link">产品类型</a>
+            <div class="mega-menu-grid grid-2col">
+              <div class="mega-menu-column">
+                <div class="mega-menu-title">产品系列</div>
+                <a href="/products/series#professional" class="mega-link">专业线｜Expert Collection</a>
+                <a href="/products/series#baby" class="mega-link">婴童线｜Primal Comfort</a>
+                <a href="/products/series#feminine" class="mega-link">女性线｜Féminine Collection</a>
+              </div>
+              <div class="mega-menu-column">
+                <div class="mega-menu-title">产品类型</div>
+                <a href="/products/type/essence-cream" class="mega-link">精华/面霜</a>
+                <a href="/products/type/toner-cleanser" class="mega-link">水/洁面</a>
+                <a href="/products/type/body-care" class="mega-link">身体护理</a>
+                <a href="/products/type/lip-care" class="mega-link">唇部护理</a>
+                <a href="/products/type/medical-pro" class="mega-link">院线同款</a>
+              </div>
             </div>
           </div>
         </div>
@@ -59,10 +67,35 @@
         <a href="#" class="nav-link">科学护肤</a>
         <div class="mega-menu">
           <div class="mega-menu-inner">
-            <div class="mega-menu-content">
-              <a href="#" class="mega-link">皮肤科学</a>
-              <a href="#" class="mega-link">护肤方式</a>
-              <a href="#" class="mega-link">护肤1v1</a>
+            <div class="mega-menu-grid grid-4col">
+              <div class="mega-menu-column">
+                <div class="mega-menu-title">经皮肤科学验证</div>
+                <a href="/skincare/dry-itch" class="mega-link">敏肌护理指南</a>
+              </div>
+              <div class="mega-menu-column">
+                <div class="mega-menu-title">敏感肌问题</div>
+                <a href="/skincare/dry-itch" class="mega-link">干痒反复</a>
+                <a href="/skincare/redness-heat" class="mega-link">泛红发热</a>
+                <a href="/skincare/sting-burn" class="mega-link">刺痛灼热</a>
+                <a href="/skincare/flaking-tight" class="mega-link">脱屑紧绷</a>
+                <a href="/skincare/eczema" class="mega-link">反复湿疹皮炎</a>
+              </div>
+              <div class="mega-menu-column" style="grid-column: span 2;">
+                <div class="mega-menu-title">敏感肌类型</div>
+                <div class="mega-menu-subcols">
+                  <div class="mega-menu-subcol">
+                    <a href="/skincare/dry-sensitive" class="mega-link">干敏肌</a>
+                    <a href="/skincare/oily-sensitive" class="mega-link">油敏肌</a>
+                    <a href="/skincare/seb-derm" class="mega-link">脂皮</a>
+                    <a href="/skincare/rosacea" class="mega-link">玫瑰皮</a>
+                    <a href="/skincare/atopic-derm" class="mega-link">特应性皮炎</a>
+                  </div>
+                  <div class="mega-menu-subcol">
+                    <a href="/skincare/lip-sensitive" class="mega-link">唇部敏感</a>
+                    <a href="/skincare/eb" class="mega-link">蝴蝶宝贝</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -113,13 +146,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (subLinks.length) {
       const body = document.createElement('div');
       body.className = 'mobile-section-body';
+      const inner = document.createElement('div');
+      inner.className = 'mobile-section-body-inner';
       subLinks.forEach(link => {
         const a = document.createElement('a');
         a.href = link.getAttribute('href') || '#';
         a.className = 'mobile-section-link';
         a.textContent = link.textContent;
-        body.appendChild(a);
+        inner.appendChild(a);
       });
+      body.appendChild(inner);
       section.appendChild(body);
       header.addEventListener('click', () => {
         header.classList.toggle('active');
@@ -157,6 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     z-index: var(--z-nav);
     padding: var(--space-md) var(--content-padding);
     background: #ffffff;
+    min-height: 82px;
   }
 
   .nav-inner {
@@ -201,12 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
     width: 22px;
     height: 2px;
     background: var(--color-text);
-    border-radius: 1px;
+    border-radius: var(--radius-sm);
   }
 
   /* ── Nav Links (desktop) ── */
   .nav-links {
     display: flex;
+    position: relative;
   }
 
   .nav-item {
@@ -214,64 +252,85 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   .nav-link {
+    position: relative;
     display: block;
-    padding: 8px 18px;
+    padding: 10px 24px 16px;
     font-size: var(--text-sm);
-    font-weight: 400;
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text-soft);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-text);
     transition: color var(--duration-fast) ease;
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
   }
 
+  /* Invisible hover extension below each nav-link — only covers this item's width */
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 28px;
+  }
+
   .nav-link:hover {
-    color: var(--color-text);
+    color: var(--color-brand);
+  }
+
+  @media (min-width: 1024px) {
+    .nav-item:hover > .nav-link::after {
+      background-color: var(--color-brand);
+      width: calc(100% - 1.6rem);
+      height: 3px;
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 8px;
+      left: 0.8rem;
+      border-radius: var(--radius-sm);
+      border: none;
+    }
   }
 
   /* ── Mega Menu ── */
   .mega-menu {
     visibility: hidden;
     opacity: 0;
+    transform: scaleY(0.85);
+    transform-origin: top center;
     position: absolute;
-    left: 10%;
-    top: calc(100% - var(--space-md));
-    width: 80%;
+    left: -32px;
+    right: -32px;
+    top: 100%;
     z-index: 9;
     pointer-events: none;
-    transition: opacity 0.5s ease, visibility 0s 0.5s;
-  }
-
-  /* bridge to eliminate gap between nav link and menu */
-  .mega-menu::before {
-    content: '';
-    position: absolute;
-    top: -12px;
-    left: -12.5%;
-    width: 125%;
-    height: 12px;
+    backface-visibility: hidden;
+    /* Exit: fast slide up + compress + fade out */
+    transition:
+      visibility 0s 0.15s,
+      opacity 0.15s ease,
+      transform 0.15s ease;
   }
 
   .nav-item:hover .mega-menu {
     visibility: visible;
     opacity: 1;
+    transform: scaleY(1);
     pointer-events: auto;
     z-index: 10;
-    transition: opacity 0.4s ease, visibility 0s 0s;
+    /* Enter: slow extend downward + fade in */
+    transition:
+      visibility 0s 0s,
+      opacity 1.5s cubic-bezier(0.12, 0.9, 0.2, 1),
+      transform 1.5s cubic-bezier(0.12, 0.9, 0.2, 1);
   }
 
   .mega-menu-inner {
     background: #ffffff;
     padding: var(--space-md) var(--space-lg);
     overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.5s ease;
-  }
-
-  .nav-item:hover .mega-menu-inner {
-    max-height: 400px;
-    transition: max-height 0.4s ease;
   }
 
   .mega-menu-content {
@@ -284,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     display: inline-block;
     padding: 6px 0;
     font-size: var(--text-sm);
-    font-weight: 300;
+    font-weight: 400;
     color: var(--color-text-soft);
     text-decoration: none;
     transition: color var(--duration-fast) ease;
@@ -292,7 +351,48 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   .mega-link:hover {
-    color: var(--color-brand-dark);
+    color: var(--color-brand);
+  }
+
+  /* ── Multi-column grid menus ── */
+  .mega-menu-grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .grid-2col {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-3col {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .grid-4col {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .mega-menu-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mega-menu-title {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    padding: 8px 0 4px;
+    margin-bottom: 6px;
+  }
+
+  .mega-menu-subcols {
+    display: flex;
+    gap: var(--space-xl);
+  }
+
+  .mega-menu-subcol {
+    display: flex;
+    flex-direction: column;
   }
 
   /* ── Mobile Menu ── */
@@ -300,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.3);
+    background: oklch(0% 0 0 / 0.3);
     z-index: 98;
   }
   .mobile-overlay.open { display: block; }
@@ -317,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     z-index: 99;
     padding: 80px var(--space-lg) var(--space-lg);
     overflow-y: auto;
-    box-shadow: 2px 0 16px rgba(0,0,0,0.08);
+    box-shadow: 2px 0 16px oklch(0% 0 0 / 0.08);
   }
   .mobile-menu.open { display: block; }
 
@@ -364,13 +464,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   :global(.mobile-section-body) {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--duration-medium) var(--ease-out-expo);
   }
 
   :global(.mobile-section-body.open) {
-    max-height: 500px;
+    grid-template-rows: 1fr;
+  }
+
+  :global(.mobile-section-body-inner) {
+    overflow: hidden;
   }
 
   :global(.mobile-section-link) {
@@ -380,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
     font-weight: 300;
     color: var(--color-text-soft);
     text-decoration: none;
-    border-top: 1px solid #f8f8f8;
+    border-top: 1px solid var(--color-border-light);
   }
 
   :global(.mobile-section-link:hover) {

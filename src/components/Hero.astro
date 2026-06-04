@@ -15,46 +15,54 @@
     ></video>
     <div class="hero-video-overlay"></div>
   </div>
-  <div class="hero-content">
-    <h1 class="hero-logo reveal reveal-scale">
-      <img
-        src="/assets/logo.png"
-        alt="海得宝 MarTempo"
-        class="hero-logo-img"
-        width="600"
-        height="200"
-      />
-    </h1>
-    <p class="hero-subtitle reveal reveal-rise reveal-delay-2">
-      敏感肌家庭的专业功效护肤品牌
-    </p>
-    <p class="hero-desc reveal reveal-rise reveal-delay-3">
-      贻贝钙肽CAPCS 专研根源修护成分<br />
-      1000+ 公立医院皮肤科临床选用
-    </p>
-    <div class="hero-actions reveal reveal-rise reveal-delay-4">
-      <a href="#story" class="btn btn-outline">探索品牌故事</a>
+  <div class="hero-body">
+    <div class="hero-center">
+      <h1 class="hero-logo">
+        <img
+          src="/assets/logo.png"
+          alt="海得宝 MarTempo"
+          class="hero-logo-img"
+          width="600"
+          height="200"
+        />
+      </h1>
+      <p class="hero-subtitle">
+        敏感肌家庭的专业功效护肤品牌
+      </p>
+      <p class="hero-desc">
+        贻贝钙肽CAPCS 专研根源修护成分<br />
+        1000+ 公立医院皮肤科临床选用
+      </p>
     </div>
-  </div>
-  <div class="hero-scroll-hint" aria-hidden="true">
-    <span class="hero-scroll-text">滚动探索</span>
-    <span class="hero-scroll-line"></span>
+    <div class="hero-bottom">
+      <div class="hero-actions">
+        <a href="#story" class="btn btn-outline">探索品牌故事</a>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span class="hero-scroll-text">滚动探索</span>
+        <span class="hero-scroll-line"></span>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
+  /* ── Section: override .section-full centering → column filling viewport ── */
   .hero {
     position: relative;
     overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 120px;
+    flex-direction: column;
+    padding: 0;
+    min-height: 100vh;
   }
 
   .hero-bg-video {
     position: absolute;
-    inset: 0;
+    top: 82px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 0;
   }
 
@@ -75,12 +83,28 @@
     );
   }
 
-  .hero-content {
+  /* ── Flex column that fills the section ── */
+  .hero-body {
     position: relative;
     z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 120px var(--content-padding) 0;
+  }
+
+  /* ── Center block: grows to fill space, centers logo+text ── */
+  .hero-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     max-width: 800px;
-    padding: 0 var(--content-padding);
+    width: 100%;
   }
 
   .hero-logo {
@@ -94,31 +118,32 @@
     margin: 0 auto;
   }
 
-  .hero-title {
-    font-size: var(--text-5xl);
-    font-weight: 200;
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text);
-    margin-bottom: var(--space-lg);
-  }
-
   .hero-subtitle {
-    font-size: var(--text-xl);
-    font-weight: 400;
+    font-size: var(--text-2xl);
+    font-weight: 300;
     letter-spacing: var(--tracking-wide);
     color: #fff;
     text-shadow: 0 2px 16px rgba(0,0,0,0.4);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    width: clamp(240px, 50vw, 520px);
   }
 
   .hero-desc {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     font-weight: 400;
     color: rgba(255,255,255,0.85);
     text-shadow: 0 1px 12px rgba(0,0,0,0.35);
     line-height: var(--leading-relaxed);
-    margin-bottom: var(--space-2xl);
+    margin-bottom: 0;
+  }
+
+  /* ── Bottom block: sits at viewport bottom ── */
+  .hero-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-2xl);
   }
 
   .hero-actions {
@@ -153,16 +178,11 @@
   }
 
   .hero-scroll-hint {
-    position: absolute;
-    bottom: var(--space-2xl);
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-sm);
     opacity: 0.4;
-    z-index: 1;
   }
 
   .hero-scroll-text {
@@ -186,9 +206,18 @@
   }
 
   @media (max-width: 768px) {
+    .hero-body {
+      padding-top: 100px;
+    }
+
     .hero-actions {
       flex-direction: column;
       align-items: center;
+    }
+
+    .hero-bottom {
+      padding-bottom: var(--space-lg);
+      gap: var(--space-lg);
     }
   }
 </style>
