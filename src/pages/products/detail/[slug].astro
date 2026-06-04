@@ -83,7 +83,7 @@ const efficacyTags = Array.isArray(product.efficacy)
 function parseClaimsForCards(raw) {
   if (!raw || raw === '/' || raw === '') return { highlights: [], certs: [], fullText: [] };
 
-  const items = raw.split('/').map(s => s.trim()).filter(Boolean);
+  const items = raw.split(/[\/\n]+/).map(s => s.trim()).filter(Boolean);
   const highlights = [];
   const certSet = new Set();
   const fullText = [];
@@ -91,8 +91,8 @@ function parseClaimsForCards(raw) {
   const certKeywords = ['无激素', '无防腐剂', '入口无毒', '入眼无刺激', '敏感肌适用', '斑贴无刺激', '斑贴无不良反应'];
 
   for (const item of items) {
-    // Strip leading numbers (1、2、etc.)
-    const clean = item.replace(/^[\d、.()（）\s]+/, '').trim();
+    // Strip leading numbering (1、 2. 3) etc., keep digits inside words like "1h"
+    const clean = item.replace(/^\d+[、.．\s]\s*/, '').trim();
 
     // Extract cert keywords
     for (const kw of certKeywords) {
