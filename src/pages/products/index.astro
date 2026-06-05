@@ -34,7 +34,7 @@ const breadcrumbs = [
             <a href={line === '专业线' ? '/products/professional' : line === '女性线-干敏肌' || line === '女性线-油敏肌' ? '/products/feminine' : `/products/${line === '婴童线' ? 'baby' : line}`} class="all-line-more">查看全部 →</a>
           </div>
           <div class="product-grid">
-            {lineProducts.slice(0, 4).map(product => (
+            {lineProducts.slice(0, 6).map(product => (
               <ProductCard product={product} />
             ))}
           </div>
