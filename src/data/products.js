@@ -97,6 +97,7 @@ const PRODUCT_PRIMARY_IMAGES = {
   '五阶面霜': '/assets/products/五阶面霜.png',
   '全域修护霜（控油版）': '/assets/products/全域修护霜（控油版）.png',
   '全域修护霜（滋润版）': '/assets/products/全域修护霜（滋润版）.png',
+  '全域修护霜（轻润版）': '/assets/products/全域修护霜（轻润版）50g.png',
   '全域速修精华液': '/assets/products/全域速修精华液.png',
   '唇敏灰绷带': '/assets/products/唇敏灰绷带.png',
   '干敏抗初老霜': '/assets/products/干敏抗初老霜.png',
@@ -132,6 +133,10 @@ const PRODUCT_SKU_VARIANTS = {
   '水凝胶敷料': [
     { label: '25g', image: '/assets/products/水凝胶敷料25g.png', default: true, status: '在售' },
     { label: '80g', image: '/assets/products/水凝胶敷料80g.png', status: '在售' },
+  ],
+  '全域修护霜（轻润版）': [
+    { label: '50g', image: '/assets/products/全域修护霜（轻润版）50g.png', default: true, status: '在售' },
+    { label: '5g', image: '/assets/products/全域修护霜（轻润版）5g.png', status: '即将上市' },
   ],
   '贻贝止痒膏': [
     { label: '沙焙棕', image: '/assets/products/贻贝止痒膏-放绳-棕.png', default: true, status: '在售' },
