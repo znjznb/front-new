@@ -106,20 +106,34 @@ function parseClaimsForCards(raw) {
       if (clean.includes(kw)) certSet.add(kw);
     }
 
-    // Extract water content improvement: "Xh后的含水量/水分含量改善率Y%"
+    // ── Single-value metrics ──
+
+    // Water content: "含水量改善了 27.27%" or "27.27% 水分含量改善率"
     let m = clean.match(/(\d+\.?\d*)%\s*(?:水分|含水).?量/);
-    if (!m) m = clean.match(/(?:水分|含水).?量.*?改善率.*?(\d+\.?\d*)%/);
+    if (!m) m = clean.match(/(?:水分|含水).?量.*?改善[了率].*?(\d+\.?\d*)%/);
     if (m) highlights.push({ value: m[1] + '%', label: '含水量改善' });
 
-    // Extract redness reduction: "褪红（a值）改善率Y%" or "血红素改善率Y%"
-    m = clean.match(/(褪红|血红素).*?改善率.*?(\d+\.?\d*)%/);
+    // Redness: "红色素指标改善了X%" or "褪红/血红素改善率X%"
+    m = clean.match(/(褪红|血红素|红色素).*?改善[了率].*?(\d+\.?\d*)%/);
     if (m) highlights.push({ value: m[2] + '%', label: m[1] === '血红素' ? '血红素改善' : '褪红改善' });
 
-    // Extract TEWL: "经皮水分流失改善率Y%"
-    m = clean.match(/经皮水分流失.*?改善率.*?(\d+\.?\d*)%/);
+    // TEWL: "经皮水分流失TEWL改善了X%"
+    m = clean.match(/经皮水分流失.*?改善[了率].*?(\d+\.?\d*)%/);
     if (m) highlights.push({ value: m[1] + '%', label: '屏障修护' });
 
-    // Extract relief metrics — try 2h first, then 15min, 5min, 1min
+    // ── Multi-value: "X改善率分别是 A%、B%、C%、D%" ──
+    // Matches patterns like:
+    //   "止痒改善率分别是 24.24%、27.27%、33.33%和45.45%"
+    //   "A值（舒缓）改善率分别是 2.81%、6.16%、14.20%和 22.45%"
+    // Extract the symptom name and the last value (longest duration)
+    m = clean.match(/(?:A值[（(]\s*([^）)]+)\s*[）)]|(舒缓|止痒|刺痛|灼热|红斑|脱屑))\s*改善率分别是\s*(\d+\.?\d*)%[、，]\s*(\d+\.?\d*)%[、，]\s*(\d+\.?\d*)%[和&]?\s*(\d+\.?\d*)%/);
+    if (m) {
+      const sym = m[1] || m[2];
+      const symLabelMap = { '舒缓': '舒缓', '止痒': '止痒', '刺痛': '刺痛', '灼热': '灼热', '红斑': '红斑', '脱屑': '脱屑' };
+      highlights.push({ value: m[6] + '%', label: symLabelMap[sym] + '（2h）' });
+    }
+
+    // ── Single-value relief metrics (existing) ──
     for (const sym of ['灼热', '瘙痒', '刺痛', '红斑']) {
       const durations = [
         { re: new RegExp(sym + '缓解.*?2h\\s*[-–—+](\\d+\\.?\\d*)%'), label: '2h' },
