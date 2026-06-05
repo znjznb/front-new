@@ -16,7 +16,6 @@ const breadcrumbs = [
   title="专业线｜Expert Collection — 海得宝 MarTempo"
   description="经全国1000+公立医院皮肤科临床验证的专业护肤方案，以CAPCS®凯普斯泰为核心成分。"
   breadcrumbs={breadcrumbs}
-  showMore={products.length > 8}
 >
   <section slot="hero" class="category-hero">
     <div class="category-hero-bg"></div>
@@ -31,7 +30,7 @@ const breadcrumbs = [
       <p class="product-count">{products.length} 件产品</p>
     </div>
     <div class="product-grid-wrapper">
-      <div class="product-grid" data-show-more="8">
+      <div class="product-grid" data-show-more>
         {products.map(product => (
           <ProductCard product={product} />
         ))}

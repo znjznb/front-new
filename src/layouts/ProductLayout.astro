@@ -7,10 +7,9 @@ export interface Props {
   title: string;
   description: string;
   breadcrumbs?: { label: string; href?: string }[];
-  showMore?: boolean;
 }
 
-const { title, description, breadcrumbs = [], showMore = false } = Astro.props;
+const { title, description, breadcrumbs = [] } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -47,26 +46,57 @@ const { title, description, breadcrumbs = [], showMore = false } = Astro.props;
 document.addEventListener('DOMContentLoaded', () => {
   const grids = document.querySelectorAll('.product-grid[data-show-more]');
   grids.forEach(grid => {
-    const items = grid.querySelectorAll('.product-card');
-    const threshold = parseInt(grid.dataset.showMore, 10) || 8;
-    if (items.length <= threshold) return;
+    const items = grid.querySelectorAll(':scope > *');
+    if (items.length <= 0) return;
 
     const wrapper = grid.closest('.product-grid-wrapper');
     const btn = wrapper?.querySelector('.show-more-btn');
     if (!btn) return;
 
-    items.forEach((item, i) => {
-      if (i >= threshold) item.style.display = 'none';
-    });
+    // Calculate columns from computed CSS grid tracks
+    function getThreshold() {
+      const style = getComputedStyle(grid);
+      const cols = style.gridTemplateColumns.split(' ').filter(t => t.trim()).length;
+      return Math.max(cols * 2, 4); // 2 full rows, minimum 4 items
+    }
 
     let expanded = false;
-    btn.addEventListener('click', () => {
-      expanded = !expanded;
+    let threshold = getThreshold();
+
+    function render() {
+      if (items.length <= threshold) {
+        btn.style.display = 'none';
+        items.forEach(item => { item.style.display = ''; });
+        return;
+      }
+
+      btn.style.display = '';
       items.forEach((item, i) => {
-        if (i >= threshold) item.style.display = expanded ? '' : 'none';
+        item.style.display = (i < threshold || expanded) ? '' : 'none';
       });
-      btn.innerHTML = expanded ? '收起' : '显示更多 →';
+      btn.textContent = expanded ? '收起' : '显示更多 →';
+    }
+
+    btn.onclick = () => {
+      expanded = !expanded;
+      render();
+    };
+
+    render();
+
+    // Recalculate on resize (debounced), only when collapsed
+    let timer;
+    const ro = new ResizeObserver(() => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const next = getThreshold();
+        if (next !== threshold && !expanded) {
+          threshold = next;
+          render();
+        }
+      }, 200);
     });
+    ro.observe(grid);
   });
 });
 </script>
