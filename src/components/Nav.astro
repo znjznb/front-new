@@ -280,17 +280,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   @media (min-width: 1024px) {
-    .nav-item:hover > .nav-link::after {
-      background-color: var(--color-brand);
-      width: calc(100% - 1.6rem);
-      height: 3px;
+    .nav-link::after {
       content: '';
       display: block;
       position: absolute;
       bottom: 8px;
       left: 0.8rem;
+      width: calc(100% - 1.6rem);
+      height: 3px;
       border-radius: var(--radius-sm);
-      border: none;
+      background: transparent;
+      transition: background-color 0.2s ease;
+      pointer-events: none;
+    }
+    .nav-item:hover > .nav-link::after {
+      background-color: var(--color-brand);
     }
   }
 
