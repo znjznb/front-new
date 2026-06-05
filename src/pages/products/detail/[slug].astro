@@ -100,6 +100,7 @@ function parseClaimsForCards(raw) {
   for (const item of items) {
     // Strip leading numbering (1、 2. 3) etc., keep digits inside words like "1h"
     const clean = item.replace(/^\d+[、.．\s]\s*/, '').trim();
+    let matched = false; // track if any specific regex captured this item
 
     // Extract cert keywords
     for (const kw of certKeywords) {
@@ -111,26 +112,23 @@ function parseClaimsForCards(raw) {
     // Water content: "含水量改善了 27.27%" or "27.27% 水分含量改善率"
     let m = clean.match(/(\d+\.?\d*)%\s*(?:水分|含水).?量/);
     if (!m) m = clean.match(/(?:水分|含水).?量.*?改善[了率].*?(\d+\.?\d*)%/);
-    if (m) highlights.push({ value: m[1] + '%', label: '含水量改善' });
+    if (m) { highlights.push({ value: m[1] + '%', label: '含水量改善' }); matched = true; }
 
     // Redness: "红色素指标改善了X%" or "褪红/血红素改善率X%"
     m = clean.match(/(褪红|血红素|红色素).*?改善[了率].*?(\d+\.?\d*)%/);
-    if (m) highlights.push({ value: m[2] + '%', label: m[1] === '血红素' ? '血红素改善' : '褪红改善' });
+    if (m) { highlights.push({ value: m[2] + '%', label: m[1] === '血红素' ? '血红素改善' : '褪红改善' }); matched = true; }
 
     // TEWL: "经皮水分流失TEWL改善了X%"
     m = clean.match(/经皮水分流失.*?改善[了率].*?(\d+\.?\d*)%/);
-    if (m) highlights.push({ value: m[1] + '%', label: '屏障修护' });
+    if (m) { highlights.push({ value: m[1] + '%', label: '屏障修护' }); matched = true; }
 
     // ── Multi-value: "X改善率分别是 A%、B%、C%、D%" ──
-    // Matches patterns like:
-    //   "止痒改善率分别是 24.24%、27.27%、33.33%和45.45%"
-    //   "A值（舒缓）改善率分别是 2.81%、6.16%、14.20%和 22.45%"
-    // Extract the symptom name and the last value (longest duration)
     m = clean.match(/(?:A值[（(]\s*([^）)]+)\s*[）)]|(舒缓|止痒|刺痛|灼热|红斑|脱屑))\s*改善率分别是\s*(\d+\.?\d*)%[、，]\s*(\d+\.?\d*)%[、，]\s*(\d+\.?\d*)%[和&]?\s*(\d+\.?\d*)%/);
     if (m) {
       const sym = m[1] || m[2];
       const symLabelMap = { '舒缓': '舒缓', '止痒': '止痒', '刺痛': '刺痛', '灼热': '灼热', '红斑': '红斑', '脱屑': '脱屑' };
       highlights.push({ value: m[6] + '%', label: symLabelMap[sym] + '（2h）' });
+      matched = true;
     }
 
     // ── Single-value relief metrics (existing) ──
@@ -145,25 +143,37 @@ function parseClaimsForCards(raw) {
         m = clean.match(re);
         if (m) {
           highlights.push({ value: m[1] + '%', label: sym + '缓解（' + label + '）' });
+          matched = true;
           break;
         }
       }
     }
     // Extract skin elasticity improvement
     m = clean.match(/(皮肤弹性|紧致度).*?改善率.*?(\d+\.?\d*)%/);
-    if (m) highlights.push({ value: m[2] + '%', label: '紧致提升' });
+    if (m) { highlights.push({ value: m[2] + '%', label: '紧致提升' }); matched = true; }
 
     // Extract wrinkle improvement
     m = clean.match(/(皱纹|抗皱).*?改善率.*?(\d+\.?\d*)%/);
-    if (m) highlights.push({ value: m[1] + '%', label: '淡纹' });
+    if (m) { highlights.push({ value: m[1] + '%', label: '淡纹' }); matched = true; }
 
     // Extract oil control
     m = clean.match(/油脂改善率.*?(\d+\.?\d*)%/);
-    if (m) highlights.push({ value: m[1] + '%', label: '控油' });
+    if (m) { highlights.push({ value: m[1] + '%', label: '控油' }); matched = true; }
 
     // Extract acne improvement
     m = clean.match(/痘点.*?改善率.*?(\d+\.?\d*)%/);
-    if (m) highlights.push({ value: m[1] + '%', label: '祛痘改善' });
+    if (m) { highlights.push({ value: m[1] + '%', label: '祛痘改善' }); matched = true; }
+
+    // ── Generic fallback: any "%" not caught by specific rules ──
+    if (!matched) {
+      const pct = clean.match(/(\d+\.?\d*)%/);
+      if (pct) {
+        // Use surrounding text before the percentage as the label
+        const before = clean.substring(0, pct.index).replace(/.*[，。；：:、]\s*/, '').trim();
+        const label = before.length > 28 ? before.substring(0, 28) + '…' : before;
+        highlights.push({ value: pct[1] + '%', label: label || '功效数据' });
+      }
+    }
 
     // Collect full text (skip very short items that are just cert statements)
     if (clean.length > 8) fullText.push(clean);
