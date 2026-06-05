@@ -108,6 +108,7 @@ const PRODUCT_PRIMARY_IMAGES = {
   // CMS product names
   '大白管特护霜': '/assets/products/大白管特护霜（倍润版）150g.png',
   '贻贝止痒膏': '/assets/products/贻贝止痒膏-放绳-棕.png',
+  '可拉伸湿敷棉': '/assets/products/可拉伸湿敷棉.png',
 };
 
 // ── SKU variants (same product, different capacity/color) ──
