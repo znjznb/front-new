@@ -1,17 +1,22 @@
 {
-  "name": "大白管特护霜（清爽版）",
-  "nickname": "5分钟舒缓红痒 脆敏肌深层滋润",
-  "line": "专业线｜Expert Collection",
-  "status": "即将更换包装",
-  "skin_type": "中性, 敏感肌",
+  "ingredients": "\"水\"，\"甘油\"，\"氢化聚异丁烯\"，\"牛油果树（BUTYROSPERMUM PARKII）果脂\"，\"聚二甲基硅氧烷\"，\"丁二醇\"，\"鲸蜡硬脂醇\"，\"甘油硬脂酸酯\"，\"PEG-100 硬脂酸酯\"，\"1,2-己二醇\"，\"对羟基苯乙酮\"，\"卡波姆\"，\"精氨酸\"，\"鲸蜡硬脂基葡糖苷\"，\"红没药醇\"，\"龙胆（GENTIANA SCABRA）根提取物\"，\"神经酰胺 NP\"，\"生育酚（维生素E）\"，\"向日葵（HELIANTHUS ANNUUS）籽油\"，\"EDTA 二钠\"，\"1,2-戊二醇\"，\"贻贝提取物\"",
   "audience": "儿童, 成人, 婴儿",
+  "name": "大白管特护霜（清爽版）",
+  "can_claim": "1、1h后褪红（a值）改善率11% / 2、人体斑贴无刺激 / 3、有显著舒缓灼热、瘙痒、刺痛、红斑的舒缓皮肤效果 / 4、1h后的皮肤含水量改善率+19.2%；2h后的含水量改善率53.7% / 5、灼热缓解：5分（即刻）-19.7%；10分-36.1%；30分-57.4%；2h-95.1% / 6、瘙痒缓解：5分（即刻）-16.9%；10分-33.9%；30分-57.6%；2h-93.2% / 7、刺痛缓解：5分（即刻）-19%；10分-36.2%；30分-60.3%；2h-94.8% / 8、红斑缓解：5分（即刻）-18.93%；10分-47.2%；30分66%；2h-94.3%",
+  "nickname": "5分钟舒缓红痒 脆敏肌深层滋润",
+  "status": "即将更换包装",
+  "line": "专业线｜Expert Collection",
+  "buy_url": "https://detail.tmall.com/item.htm?abbucket=6&id=642248695784&pisk=gJKZABM3xiAIDdckULjqzUjiTGIOWilS7n1fnKvcC1fMcVnV3QOjB19_5eWDOISfcKc9gn5hjZL1G11V0KdrdbiSVdpODGGSN0t7VEpc2r2gSS63ttIVIcBcGRvODic4do0S4ddNNti7ntXnLt6YjOAcoWjh9tzGnIfG-WXAHifDiIjhKTBfI5qGsyXh9TZcnZf0KyX1U5VciIvnLtChiibMipDFH6fDzu7AWSBlSAaCcIdjsf7dZdfUmu2RQNvZ26Z0yHXNG_vgkoqDYO7wAFMxv0IDSdOFPFlzbg9MyIBks5cNLhJy0UAnAlS2KUxVxHc3d1YJLnS6jxiGxhRwjwR0UP7MyCTl8HGav_YHLK_eJxU1GUBDMaKjwlCMnLKJPgo4398yKMSP6SBhVQtv7S4VS9BFNvkePIZBIpv-V14YkwAhL_MOzrUASwWFNvkUkrQT795SBa5..&rn=6d3545a3704dbb86f1c5971dfc4ecedf&spm=a1z10.3-b-s.w4011-24941648742.47.6bd01902Lf08AX",
   "efficacy": [
     "保湿",
     "舒缓",
     "敏感肌适用",
     "温和"
   ],
-  "ingredients": "\"水\"，\"甘油\"，\"氢化聚异丁烯\"，\"牛油果树（BUTYROSPERMUM PARKII）果脂\"，\"聚二甲基硅氧烷\"，\"丁二醇\"，\"鲸蜡硬脂醇\"，\"甘油硬脂酸酯\"，\"PEG-100 硬脂酸酯\"，\"1,2-己二醇\"，\"对羟基苯乙酮\"，\"卡波姆\"，\"精氨酸\"，\"鲸蜡硬脂基葡糖苷\"，\"红没药醇\"，\"龙胆（GENTIANA SCABRA）根提取物\"，\"神经酰胺 NP\"，\"生育酚（维生素E）\"，\"向日葵（HELIANTHUS ANNUUS）籽油\"，\"EDTA 二钠\"，\"1,2-戊二醇\"，\"贻贝提取物\"",
-  "can_claim": "1、1h后褪红（a值）改善率11% / 2、人体斑贴无刺激 / 3、有显著舒缓灼热、瘙痒、刺痛、红斑的舒缓皮肤效果 / 4、1h后的皮肤含水量改善率+19.2%；2h后的含水量改善率53.7% / 5、灼热缓解：5分（即刻）-19.7%；10分-36.1%；30分-57.4%；2h-95.1% / 6、瘙痒缓解：5分（即刻）-16.9%；10分-33.9%；30分-57.6%；2h-93.2% / 7、刺痛缓解：5分（即刻）-19%；10分-36.2%；30分-60.3%；2h-94.8% / 8、红斑缓解：5分（即刻）-18.93%；10分-47.2%；30分66%；2h-94.3%",
-  "image": "/assets/products/大白管特护霜（清爽版）150g.png"
+  "types": [
+    "身体护理",
+    "院线同款"
+  ],
+  "image": "/assets/products/大白管特护霜（清爽版）150g.png",
+  "skin_type": "中性, 敏感肌"
 }
