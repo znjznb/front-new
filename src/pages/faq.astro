@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import QaSection from '../components/QaSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="常见问题 — 海得宝 MarTempo"
+  description="海得宝品牌、成分、产品功效的常见问题解答"
+>
+  <Nav />
+  <main>
+    <section class="faq-hero">
+      <div class="faq-hero-content">
+        <h1 class="faq-hero-title">常见问题</h1>
+        <p class="faq-hero-desc">关于海得宝品牌、核心成分贻贝钙肽 CAPCS® 以及全线产品的常见疑问与解答</p>
+      </div>
+    </section>
+    <QaSection />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .faq-hero {
+    padding: var(--space-6xl) var(--content-padding) var(--space-4xl);
+    background: linear-gradient(135deg, oklch(96% 0.01 185) 0%, oklch(98% 0.005 185) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+  }
+
+  .faq-hero-content {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .faq-hero-title {
+    font-size: var(--text-3xl);
+    font-weight: 300;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+  }
+
+  .faq-hero-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    line-height: var(--leading-relaxed);
+  }
+</style>

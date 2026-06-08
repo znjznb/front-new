@@ -1,5 +1,6 @@
 ---
 // FAQ: Two-level accordion — click main category to reveal sub-questions, click sub-question to reveal answer
+import faqCategories from '../data/faq';
 
 interface SubItem {
   q: string;
@@ -11,76 +12,24 @@ interface Category {
   items: SubItem[];
 }
 
-const categories: Category[] = [
-  {
-    title: '关于海得宝',
-    items: [
-      {
-        q: '海得宝是什么品牌',
-        a: '海得宝（MarTempo）是中国领先的敏感肌护理品牌，由生物学博士后团队历经 13 年自主研发。品牌核心科技 CAPCS® 凯普斯泰（全球首创外用钙离子舒缓技术）取自深海贻贝，通过纯物理回流反渗技术萃取。海得宝产品被全国 1,000+ 公立医院皮肤科临床选用，获 3,000+ 皮肤科及儿科医生推荐，已成为 200 万+ 敏感肌家庭的信赖之选。',
-      },
-      {
-        q: '海得宝和别的品牌有什么不同',
-        a: '海得宝的核心差异化在于 CAPCS® 凯普斯泰技术——从深海贻贝中提取活性钙离子，通过物理渗透快速舒缓皮肤，而非依赖激素或药物成分。经临床验证，止痒效果等同于弱效激素（氢化可的松），止痒速度优于弱效激素，同时完全无激素副作用。此外，海得宝坚持五维金标准安全体系：无激素、无抗生素、无防腐剂，经口无毒、入眼无刺激、人体斑贴无刺激。',
-      },
-      {
-        q: '海得宝的产品为什么适合敏感肌',
-        a: '海得宝的产品专为敏感肌设计，所有配方均围绕 CAPCS® 钙离子舒缓技术构建。钙离子是人体天然存在的信号分子，能够快速调节神经末梢兴奋性，从根源缓解瘙痒、泛红、刺痛等敏感症状。同时产品配方极简，剔除 4000+ 争议成分，不含酒精、香精、色素等常见致敏原，降低过敏风险，适合屏障受损的敏感肌肤日常使用。',
-      },
-      {
-        q: '哪些人能用海得宝',
-        a: '海得宝产品覆盖全年龄段和多种肤质需求：婴幼儿（0 岁以上）、儿童、成人及老年人均可使用。品牌拥有四大产品线——专业线（针对中重度敏感肌）、婴童线（0-3 岁宝宝专属）、女性线（私密护理）、奢护线（高阶修护），无论您是干敏肌、油敏肌还是混合型敏感肌，都能找到适合的产品方案。',
-      },
-    ],
-  },
-  {
-    title: '海得宝大白管特护霜',
-    items: [
-      {
-        q: '海得宝特护霜是什么',
-        a: '大白管特护霜是海得宝的明星单品，属于专业线产品。它采用 CAPCS® 钙离子舒缓技术，配合多重保湿修护成分，专为中重度敏感肌设计。产品提供清爽和倍润两个版本，适用于干敏肌和受损肌的日常修护。经中山大学第五医院临床验证，治疗特应性皮炎有效率达 67%，止痒有效率达 79%。',
-      },
-      {
-        q: '海得宝特护霜有副作用吗',
-        a: '大白管特护霜经过严格的安全性测试：人体斑贴无刺激、多次皮肤刺激无刺激、入眼无刺激、经口无毒。配方不含激素、抗生素、防腐剂、酒精、香精和色素。临床应用中未见明显不良反应报道。如果您是极少数对海洋来源成分过敏的人群，建议使用前在耳后或手腕内侧做局部测试。',
-      },
-      {
-        q: '大白管特护霜能每天都用吗',
-        a: '可以。大白管特护霜专为日常长期使用设计，不含激素，不会产生依赖性或耐药性。建议每天使用 2-3 次，取适量涂抹于清洁后的皮肤。对于干燥敏感肌肤，可作为每日保湿修护产品长期使用；对于急性敏感期，可适当增加使用频率以加强舒缓效果。',
-      },
-    ],
-  },
-  {
-    title: '海得宝贻贝修护唇膏',
-    items: [
-      {
-        q: '唇炎可以用海得宝唇膏吗',
-        a: '可以。海得宝贻贝修护唇膏特别适合唇炎人群使用。唇炎的本质是唇部皮肤屏障受损引发的炎症反应，海得宝唇膏中的 CAPCS® 钙离子舒缓技术能够快速缓解唇部干痒、泛红、脱屑等不适感。临床反馈表明，其温和配方对唇炎修护有显著效果，且不含激素，可长期使用。',
-      },
-      {
-        q: '为什么海得宝唇膏这么贵',
-        a: '海得宝唇膏的核心成分 CAPCS® 凯普斯泰源自深海贻贝，采用纯物理回流反渗技术萃取，无化学溶剂参与，生产成本远高于传统唇膏。同时，配方经过严格的临床安全性验证，无激素、无防腐剂、无香精，达到食品级安全标准。其定价反映了研发投入、原料成本和安全验证的综合价值。',
-      },
-      {
-        q: '海得宝唇膏 8g 和 12g 有什么区别',
-        a: '8g 版为经典便携装，适合日常随身携带，方便随时补涂；12g 版为大容量家庭装，性价比更高，适合居家使用或唇部问题较为严重、需要频繁涂抹的用户。两者配方完全相同，均含有 CAPCS® 钙离子舒缓技术，仅在包装规格和使用场景上有所区别。',
-      },
-      {
-        q: '海得宝唇膏小孩可以用吗',
-        a: '可以。海得宝贻贝修护唇膏配方温和安全，无激素、无防腐剂、无香精，达到经口无毒安全标准，儿童可以放心使用。对于有舔唇习惯的儿童尤其适合——即使不慎少量入口也无安全风险。建议 3 岁以上儿童在成人监护下使用，每天涂抹 2-3 次以保持唇部滋润。',
-      },
-    ],
-  },
-  {
-    title: '购买海得宝产品',
-    items: [
-      {
-        q: '哪里可以买到海得宝产品',
-        a: '您可以通过以下官方渠道购买海得宝产品：天猫旗舰店（搜索"海得宝"进入官方店铺）、抖音商城、小红书店铺。此外，全国 1,000+ 公立医院皮肤科及药房也有销售。如需一对一顾问咨询，可联系海得宝官方客服，获取个性化的产品推荐和护肤指导。',
-      },
-    ],
-  },
-];
+export interface Props {
+  maxItems?: number;
+}
+
+const { maxItems } = Astro.props;
+
+// Limit total items across all categories when maxItems is set
+let categories: Category[] = faqCategories;
+if (maxItems && maxItems > 0) {
+  let remaining = maxItems;
+  categories = faqCategories
+    .map(cat => {
+      const sliced = cat.items.slice(0, remaining);
+      remaining -= sliced.length;
+      return { ...cat, items: sliced };
+    })
+    .filter(cat => cat.items.length > 0);
+}
 ---
 
 <section id="qa" class="section qa">
@@ -123,6 +72,12 @@ const categories: Category[] = [
         </div>
       ))}
     </div>
+
+    {maxItems && (
+      <div class="qa-footer reveal reveal-rise">
+        <a href="/faq" class="qa-view-all">查看全部 FAQ →</a>
+      </div>
+    )}
   </div>
 </section>
 
@@ -400,6 +355,31 @@ document.addEventListener('DOMContentLoaded', () => {
     color: var(--color-text-soft);
     max-width: 70ch;
     padding-top: 2px;
+  }
+
+  /* ── Footer / view all ── */
+  .qa-footer {
+    text-align: center;
+    margin-top: var(--space-3xl);
+  }
+
+  .qa-view-all {
+    display: inline-block;
+    padding: 12px 36px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    text-decoration: none;
+    transition: all var(--duration-medium) var(--ease-out-expo);
+    letter-spacing: var(--tracking-wider);
+    border-radius: var(--radius-pill);
+  }
+
+  .qa-view-all:hover {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    color: var(--color-text-inverse);
   }
 
   @media (max-width: 768px) {
