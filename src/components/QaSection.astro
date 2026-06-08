@@ -9,9 +9,10 @@ interface SubItem {
 
 export interface Props {
   maxItems?: number;
+  showHeader?: boolean;
 }
 
-const { maxItems } = Astro.props;
+const { maxItems, showHeader = true } = Astro.props;
 
 // Flatten all categories into a single question list
 let allItems: SubItem[] = faqCategories.flatMap(cat => cat.items);
@@ -22,11 +23,13 @@ if (maxItems && maxItems > 0) {
 
 <section id="qa" class="section qa">
   <div class="section-inner">
+    {showHeader && (
     <div class="qa-header">
       <div class="qa-accent-line" aria-hidden="true"></div>
       <h2 class="qa-title">常见问题</h2>
       <p class="qa-subtitle">关于海得宝、产品功效与购买渠道的常见疑问</p>
     </div>
+    )}
 
     <div class="qa-list">
       {allItems.map((item, index) => (
