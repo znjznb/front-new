@@ -1,0 +1,330 @@
+---
+// Related articles carousel for skincare pages
+// Shows a horizontal scrollable list with prev/next arrow buttons
+
+import { SKINCARE_TOPICS } from '../data/skincare';
+
+export interface Props {
+  currentSlug: string;
+}
+
+const { currentSlug } = Astro.props;
+
+// Manual entries for guide/knowledge standalone pages
+const GUIDE_PAGES = [
+  {
+    slug: 'knowledge',
+    title: '敏感性肌肤知识',
+    subtitle: '科学认识敏感肌',
+    category: '经皮肤科学验证',
+    image: '/assets/skincare/1555820585.jpg',
+    imageAlt: '敏感性肌肤知识',
+  },
+  {
+    slug: 'guide',
+    title: '敏肌护理指南',
+    subtitle: '科学护理敏感肌',
+    category: '经皮肤科学验证',
+    image: '/assets/skincare/1551184451.jpg',
+    imageAlt: '敏肌护理指南',
+  },
+];
+
+// Build full item list from data + manual entries
+const allItems = [
+  ...SKINCARE_TOPICS.map(t => ({
+    slug: t.slug,
+    title: t.title,
+    category: t.category,
+    image: t.image,
+    imageAlt: t.imageAlt || t.title,
+  })),
+  ...GUIDE_PAGES,
+];
+
+// Find current page's category
+const currentItem = allItems.find(i => i.slug === currentSlug);
+const currentCategory = currentItem?.category || '';
+
+// Filter out current page, then sort: same category first
+const related = allItems
+  .filter(i => i.slug !== currentSlug)
+  .sort((a, b) => {
+    const aScore = a.category === currentCategory ? 0 : 1;
+    const bScore = b.category === currentCategory ? 0 : 1;
+    return aScore - bScore;
+  });
+---
+
+<section class="related-articles">
+  <div class="section-inner">
+    <div class="related-header">
+      <h2 class="related-title">相关文章</h2>
+    </div>
+    <div class="related-carousel-wrap">
+      <button class="related-arrow related-arrow--prev" id="relatedPrev" aria-label="上一个">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="related-track" id="relatedTrack">
+        {related.map(item => (
+          <a href={`/skincare/${item.slug}/`} class="related-card">
+            <div class="related-card-image">
+              <img src={item.image} alt={item.imageAlt} loading="lazy" />
+            </div>
+            <div class="related-card-body">
+              <span class="related-card-category">{item.category}</span>
+              <h3 class="related-card-title">{item.title}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+      <button class="related-arrow related-arrow--next" id="relatedNext" aria-label="下一个">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('relatedTrack');
+    const prevBtn = document.getElementById('relatedPrev');
+    const nextBtn = document.getElementById('relatedNext');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    function getCardWidth() {
+      const card = track.querySelector('.related-card');
+      if (!card) return 0;
+      const style = getComputedStyle(track);
+      const gap = parseFloat(style.gap) || 0;
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function updateButtons() {
+      if (!track) return;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prevBtn.classList.toggle('slick-disabled', track.scrollLeft <= 1);
+      nextBtn.classList.toggle('slick-disabled', track.scrollLeft >= maxScroll - 1);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      const step = getCardWidth();
+      track.scrollBy({ left: -step, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const step = getCardWidth();
+      track.scrollBy({ left: step, behavior: 'smooth' });
+    });
+
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateButtons();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    updateButtons();
+
+    window.addEventListener('resize', updateButtons);
+  });
+</script>
+
+<style>
+  .related-articles {
+    padding: var(--space-5xl) var(--content-padding) var(--space-6xl);
+    background: oklch(98.5% 0.005 185);
+    overflow: hidden;
+  }
+
+  .related-header {
+    max-width: var(--content-max-width);
+    margin: 0 auto var(--space-xl);
+  }
+
+  .related-title {
+    font-size: var(--text-xl);
+    font-weight: 400;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+  }
+
+  /* ── Carousel ── */
+  .related-carousel-wrap {
+    position: relative;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+
+  .related-carousel-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 60px;
+    background: linear-gradient(to right, transparent, oklch(98.5% 0.005 185));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .related-track {
+    display: flex;
+    gap: var(--space-xl);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 0;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .related-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Cards ── */
+  .related-card {
+    flex: 0 0 calc((100% - 3 * var(--space-xl)) / 3.5);
+    min-width: 200px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    transition: box-shadow var(--duration-fast) ease, transform var(--duration-fast) ease;
+  }
+
+  .related-card:hover {
+    box-shadow: 0 4px 24px oklch(0% 0 0 / 0.06);
+    transform: translateY(-2px);
+  }
+
+  .related-card-image {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    overflow: hidden;
+  }
+
+  .related-card-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    transition: transform var(--duration-medium) ease;
+  }
+
+  .related-card:hover .related-card-image img {
+    transform: scale(1.05);
+  }
+
+  .related-card-body {
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .related-card-category {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-brand);
+    text-transform: uppercase;
+  }
+
+  .related-card-title {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .related-card:hover .related-card-title {
+    color: var(--color-brand-dark);
+  }
+
+  /* ── Arrow buttons ── */
+  .related-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-light);
+    background: #ffffff;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px oklch(0% 0 0 / 0.06);
+    transition: color var(--duration-fast) ease, border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+  }
+
+  .related-arrow:hover {
+    color: var(--color-brand);
+    border-color: var(--color-brand);
+    box-shadow: 0 4px 12px oklch(0% 0 0 / 0.1);
+  }
+
+  .related-arrow.slick-disabled {
+    opacity: 0.25;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .related-arrow--prev {
+    left: -20px;
+  }
+
+  .related-arrow--next {
+    right: -20px;
+  }
+
+  @media (max-width: 1024px) {
+    .related-card {
+      flex: 0 0 calc((100% - 2 * var(--space-xl)) / 2.5);
+    }
+
+    .related-arrow--prev {
+      left: -12px;
+    }
+
+    .related-arrow--next {
+      right: -12px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .related-card {
+      flex: 0 0 calc((100% - 40px) / 1.2);
+    }
+
+    .related-arrow--prev {
+      left: 4px;
+    }
+
+    .related-arrow--next {
+      right: 4px;
+    }
+
+    .related-articles {
+      padding: var(--space-4xl) var(--content-padding);
+    }
+  }
+</style>

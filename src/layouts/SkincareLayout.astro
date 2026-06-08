@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import RelatedArticles from '../components/RelatedArticles.astro';
 
 export interface Props {
   title: string;
@@ -37,11 +38,10 @@ const categorySlug = categorySlugs[category] || '/skincare/dry-itch';
       </div>
     </div>
     <div class="skincare-main">
-      <div class="section-inner">
-        <slot />
-      </div>
+      <slot />
     </div>
   </main>
+  <RelatedArticles currentSlug={topicSlug} />
   <Footer />
 </BaseLayout>
 

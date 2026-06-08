@@ -10,7 +10,7 @@ export const SKINCARE_TOPICS = [
       { heading: '产品建议', body: '可以使用海得宝大白管特护霜，温和滋润的同时帮助缓解干痒不适，让肌肤恢复平静。日常坚持使用，减少干痒反复。' },
       { heading: '使用效果', body: '坚持使用，干痒频率明显降低，肌肤保持水润舒适，不再被瘙痒困扰。' },
     ],
-    image: '/assets/skincare/dry-itch.jpg',
+    image: '/assets/skincare/1555820585.jpg',
     imageAlt: '干痒反复肌肤护理示意图',
   },
   {
@@ -23,7 +23,7 @@ export const SKINCARE_TOPICS = [
       { heading: '产品建议', body: '海得宝的全域速修系列采用温和配方，贻贝钙肽CAPCS专利成分加持，涂抹后能帮助降低肌肤灼热感，舒缓泛红区域，让肌肤慢慢冷静下来。' },
       { heading: '使用效果', body: '持续使用，泛红范围缩小，发热感减轻，肤色趋于均匀，肌肤更稳定。' },
     ],
-    image: '/assets/skincare/redness-heat.jpg',
+    image: '/assets/skincare/1581182815808.jpg',
     imageAlt: '泛红发热肌肤护理示意图',
   },
   {
@@ -36,7 +36,7 @@ export const SKINCARE_TOPICS = [
       { heading: '产品建议', body: '建议使用海得宝洁面慕斯，泡泡清洁质地温和，可以搭配海得宝全域速修贴在清洁后敷脸，含20倍贻贝钙肽CAPCS，帮助安抚肌肤不适，减少外界刺激带来的灼热刺痛。' },
       { heading: '使用效果', body: '坚持使用，刺痛灼热感明显缓解，肌肤触感更加柔和，耐受性逐步提高。' },
     ],
-    image: '/assets/skincare/sting-burn.jpg',
+    image: '/assets/skincare/1554151228.jpg',
     imageAlt: '刺痛灼热肌肤护理示意图',
   },
   {
@@ -49,7 +49,7 @@ export const SKINCARE_TOPICS = [
       { heading: '产品建议', body: '温和清洁后，使用海得宝的特护霜帮助锁住水分与修复屏障，缓解脱屑和紧绷，让肌肤重新变得柔软平滑。' },
       { heading: '使用效果', body: '坚持使用，脱屑减少，紧绷感消失，肌肤恢复柔润弹润。' },
     ],
-    image: '/assets/skincare/flaking-tight.jpg',
+    image: '/assets/skincare/1631730486572.jpg',
     imageAlt: '脱屑紧绷肌肤护理示意图',
   },
   {
@@ -62,7 +62,7 @@ export const SKINCARE_TOPICS = [
       { heading: '产品建议', body: '海得宝的专业线产品为脆弱敏肌特皮设计，能温和舒缓局部不适，帮助减少反复发作。每日坚持使用，为肌肤建立持久保护。' },
       { heading: '使用效果', body: '持续护理后，反复频次降低，局部肌肤逐渐恢复平滑，痒感减轻，肌肤状态更稳定。' },
     ],
-    image: '/assets/skincare/eczema.jpg',
+    image: '/assets/skincare/1693004927824.jpg',
     imageAlt: '湿疹反复肌肤护理示意图',
   },
 
@@ -73,7 +73,7 @@ export const SKINCARE_TOPICS = [
     title: '干敏肌',
     subtitle: 'Dry Sensitive Skin',
     body: '全球约40%的女性饱受皮肤干燥困扰。干敏肌皮肤锁水能力弱，常年紧绷起皮，两颊泛红，用普通保湿护肤产品难以维持。海得宝以贻贝钙肽CAPCS成分帮助舒缓干痒、修护屏障，让皮肤恢复柔润。',
-    image: '/assets/skincare/dry-sensitive.jpg',
+    image: '/assets/skincare/1581182800629.jpg',
     imageAlt: '干敏肌护理示意图',
   },
   {
@@ -82,7 +82,7 @@ export const SKINCARE_TOPICS = [
     title: '油敏肌',
     subtitle: 'Oily Sensitive Skin',
     body: '痘痘肌普遍同时存在敏感问题。油敏肌皮脂分泌旺盛但屏障脆弱，外油内干，用控油产品易刺痛。海得宝控油系列温和净油、舒缓泛红，帮助皮肤恢复水油平衡。',
-    image: '/assets/skincare/oily-sensitive.jpg',
+    image: '/assets/skincare/1646457417455.jpg',
     imageAlt: '油敏肌护理示意图',
   },
   {
@@ -91,7 +91,7 @@ export const SKINCARE_TOPICS = [
     title: '脂皮',
     subtitle: 'Seborrheic Dermatitis',
     body: '受脂溢性皮肤问题困扰，皮肤在额头、鼻翼、头皮易泛红起屑，与油脂失衡有关。海得宝贻贝钙肽CAPCS专利成分的温和护理能帮助平衡油脂、减少泛红皮屑，不刺激脆弱区域。',
-    image: '/assets/skincare/seb-derm.jpg',
+    image: '/assets/skincare/1728727267814.jpg',
     imageAlt: '脂皮护理示意图',
   },
   {
@@ -100,7 +100,7 @@ export const SKINCARE_TOPICS = [
     title: '玫瑰皮',
     subtitle: 'Rosacea',
     body: '玫瑰痤疮面部易潮红发热，遇日晒或辛辣后加重。海得宝全域速修精华液能帮助降低灼热感、舒缓泛红，为敏感皮肤提供温和呵护。',
-    image: '/assets/skincare/rosacea.jpg',
+    image: '/assets/skincare/1551184451.jpg',
     imageAlt: '玫瑰皮护理示意图',
   },
   {
@@ -109,7 +109,7 @@ export const SKINCARE_TOPICS = [
     title: '特应性皮炎',
     subtitle: 'Atopic Dermatitis',
     body: '儿童有特应性皮肤表现，皮肤极度干燥、易痒反复。海得宝特护产品结合贻贝钙肽CAPCS专利成分，能快速缓解瘙痒、修护干燥，帮助皮肤回归稳定状态。',
-    image: '/assets/skincare/atopic-derm.jpg',
+    image: '/assets/skincare/1521146764736.jpg',
     imageAlt: '特应性皮炎护理示意图',
   },
   {
@@ -118,7 +118,7 @@ export const SKINCARE_TOPICS = [
     title: '唇部敏感',
     subtitle: 'Lip Sensitivity',
     body: '唇干起皮泛红皆事唇部敏感的反应。因唇部皮肤无皮脂腺，极易干裂起皮。海得宝贻贝钙肽CAPCS修护膏以极简配方温和滋润，帮助缓解干裂不适，适合日常反复使用。夜间搭配海得宝唇膜一同使用，舒缓效果更显著。',
-    image: '/assets/skincare/lip-sensitive.jpg',
+    image: '/assets/skincare/1549153052.jpg',
     imageAlt: '唇部敏感护理示意图',
   },
   {
@@ -127,7 +127,7 @@ export const SKINCARE_TOPICS = [
     title: '蝴蝶宝贝',
     subtitle: 'Epidermolysis Bullosa',
     body: '蝴蝶宝贝是遗传性大疱性表皮松解症（Epidermolysis Bullosa, EB）的温柔昵称，是罕见的遗传性皮肤病，皮肤和黏膜组织天生如蝶翅般脆弱，轻微摩擦即破损。海得宝产品通过五维安全标准，无香精色素防腐剂，为娇嫩皮肤提供温和保护，减少二次刺激。',
-    image: '/assets/skincare/eb.jpg',
+    image: '/assets/skincare/1768657890219.jpg',
     imageAlt: '蝴蝶宝贝护理示意图',
   },
 ];

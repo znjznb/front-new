@@ -19,15 +19,12 @@ const hasSections = topic.sections && topic.sections.length > 0;
   category={topic.category}
   topicSlug={topic.slug}
 >
-  <div class="topic-page">
-    <div class="topic-header">
-      <span class="topic-category">{topic.category}</span>
-      <h1 class="topic-title">{topic.title}</h1>
-      {topic.subtitle && <p class="topic-subtitle">{topic.subtitle}</p>}
-    </div>
+  <div class="topic-split">
+    <div class="topic-split-text">
+      <h1 class="topic-split-title">{topic.title}</h1>
+      {topic.subtitle && <p class="topic-split-subtitle">{topic.subtitle}</p>}
 
-    <div class="topic-body">
-      <div class="topic-text">
+      <div class="topic-split-content">
         {hasSections ? (
           <div class="topic-sections">
             {topic.sections.map(section => (
@@ -43,53 +40,51 @@ const hasSections = topic.sections && topic.sections.length > 0;
           </div>
         )}
       </div>
-      <div class="topic-image">
-        <img src={topic.image} alt={topic.imageAlt || topic.title} width="600" height="450" loading="eager" />
-      </div>
+    </div>
+    <div class="topic-split-image">
+      <img src={topic.image} alt={topic.imageAlt || topic.title} loading="lazy" />
     </div>
   </div>
 </SkincareLayout>
 
 <style>
-  .topic-page {
-    max-width: 960px;
-    margin: 0 auto;
+  .topic-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: calc(-1 * var(--content-padding));
+    margin-right: calc(-1 * var(--content-padding));
+    align-items: start;
   }
 
-  .topic-header {
-    margin-bottom: var(--space-3xl);
-    text-align: center;
+  .topic-split-text {
+    align-self: center;
+    justify-self: center;
+    padding: var(--space-3xl) 0;
+    max-width: 480px;
   }
 
-  .topic-category {
-    font-size: var(--text-lg);
-    font-weight: 500;
-    letter-spacing: var(--tracking-widest);
-    text-transform: uppercase;
-    color: var(--color-brand);
-    display: block;
+  .topic-split-title {
+    font-size: var(--text-3xl);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
     margin-bottom: var(--space-md);
   }
 
-  .topic-title {
-    font-size: var(--text-3xl);
-    font-weight: 400;
-    letter-spacing: var(--tracking-normal);
-    color: var(--color-text);
-    margin-bottom: var(--space-sm);
-  }
-
-  .topic-subtitle {
+  .topic-split-subtitle {
     font-size: var(--text-base);
-    color: var(--color-text-muted);
+    font-weight: 300;
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-2xl);
     letter-spacing: var(--tracking-wide);
   }
 
-  .topic-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3xl);
-    align-items: start;
+  .topic-split-content {
+    font-size: var(--text-base);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
   }
 
   .topic-sections {
@@ -113,47 +108,54 @@ const hasSections = topic.sections && topic.sections.length > 0;
 
   .section-body {
     font-size: var(--text-sm);
-    color: var(--color-text-soft);
+    font-weight: 300;
     line-height: var(--leading-relaxed);
+    color: var(--color-text-soft);
   }
 
   .topic-description {
     font-size: var(--text-base);
-    color: var(--color-text-soft);
+    font-weight: 300;
     line-height: var(--leading-relaxed);
+    color: var(--color-text-soft);
   }
 
-  .topic-image {
-    position: sticky;
-    top: 120px;
+  .topic-split-image {
+    overflow: hidden;
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    max-width: 855px;
   }
 
-  .topic-image img {
+  .topic-split-image img {
+    display: block;
     width: 100%;
     height: auto;
-    border-radius: var(--radius-lg);
-    background: oklch(96% 0.012 218);
-    aspect-ratio: 4/3;
+    aspect-ratio: 1/1;
     object-fit: cover;
   }
 
   @media (max-width: 768px) {
-    .topic-body {
+    .topic-split {
       grid-template-columns: 1fr;
-      gap: var(--space-2xl);
+      margin-left: 0;
+      margin-right: 0;
     }
 
-    .topic-title {
+    .topic-split-text {
+      padding: 0;
+      max-width: none;
+    }
+
+    .topic-split-title {
       font-size: var(--text-2xl);
     }
 
-    .topic-image {
-      position: static;
-      order: -1;
-    }
-
-    .topic-image img {
-      max-height: 280px;
+    .topic-split-image {
+      width: calc(100% + 2 * var(--content-padding));
+      max-width: none;
+      margin-left: calc(-1 * var(--content-padding));
+      margin-right: calc(-1 * var(--content-padding));
+      border-radius: 0;
     }
   }
 </style>
