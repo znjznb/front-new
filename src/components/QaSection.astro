@@ -1,15 +1,10 @@
 ---
-// FAQ: Two-level accordion — click main category to reveal sub-questions, click sub-question to reveal answer
+// FAQ: Single-level accordion — click question to expand answer
 import faqCategories from '../data/faq';
 
 interface SubItem {
   q: string;
   a: string;
-}
-
-interface Category {
-  title: string;
-  items: SubItem[];
 }
 
 export interface Props {
@@ -18,17 +13,10 @@ export interface Props {
 
 const { maxItems } = Astro.props;
 
-// Limit total items across all categories when maxItems is set
-let categories: Category[] = faqCategories;
+// Flatten all categories into a single question list
+let allItems: SubItem[] = faqCategories.flatMap(cat => cat.items);
 if (maxItems && maxItems > 0) {
-  let remaining = maxItems;
-  categories = faqCategories
-    .map(cat => {
-      const sliced = cat.items.slice(0, remaining);
-      remaining -= sliced.length;
-      return { ...cat, items: sliced };
-    })
-    .filter(cat => cat.items.length > 0);
+  allItems = allItems.slice(0, maxItems);
 }
 ---
 
@@ -41,32 +29,16 @@ if (maxItems && maxItems > 0) {
     </div>
 
     <div class="qa-list">
-      {categories.map((cat, catIdx) => (
-        <div class="qa-category reveal reveal-rise">
-          <button class="qa-category-btn" data-category={catIdx} aria-expanded="false">
-            <span class="qa-category-title">{cat.title}</span>
-            <span class="qa-category-icon" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
+      {allItems.map((item, index) => (
+        <div class="qa-item reveal reveal-rise">
+          <button class="qa-btn" data-index={index} aria-expanded="false">
+            <span class="qa-icon" aria-hidden="true">Q</span>
+            <span class="qa-question">{item.q}</span>
           </button>
-          <div class="qa-category-body">
-            <div class="qa-sub-list">
-              {cat.items.map((item, itemIdx) => (
-                <div class="qa-sub-item">
-                  <button class="qa-sub-btn" data-category={catIdx} data-item={itemIdx} aria-expanded="false">
-                    <span class="qa-sub-icon" aria-hidden="true">Q</span>
-                    <span class="qa-sub-title">{item.q}</span>
-                  </button>
-                  <div class="qa-sub-body">
-                    <div class="qa-answer">
-                      <span class="qa-answer-label" aria-hidden="true">A</span>
-                      <p class="qa-answer-text">{item.a}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+          <div class="qa-body">
+            <div class="qa-answer">
+              <span class="qa-answer-label" aria-hidden="true">A</span>
+              <p class="qa-answer-text">{item.a}</p>
             </div>
           </div>
         </div>
@@ -83,45 +55,12 @@ if (maxItems && maxItems > 0) {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const CATEGORY_EXPANDED = 'qa-expanded';
-  const SUB_EXPANDED = 'qa-sub-expanded';
-
-  document.querySelectorAll('.qa-category-btn').forEach(btn => {
+  document.querySelectorAll('.qa-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const cat = btn.closest('.qa-category');
-      const isOpen = cat.classList.contains(CATEGORY_EXPANDED);
-
-      // Close other categories
-      document.querySelectorAll('.qa-category.' + CATEGORY_EXPANDED).forEach(other => {
-        if (other !== cat) {
-          other.classList.remove(CATEGORY_EXPANDED);
-          other.querySelector('.qa-category-btn').setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      // Toggle this one
-      if (isOpen) {
-        cat.classList.remove(CATEGORY_EXPANDED);
-        btn.setAttribute('aria-expanded', 'false');
-      } else {
-        cat.classList.add(CATEGORY_EXPANDED);
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-
-  document.querySelectorAll('.qa-sub-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const subItem = btn.closest('.qa-sub-item');
-      const isOpen = subItem.classList.contains(SUB_EXPANDED);
-
-      if (isOpen) {
-        subItem.classList.remove(SUB_EXPANDED);
-        btn.setAttribute('aria-expanded', 'false');
-      } else {
-        subItem.classList.add(SUB_EXPANDED);
-        btn.setAttribute('aria-expanded', 'true');
-      }
+      const item = btn.closest('.qa-item');
+      item.classList.toggle('qa-expanded');
+      const isOpen = item.classList.contains('qa-expanded');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   });
 });
@@ -172,25 +111,25 @@ document.addEventListener('DOMContentLoaded', () => {
     color: var(--color-text-soft);
   }
 
-  /* ── Category accordion ── */
+  /* ── Question list ── */
   .qa-list {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
 
-  .qa-category {
+  .qa-item {
     border-bottom: 1px solid var(--color-border-light);
   }
 
-  .qa-category:first-child {
+  .qa-item:first-child {
     border-top: 1px solid var(--color-border-light);
   }
 
-  .qa-category-btn {
+  .qa-btn {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-md);
     width: 100%;
     padding: var(--space-xl) 0;
     border: none;
@@ -201,81 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
     transition: color var(--duration-fast) ease;
   }
 
-  .qa-category-btn:hover {
+  .qa-btn:hover {
     color: var(--color-brand-dark);
   }
 
-  .qa-category-title {
-    font-size: var(--text-xl);
-    font-weight: 350;
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text);
-  }
-
-  .qa-category-btn:hover .qa-category-title {
-    color: var(--color-brand-dark);
-  }
-
-  .qa-category-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
-    color: var(--color-text-muted);
-    transition: transform 0.4s var(--ease-out-expo), color var(--duration-fast) ease;
-  }
-
-  .qa-expanded .qa-category-icon {
-    transform: rotate(45deg);
-    color: var(--color-brand-dark);
-  }
-
-  /* ── Category body (sub-questions) ── */
-  .qa-category-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s var(--ease-out-quart);
-  }
-
-  .qa-expanded .qa-category-body {
-    max-height: 1200px;
-  }
-
-  .qa-sub-list {
-    padding-bottom: var(--space-xl);
-    padding-left: 0;
-  }
-
-  /* ── Sub-question ── */
-  .qa-sub-item {
-    border-top: 1px solid var(--color-border-light);
-  }
-
-  .qa-sub-item:first-child {
-    border-top: none;
-  }
-
-  .qa-sub-btn {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
-    width: 100%;
-    padding: var(--space-lg) 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-family: inherit;
-    text-align: left;
-    transition: color var(--duration-fast) ease;
-  }
-
-  .qa-sub-btn:hover {
-    color: var(--color-brand-dark);
-  }
-
-  .qa-sub-icon {
+  .qa-icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -287,21 +156,23 @@ document.addEventListener('DOMContentLoaded', () => {
     color: var(--color-brand);
     border: 1px solid var(--color-brand-subtle);
     border-radius: 50%;
+    margin-top: 2px;
   }
 
-  .qa-sub-title {
+  .qa-question {
     font-size: var(--text-base);
-    font-weight: 350;
-    color: var(--color-text-soft);
+    font-weight: 400;
+    color: var(--color-text);
     line-height: 1.5;
+    flex: 1;
     padding-top: 2px;
   }
 
-  .qa-sub-btn:hover .qa-sub-title {
+  .qa-btn:hover .qa-question {
     color: var(--color-brand-dark);
   }
 
-  .qa-sub-btn::after {
+  .qa-btn::after {
     content: '+';
     margin-left: auto;
     flex-shrink: 0;
@@ -309,22 +180,23 @@ document.addEventListener('DOMContentLoaded', () => {
     font-weight: 300;
     color: var(--color-text-muted);
     line-height: 1.3;
+    padding-top: 2px;
     transition: transform 0.3s var(--ease-out-expo);
   }
 
-  .qa-sub-expanded .qa-sub-btn::after {
+  .qa-expanded .qa-btn::after {
     content: '−';
     color: var(--color-brand-dark);
   }
 
-  /* ── Sub-question body (answer) ── */
-  .qa-sub-body {
+  /* ── Answer body ── */
+  .qa-body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s var(--ease-out-quart);
   }
 
-  .qa-sub-expanded .qa-sub-body {
+  .qa-expanded .qa-body {
     max-height: 600px;
   }
 
@@ -332,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     display: flex;
     gap: var(--space-md);
     padding: 0 0 var(--space-xl);
+    padding-left: calc(24px + var(--space-md));
   }
 
   .qa-answer-label {
@@ -383,26 +256,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   @media (max-width: 768px) {
-    .qa-category-btn {
+    .qa-btn {
       padding: var(--space-lg) 0;
-    }
-
-    .qa-category-title {
-      font-size: var(--text-lg);
-    }
-
-    .qa-sub-btn {
-      padding: var(--space-md) 0;
       gap: var(--space-sm);
     }
 
-    .qa-sub-title {
+    .qa-question {
       font-size: var(--text-sm);
     }
 
     .qa-answer {
       flex-direction: column;
       gap: var(--space-sm);
+      padding-left: 0;
     }
   }
 </style>
