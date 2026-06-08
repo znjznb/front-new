@@ -5,51 +5,85 @@
 <footer class="footer">
   <div class="section-inner">
     <div class="footer-grid">
-      <div class="footer-brand-col">
+      <div class="footer-logo-col">
         <img src="/assets/海得宝主logo_黑色_透明底.png" alt="海得宝" class="footer-logo-img" />
       </div>
-      <div class="footer-links">
-    
-        <div class="footer-col">
-          <h4 class="footer-col-title">服务支持</h4>
-          <a href="#" class="footer-link">1v1护理方案</a>
-          <a href="#" class="footer-link">真伪查询</a>
-          <a href="#" class="footer-link">常见问题</a>
-          <a href="#" class="footer-link">联系我们</a>
-        </div>
-           <div class="footer-col">
-          <h4 class="footer-col-title">帮助</h4>
-          <a href="#" class="footer-link">网站条款</a>
-          <a href="#" class="footer-link">隐私声明</a>
-          <a href="#" class="footer-link">Cookie政策</a>
-        </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">社交媒体</h4>
+        <a href="https://weibo.com/u/6207838250" target="_blank" rel="noopener noreferrer" class="footer-social-item">
+          <img src="/微博.svg" alt="" class="footer-social-icon" />
+          <span>微博</span>
+        </a>
+        <a href="https://www.xiaohongshu.com/user/profile/5cac6d5c0000000017004d48?xsec_token=ABNw2QIwe-j9zM0c-2tAgsAqFmwQxWMMcn7xXOfpCZ500%3D&xsec_source=pc_search" target="_blank" rel="noopener noreferrer" class="footer-social-item">
+          <img src="/小红书.svg" alt="" class="footer-social-icon" />
+          <span>小红书</span>
+        </a>
+        <a href="https://www.douyin.com/user/MS4wLjABAAAApSGI2TuPE4ArDn927m7m4i0YNg-y5bMbJpkN6Rmg42M?from_tab_name=main" target="_blank" rel="noopener noreferrer" class="footer-social-item">
+          <img src="/抖音.svg" alt="" class="footer-social-icon" />
+          <span>抖音</span>
+        </a>
+        <a href="https://haidebaomy.tmall.com/?spm=a1z10.5-b-s.w15914064-24941704239.6.1e8877bdPyAuWS&scene=taobao_shop" target="_blank" rel="noopener noreferrer" class="footer-social-item">
+          <img src="/天猫.svg" alt="" class="footer-social-icon" />
+          <span>天猫</span>
+        </a>
       </div>
-      <div class="footer-social">
-        <a href="https://www.douyin.com/user/MS4wLjABAAAApSGI2TuPE4ArDn927m7m4i0YNg-y5bMbJpkN6Rmg42M?from_tab_name=main" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="抖音">
-          <img src="/抖音.svg" alt="抖音" class="footer-social-icon" />
-        </a>
-        <a href="https://haidebaomy.tmall.com/?spm=a1z10.5-b-s.w15914064-24941704239.6.1e8877bdPyAuWS&scene=taobao_shop" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="天猫">
-          <img src="/天猫.svg" alt="天猫" class="footer-social-icon" />
-        </a>
-        <a href="https://weibo.com/u/6207838250" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="微博">
-          <img src="/微博.svg" alt="微博" class="footer-social-icon" />
-        </a>
-        <a href="https://www.xiaohongshu.com/user/profile/5cac6d5c0000000017004d48?xsec_token=ABNw2QIwe-j9zM0c-2tAgsAqFmwQxWMMcn7xXOfpCZ500%3D&xsec_source=pc_search" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="小红书">
-          <img src="/小红书.svg" alt="小红书" class="footer-social-icon" />
-        </a>
-        <div class="footer-social-link footer-social-wechat">
-          <img src="/微信.svg" alt="微信" class="footer-social-icon" />
-          <div class="wechat-popup">
-            <img src="/assets/wechat-qr.png" alt="微信二维码" class="wechat-popup-img" />
-          </div>
-        </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">服务支持</h4>
+        <a href="#" class="footer-link js-qr-trigger">在线客服</a>
+        <a href="#" class="footer-link">真伪查询</a>
+        <a href="/faq" class="footer-link">常见问题</a>
+        <a href="#" class="footer-link js-qr-trigger">联系我们</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">关于</h4>
+        <a href="#" class="footer-link">品牌故事</a>
+        <a href="#" class="footer-link">公益计划</a>
+        <a href="#" class="footer-link">环保可持续</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">帮助</h4>
+        <a href="/terms" class="footer-link">网站条款</a>
+        <a href="/privacy" class="footer-link">隐私声明</a>
+        <a href="/cookies" class="footer-link">Cookie政策</a>
       </div>
     </div>
+
+    <!-- QR Code Overlay -->
+    <div class="qr-overlay" id="qrOverlay">
+      <div class="qr-popup" id="qrPopup">
+        <img src="/assets/wechat-qr.png" alt="微信二维码" class="qr-popup-img" />
+      </div>
+    </div>
+
     <div class="footer-bottom">
       <p class="footer-copy">© 2025 海得宝 MarTempo. All rights reserved.</p>
     </div>
   </div>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('qrOverlay');
+  if (!overlay) return;
+
+  const triggers = document.querySelectorAll('.js-qr-trigger');
+
+  triggers.forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      overlay.classList.add('open');
+    });
+  });
+
+  overlay.addEventListener('click', () => {
+    overlay.classList.remove('open');
+  });
+});
+</script>
 
 <style>
   .footer {
@@ -60,29 +94,49 @@
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 120px 1fr 1fr 1fr 1fr;
     gap: var(--space-4xl) var(--space-4xl);
     padding-bottom: var(--space-3xl);
     border-bottom: 1px solid oklch(80% 0.12 185);
   }
 
-  .footer-brand-col {
+  .footer-logo-col {
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 4px;
   }
 
   .footer-logo-img {
     display: block;
-    width: 100px;
+    width: 120px;
     height: auto;
     filter: brightness(0) invert(1);
     -webkit-filter: brightness(0) invert(1);
   }
 
-  .footer-links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-xl);
+  .footer-social-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    color: oklch(93% 0.04 185);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    margin-bottom: var(--space-md);
+    transition: color var(--duration-fast) ease;
+  }
+
+  .footer-social-item:hover {
+    color: #ffffff;
+  }
+
+  .footer-social-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    filter: brightness(0) invert(1);
+    -webkit-filter: brightness(0) invert(1);
   }
 
   .footer-col-title {
@@ -107,80 +161,6 @@
     color: #ffffff;
   }
 
-  .footer-social {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding-top: var(--space-sm);
-  }
-
-  .footer-social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    transition: opacity var(--duration-fast) ease;
-    text-decoration: none;
-  }
-
-  .footer-social-link:hover .footer-social-icon {
-    opacity: 0.75;
-  }
-
-  .footer-social-icon {
-    display: block;
-    width: 22px;
-    height: 22px;
-    filter: brightness(0) invert(1);
-    -webkit-filter: brightness(0) invert(1);
-    transition: opacity var(--duration-fast) ease;
-  }
-
-  .footer-social-wechat {
-    position: relative;
-  }
-
-  .wechat-popup {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    bottom: calc(100% + 12px);
-    left: 50%;
-    transform: translateX(-50%) translateY(4px);
-    background: #ffffff;
-    padding: 8px;
-    border-radius: var(--radius);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
-    z-index: 10;
-  }
-
-  .wechat-popup::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: #ffffff;
-  }
-
-  .footer-social-wechat:hover .wechat-popup {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0s;
-  }
-
-  .wechat-popup-img {
-    display: block;
-    width: 136px;
-    height: auto;
-    max-width: none;
-  }
-
   .footer-bottom {
     padding-top: var(--space-lg);
   }
@@ -191,13 +171,41 @@
     color: oklch(90% 0.04 185);
   }
 
+  /* ── QR Overlay ── */
+  .qr-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: oklch(0% 0 0 / 0.4);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .qr-overlay.open {
+    display: flex;
+  }
+
+  .qr-popup {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 32px oklch(0% 0 0 / 0.2);
+    cursor: default;
+  }
+
+  .qr-popup-img {
+    display: block;
+    width: 200px;
+    height: auto;
+    max-width: none;
+  }
+
   @media (max-width: 768px) {
     .footer-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-2xl);
-    }
-    .footer-links {
       grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
     }
   }
 </style>
