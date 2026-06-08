@@ -1,10 +1,12 @@
 {
-  "name": "唇敏修护唇膏",
-  "nickname": "1分钟舒缓唇敏 修护原生美唇",
-  "line": "专业线｜Expert Collection",
-  "status": "在售",
-  "skin_type": "干性和极干性, 敏感肌",
+  "ingredients": "\"矿脂\"，\"角鲨烷\"，\"甘油\"，\"鲸蜡硬脂醇\"，\"贻贝提取物\"",
   "audience": "儿童, 成人",
+  "name": "唇敏修护唇膏",
+  "can_claim": "1、反复无刺激、无激素、无防腐剂、入口无毒 / 2、人体斑贴无刺激、入眼无刺激 / 3、2h角质层水分含量改善率+69% / 4、1min 后有显著舒缓灼热、瘙痒、刺痛的舒缓皮肤效果。5min、30min、2h有显著舒缓灼热、瘙痒、刺痛、红肿的舒缓皮肤效果 / 5、1h经表皮水分流失改善率+7.4%（恢复屏障） / 6、1h血红素改善率+7.9% / 7、灼热缓解：1分-29.2%；5分-52.1%；30分-72.9%；2h-83.3% / 8、刺痛缓解：1分-30.6%；5分-57.1%；30分-75.5%；2h-81.6% / 9、瘙痒缓解：1分-18.3%；5分-23.9%；30分-39.4%；2h-46.5% / 10、红肿缓解：1分-16.3%；5分-39.5%；30分-44.2%；2h-74.4%",
+  "nickname": "1分钟舒缓唇敏 修护原生美唇",
+  "status": "在售",
+  "line": "专业线｜Expert Collection",
+  "buy_url": "https://detail.tmall.com/item.htm?abbucket=6&id=677248378368&pisk=h8ciZYThSoastepdrTD3Z1Tdmpd-6Z0SzoCO35ohomniMApXCmcmWkCYBdivovmqAREwpQ36BK8S_cqV_y84PzBw1rrA7VNbgnbdgLdknu0Abhz40eVUuraag-5aTe4YlNP4b-SE8rrU0SPq0kRUPzSVQrrN89rQyGSa3o7UYzzN_t5q0283lkr4gRoq8e4bYo7J1VYj2fl1kniXNtCVgfAbIqO7YKJmt72g4_EHXCWjy-mgIXdGVPDErrzicQ1__-DZU5lDqCVEPvna-m-lnHkG3tjSRV3VFp-9rqHgeDWJUXYnycMjn17mInmZfxul8FRXYqFtv4dG_FpzXWVnEtpJaUmszxuAxBtyq4inUcI6AQRrWvL32P-gShkiv7dw-eXW4RzQ5C8H-t_uQya32eYhU12aRPON.&rn=2c1dd613be7850063fcc7cbfede29a5a&spm=a1z10.3-b-s.w4011-24941648742.42.39f91902KXSK39",
   "efficacy": [
     "保湿",
     "舒缓",
@@ -12,7 +14,6 @@
     "温和",
     "敏感肌适用"
   ],
-  "ingredients": "\"矿脂\"，\"角鲨烷\"，\"甘油\"，\"鲸蜡硬脂醇\"，\"贻贝提取物\"",
-  "can_claim": "1、反复无刺激、无激素、无防腐剂、入口无毒 / 2、人体斑贴无刺激、入眼无刺激 / 3、2h角质层水分含量改善率+69% / 4、1min 后有显著舒缓灼热、瘙痒、刺痛的舒缓皮肤效果。5min、30min、2h有显著舒缓灼热、瘙痒、刺痛、红肿的舒缓皮肤效果 / 5、1h经表皮水分流失改善率+7.4%（恢复屏障） / 6、1h血红素改善率+7.9% / 7、灼热缓解：1分-29.2%；5分-52.1%；30分-72.9%；2h-83.3% / 8、刺痛缓解：1分-30.6%；5分-57.1%；30分-75.5%；2h-81.6% / 9、瘙痒缓解：1分-18.3%；5分-23.9%；30分-39.4%；2h-46.5% / 10、红肿缓解：1分-16.3%；5分-39.5%；30分-44.2%；2h-74.4%",
-  "image": "/assets/products/唇敏修护唇膏8g.png"
+  "image": "/assets/products/唇敏修护唇膏8g.png",
+  "skin_type": "干性和极干性, 敏感肌"
 }
