@@ -1,17 +1,21 @@
 {
-  "name": "贻贝止痒膏",
-  "nickname": "5分钟舒缓 仅4种成分的无味止痒膏",
-  "line": "婴童线｜Primal Comfort",
-  "status": "即将停售",
-  "skin_type": "全肤质, 敏感肌",
+  "ingredients": "\"矿脂\"，\"甘油\"，\"鲸蜡硬脂醇\"，\"贻贝提取物\"",
   "audience": "婴儿, 儿童, 成人",
+  "name": "贻贝止痒膏",
+  "can_claim": "1、斑贴无刺激、无防腐剂、无激素 / 2、入口无毒、入眼无刺激、反复使用无刺激 / 3、具有修护皮肤屏障、舒缓皮肤、止痒的功效 / 4、1h血红素改善率+34.5% / 5、灼热缓解：5min（即刻）+29.6%；30min+57.7%；2h+98.6%； / 6、刺痛缓解：5min（即刻）+27.8%；30min+56.9%；2h+97.2%； / 7、瘙痒缓解：5min（即刻）+25.4%；30min+48.2%；2h+71.1%； / 8、红肿缓解：5min（即刻）+19.4%；30min+49.3%；2h+95.5%；",
+  "nickname": "5分钟舒缓 仅4种成分的无味止痒膏",
+  "status": "在售",
+  "line": "婴童线｜Primal Comfort",
+  "buy_url": "https://detail.tmall.com/item.htm?abbucket=6&id=654515576588&pisk=g43nbCM2GR6Xcx6woTzBjKLEbJ-tdya7jYQ8ezeybRyseBipFaqoeAZd9by-rzDsQuuLJXHGOVDcywpBAb7uyzJvHELxOHa7zKEhUKJ1dSNFzUeFYRzQwDsPyNLxOXw7McZejEKljjpMYgyrUPyaa7zza7PysPPzaz7U4wlaQRNzzzyzUPPaMS_Pz7kPbNPbiWSUTwSN7WNUz8kzzCcaC74zUYzysf8lNpwmBYgwhCZ1jl3x-VV3x-lwca7oAZEU3AeNz6ubtKwqTRbPz-ZBlvGrULb8umMirokvrNaKiczatcAPbJrmYvFsEEbULVcE8J3eBweERfoxyARPz8mZ0umqTdIgsclKSl32naqIbvibq4p9lynxM4Zq8eXbBoNonyoMQwDV4RsN08G1P5R-7gs7Y5NgHWJ3tponBrLesCjX3kP_OeRMsg10Y5NgHCAG0wqU1WTF.&rn=87b6341730f7471a90ba63181b42e2ca&spm=a1z10.3-b-s.w4011-24941648742.43.72951902KYH6gI",
   "efficacy": [
     "保湿",
     "舒缓",
     "敏感肌适用",
     "温和"
   ],
-  "ingredients": "\"矿脂\"，\"甘油\"，\"鲸蜡硬脂醇\"，\"贻贝提取物\"",
-  "can_claim": "1、斑贴无刺激、无防腐剂、无激素 / 2、入口无毒、入眼无刺激、反复使用无刺激 / 3、具有修护皮肤屏障、舒缓皮肤、止痒的功效 / 4、1h血红素改善率+34.5% / 5、灼热缓解：5min（即刻）+29.6%；30min+57.7%；2h+98.6%； / 6、刺痛缓解：5min（即刻）+27.8%；30min+56.9%；2h+97.2%； / 7、瘙痒缓解：5min（即刻）+25.4%；30min+48.2%；2h+71.1%； / 8、红肿缓解：5min（即刻）+19.4%；30min+49.3%；2h+95.5%；",
-  "image": "/assets/products/贻贝止痒膏-放绳-棕.png"
+  "types": [
+    "身体护理"
+  ],
+  "image": "/assets/products/贻贝止痒膏-放绳-棕.png",
+  "skin_type": "全肤质, 敏感肌"
 }
