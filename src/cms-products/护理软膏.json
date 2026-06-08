@@ -5,5 +5,8 @@
   "audience": "婴儿, 儿童, 成人",
   "ingredients": "由膏体和聚丙烯软膏瓶组成，膏体成分为甘油、丙二醇、羟乙基纤维素、凡士林、鲸蜡硬脂醇、甘油硬脂酸酯、鲸蜡硬脂基葡糖苷、纯净水",
   "can_claim": "用于非慢性浅表创面及周围皮肤的护理",
-  "image": "/assets/products/护理软膏.png"
+  "image": "/assets/products/护理软膏.png",
+  "types": [
+    "院线同款"
+  ]
 }
