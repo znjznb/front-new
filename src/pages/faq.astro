@@ -14,7 +14,7 @@ import Footer from '../components/Footer.astro';
     <section class="faq-hero">
       <div class="faq-hero-content">
         <h1 class="faq-hero-title">常见问题</h1>
-        <p class="faq-hero-desc">关于海得宝品牌、核心成分贻贝钙肽 CAPCS® 以及全线产品的常见疑问与解答</p>
+        <p class="faq-hero-desc">关于产品/品牌/功效/护肤问题</p>
       </div>
     </section>
     <QaSection showHeader={false} />
@@ -39,15 +39,16 @@ import Footer from '../components/Footer.astro';
 
   .faq-hero-title {
     font-size: var(--text-3xl);
-    font-weight: 300;
+    font-weight: 200;
+    line-height: var(--leading-tight);
     letter-spacing: var(--tracking-wide);
     color: var(--color-text);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
   }
 
   .faq-hero-desc {
-    font-size: var(--text-sm);
+    font-size: var(--text-lg);
+    font-weight: 300;
     color: var(--color-text-soft);
-    line-height: var(--leading-relaxed);
   }
 </style>
