@@ -1,10 +1,13 @@
 {
+  "ingredients": "大白管特护霜（倍润版）30g*1, 唇敏修护唇膏2g*1, 速修精华油2.5ml*1, 干敏沐浴露15ml*1",
+  "audience": "儿童, 成人",
   "name": "敏肌护理旅行套装",
   "nickname": "敏肌家庭的专业护理旅行套装",
-  "line": "专业线｜Expert Collection",
   "status": "在售",
-  "skin_type": "干性和极干性, 敏感肌",
-  "audience": "儿童, 成人",
-  "ingredients": "大白管特护霜（倍润版）30g*1, 唇敏修护唇膏2g*1, 速修精华油2.5ml*1, 干敏沐浴露15ml*1",
-  "image": "/assets/products/敏肌护理旅行套装.png"
+  "line": "专业线｜Expert Collection",
+  "types": [
+    "身体护理"
+  ],
+  "image": "/assets/products/敏肌护理旅行套装.png",
+  "skin_type": "干性和极干性, 敏感肌"
 }
