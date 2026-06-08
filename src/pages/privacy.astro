@@ -1,183 +1,72 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import LegalLayout from '../layouts/LegalLayout.astro';
 ---
 
-<BaseLayout
+<LegalLayout
   title="隐私声明 — 海得宝 MarTempo"
   description="海得宝隐私政策，说明我们如何收集、使用和保护您的个人信息"
+  heroTitle="隐私声明"
+  heroDesc="我们如何收集、使用和保护您的个人信息"
 >
-  <Nav />
-  <main>
-    <section class="legal-hero">
-      <div class="legal-hero-content">
-        <h1 class="legal-hero-title">隐私声明</h1>
-        <p class="legal-hero-desc">我们如何收集、使用和保护您的个人信息</p>
-      </div>
-    </section>
+  <p class="legal-date">更新日期：2025年1月</p>
 
-    <section class="legal-content">
-      <div class="section-inner">
-        <div class="legal-body">
-          <p class="legal-date">更新日期：2025年1月</p>
+  <p>贝壳派创新科技（深圳）有限公司（以下简称"海得宝"或"我们"）深知个人信息对您的重要性，我们将按照法律法规要求，采取相应的安全保护措施，保护您的个人信息安全。本隐私声明解释了当您访问本网站时，我们如何收集、使用、存储和披露您的信息。</p>
 
-          <p>贝壳派创新科技（深圳）有限公司（以下简称"海得宝"或"我们"）深知个人信息对您的重要性，我们将按照法律法规要求，采取相应的安全保护措施，保护您的个人信息安全。本隐私声明解释了当您访问本网站时，我们如何收集、使用、存储和披露您的信息。</p>
+  <h2>1. 我们收集的信息</h2>
+  <p><strong>您主动提供的信息：</strong></p>
+  <ul>
+    <li>当您通过在线客服或联系方式与我们沟通时，可能提供您的姓名、联系方式（电话、微信等）以及您咨询的内容</li>
+    <li>您参与活动、订阅资讯或填写问卷时提供的相关信息</li>
+  </ul>
+  <p><strong>自动收集的信息：</strong></p>
+  <ul>
+    <li>浏览记录：您访问的页面、浏览时长、点击行为等</li>
+    <li>设备信息：IP地址、浏览器类型、操作系统、设备型号等</li>
+    <li>Cookie及类似技术：详情请参阅我们的<a href="/cookies">Cookie政策</a></li>
+  </ul>
 
-          <h2>1. 我们收集的信息</h2>
-          <p><strong>您主动提供的信息：</strong></p>
-          <ul>
-            <li>当您通过在线客服或联系方式与我们沟通时，可能提供您的姓名、联系方式（电话、微信等）以及您咨询的内容</li>
-            <li>您参与活动、订阅资讯或填写问卷时提供的相关信息</li>
-          </ul>
-          <p><strong>自动收集的信息：</strong></p>
-          <ul>
-            <li>浏览记录：您访问的页面、浏览时长、点击行为等</li>
-            <li>设备信息：IP地址、浏览器类型、操作系统、设备型号等</li>
-            <li>Cookie及类似技术：详情请参阅我们的<a href="/cookies">Cookie政策</a></li>
-          </ul>
+  <h2>2. 信息的使用</h2>
+  <p>我们收集的信息将用于以下目的：</p>
+  <ul>
+    <li>为您提供咨询和客户服务</li>
+    <li>改善和优化网站体验</li>
+    <li>分析网站使用情况，了解用户需求</li>
+    <li>遵守法律法规的要求</li>
+  </ul>
+  <p>我们不会将您的个人信息用于与上述目的无关的用途。如涉及超出上述范围的使用，我们将再次征得您的同意。</p>
 
-          <h2>2. 信息的使用</h2>
-          <p>我们收集的信息将用于以下目的：</p>
-          <ul>
-            <li>为您提供咨询和客户服务</li>
-            <li>改善和优化网站体验</li>
-            <li>分析网站使用情况，了解用户需求</li>
-            <li>遵守法律法规的要求</li>
-          </ul>
-          <p>我们不会将您的个人信息用于与上述目的无关的用途。如涉及超出上述范围的使用，我们将再次征得您的同意。</p>
+  <h2>3. 信息的共享与披露</h2>
+  <p>我们承诺不向第三方出售您的个人信息。在以下情形下，我们可能会共享您的信息：</p>
+  <ul>
+    <li><strong>服务提供商：</strong>我们可能将信息共享给为我们提供网站托管、数据分析、客户服务等服务的第三方合作伙伴，这些合作伙伴仅可在为我们提供服务的过程中使用您的信息</li>
+    <li><strong>法律要求：</strong>如法律法规、法院命令或政府机关要求，我们可能会披露您的信息</li>
+    <li><strong>业务转让：</strong>如发生合并、收购或资产出售，您的信息可能作为转让资产的一部分</li>
+  </ul>
 
-          <h2>3. 信息的共享与披露</h2>
-          <p>我们承诺不向第三方出售您的个人信息。在以下情形下，我们可能会共享您的信息：</p>
-          <ul>
-            <li><strong>服务提供商：</strong>我们可能将信息共享给为我们提供网站托管、数据分析、客户服务等服务的第三方合作伙伴，这些合作伙伴仅可在为我们提供服务的过程中使用您的信息</li>
-            <li><strong>法律要求：</strong>如法律法规、法院命令或政府机关要求，我们可能会披露您的信息</li>
-            <li><strong>业务转让：</strong>如发生合并、收购或资产出售，您的信息可能作为转让资产的一部分</li>
-          </ul>
+  <h2>4. 信息存储与保护</h2>
+  <p>我们采取合理的技术和管理措施保护您的个人信息安全，包括但不限于加密传输、访问控制、数据备份等。但请注意，任何互联网传输或电子存储方式都无法保证绝对的安全。</p>
+  <p>您的个人信息将存储于中华人民共和国境内。我们仅在实现本声明所述目的所必需的期限内保留您的信息，除非法律另有要求。</p>
 
-          <h2>4. 信息存储与保护</h2>
-          <p>我们采取合理的技术和管理措施保护您的个人信息安全，包括但不限于加密传输、访问控制、数据备份等。但请注意，任何互联网传输或电子存储方式都无法保证绝对的安全。</p>
-          <p>您的个人信息将存储于中华人民共和国境内。我们仅在实现本声明所述目的所必需的期限内保留您的信息，除非法律另有要求。</p>
+  <h2>5. 您的权利</h2>
+  <p>根据《中华人民共和国个人信息保护法》，您享有以下权利：</p>
+  <ul>
+    <li><strong>知情权：</strong>了解我们如何收集和使用您的个人信息</li>
+    <li><strong>查阅和复制权：</strong>查阅并获取我们持有的您的个人信息</li>
+    <li><strong>更正权：</strong>发现信息不准确时要求更正</li>
+    <li><strong>删除权：</strong>在特定情形下要求删除您的个人信息</li>
+    <li><strong>撤回同意权：</strong>撤回您对信息收集和使用的同意</li>
+  </ul>
+  <p>如需行使上述权利，请通过本声明底部的联系方式与我们联系。我们将在合理期限内响应您的请求。</p>
 
-          <h2>5. 您的权利</h2>
-          <p>根据《中华人民共和国个人信息保护法》，您享有以下权利：</p>
-          <ul>
-            <li><strong>知情权：</strong>了解我们如何收集和使用您的个人信息</li>
-            <li><strong>查阅和复制权：</strong>查阅并获取我们持有的您的个人信息</li>
-            <li><strong>更正权：</strong>发现信息不准确时要求更正</li>
-            <li><strong>删除权：</strong>在特定情形下要求删除您的个人信息</li>
-            <li><strong>撤回同意权：</strong>撤回您对信息收集和使用的同意</li>
-          </ul>
-          <p>如需行使上述权利，请通过本声明底部的联系方式与我们联系。我们将在合理期限内响应您的请求。</p>
+  <h2>6. 未成年人保护</h2>
+  <p>本网站面向一般公众，不专门向未成年人提供服务。如您是未满14周岁的未成年人，请在监护人陪同下使用本网站，且不应主动向我们提供个人信息。如我们发现未经监护人同意收集了未成年人的个人信息，将及时删除。</p>
 
-          <h2>6. 未成年人保护</h2>
-          <p>本网站面向一般公众，不专门向未成年人提供服务。如您是未满14周岁的未成年人，请在监护人陪同下使用本网站，且不应主动向我们提供个人信息。如我们发现未经监护人同意收集了未成年人的个人信息，将及时删除。</p>
+  <h2>7. 隐私声明的更新</h2>
+  <p>我们可能会不时更新本隐私声明。更新后的声明将在本页面发布并注明更新日期。重大变更时，我们将通过网站公告等方式通知您。</p>
 
-          <h2>7. 隐私声明的更新</h2>
-          <p>我们可能会不时更新本隐私声明。更新后的声明将在本页面发布并注明更新日期。重大变更时，我们将通过网站公告等方式通知您。</p>
-
-          <h2>8. 联系我们</h2>
-          <p>如对本隐私声明有任何疑问、意见或投诉，或希望行使您的个人信息权利，请通过以下方式联系我们：</p>
-          <p>贝壳派创新科技（深圳）有限公司<br />
-          在线客服：本网站"联系我们"入口<br />
-          微信公众号：海得宝 MarTempo</p>
-        </div>
-      </div>
-    </section>
-  </main>
-  <Footer />
-</BaseLayout>
-
-<style>
-  .legal-hero {
-    padding: var(--space-6xl) var(--content-padding) var(--space-4xl);
-    background: linear-gradient(135deg, oklch(96% 0.01 185) 0%, oklch(98% 0.005 185) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 220px;
-  }
-
-  .legal-hero-content {
-    text-align: center;
-    max-width: 600px;
-  }
-
-  .legal-hero-title {
-    font-size: var(--text-3xl);
-    font-weight: 200;
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text);
-    margin-bottom: var(--space-md);
-  }
-
-  .legal-hero-desc {
-    font-size: var(--text-lg);
-    font-weight: 300;
-    color: var(--color-text-soft);
-  }
-
-  .legal-content {
-    padding: var(--space-5xl) var(--content-padding) var(--space-6xl);
-    background: var(--color-bg);
-  }
-
-  .legal-body {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .legal-date {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-3xl);
-  }
-
-  .legal-body p {
-    font-size: var(--text-sm);
-    font-weight: 300;
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-soft);
-    margin-bottom: var(--space-md);
-  }
-
-  .legal-body h2 {
-    font-size: var(--text-xl);
-    font-weight: 400;
-    margin-top: var(--space-4xl);
-    margin-bottom: var(--space-md);
-    color: var(--color-text);
-  }
-
-  .legal-body h2:first-of-type {
-    margin-top: 0;
-  }
-
-  .legal-body ul {
-    margin-bottom: var(--space-md);
-    padding-left: var(--space-xl);
-  }
-
-  .legal-body li {
-    font-size: var(--text-sm);
-    font-weight: 300;
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-soft);
-    margin-bottom: var(--space-sm);
-  }
-
-  .legal-body a {
-    color: var(--color-brand);
-    text-decoration: none;
-  }
-
-  .legal-body a:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    .legal-hero { min-height: 180px; padding: var(--space-5xl) var(--content-padding) var(--space-3xl); }
-    .legal-body h2 { font-size: var(--text-lg); }
-  }
-</style>
+  <h2>8. 联系我们</h2>
+  <p>如对本隐私声明有任何疑问、意见或投诉，或希望行使您的个人信息权利，请通过以下方式联系我们：</p>
+  <p>贝壳派创新科技（深圳）有限公司<br />
+  在线客服：本网站"联系我们"入口<br />
+  微信公众号：海得宝 MarTempo</p>
+</LegalLayout>

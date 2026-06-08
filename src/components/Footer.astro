@@ -12,29 +12,31 @@
       <div class="footer-col">
         <h4 class="footer-col-title">社交媒体</h4>
         <a href="https://weibo.com/u/6207838250" target="_blank" rel="noopener noreferrer" class="footer-social-item">
-          <img src="/微博.svg" alt="" class="footer-social-icon" />
+          <img src="/微博%20(1).svg" alt="" class="footer-social-icon" />
           <span>微博</span>
-        </a>
-        <a href="https://www.xiaohongshu.com/user/profile/5cac6d5c0000000017004d48?xsec_token=ABNw2QIwe-j9zM0c-2tAgsAqFmwQxWMMcn7xXOfpCZ500%3D&xsec_source=pc_search" target="_blank" rel="noopener noreferrer" class="footer-social-item">
-          <img src="/小红书.svg" alt="" class="footer-social-icon" />
-          <span>小红书</span>
-        </a>
-        <a href="https://www.douyin.com/user/MS4wLjABAAAApSGI2TuPE4ArDn927m7m4i0YNg-y5bMbJpkN6Rmg42M?from_tab_name=main" target="_blank" rel="noopener noreferrer" class="footer-social-item">
-          <img src="/抖音.svg" alt="" class="footer-social-icon" />
-          <span>抖音</span>
         </a>
         <a href="https://haidebaomy.tmall.com/?spm=a1z10.5-b-s.w15914064-24941704239.6.1e8877bdPyAuWS&scene=taobao_shop" target="_blank" rel="noopener noreferrer" class="footer-social-item">
           <img src="/天猫.svg" alt="" class="footer-social-icon" />
           <span>天猫</span>
         </a>
+         <a href="https://www.xiaohongshu.com/user/profile/5cac6d5c0000000017004d48?xsec_token=ABNw2QIwe-j9zM0c-2tAgsAqFmwQxWMMcn7xXOfpCZ500%3D&xsec_source=pc_search" target="_blank" rel="noopener noreferrer" class="footer-social-item">
+          <img src="/小红书.svg" alt="" class="footer-social-icon" />
+          <span>小红书</span>
+        </a>
+          <a href="https://www.douyin.com/user/MS4wLjABAAAApSGI2TuPE4ArDn927m7m4i0YNg-y5bMbJpkN6Rmg42M?from_tab_name=main" target="_blank" rel="noopener noreferrer" class="footer-social-item">
+          <span class="footer-social-douyin" aria-hidden="true">
+            <span class="footer-social-douyin-icon"></span>
+          </span>
+          <span>抖音</span>
+        </a>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-col-title">服务支持</h4>
-        <a href="#" class="footer-link js-qr-trigger">在线客服</a>
-        <a href="#" class="footer-link">真伪查询</a>
+        <button class="footer-link-btn js-qr-trigger">在线客服</button>
+        <button class="footer-link-btn js-verify-trigger">真伪查询</button>
         <a href="/faq" class="footer-link">常见问题</a>
-        <a href="#" class="footer-link js-qr-trigger">联系我们</a>
+        <button class="footer-link-btn js-qr-trigger">联系我们</button>
       </div>
 
       <div class="footer-col">
@@ -59,6 +61,14 @@
       </div>
     </div>
 
+    <!-- Verification Guide Overlay -->
+    <div class="verify-overlay" id="verifyOverlay">
+      <div class="verify-popup">
+        <button class="verify-close" id="verifyClose" aria-label="关闭">&times;</button>
+        <img src="/assets/verification-guide.jpg" alt="真伪查询指引" class="verify-img" />
+      </div>
+    </div>
+
     <div class="footer-bottom">
       <p class="footer-copy">© 2025 海得宝 MarTempo. All rights reserved.</p>
     </div>
@@ -67,28 +77,40 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const overlay = document.getElementById('qrOverlay');
-  if (!overlay) return;
+  const qrOverlay = document.getElementById('qrOverlay');
+  const verifyOverlay = document.getElementById('verifyOverlay');
+  const verifyClose = document.getElementById('verifyClose');
 
-  const triggers = document.querySelectorAll('.js-qr-trigger');
-
-  triggers.forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      overlay.classList.add('open');
+  document.querySelectorAll('.js-qr-trigger').forEach(el => {
+    el.addEventListener('click', () => {
+      qrOverlay.classList.add('open');
     });
   });
 
-  overlay.addEventListener('click', () => {
-    overlay.classList.remove('open');
+  qrOverlay.addEventListener('click', () => {
+    qrOverlay.classList.remove('open');
   });
+
+  document.querySelectorAll('.js-verify-trigger').forEach(el => {
+    el.addEventListener('click', () => {
+      verifyOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeVerify() {
+    verifyOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  verifyOverlay.addEventListener('click', closeVerify);
+  if (verifyClose) verifyClose.addEventListener('click', closeVerify);
 });
 </script>
 
 <style>
   .footer {
-    background: oklch(70% 0.18 185);
-    color: #ffffff;
+    background: var(--color-brand);
     padding: var(--space-4xl) var(--content-padding) var(--space-xl);
   }
 
@@ -97,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     grid-template-columns: 120px 1fr 1fr 1fr 1fr;
     gap: var(--space-4xl) var(--space-4xl);
     padding-bottom: var(--space-3xl);
-    border-bottom: 1px solid oklch(80% 0.12 185);
+    border-bottom: 1px solid oklch(95% 0.04 185);
   }
 
   .footer-logo-col {
@@ -119,29 +141,52 @@ document.addEventListener('DOMContentLoaded', () => {
     align-items: center;
     gap: var(--space-sm);
     text-decoration: none;
-    color: oklch(93% 0.04 185);
+    color: #ffffff;
     font-size: var(--text-sm);
     font-weight: 400;
     margin-bottom: var(--space-md);
-    transition: color var(--duration-fast) ease;
+    transition: opacity var(--duration-fast) ease;
   }
 
   .footer-social-item:hover {
-    color: #ffffff;
+    opacity: 0.7;
   }
 
   .footer-social-icon {
     display: block;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     flex-shrink: 0;
     filter: brightness(0) invert(1);
     -webkit-filter: brightness(0) invert(1);
+    object-fit: contain;
   }
 
-  .footer-col-title {
+  .footer-social-douyin {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background: #ffffff;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .footer-social-douyin-icon {
+    position: absolute;
+    inset: 0;
+    background: var(--color-brand);
+    mask-image: url('/tik%20tok.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url('/tik%20tok.svg');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+  }
+
+.footer-col-title {
     font-size: var(--text-sm);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: var(--tracking-wide);
     margin-bottom: var(--space-lg);
     color: #ffffff;
@@ -151,14 +196,33 @@ document.addEventListener('DOMContentLoaded', () => {
     display: block;
     font-size: var(--text-sm);
     font-weight: 400;
-    color: oklch(93% 0.04 185);
+    color: #ffffff;
     text-decoration: none;
     margin-bottom: var(--space-md);
-    transition: color var(--duration-fast) ease;
+    transition: opacity var(--duration-fast) ease;
   }
 
   .footer-link:hover {
+    opacity: 0.7;
+  }
+
+  .footer-link-btn {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 400;
     color: #ffffff;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    margin-bottom: var(--space-md);
+    transition: opacity var(--duration-fast) ease;
+  }
+
+  .footer-link-btn:hover {
+    opacity: 0.7;
   }
 
   .footer-bottom {
@@ -168,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
   .footer-copy {
     font-size: var(--text-xs);
     font-weight: 400;
-    color: oklch(90% 0.04 185);
+    color: #ffffff;
   }
 
   /* ── QR Overlay ── */
@@ -177,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     position: fixed;
     inset: 0;
     background: oklch(0% 0 0 / 0.4);
-    z-index: 1000;
+    z-index: var(--z-modal);
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -202,10 +266,75 @@ document.addEventListener('DOMContentLoaded', () => {
     max-width: none;
   }
 
+  /* ── Verification Overlay ── */
+  .verify-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: oklch(0% 0 0 / 0.5);
+    z-index: var(--z-modal);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: var(--space-lg);
+  }
+
+  .verify-overlay.open {
+    display: flex;
+  }
+
+  .verify-popup {
+    position: relative;
+    background: #ffffff;
+    border-radius: var(--radius);
+    max-width: 560px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    cursor: default;
+    box-shadow: 0 8px 40px oklch(0% 0 0 / 0.25);
+  }
+
+  .verify-close {
+    position: sticky;
+    top: 0;
+    float: right;
+    margin: 8px 12px 0 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-text-muted);
+    background: oklch(100% 0 0 / 0.85);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .verify-close:hover {
+    color: var(--color-text);
+  }
+
+  .verify-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   @media (max-width: 768px) {
     .footer-grid {
       grid-template-columns: 1fr 1fr;
       gap: var(--space-2xl);
+    }
+
+    .verify-popup {
+      max-height: 90vh;
+      max-width: 100%;
     }
   }
 </style>

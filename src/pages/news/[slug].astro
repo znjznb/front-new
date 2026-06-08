@@ -18,19 +18,28 @@ const { item } = Astro.props;
 const { Content } = await render(item);
 ---
 
-<BaseLayout>
+<BaseLayout
+  title={`${item.data.title} — 海得宝 MarTempo`}
+  description={item.data.summary}
+>
   <Nav />
   <main>
   <article class="news-detail">
     <div class="news-detail-inner">
       <nav class="news-breadcrumb">
-        <a href="/#news">新闻动态</a>
+        <a href="/news/">新闻动态</a>
         <span class="news-breadcrumb-sep">/</span>
         <span>{item.data.title}</span>
       </nav>
 
       <time class="news-detail-date">{new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(item.data.date)}</time>
       <h1 class="news-detail-title">{item.data.title}</h1>
+
+      {item.data.image && (
+        <div class="news-detail-figure">
+          <img src={item.data.image} alt={item.data.imageAlt || item.data.title} class="news-detail-img" />
+        </div>
+      )}
 
       <div class="news-detail-body">
         <Content />
@@ -91,6 +100,19 @@ const { Content } = await render(item);
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-wide);
     margin-bottom: var(--space-2xl);
+  }
+
+  .news-detail-figure {
+    margin-bottom: var(--space-2xl);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .news-detail-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
   }
 
   .news-detail-body {

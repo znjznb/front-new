@@ -32,20 +32,42 @@ if (maxItems && maxItems > 0) {
     )}
 
     <div class="qa-list">
-      {allItems.map((item, index) => (
-        <div class="qa-item">
-          <button class="qa-btn" data-index={index} aria-expanded="false">
-            <span class="qa-icon" aria-hidden="true">Q</span>
-            <span class="qa-question">{item.q}</span>
-          </button>
-          <div class="qa-body">
-            <div class="qa-answer">
-              <span class="qa-answer-label" aria-hidden="true">A</span>
-              <p class="qa-answer-text">{item.a}</p>
+      <div class="qa-col">
+        {allItems.filter((_, i) => i % 2 === 0).map((item, index) => (
+          <div class="qa-item">
+            <button class="qa-btn" data-index={index * 2} aria-expanded="false">
+              <span class="qa-icon" aria-hidden="true">Q</span>
+              <span class="qa-question">{item.q}</span>
+            </button>
+            <div class="qa-body">
+              <div class="qa-body-inner">
+                <div class="qa-answer">
+                  <span class="qa-answer-label" aria-hidden="true">A</span>
+                  <p class="qa-answer-text">{item.a}</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      <div class="qa-col">
+        {allItems.filter((_, i) => i % 2 === 1).map((item, index) => (
+          <div class="qa-item">
+            <button class="qa-btn" data-index={index * 2 + 1} aria-expanded="false">
+              <span class="qa-icon" aria-hidden="true">Q</span>
+              <span class="qa-question">{item.q}</span>
+            </button>
+            <div class="qa-body">
+              <div class="qa-body-inner">
+                <div class="qa-answer">
+                  <span class="qa-answer-label" aria-hidden="true">A</span>
+                  <p class="qa-answer-text">{item.a}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
 
     {maxItems && (
@@ -58,12 +80,42 @@ if (maxItems && maxItems > 0) {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   document.querySelectorAll('.qa-btn').forEach(btn => {
+    let animating = false;
+
     btn.addEventListener('click', () => {
+      if (animating) return;
+
       const item = btn.closest('.qa-item');
-      item.classList.toggle('qa-expanded');
+      const body = item.querySelector('.qa-body');
+      const inner = body.querySelector('.qa-body-inner');
       const isOpen = item.classList.contains('qa-expanded');
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+      const done = () => {
+        animating = false;
+        body.removeEventListener('transitionend', done);
+      };
+      body.addEventListener('transitionend', done, { once: true });
+
+      if (isOpen) {
+        body.style.height = body.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          body.style.height = '0px';
+        });
+        item.classList.remove('qa-expanded');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('qa-expanded');
+        const fullHeight = inner.scrollHeight;
+        body.style.height = (prefersReduced ? fullHeight : fullHeight) + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+
+      if (prefersReduced) {
+        animating = false;
+      }
     });
   });
 });
@@ -72,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <style>
   .qa {
     background: var(--color-bg);
-    padding-top: var(--space-6xl);
+    padding-top: var(--space-3xl);
     padding-bottom: var(--space-6xl);
     position: relative;
   }
@@ -90,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Header ── */
   .qa-header {
     text-align: center;
-    margin-bottom: var(--space-5xl);
+    margin-bottom: var(--space-4xl);
   }
 
   .qa-accent-line {
@@ -117,12 +169,18 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Question list ── */
   .qa-list {
     display: flex;
+    gap: var(--space-4xl);
+  }
+
+  .qa-col {
+    flex: 1;
+    display: flex;
     flex-direction: column;
-    gap: 0;
   }
 
   .qa-item {
     border-bottom: 1px solid var(--color-border-light);
+    border-top: 1px solid var(--color-border-light);
   }
 
   .qa-item:first-child {
@@ -163,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   .qa-question {
-    font-size: var(--text-base);
+    font-size: var(--text-lg);
     font-weight: 400;
     color: var(--color-text);
     line-height: 1.5;
@@ -194,13 +252,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Answer body ── */
   .qa-body {
-    max-height: 0;
+    height: 0;
     overflow: hidden;
-    transition: max-height 0.4s var(--ease-out-quart);
+    transition: height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .qa-expanded .qa-body {
-    max-height: 600px;
+  @media (prefers-reduced-motion: reduce) {
+    .qa-body {
+      transition: none;
+    }
   }
 
   .qa-answer {
@@ -225,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   .qa-answer-text {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     font-weight: 300;
     line-height: var(--leading-relaxed);
     color: var(--color-text-soft);
@@ -258,6 +318,22 @@ document.addEventListener('DOMContentLoaded', () => {
     color: var(--color-text-inverse);
   }
 
+  @media (max-width: 1024px) {
+    .qa-list {
+      flex-direction: column;
+      gap: 0;
+    }
+    .qa-item {
+      border-top: none;
+    }
+    .qa-col > .qa-item:first-child {
+      border-top: none;
+    }
+    .qa-list > .qa-col:first-child > .qa-item:first-child {
+      border-top: 1px solid var(--color-border-light);
+    }
+  }
+
   @media (max-width: 768px) {
     .qa-btn {
       padding: var(--space-lg) 0;
@@ -265,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .qa-question {
-      font-size: var(--text-sm);
+      font-size: var(--text-base);
     }
 
     .qa-answer {

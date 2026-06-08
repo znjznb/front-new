@@ -19,44 +19,13 @@ const { page } = Astro.params;
 const pageNum = parseInt(page!, 10);
 ---
 
-<BaseLayout>
+<BaseLayout
+  title={`新闻动态 第${pageNum}页 — 海得宝 MarTempo`}
+  description="海得宝品牌最新资讯与科研进展"
+>
   <Nav />
   <main>
-    <section class="section nl-page">
-      <div class="section-inner">
-        <div class="nl-page-header">
-          <h1 class="nl-page-title">新闻动态</h1>
-          <p class="nl-page-subtitle">品牌最新资讯与科研进展</p>
-        </div>
-
-        <NewsList page={pageNum} pageSize={6} />
-      </div>
-    </section>
+    <NewsList page={pageNum} pageSize={6} headerTitle="新闻动态" headerSubtitle="品牌最新资讯与科研进展" />
   </main>
   <Footer />
 </BaseLayout>
-
-<style>
-  .nl-page {
-    padding-top: 144px;
-  }
-
-  .nl-page-header {
-    text-align: center;
-    margin-bottom: var(--space-4xl);
-  }
-
-  .nl-page-title {
-    font-size: var(--text-3xl);
-    font-weight: 200;
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-wide);
-    margin-bottom: var(--space-md);
-  }
-
-  .nl-page-subtitle {
-    font-size: var(--text-lg);
-    font-weight: 300;
-    color: var(--color-text-soft);
-  }
-</style>

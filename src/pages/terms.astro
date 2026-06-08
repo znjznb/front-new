@@ -1,153 +1,51 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import LegalLayout from '../layouts/LegalLayout.astro';
 ---
 
-<BaseLayout
+<LegalLayout
   title="网站条款 — 海得宝 MarTempo"
   description="海得宝网站使用条款，规范用户对本网站的使用行为"
+  heroTitle="网站条款"
+  heroDesc="使用本网站即表示同意以下条款"
 >
-  <Nav />
-  <main>
-    <section class="legal-hero">
-      <div class="legal-hero-content">
-        <h1 class="legal-hero-title">网站条款</h1>
-        <p class="legal-hero-desc">使用本网站即表示同意以下条款</p>
-      </div>
-    </section>
+  <p class="legal-date">更新日期：2025年1月</p>
 
-    <section class="legal-content">
-      <div class="section-inner">
-        <div class="legal-body">
-          <p class="legal-date">更新日期：2025年1月</p>
+  <h2>1. 服务说明</h2>
+  <p>本网站由贝壳派创新科技（深圳）有限公司（以下简称"海得宝"或"我们"）运营，提供品牌信息、产品展示及相关内容。访问和使用本网站时，即表示您同意受以下条款约束。如您不同意任何条款，请停止使用本网站。</p>
 
-          <h2>1. 服务说明</h2>
-          <p>本网站由贝壳派创新科技（深圳）有限公司（以下简称"海得宝"或"我们"）运营，提供品牌信息、产品展示及相关内容。访问和使用本网站时，即表示您同意受以下条款约束。如您不同意任何条款，请停止使用本网站。</p>
+  <h2>2. 知识产权</h2>
+  <p>本网站的所有内容，包括但不限于文字、图片、标识、商标、产品包装设计、视频、数据汇编等，均归海得宝或其许可方所有，受中国及国际著作权法、商标法和其他知识产权法律保护。未经我们书面许可，严禁以任何形式复制、修改、分发、展示或利用本网站内容用于商业目的。</p>
+  <p>"海得宝""MarTempo""CAPCS®"及"凯普斯泰"等商标均为海得宝或其关联公司所有，未经授权不得使用。</p>
 
-          <h2>2. 知识产权</h2>
-          <p>本网站的所有内容，包括但不限于文字、图片、标识、商标、产品包装设计、视频、数据汇编等，均归海得宝或其许可方所有，受中国及国际著作权法、商标法和其他知识产权法律保护。未经我们书面许可，严禁以任何形式复制、修改、分发、展示或利用本网站内容用于商业目的。</p>
-          <p>"海得宝""MarTempo""CAPCS®"及"凯普斯泰"等商标均为海得宝或其关联公司所有，未经授权不得使用。</p>
+  <h2>3. 使用规范</h2>
+  <p>您同意在使用本网站时遵守以下规范：</p>
+  <ul>
+    <li>不得以任何非法目的或违反本条款的方式使用本网站</li>
+    <li>不得干扰或破坏本网站的正常运行</li>
+    <li>不得通过自动化手段（爬虫、脚本等）抓取本网站内容</li>
+    <li>不得在本网站上传播病毒、恶意代码或其他有害技术</li>
+    <li>不得冒充他人或虚假陈述您的身份</li>
+  </ul>
 
-          <h2>3. 使用规范</h2>
-          <p>您同意在使用本网站时遵守以下规范：</p>
-          <ul>
-            <li>不得以任何非法目的或违反本条款的方式使用本网站</li>
-            <li>不得干扰或破坏本网站的正常运行</li>
-            <li>不得通过自动化手段（爬虫、脚本等）抓取本网站内容</li>
-            <li>不得在本网站上传播病毒、恶意代码或其他有害技术</li>
-            <li>不得冒充他人或虚假陈述您的身份</li>
-          </ul>
+  <h2>4. 免责声明</h2>
+  <p>本网站提供的内容仅供一般性信息参考，不构成医疗建议、诊断或治疗方案。产品功效描述基于实验室测试及临床验证，实际效果可能因个体差异而有所不同。如有皮肤问题，建议咨询专业医生。</p>
+  <p>我们尽力确保网站信息的准确性和时效性，但不作任何明示或暗示的保证。我们保留随时修改、暂停或终止本网站（或其任何部分）的权利，恕不另行通知。</p>
 
-          <h2>4. 免责声明</h2>
-          <p>本网站提供的内容仅供一般性信息参考，不构成医疗建议、诊断或治疗方案。产品功效描述基于实验室测试及临床验证，实际效果可能因个体差异而有所不同。如有皮肤问题，建议咨询专业医生。</p>
-          <p>我们尽力确保网站信息的准确性和时效性，但不作任何明示或暗示的保证。我们保留随时修改、暂停或终止本网站（或其任何部分）的权利，恕不另行通知。</p>
+  <h2>5. 第三方链接</h2>
+  <p>本网站可能包含指向第三方网站的链接。我们对第三方的隐私保护措施、内容或行为不承担任何责任。访问第三方链接的风险由您自行承担。</p>
 
-          <h2>5. 第三方链接</h2>
-          <p>本网站可能包含指向第三方网站的链接。我们对第三方的隐私保护措施、内容或行为不承担任何责任。访问第三方链接的风险由您自行承担。</p>
+  <h2>6. 责任限制</h2>
+  <p>在法律允许的最大范围内，海得宝及其关联公司、员工、代理商不对因使用或无法使用本网站而产生的任何直接、间接、附带、特殊或后果性损害承担责任。</p>
 
-          <h2>6. 责任限制</h2>
-          <p>在法律允许的最大范围内，海得宝及其关联公司、员工、代理商不对因使用或无法使用本网站而产生的任何直接、间接、附带、特殊或后果性损害承担责任。</p>
+  <h2>7. 条款变更</h2>
+  <p>我们可能会不时修订本条款。修订后的条款将在本页面发布后立即生效。建议您定期查阅本页面以了解最新条款。重大变更时，我们可能通过网站公告或弹窗等方式另行通知。</p>
 
-          <h2>7. 条款变更</h2>
-          <p>我们可能会不时修订本条款。修订后的条款将在本页面发布后立即生效。建议您定期查阅本页面以了解最新条款。重大变更时，我们可能通过网站公告或弹窗等方式另行通知。</p>
+  <h2>8. 适用法律与争议解决</h2>
+  <p>本条款受中华人民共和国法律管辖。因本条款引起的或与之相关的争议，双方应首先友好协商解决；协商不成的，提交有管辖权的人民法院诉讼解决。</p>
 
-          <h2>8. 适用法律与争议解决</h2>
-          <p>本条款受中华人民共和国法律管辖。因本条款引起的或与之相关的争议，双方应首先友好协商解决；协商不成的，提交有管辖权的人民法院诉讼解决。</p>
-
-          <h2>9. 联系方式</h2>
-          <p>如对本条款有任何疑问或意见，请通过以下方式联系我们：</p>
-          <p>贝壳派创新科技（深圳）有限公司<br />
-          在线客服：本网站"联系我们"入口<br />
-          微信公众号：海得宝 MarTempo</p>
-        </div>
-      </div>
-    </section>
-  </main>
-  <Footer />
-</BaseLayout>
-
-<style>
-  .legal-hero {
-    padding: var(--space-6xl) var(--content-padding) var(--space-4xl);
-    background: linear-gradient(135deg, oklch(96% 0.01 185) 0%, oklch(98% 0.005 185) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 220px;
-  }
-
-  .legal-hero-content {
-    text-align: center;
-    max-width: 600px;
-  }
-
-  .legal-hero-title {
-    font-size: var(--text-3xl);
-    font-weight: 200;
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-text);
-    margin-bottom: var(--space-md);
-  }
-
-  .legal-hero-desc {
-    font-size: var(--text-lg);
-    font-weight: 300;
-    color: var(--color-text-soft);
-  }
-
-  .legal-content {
-    padding: var(--space-5xl) var(--content-padding) var(--space-6xl);
-    background: var(--color-bg);
-  }
-
-  .legal-body {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .legal-date {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-3xl);
-  }
-
-  .legal-body h2 {
-    font-size: var(--text-xl);
-    font-weight: 400;
-    margin-top: var(--space-4xl);
-    margin-bottom: var(--space-md);
-    color: var(--color-text);
-  }
-
-  .legal-body h2:first-of-type {
-    margin-top: 0;
-  }
-
-  .legal-body p {
-    font-size: var(--text-sm);
-    font-weight: 300;
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-soft);
-    margin-bottom: var(--space-md);
-  }
-
-  .legal-body ul {
-    margin-bottom: var(--space-md);
-    padding-left: var(--space-xl);
-  }
-
-  .legal-body li {
-    font-size: var(--text-sm);
-    font-weight: 300;
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-soft);
-    margin-bottom: var(--space-sm);
-  }
-
-  @media (max-width: 768px) {
-    .legal-hero { min-height: 180px; padding: var(--space-5xl) var(--content-padding) var(--space-3xl); }
-    .legal-body h2 { font-size: var(--text-lg); }
-  }
-</style>
+  <h2>9. 联系方式</h2>
+  <p>如对本条款有任何疑问或意见，请通过以下方式联系我们：</p>
+  <p>贝壳派创新科技（深圳）有限公司<br />
+  在线客服：本网站"联系我们"入口<br />
+  微信公众号：海得宝 MarTempo</p>
+</LegalLayout>

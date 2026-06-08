@@ -6,9 +6,11 @@ import { getCollection } from 'astro:content';
 export interface Props {
   page: number;
   pageSize: number;
+  headerTitle?: string;
+  headerSubtitle?: string;
 }
 
-const { page = 1, pageSize = 6 } = Astro.props as Props;
+const { page = 1, pageSize = 6, headerTitle, headerSubtitle } = Astro.props as Props;
 
 const allNews = (await getCollection('news'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -18,35 +20,69 @@ const items = allNews.slice((page - 1) * pageSize, page * pageSize);
 const slug = (item: any) => item.id.replace(/\.md$/, '');
 ---
 
-{
-  items.length > 0 && (
-    <div class="news-list-grid">
-      {items.map((item, i) => (
-        <a href={`/news/${slug(item)}/`} class="nl-card">
-          <time class="nl-date">{new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(item.data.date)}</time>
-          <h3 class="nl-title">{item.data.title}</h3>
-          <p class="nl-summary">{item.data.summary}</p>
-          <span class="nl-readmore">阅读详情 →</span>
-        </a>
-      ))}
-    </div>
-  )
-}
+<section class="section nl-page">
+  <div class="section-inner">
+    {(headerTitle || headerSubtitle) && (
+      <div class="nl-page-header">
+        {headerTitle && <h1 class="nl-page-title">{headerTitle}</h1>}
+        {headerSubtitle && <p class="nl-page-subtitle">{headerSubtitle}</p>}
+      </div>
+    )}
 
-{totalPages > 1 && (
-  <nav class="nl-pagination">
-    <a href="/#news" class="nl-page-link home">← 返回首页</a>
-    {page > 1 && (
-      <a href={page === 2 ? '/news/' : `/news/page/${page - 1}/`} class="nl-page-link prev">← 上一页</a>
+    {items.length > 0 ? (
+      <div class="news-list-grid">
+        {items.map((item) => (
+          <a href={`/news/${slug(item)}/`} class="nl-card">
+            <time class="nl-date">{new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(item.data.date)}</time>
+            <h3 class="nl-title">{item.data.title}</h3>
+            <p class="nl-summary">{item.data.summary}</p>
+            <span class="nl-readmore">阅读详情 →</span>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="nl-empty">暂无新闻内容</p>
     )}
-    <span class="nl-page-info">第 {page} / {totalPages} 页</span>
-    {page < totalPages && (
-      <a href={`/news/page/${page + 1}/`} class="nl-page-link next">下一页 →</a>
+
+    {totalPages > 1 && (
+      <nav class="nl-pagination">
+        <a href="/" class="nl-page-link home">← 返回首页</a>
+        {page > 1 && (
+          <a href={page === 2 ? '/news/' : `/news/page/${page - 1}/`} class="nl-page-link prev">← 上一页</a>
+        )}
+        <span class="nl-page-info">第 {page} / {totalPages} 页</span>
+        {page < totalPages && (
+          <a href={`/news/page/${page + 1}/`} class="nl-page-link next">下一页 →</a>
+        )}
+      </nav>
     )}
-  </nav>
-)}
+  </div>
+</section>
 
 <style>
+  .nl-page {
+    padding-top: 144px;
+  }
+
+  .nl-page-header {
+    text-align: center;
+    margin-bottom: var(--space-4xl);
+  }
+
+  .nl-page-title {
+    font-size: var(--text-3xl);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-md);
+  }
+
+  .nl-page-subtitle {
+    font-size: var(--text-lg);
+    font-weight: 300;
+    color: var(--color-text-soft);
+  }
+
   .news-list-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -58,6 +94,7 @@ const slug = (item: any) => item.id.replace(/\.md$/, '');
     flex-direction: column;
     padding: var(--space-xl);
     background: var(--color-surface);
+    border-radius: var(--radius);
     text-decoration: none;
     transition: background var(--duration-fast) ease, transform var(--duration-fast) var(--ease-out-expo);
   }
@@ -82,6 +119,8 @@ const slug = (item: any) => item.id.replace(/\.md$/, '');
     margin-bottom: var(--space-md);
     letter-spacing: var(--tracking-wide);
     line-height: var(--leading-snug);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .nl-summary {
@@ -91,6 +130,8 @@ const slug = (item: any) => item.id.replace(/\.md$/, '');
     color: var(--color-text-soft);
     margin-bottom: var(--space-lg);
     flex: 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .nl-readmore {
@@ -101,6 +142,14 @@ const slug = (item: any) => item.id.replace(/\.md$/, '');
 
   .nl-card:hover .nl-readmore {
     text-decoration: underline;
+  }
+
+  .nl-empty {
+    text-align: center;
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--color-text-muted);
+    padding: var(--space-4xl) 0;
   }
 
   .nl-pagination {

@@ -9,24 +9,32 @@
       <h2 class="trust-title">学术与临床<br />双重背书</h2>
     </div>
 
-    <div class="trust-narrative reveal reveal-rise">
-      <div class="trust-body">
-        <p>获得 <strong class="trust-em">1,000+</strong> 公立医院皮肤科临床选用，<strong class="trust-em">3,000+</strong> 皮肤科及儿科医生共同推荐，至今已成为 <strong class="trust-em">200万+</strong> 敏感肌家庭的信赖之选。</p>
+    <div class="trust-split reveal reveal-rise">
+      <div class="trust-image-col">
+        <img src="/assets/award-poster.jpg" alt="海得宝身体乳获奖 — 科盟2025年度推荐" class="trust-image" />
       </div>
-    </div>
 
-    <div class="trust-publications reveal reveal-rise">
-      <div class="trust-pub">
-        <span class="trust-pub-source">中华皮肤科杂志 · 2022</span>
-        <p class="trust-pub-detail">北京友谊医院双盲对照研究证实：止痒效果等同于弱效激素，止痒速度优于弱效激素。</p>
-      </div>
-      <div class="trust-pub">
-        <span class="trust-pub-source">SCI · IJMS · 2022</span>
-        <p class="trust-pub-detail">四川大学华西医院研究证明：海得宝能提高激素有效率高达 6 倍。</p>
-      </div>
-      <div class="trust-pub">
-        <span class="trust-pub-source">中山大学第五医院</span>
-        <p class="trust-pub-detail">临床治疗特应性皮炎有效率 67%，止痒有效率 79%。</p>
+      <div class="trust-text-col">
+        <div class="trust-narrative">
+          <div class="trust-body">
+            <p>获得 <strong class="trust-em">1,000+</strong> 公立医院皮肤科临床选用，<strong class="trust-em">3,000+</strong> 皮肤科及儿科医生共同推荐，至今已成为 <strong class="trust-em">200万+</strong> 敏感肌家庭的信赖之选。</p>
+          </div>
+        </div>
+
+        <div class="trust-publications">
+          <div class="trust-pub">
+            <span class="trust-pub-source">中华皮肤科杂志 · 2022</span>
+            <p class="trust-pub-detail">北京友谊医院双盲对照研究证实：止痒效果等同于弱效激素，止痒速度优于弱效激素。</p>
+          </div>
+          <div class="trust-pub">
+            <span class="trust-pub-source">SCI · IJMS · 2022</span>
+            <p class="trust-pub-detail">四川大学华西医院研究证明：海得宝能提高激素有效率高达 6 倍。</p>
+          </div>
+          <div class="trust-pub">
+            <span class="trust-pub-source">中山大学第五医院</span>
+            <p class="trust-pub-detail">临床治疗特应性皮炎有效率 67%，止痒有效率 79%。</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -66,6 +74,21 @@
     font-weight: 200;
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-wide);
+  }
+
+  /* ── Two-column split ── */
+  .trust-split {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-4xl);
+    align-items: start;
+  }
+
+  .trust-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
   }
 
   /* ── Narrative intro ── */
@@ -110,6 +133,18 @@
     font-weight: 300;
     line-height: var(--leading-relaxed);
     color: var(--color-text-soft);
+  }
+
+  @media (max-width: 1024px) {
+    .trust-split {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .trust-image {
+      max-width: 360px;
+      margin: 0 auto;
+    }
   }
 
   @media (max-width: 768px) {

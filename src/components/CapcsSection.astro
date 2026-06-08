@@ -10,21 +10,27 @@
       <p class="science-subtitle">全球首创外用钙离子舒缓技术</p>
     </div>
 
-    <div class="science-columns reveal reveal-rise">
-      <div class="science-col">
-        <span class="science-col-number" aria-hidden="true">01</span>
-        <h3 class="science-col-title">30 秒快速止痒</h3>
-        <p class="science-col-body">临床验证止痒速度优于弱效激素（氢化可的松），效果等同于弱效激素。切断"搔抓恶性循环"，从根源缓解皮肤问题。</p>
+    <div class="science-content reveal reveal-rise">
+      <div class="science-image-col">
+        <img src="/assets/capcs-ingredient.png" alt="CAPCS® 钙离子舒缓技术成分示意" class="science-image" />
       </div>
-      <div class="science-col">
-        <span class="science-col-number" aria-hidden="true">02</span>
-        <h3 class="science-col-title">13 年自主研发</h3>
-        <p class="science-col-body">由生物学博士后团队研发，纯物理回流反渗技术萃取。发表于《中华皮肤科杂志》与 SCI 期刊，机理与临床双重验证。</p>
-      </div>
-      <div class="science-col">
-        <span class="science-col-number" aria-hidden="true">03</span>
-        <h3 class="science-col-title">五维金标准安全</h3>
-        <p class="science-col-body">无激素、无抗生素、无防腐剂。经口无毒、入眼无刺激、人体斑贴无刺激、多次皮肤刺激无刺激、4000+ 争议成分不添加。</p>
+
+      <div class="science-cols-col">
+        <div class="science-col">
+          <span class="science-col-number" aria-hidden="true">01</span>
+          <h3 class="science-col-title">30 秒快速止痒</h3>
+          <p class="science-col-body">临床验证止痒速度优于弱效激素（氢化可的松），效果等同于弱效激素。切断"搔抓恶性循环"，从根源缓解皮肤问题。</p>
+        </div>
+        <div class="science-col">
+          <span class="science-col-number" aria-hidden="true">02</span>
+          <h3 class="science-col-title">13 年自主研发</h3>
+          <p class="science-col-body">由生物学博士后团队研发，纯物理回流反渗技术萃取。发表于《中华皮肤科杂志》与 SCI 期刊，机理与临床双重验证。</p>
+        </div>
+        <div class="science-col">
+          <span class="science-col-number" aria-hidden="true">03</span>
+          <h3 class="science-col-title">五维金标准安全</h3>
+          <p class="science-col-body">无激素、无抗生素、无防腐剂。经口无毒、入眼无刺激、人体斑贴无刺激、多次皮肤刺激无刺激、4000+ 争议成分不添加。</p>
+        </div>
       </div>
     </div>
 
@@ -81,17 +87,34 @@
     color: var(--color-text-soft);
   }
 
-  /* ── Three-column editorial ── */
-  .science-columns {
+  /* ── Two-column split: image + editorial ── */
+  .science-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-3xl);
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4xl);
+    align-items: start;
     margin-bottom: var(--space-4xl);
+  }
+
+  .science-image-col {
+    position: sticky;
+    top: 120px;
+  }
+
+  .science-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
   }
 
   .science-col {
     padding-top: var(--space-xl);
     border-top: 1px solid var(--color-border-light);
+  }
+
+  .science-col + .science-col {
+    margin-top: var(--space-2xl);
   }
 
   .science-col-number {
@@ -154,11 +177,23 @@
     background: var(--color-border);
   }
 
-  @media (max-width: 768px) {
-    .science-columns {
+  @media (max-width: 1024px) {
+    .science-content {
       grid-template-columns: 1fr;
       gap: var(--space-2xl);
     }
+
+    .science-image-col {
+      position: static;
+    }
+
+    .science-image {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
     .science-data {
       flex-direction: column;
       gap: var(--space-xl);

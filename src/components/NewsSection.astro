@@ -16,16 +16,20 @@ const latest = news.slice(0, 4);
       <p class="news-subtitle">品牌最新资讯与科研进展</p>
     </div>
 
-    <div class="news-grid">
-      {latest.map((item, i) => (
-        <a href={`/news/${item.id.replace(/\.md$/, '')}/`} class="news-card reveal reveal-rise" class:list={{ [`reveal-delay-${(i % 4) + 1}`]: true }}>
-          <time class="news-date">{new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(item.data.date)}</time>
-          <h3 class="news-card-title">{item.data.title}</h3>
-          <p class="news-card-summary">{item.data.summary}</p>
-          <span class="news-readmore">阅读详情 →</span>
-        </a>
-      ))}
-    </div>
+    {latest.length > 0 ? (
+      <div class="news-grid">
+        {latest.map((item, i) => (
+          <a href={`/news/${item.id.replace(/\.md$/, '')}/`} class="news-card reveal reveal-rise" class:list={{ [`reveal-delay-${(i % 4) + 1}`]: true }}>
+            <time class="news-date">{new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(item.data.date)}</time>
+            <h3 class="news-card-title">{item.data.title}</h3>
+            <p class="news-card-summary">{item.data.summary}</p>
+            <span class="news-readmore">阅读详情 →</span>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="news-empty">暂无新闻内容</p>
+    )}
     {news.length > 4 && (
       <div class="news-footer reveal reveal-rise">
         <a href="/news/" class="news-all-link">查看全部新闻 →</a>
@@ -89,6 +93,7 @@ const latest = news.slice(0, 4);
     flex-direction: column;
     padding: var(--space-xl);
     background: var(--color-surface);
+    border-radius: var(--radius);
     text-decoration: none;
     transition: background var(--duration-fast) ease, transform var(--duration-fast) var(--ease-out-expo);
   }
@@ -113,6 +118,8 @@ const latest = news.slice(0, 4);
     margin-bottom: var(--space-md);
     letter-spacing: var(--tracking-wide);
     line-height: var(--leading-snug);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .news-card-summary {
@@ -122,6 +129,8 @@ const latest = news.slice(0, 4);
     color: var(--color-text-soft);
     margin-bottom: var(--space-lg);
     flex: 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .news-readmore {
@@ -133,6 +142,14 @@ const latest = news.slice(0, 4);
 
   .news-card:hover .news-readmore {
     text-decoration: underline;
+  }
+
+  .news-empty {
+    text-align: center;
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--color-text-muted);
+    padding: var(--space-4xl) 0;
   }
 
   .news-footer {
