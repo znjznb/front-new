@@ -1,17 +1,18 @@
 {
-  "name": "全域速修精华油",
-  "nickname": "30秒速修敏感根源 激活水油平衡肌",
-  "line": "专业线｜Expert Collection",
-  "status": "在售",
-  "skin_type": "干性和极干性, 敏感肌",
+  "ingredients": "\"氢化聚异丁烯\"，\"角鲨烷\"，\"氢化（苯乙烯/异戊二烯）共聚物\"，\"氢氧化钙\"，\"贻贝提取物\"，\"月桂氮卓酮\"，\"生育酚（维生素E）\"",
   "audience": "儿童, 成人",
+  "name": "全域速修精华油",
+  "can_claim": "1、入口无毒、无激素、入眼无刺激、无防腐剂、反复无刺激 / 2、人体斑贴无刺激 / 3、1h角质层水分含量改善率：30.1%；2h角质层水分含量改善率+38.3% / 4、30s（即刻）后有显著舒缓灼热、瘙痒、刺痛、红斑的舒缓皮肤效果 / 5、经表皮水分流失改善率+10.5% / 6、灼热缓解：30s（即刻）-66.7%；5分-48.1%；30分-77.8%；2h-100% / 7、刺痛缓解：30s（即刻）-57.1%；5分-67.9%；30分-85.7%；2h-100% / 8、瘙痒缓解：30s（即刻）-17.6%；5分-23%；30分-41.9%；2h-52.7% / 9、红斑缓解：30s（即刻）-1.8%；5分-26.3%；30分-45.6%；2h-91.2% / 10、有敏感肌适用报告",
+  "nickname": "30秒速修敏感根源 激活水油平衡肌",
+  "status": "在售",
+  "line": "专业线｜Expert Collection",
+  "buy_url": "https://detail.tmall.com/item.htm?abbucket=6&id=599825322856&pisk=h3KEZ-1TMphiOVspPj5F3p314Mpd5Bq7Vg1ISC5MtvpIwvQP4CAadafWdgky61tCOpshvpIR5tijzHWgS9pgqWX39PXungcjG0z_IwhBOUXBUD4GI1BzxkjkZNfGU1X3qgAlsNXcEkjlqQviQTXAE9XlZ1VGEtju-y43INXfeTXuq94iQTCGZgjkZGDNe1flqgb-Iu8T9amp_yXPBuxNLNu6Kg6OCUWh8wJh_d91Mwnv9LAoausDkC-Po9ozXM92SGXe7Y4GtZ8HOOdr0kfHbH-QMurWGJGMbfYy7EKolPxiuLO2yLa-ingB1L-Ba5uq1f8GYLJ455cnmUvGXEqxvvmXOL9dzP3K139GDK78PJuxjQAGfaBNQEO7fpvMHm13yzQMsO5jpZz8ywbNQsMZQzURJyWNGvQV.&rn=08efcbc02f36f18130adedd583fae6d7&spm=a1z10.3-b-s.w4011-24941648742.12.7f2e1902NQpKDm",
   "efficacy": [
     "保湿",
     "舒缓",
     "修护",
     "温和"
   ],
-  "ingredients": "\"氢化聚异丁烯\"，\"角鲨烷\"，\"氢化（苯乙烯/异戊二烯）共聚物\"，\"氢氧化钙\"，\"贻贝提取物\"，\"月桂氮卓酮\"，\"生育酚（维生素E）\"",
-  "can_claim": "1、入口无毒、无激素、入眼无刺激、无防腐剂、反复无刺激 / 2、人体斑贴无刺激 / 3、1h角质层水分含量改善率：30.1%；2h角质层水分含量改善率+38.3% / 4、30s（即刻）后有显著舒缓灼热、瘙痒、刺痛、红斑的舒缓皮肤效果 / 5、经表皮水分流失改善率+10.5% / 6、灼热缓解：30s（即刻）-66.7%；5分-48.1%；30分-77.8%；2h-100% / 7、刺痛缓解：30s（即刻）-57.1%；5分-67.9%；30分-85.7%；2h-100% / 8、瘙痒缓解：30s（即刻）-17.6%；5分-23%；30分-41.9%；2h-52.7% / 9、红斑缓解：30s（即刻）-1.8%；5分-26.3%；30分-45.6%；2h-91.2% / 10、有敏感肌适用报告（但是备案未更新，宣传时需要注意）",
-  "image": "/assets/products/全域速修精华油50ml.png"
+  "image": "/assets/products/全域速修精华油50ml.png",
+  "skin_type": "干性和极干性, 敏感肌"
 }
