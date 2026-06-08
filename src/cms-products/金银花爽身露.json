@@ -1,16 +1,21 @@
 {
-  "name": "金银花爽身露",
-  "nickname": "5分钟舒缓红痒 宝宝的四季维稳水",
-  "line": "婴童线｜Primal Comfort",
-  "status": "即将更换包装",
-  "skin_type": "全肤质, 敏感肌",
+  "ingredients": "\"水\"，\"忍冬（LONICERA JAPONICA）提取物\"，\"1,2-己二醇\"，\"1,2-戊二醇\"，\"贻贝提取物\"",
   "audience": "婴儿, 儿童, 成人",
+  "name": "金银花爽身露",
+  "can_claim": "1、爽身、斑贴无刺激、入口无毒、无激素、入眼无刺激、敏感肌可用 / 2、舒缓皮肤泛红效果 / 3、2h显著舒缓灼热、瘙痒、刺痛、红肿的舒缓皮肤效果 / 4、1h血红素改善率+32.6% / 5、灼热缓解：5min（即刻）+26.9%；10min+26.9%；30min+56.7%；2h+98.5%； / 6、刺痛缓解：5min（即刻）+35.7%；10min+35.7%；30min+60%；2h+98.6%； / 7、瘙痒缓解：5min（即刻）+24.3%；10min+24.3%；30min+44.1%；2h+69.4%； / 8、红肿缓解：5min（即刻）+25.7%；10min+25.7%；30min+50%；2h+98.6%； / 9、显著性的保湿功效 / 10、2h角质层含水量改善率+65.4%",
+  "nickname": "5分钟舒缓红痒 宝宝的四季维稳水",
+  "status": "即将更换包装",
+  "line": "婴童线｜Primal Comfort",
+  "buy_url": "https://detail.tmall.com/item.htm?abbucket=6&id=669046144272&pisk=h-NxwMq_ZC7G1fQlpwK6lRciaajHk50s5Pzw5mGbsfCTYkQNuj4c18UU2ZlgjPiTXumPrMfhtBvuSXJjlCtiVUgL3dOMZ644ucu3Ux68ILps14v61lMjV0gZVV9sclGSVVnWGVOj10_-70is1IGsNUgZSIOjfl9WFq061dMjf4MSRVcsflG1yzirWfi_ff_8PadqhZvoB2Svf2-H3riJOzV-2HmLV0O6lW3AYDMia8DT9yabTVFNRdnt2-ZmzlCd2bNYDSM-61driye7DYevY0NGPd6aUoeU2e63wS3aJJqBL_FOYyVbGYRVMtPZfzZQPd6fqS4Tq-e9w6Xh2S4nZyLPS9N3L7zu1E1O8WobguUwPIychtgPlwrqVOjibO3-xZKDQdklB4nhyTJwQxgryDbuhdJZEOC..&rn=dc93952a327e7ef478c61419f09ded85&spm=a1z10.3-b-s.w4011-24941648742.44.42d61902vBsBDb",
   "efficacy": [
     "保湿",
     "爽身",
     "舒缓"
   ],
-  "ingredients": "\"水\"，\"忍冬（LONICERA JAPONICA）提取物\"，\"1,2-己二醇\"，\"1,2-戊二醇\"，\"贻贝提取物\"",
-  "can_claim": "1、爽身、斑贴无刺激、入口无毒、无激素、入眼无刺激、敏感肌可用 / 2、舒缓皮肤泛红效果 / 3、2h显著舒缓灼热、瘙痒、刺痛、红肿的舒缓皮肤效果 / 4、1h血红素改善率+32.6% / 5、灼热缓解：5min（即刻）+26.9%；10min+26.9%；30min+56.7%；2h+98.5%； / 6、刺痛缓解：5min（即刻）+35.7%；10min+35.7%；30min+60%；2h+98.6%； / 7、瘙痒缓解：5min（即刻）+24.3%；10min+24.3%；30min+44.1%；2h+69.4%； / 8、红肿缓解：5min（即刻）+25.7%；10min+25.7%；30min+50%；2h+98.6%； / 9、显著性的保湿功效 / 10、2h角质层含水量改善率+65.4%",
-  "image": "/assets/products/金银花爽身露.png"
+  "types": [
+    "水/洁面",
+    "身体护理"
+  ],
+  "image": "/assets/products/金银花爽身露.png",
+  "skin_type": "全肤质, 敏感肌"
 }
