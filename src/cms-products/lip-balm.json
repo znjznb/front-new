@@ -2,5 +2,10 @@
   "name": "唇敏灰绷带",
   "desc": "唇炎修护，日夜双效，温和包裹敏感双唇",
   "image": "/assets/products/唇敏灰绷带.png",
-  "order": 5
+  "order": 5,
+  "buy_url": "https://detail.tmall.com/item.htm?abbucket=6&id=997970093115&pisk=ha6qK2Y-JIMul79A1y8ixlF5gKIv-ZDsCdTbZa8looIbWodwQabrcCY1cdrNyU6Xli9DSA71ft_1jOtGQd9gR4NFeL3vvnc0CFxir1ogDHUQdJszinp1qGZNfDBkYHvMmEAgEu-wfnvMiCYu4hxsoFYcSgqyXUciixxiq3xXvdmmix2orhKimxADiYqyXUYMIdbMEu-9rFvMIaQsQ_3vgPBICEt-IT-2a7sDx3K5EnA2MiYPVgTpMJQAjN4ZCpfdzORH0RkJhM5kEn5zjbYDTsbX2NyEnEXyYggKQA_IczXzr15P9OVIZTVFfw5OffUhdS_54ZdKwrFcUOXcOCM07T6po9_h5XgQio6NvwSS-zazcMvPUw07R9rPuaSpN3-PONM5mgjLdEct6Qbk4eZvTfh9iQ-yRurr6fdxg38QDB5..&rn=5a557e4a4ce2d6ea14baaa2113f43fc8&spm=a1z10.3-b-s.w4011-24941648742.12.d3551902yN14s5",
+  "line": "女性线｜Féminine Collection",
+  "types": [
+    "唇部护理"
+  ]
 }
