@@ -1,10 +1,12 @@
 {
-  "name": "全域修护霜（控油版）",
-  "nickname": "专利钙肽 速修油痘敏 重建水油平衡微生态",
-  "line": "女性线｜Féminine Collection",
-  "status": "在售",
-  "skin_type": "油性, 混合性",
+  "ingredients": "[\"水\"，\"椰油醇-辛酸酯/癸酸酯\"，\"甘油\"，\"聚二甲基硅氧烷\"，\"丁二醇\"，\"泛醇\"，\"硅石\"，\"甜菜碱\"，\"甘油硬脂酸酯柠檬酸酯\"，\"聚二甲基硅氧烷/乙烯基聚二甲基硅氧烷交联聚合物\"，\"1,2-戊二醇\"，\"辛甘醇\"，\"卡波姆\"，\"聚甘油-10 肉豆蔻酸酯\"，\"丙烯酸羟乙酯/丙烯酰二甲基牛磺酸钠共聚物\"，\"精氨酸\"，\"红没药醇\"，\"硬脂醇甘草亭酸酯\"，\"肌氨酸\"，\"葛根（PUERARIA LOBATA）提取物\"，\"知母（ANEMARRHENA ASPHODELOIDES）根提取物\"，\"角鲨烷\"，\"霍霍巴（SIMMONDSIA CHINENSIS）籽油\"，\"贻贝提取物\"，\"龙胆（GENTIANA SCABRA）根提取物\"，\"覆盆子酮\"，\"槐（SOPHORA JAPONICA）花蕾提取物\"，\"EDTA 二钠\"，\"β-葡聚糖\"，\"聚山梨醇酯-60\"，\"山梨坦异硬脂酸酯\"，\"乙基己基甘油\"]",
   "audience": "成人, 青少年（12以上-18岁）",
+  "name": "全域修护霜（控油版）",
+  "can_claim": "1、敏感肌适用、温和不刺激 / 2、祛痘：使用产品7天、14天后，红区痘点数分别改善率29.86%和37.51%，痘点面积比改善率33.33%和41.18%。 / 3、控油：使用产品8小时、14天后，皮肤油脂改善率34.48%和35.66%。 / 4、舒缓：使用产品1小时、7天、14天后，红区a值改善率16.56%、30.26%和 33.51%。 / 5、修护：使用产品 1小时、7天、14天后，经皮水分流失TEWL改善率17.43%、26.32%和30.74%。 / 6、保湿：使用产品14天后，皮肤角质层含水量改善率36.62%。",
+  "nickname": "专利钙肽 速修油痘敏 重建水油平衡微生态",
+  "status": "在售",
+  "line": "女性线｜Féminine Collection",
+  "buy_url": "https://detail.tmall.com/item.htm?abbucket=6&id=1046471875120&pisk=hYWjHIvOz-CwSKvaa6B9B_pc0dJOkN8w7GL9cUYA7Sf2fA_15ERqgGKOCN7JQCUD3O_5XwZDbrXNNcshPuzUL0gzCfJnDhLx73KJxakzeB2FmiYicVEFw1l55jXt6AQ9MULJbUKtBFQ9eUKpyxKtHdL8VhYJWdL96QLJ0HKxBnHTVLKMvfHtHIn-yH-6XFQ9BusJrhp9DNpTVgLkXa8deyqkBtepfb6oL28dDEsVDb-x8e1JyAnPFngHJCJlaC6CviBHfOqK1FT5MZ-l5JaWet_fHQ9_CYvVA_QXNstFdAlAQdzYcGSdv9h3f8U5jg1h2f2hCsQWLtbbnAPbvOCOc6oQd9BVZabR1xUayusFbsAEvvZbuOsdj637ZrypkLBApXedsfV7zqbs2zNJCIKkcMZ7Vq96M3xWpuZSsfAvq3kTVugXC&rn=a997253d32c64f8e781ba7f58699af3a&spm=a1z10.3-b-s.w4011-24941648742.20.6c701902Zi9c8W&sku_properties=3364156%3A27455134152",
   "efficacy": [
     "保湿",
     "舒缓",
@@ -14,7 +16,6 @@
     "温和",
     "敏感肌适用"
   ],
-  "ingredients": "[\"水\"，\"椰油醇-辛酸酯/癸酸酯\"，\"甘油\"，\"聚二甲基硅氧烷\"，\"丁二醇\"，\"泛醇\"，\"硅石\"，\"甜菜碱\"，\"甘油硬脂酸酯柠檬酸酯\"，\"聚二甲基硅氧烷/乙烯基聚二甲基硅氧烷交联聚合物\"，\"1,2-戊二醇\"，\"辛甘醇\"，\"卡波姆\"，\"聚甘油-10 肉豆蔻酸酯\"，\"丙烯酸羟乙酯/丙烯酰二甲基牛磺酸钠共聚物\"，\"精氨酸\"，\"红没药醇\"，\"硬脂醇甘草亭酸酯\"，\"肌氨酸\"，\"葛根（PUERARIA LOBATA）提取物\"，\"知母（ANEMARRHENA ASPHODELOIDES）根提取物\"，\"角鲨烷\"，\"霍霍巴（SIMMONDSIA CHINENSIS）籽油\"，\"贻贝提取物\"，\"龙胆（GENTIANA SCABRA）根提取物\"，\"覆盆子酮\"，\"槐（SOPHORA JAPONICA）花蕾提取物\"，\"EDTA 二钠\"，\"β-葡聚糖\"，\"聚山梨醇酯-60\"，\"山梨坦异硬脂酸酯\"，\"乙基己基甘油\"]",
-  "can_claim": "（极空间有对应报告）1、敏感肌适用、温和不刺激 / 2、祛痘：使用产品7天、14天后，红区痘点数分别改善率29.86%和37.51%，痘点面积比改善率33.33%和41.18%。 / 3、控油：使用产品8小时、14天后，皮肤油脂改善率34.48%和35.66%。 / 4、舒缓：使用产品1小时、7天、14天后，红区a值改善率16.56%、30.26%和 33.51%。 / 5、修护：使用产品 1小时、7天、14天后，经皮水分流失TEWL改善率17.43%、26.32%和30.74%。 / 6、保湿：使用产品14天后，皮肤角质层含水量改善率36.62%。",
-  "image": "/assets/products/全域修护霜（控油版）.png"
+  "image": "/assets/products/全域修护霜（控油版）.png",
+  "skin_type": "油性, 混合性"
 }
