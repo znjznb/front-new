@@ -22,7 +22,7 @@ if (maxItems && maxItems > 0) {
 
 <section id="qa" class="section qa">
   <div class="section-inner">
-    <div class="qa-header reveal reveal-rise">
+    <div class="qa-header">
       <div class="qa-accent-line" aria-hidden="true"></div>
       <h2 class="qa-title">常见问题</h2>
       <p class="qa-subtitle">关于海得宝、产品功效与购买渠道的常见疑问</p>
@@ -30,7 +30,7 @@ if (maxItems && maxItems > 0) {
 
     <div class="qa-list">
       {allItems.map((item, index) => (
-        <div class="qa-item reveal reveal-rise">
+        <div class="qa-item">
           <button class="qa-btn" data-index={index} aria-expanded="false">
             <span class="qa-icon" aria-hidden="true">Q</span>
             <span class="qa-question">{item.q}</span>
@@ -46,7 +46,7 @@ if (maxItems && maxItems > 0) {
     </div>
 
     {maxItems && (
-      <div class="qa-footer reveal reveal-rise">
+      <div class="qa-footer">
         <a href="/faq" class="qa-view-all">查看全部 FAQ →</a>
       </div>
     )}
