@@ -53,113 +53,148 @@ import Footer from '../components/Footer.astro';
           <h2 class="about-section-title">品牌历程</h2>
           <p class="about-section-subtitle">从实验室到万千家庭，每一步都为了敏感肌</p>
         </div>
-        <div class="timeline">
-          <div class="timeline-line" aria-hidden="true"></div>
-          <div class="timeline-items">
-            <div class="timeline-item">
-              <span class="timeline-year">2014</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">品牌创立</h3>
-                <p class="timeline-body">海得宝品牌正式成立，开启敏感肌护理的科研之路</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2015</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">专利突破</h3>
-                <p class="timeline-body">贻贝钙肽CAPCS专利成分研发成功，从深海贻贝中提取天然舒敏活性物</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2016</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">临床验证</h3>
-                <p class="timeline-body">产品进入多家三甲医院皮肤科临床测试，验证安全性与有效性</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2017</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">口碑积累</h3>
-                <p class="timeline-body">获得首批皮肤科专家推荐，在专业医疗渠道建立口碑</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2018</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">产品扩容</h3>
-                <p class="timeline-body">拓展产品线，覆盖面部护理、身体护理、婴童护理等多场景</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2019</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">线上启航</h3>
-                <p class="timeline-body">开启线上电商渠道，让更多家庭便捷获得专业敏感肌护理产品</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2020</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">科研升级</h3>
-                <p class="timeline-body">加大研发投入，建立自有实验室，深化CAPCS成分研究</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2021</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">品牌焕新</h3>
-                <p class="timeline-body">品牌形象升级，以"敏感肌家庭的专业护理品牌"全新定位面向消费者</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2022</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">行业认可</h3>
-                <p class="timeline-body">荣获多项行业大奖，敏感肌钙肽修护技术获得专业领域权威认可</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2023</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">渠道深耕</h3>
-                <p class="timeline-body">进入全国2000+药房及母婴渠道，成为更多家庭信赖的选择</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2024</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">全面领先</h3>
-                <p class="timeline-body">获得1000+皮肤科专家推荐，销量持续领先，树立行业标杆</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2025</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">海外布局</h3>
-                <p class="timeline-body">启动海外市场拓展，将中国敏感肌护理方案带给全球消费者</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-year">2026</span>
-              <div class="timeline-dot" aria-hidden="true"></div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">未来可期</h3>
-                <p class="timeline-body">持续创新，以科学力量守护每一个敏感肌家庭</p>
-              </div>
-            </div>
+        <p class="timeline-h-hint" aria-hidden="true">← 横向滑动浏览 →</p>
+        <div class="timeline-h" tabindex="0" role="region" aria-label="品牌历程时间轴，可左右滚动">
+          <div class="timeline-h-track">
+            <span class="timeline-h-ghost" aria-hidden="true">Historical<br />Process</span>
+            <div class="timeline-h-line" aria-hidden="true"></div>
+            <ol class="timeline-h-items">
+              <li class="tlh-item tlh-item--top">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2014</span>
+                    <h3 class="tlh-heading">品牌成立</h3>
+                    <p class="tlh-body">海得宝母公司贝壳派成立。不甘于"止痒只能靠激素"的科学家，从零开始寻找真正安全、温和且有效的护肤方案。</p>
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--bottom tlh-item--media">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2015</span>
+                    <h3 class="tlh-heading">技术突破</h3>
+                    <p class="tlh-body">创新技术成功萃取出天然贻贝提取物，开启从纯净海洋中寻找敏感肌解决方案的探索之路。</p>
+                  </div>
+                  <div class="tlh-media">
+                    <img src="/assets/scene-flatlay.jpg" alt="" loading="lazy" />
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--top">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2016</span>
+                    <h3 class="tlh-heading">专利保护</h3>
+                    <p class="tlh-body">海得宝核心专利成分贻贝钙肽CAPCS（凯普斯泰）完成产业化生产，为后续产品开发奠定坚实基础。</p>
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--bottom tlh-item--media">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2017</span>
+                    <h3 class="tlh-heading">品牌诞生</h3>
+                    <p class="tlh-body">MARTEMPO海得宝品牌正式成立，敏感肌专业护肤产品上市，首次将"钙离子止痒"从实验室推向市场。</p>
+                  </div>
+                  <div class="tlh-media">
+                    <img src="/assets/scene-flatlay.jpg" alt="" loading="lazy" />
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--top">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2018</span>
+                    <h3 class="tlh-heading">院线验证</h3>
+                    <p class="tlh-body">海得宝无激素止痒凝胶正式进入全国公立医院皮肤科，获得临床医生的初步认可。止痒效果堪比弱效激素，却完全不含激素，悄然改变临床用药习惯。</p>
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--bottom">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2019</span>
+                    <h3 class="tlh-heading">临床奠基</h3>
+                    <p class="tlh-body">贻贝钙肽CAPCS止痒舒缓技术经中山大学附属第五医院、北京友谊医院、四川大学华西医院、中日友好医院四大顶级临床中心严格验证，成果发表于《中华皮肤科杂志》。</p>
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--top tlh-item--media">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2020</span>
+                    <h3 class="tlh-heading">智造升级</h3>
+                    <p class="tlh-body">在安徽合肥建成6000㎡、十万级GMP药厂级生产基地——中国中部超敏肌护理智造中心，实现从研发到生产的高标准自主可控。</p>
+                  </div>
+                  <div class="tlh-media">
+                    <img src="/assets/scene-flatlay.jpg" alt="" loading="lazy" />
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--bottom">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2021</span>
+                    <h3 class="tlh-heading">走进用户</h3>
+                    <p class="tlh-body">海得宝正式入驻小红书，从院线走向大众。大量宝妈、敏感肌自发分享"30秒止痒"的真实体验，口碑裂变自此爆发。</p>
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--top tlh-item--media">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2022</span>
+                    <h3 class="tlh-heading">学术认可</h3>
+                    <p class="tlh-body">贻贝钙肽CAPCS临床研究论文再次登上《中华皮肤科杂志》，学术圈的反复认证让"钙离子舒缓"从一种选择，变为一个标准。</p>
+                  </div>
+                  <div class="tlh-media">
+                    <img src="/assets/scene-flatlay.jpg" alt="" loading="lazy" />
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--bottom">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2023</span>
+                    <h3 class="tlh-heading">安全新标杆</h3>
+                    <p class="tlh-body">产品矩阵扩充至20+款，建立行业首个"科研级五维安全性评价标准"（经口无毒、入眼无刺激、人体斑贴、多次皮肤刺激、4000+争议成分不添加），重新定义敏感肌护理安全高度。</p>
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--top tlh-item--media">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2024</span>
+                    <h3 class="tlh-heading">品牌焕新</h3>
+                    <p class="tlh-body">受邀参加SIA科学护肤创新联盟大会，完成品牌升级，以全新形象和专业理念开启新篇章。海得宝从此成为全家的敏感肌专业护理生活方式。</p>
+                  </div>
+                  <div class="tlh-media">
+                    <img src="/assets/scene-flatlay.jpg" alt="" loading="lazy" />
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--bottom">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2025</span>
+                    <h3 class="tlh-heading">星推赋能</h3>
+                    <p class="tlh-body">官宣董洁为品牌代言人。这位被公认为"真诚、有质感"的女演员，与海得宝"把每个家庭视若珍宝"的品牌理念完美契合，走进更多用户视野。</p>
+                  </div>
+                </div>
+              </li>
+              <li class="tlh-item tlh-item--top tlh-item--media">
+                <div class="tlh-entry">
+                  <div class="tlh-text">
+                    <span class="tlh-year">2026</span>
+                    <h3 class="tlh-heading">国社背书</h3>
+                    <p class="tlh-body">荣获新华社"健康中国践行品牌"及"敏感肌成分领创者"双重认可，标志着品牌在健康中国的宏大叙事中，成为行业标杆。</p>
+                  </div>
+                  <div class="tlh-media">
+                    <img src="/assets/scene-flatlay.jpg" alt="" loading="lazy" />
+                  </div>
+                </div>
+              </li>
+            </ol>
           </div>
         </div>
       </div>
@@ -175,7 +210,7 @@ import Footer from '../components/Footer.astro';
             <p class="about-rd-body">海得宝MARTEMPO同时也拥有超国标的产品认证标准。除了达到国家对儿童护肤品的基础要求之外，还增加了经口无毒、入眼无刺激、人体斑贴试验无刺激、4000+争议成分不添加这4项高于国家标准检测，来做到海得宝特色的科研级五维安心金标准，为消费者提供更大的信心和满意度。</p>
           </div>
           <div class="about-rd-image">
-            <img src="/assets/skincare/1581182800629.jpg" alt="海得宝实验室" loading="lazy" />
+            <img src="/assets/lab.jpg" alt="海得宝实验室" loading="lazy" />
           </div>
         </div>
       </div>
@@ -427,79 +462,181 @@ import Footer from '../components/Footer.astro';
     max-width: 40ch;
   }
 
-  /* ── Timeline ── */
-  .timeline {
-    position: relative;
-  }
-
-  .timeline-line {
-    position: absolute;
-    left: 120px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: oklch(82% 0.04 185);
-  }
-
-  .timeline-items {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-  }
-
-  .timeline-item {
-    display: grid;
-    grid-template-columns: 104px 32px 1fr;
-    align-items: flex-start;
-    gap: 0;
-  }
-
-  .timeline-year {
+  /* ── Timeline（横向交错式）── */
+  .timeline-h-hint {
     font-size: var(--text-xs);
-    font-weight: 600;
-    color: var(--color-brand);
+    color: var(--color-text-muted);
     letter-spacing: var(--tracking-wider);
     text-align: right;
-    padding-right: var(--space-lg);
-    padding-top: 2px;
-    white-space: nowrap;
+    margin-bottom: var(--space-md);
   }
 
-  .timeline-dot {
-    width: 10px;
-    height: 10px;
+  .timeline-h {
+    --tlh-h: 560px;
+    --tlh-gap: 28px; /* 内容块与主线之间的竖向连接线长度 */
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand-soft) transparent;
+  }
+
+  .timeline-h::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .timeline-h::-webkit-scrollbar-thumb {
+    background: var(--color-brand-subtle);
+    border-radius: 3px;
+  }
+
+  .timeline-h::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .timeline-h-track {
+    position: relative;
+    width: max-content;
+    min-width: 100%;
+    padding-right: var(--space-3xl);
+  }
+
+  .timeline-h-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: var(--color-brand);
+  }
+
+  .timeline-h-ghost {
+    position: absolute;
+    left: var(--space-md);
+    top: 53%;
+    font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.05;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-brand-subtle);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .timeline-h-items {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    padding: 0 0 0 240px; /* 给左侧 Historical Process 背景字留出空间 */
+  }
+
+  .tlh-item {
+    position: relative;
+    flex: none;
+    width: 300px;
+    height: var(--tlh-h);
+  }
+
+  /* 上下交错并横向叠排，形成参考图的穿插节奏 */
+  .tlh-item + .tlh-item {
+    margin-left: -110px;
+  }
+
+  .tlh-item--media {
+    width: 480px;
+  }
+
+  /* 竖向连接线 */
+  .tlh-item::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    width: 1.5px;
+    background: var(--color-brand);
+  }
+
+  .tlh-item--top::before {
+    bottom: 50%;
+    height: var(--tlh-gap);
+  }
+
+  .tlh-item--bottom::before {
+    top: 50%;
+    height: var(--tlh-gap);
+  }
+
+  /* 主线上的圆点 */
+  .tlh-item::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: var(--color-brand);
-    border: 2px solid #ffffff;
-    box-shadow: 0 0 0 1px var(--color-brand-subtle);
-    position: relative;
-    z-index: 1;
-    margin-top: 4px;
+    transform: translateY(-50%);
   }
 
-  .timeline-content {
-    padding-left: var(--space-xl);
-    padding-bottom: var(--space-lg);
+  .tlh-entry {
+    position: absolute;
+    left: 0;
+    right: var(--space-xl);
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
   }
 
-  .timeline-item:last-child .timeline-content {
-    padding-bottom: 0;
+  .tlh-item--top .tlh-entry {
+    bottom: calc(50% + var(--tlh-gap));
+    align-items: flex-end;
   }
 
-  .timeline-heading {
+  .tlh-item--bottom .tlh-entry {
+    top: calc(50% + var(--tlh-gap));
+  }
+
+  .tlh-text {
+    flex: none;
+    width: 240px;
+  }
+
+  .tlh-year {
+    display: block;
+    font-size: clamp(2rem, 1.6rem + 1.2vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-brand-dark);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: var(--space-md);
+  }
+
+  .tlh-heading {
     font-size: var(--text-base);
-    font-weight: 500;
-    color: var(--color-text);
-    margin-bottom: var(--space-xs);
-    letter-spacing: var(--tracking-wide);
+    font-weight: 600;
+    color: var(--color-brand-dark);
+    line-height: var(--leading-snug);
+    margin-bottom: var(--space-sm);
   }
 
-  .timeline-body {
-    font-size: var(--text-sm);
+  .tlh-body {
+    font-size: var(--text-xs);
     font-weight: 300;
-    line-height: var(--leading-relaxed);
+    line-height: var(--leading-normal);
     color: var(--color-text-soft);
-    max-width: 360px;
+  }
+
+  .tlh-media {
+    flex: none;
+    width: 170px;
+  }
+
+  .tlh-media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    box-shadow: 0 8px 24px oklch(30% 0.02 200 / 0.14);
   }
 
   /* ── R&D ── */
@@ -681,13 +818,6 @@ import Footer from '../components/Footer.astro';
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     }
 
-    .timeline-line {
-      left: 80px;
-    }
-
-    .timeline-item {
-      grid-template-columns: 64px 32px 1fr;
-    }
   }
 
   @media (max-width: 768px) {
@@ -699,20 +829,33 @@ import Footer from '../components/Footer.astro';
       padding: var(--space-4xl) var(--content-padding);
     }
 
-    .timeline-line {
-      left: 60px;
+    .timeline-h {
+      --tlh-h: 470px;
+      --tlh-gap: 22px;
     }
 
-    .timeline-item {
-      grid-template-columns: 44px 32px 1fr;
+    .timeline-h-items {
+      padding-left: 170px;
     }
 
-    .timeline-year {
-      font-size: 0.68rem;
+    .tlh-item {
+      width: 250px;
     }
 
-    .timeline-content {
-      padding-left: var(--space-md);
+    .tlh-item + .tlh-item {
+      margin-left: -80px;
+    }
+
+    .tlh-item--media {
+      width: 400px;
+    }
+
+    .tlh-text {
+      width: 200px;
+    }
+
+    .tlh-media {
+      width: 140px;
     }
 
     .awards-wrap {

@@ -5,6 +5,9 @@ function isInViewport(el) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Gate CSS opacity:0 behind this class — content visible without JS
+  document.documentElement.classList.add('js-reveal');
+
   const revealElements = document.querySelectorAll('.reveal');
 
   if (!revealElements.length) return;

@@ -1,0 +1,485 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout title="环保可持续 — 海得宝 MARTEMPO" description="海得宝空瓶回收计划：源自纯净海域，共促海洋可持续发展。让每一个空瓶，都有一个回归海洋的使命。">
+  <Nav />
+  <main>
+
+    <!-- ── Breadcrumb header ── -->
+    <div class="eco-header">
+      <div class="eco-header-inner">
+        <nav class="eco-breadcrumb" aria-label="面包屑导航">
+          <a href="/">首页</a>
+          <span class="sep">›</span>
+          <a href="/brand/charity">品牌探索</a>
+          <span class="sep">›</span>
+          <span class="current">环保可持续</span>
+        </nav>
+      </div>
+    </div>
+
+    <!-- ── Split: text + image ── -->
+    <div class="eco-main">
+      <div class="section-inner">
+        <div class="eco-split">
+          <div class="eco-split-text">
+            <h1 class="eco-split-title">环保可持续</h1>
+            <p class="eco-split-subtitle">海得宝 × 空瓶回收计划</p>
+            <div class="eco-split-content">
+              <blockquote class="eco-intro-quote">
+                让每一个空瓶，都有一个回归海洋的使命。
+              </blockquote>
+              <p class="eco-intro-body">
+                海得宝的核心成分贻贝钙肽CAPCS源自全球不到1%的纯净海域——这片珍稀水域是我们成分品质的根基，也是品牌灵魂的起点。
+              </p>
+              <p class="eco-intro-body">
+                我们希望，在从大海中汲取天然力量的同时，也为海洋的可持续发展奉献一份力所能及的责任。海得宝邀您一同，从一支小小的空瓶开始，守护我们共同的蓝色家园。
+              </p>
+            </div>
+          </div>
+          <div class="eco-split-image">
+            <img
+              src="/assets/eco-hero.jpg"
+              alt="贝壳中的瓶盖，海得宝空瓶回收计划"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 为什么发起 ── -->
+    <section class="eco-section reveal reveal-rise">
+      <div class="section-inner">
+        <div class="eco-why">
+          <div class="eco-why-header">
+            <h2 class="eco-section-title">为什么发起空瓶回收计划</h2>
+          </div>
+          <div class="eco-why-cards">
+            <div class="eco-why-card">
+              <div class="eco-why-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M24 8 C16 14 12 20 16 28 C20 36 28 36 32 28 C36 20 32 14 24 8Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                  <path d="M16 28 Q24 32 32 28" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <h3 class="eco-why-title">空瓶难以降解</h3>
+              <p class="eco-why-body">每一支使用完的空瓶，如果被随意丢弃或填埋，需要数百年才能自然降解，对土壤和海洋生态构成长期威胁。</p>
+            </div>
+            <div class="eco-why-card">
+              <div class="eco-why-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 6 L42 38 L6 38 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M24 20 L24 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <circle cx="24" cy="34" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+              <h3 class="eco-why-title">品牌的责任</h3>
+              <p class="eco-why-body">作为敏感肌家庭的专业护肤品牌，海得宝不仅关注肌肤的修复，更关注地球的"肌肤"——海洋与生态环境的修复与保护。</p>
+            </div>
+            <div class="eco-why-card">
+              <div class="eco-why-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 8 C30 12 36 18 36 26 C36 34 30 40 24 40 C18 40 12 34 12 26 C12 18 18 12 24 8Z" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M20 26 L23 29 L28 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="eco-why-title">从用户开始</h3>
+              <p class="eco-why-body">我们号召每一位用户加入到守护纯净海域的行动中来——每回收一个空瓶，就是为海洋的未来投下一票。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 空瓶回收计划 ── -->
+    <section class="eco-section eco-section--alt reveal reveal-rise">
+      <div class="section-inner">
+        <div class="eco-program-header">
+          <div class="eco-program-badge">空瓶回收计划</div>
+          <h2 class="eco-section-title">如何参与</h2>
+          <p class="eco-section-subtitle">三步行动，守护蓝色家园</p>
+        </div>
+        <div class="eco-steps">
+          <div class="eco-step">
+            <div class="eco-step-num">01</div>
+            <div class="eco-step-content">
+              <h3 class="eco-step-title">收集空瓶</h3>
+              <p class="eco-step-body">将用完的海得宝产品空瓶清洗干净，保留原包装，积攒一定数量后可参与回收。</p>
+            </div>
+          </div>
+          <div class="eco-step-arrow" aria-hidden="true">→</div>
+          <div class="eco-step">
+            <div class="eco-step-num">02</div>
+            <div class="eco-step-content">
+              <h3 class="eco-step-title">联系寄回</h3>
+              <p class="eco-step-body">通过微信公众号「海得宝MARTEMPO」联系客服，获取回收地址，将空瓶寄回至指定回收点。</p>
+            </div>
+          </div>
+          <div class="eco-step-arrow" aria-hidden="true">→</div>
+          <div class="eco-step">
+            <div class="eco-step-num">03</div>
+            <div class="eco-step-content">
+              <h3 class="eco-step-title">获得回馈</h3>
+              <p class="eco-step-body">每次回收均可获得品牌专属回馈权益，与我们共同记录每一个为海洋而做的小小行动。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 承诺 ── -->
+    <section class="eco-section reveal reveal-rise">
+      <div class="section-inner">
+        <div class="eco-pledge">
+          <div class="eco-pledge-line" aria-hidden="true"></div>
+          <p class="eco-pledge-text">
+            海洋给了我们最纯净的成分，<br />我们用行动回馈海洋最诚挚的守护。
+          </p>
+          <p class="eco-pledge-brand">— 海得宝 MARTEMPO</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+
+  <script>
+    import '../../scripts/reveal.js';
+  </script>
+</BaseLayout>
+
+<style>
+  /* ── Header breadcrumb ── */
+  .eco-header {
+    padding: 100px var(--content-padding) var(--space-xl);
+    background: linear-gradient(135deg, oklch(96% 0.01 185) 0%, oklch(98% 0.005 185) 100%);
+  }
+
+  .eco-header-inner {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+
+  .eco-breadcrumb {
+    font-size: var(--text-xs);
+  }
+
+  .eco-breadcrumb a {
+    color: oklch(50% 0.01 260 / 0.6);
+    text-decoration: none;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .eco-breadcrumb a:hover {
+    color: var(--color-brand);
+  }
+
+  .eco-breadcrumb .sep {
+    margin: 0 6px;
+    color: oklch(50% 0.01 260 / 0.5);
+  }
+
+  .eco-breadcrumb .current {
+    color: oklch(35% 0.015 260 / 0.7);
+    font-weight: 500;
+  }
+
+  /* ── Main split area ── */
+  .eco-main {
+    padding: var(--space-5xl) var(--content-padding) var(--space-6xl);
+    background: #ffffff;
+  }
+
+  .eco-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: calc(-1 * var(--content-padding));
+    margin-right: calc(-1 * var(--content-padding));
+    align-items: start;
+  }
+
+  .eco-split-text {
+    align-self: center;
+    justify-self: center;
+    padding: var(--space-3xl) 0;
+    max-width: 480px;
+  }
+
+  .eco-split-title {
+    font-size: var(--text-3xl);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .eco-split-subtitle {
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-2xl);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .eco-split-content {
+    font-size: var(--text-base);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+  }
+
+  .eco-intro-quote {
+    font-size: var(--text-lg);
+    font-weight: 300;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+    margin: 0 0 var(--space-xl);
+    padding: 0;
+    border: none;
+    quotes: none;
+  }
+
+  .eco-intro-body {
+    font-size: var(--text-sm);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-md);
+  }
+
+  .eco-intro-body:last-child { margin-bottom: 0; }
+
+  .eco-split-image {
+    overflow: hidden;
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    max-width: 855px;
+  }
+
+  .eco-split-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  /* ── Shared sections ── */
+  .eco-section {
+    padding: var(--space-6xl) var(--content-padding);
+    background: #ffffff;
+  }
+
+  .eco-section--alt {
+    background: var(--color-bg-light);
+  }
+
+  .eco-section-title {
+    font-size: var(--text-3xl);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .eco-section-subtitle {
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--color-text-soft);
+  }
+
+  /* ── Why cards ── */
+  .eco-why-header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .eco-why-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .eco-why-card {
+    padding: var(--space-2xl);
+    background: var(--color-bg-light);
+    border-top: 3px solid var(--color-brand);
+  }
+
+  .eco-why-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--color-brand);
+    margin-bottom: var(--space-lg);
+  }
+
+  .eco-why-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .eco-why-title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .eco-why-body {
+    font-size: var(--text-sm);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-soft);
+  }
+
+  /* ── Steps ── */
+  .eco-program-header {
+    margin-bottom: var(--space-4xl);
+  }
+
+  .eco-program-badge {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-brand-dark);
+    background: oklch(92% 0.06 185);
+    padding: 4px var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .eco-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xl);
+  }
+
+  .eco-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .eco-step-num {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-brand-subtle);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1;
+  }
+
+  .eco-step-title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .eco-step-body {
+    font-size: var(--text-sm);
+    font-weight: 300;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-soft);
+  }
+
+  .eco-step-arrow {
+    font-size: 1.5rem;
+    color: var(--color-brand);
+    flex-shrink: 0;
+    padding-top: 2.5rem;
+  }
+
+  /* ── Pledge ── */
+  .eco-pledge {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .eco-pledge-line {
+    width: 40px;
+    height: 2px;
+    background: var(--color-brand);
+    margin: 0 auto var(--space-2xl);
+  }
+
+  .eco-pledge-text {
+    font-size: var(--text-xl);
+    font-weight: 200;
+    line-height: var(--leading-relaxed);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+  }
+
+  .eco-pledge-brand {
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: var(--color-text-muted);
+    letter-spacing: var(--tracking-wider);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .eco-why-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .eco-steps {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .eco-step-arrow {
+      transform: rotate(90deg);
+      text-align: center;
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .eco-header {
+      padding: 90px var(--content-padding) var(--space-lg);
+    }
+
+    .eco-main {
+      padding: var(--space-3xl) var(--content-padding) var(--space-5xl);
+    }
+
+    .eco-split {
+      grid-template-columns: 1fr;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .eco-split-text {
+      padding: 0 0 var(--space-2xl);
+      max-width: none;
+    }
+
+    .eco-split-title {
+      font-size: var(--text-2xl);
+    }
+
+    .eco-split-image {
+      width: calc(100% + 2 * var(--content-padding));
+      max-width: none;
+      margin-left: calc(-1 * var(--content-padding));
+      margin-right: calc(-1 * var(--content-padding));
+      border-radius: 0;
+    }
+
+    .eco-section {
+      padding: var(--space-4xl) var(--content-padding);
+    }
+  }
+</style>

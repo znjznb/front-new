@@ -220,35 +220,35 @@ button {
   margin: 0 auto;
 }
 
-/* Reveal animation — base */
-.reveal {
+/* Reveal animation — gated by JS class so content is visible without JS */
+html.js-reveal .reveal {
   opacity: 0;
   transition: opacity var(--duration-slow) var(--ease-out-expo),
               transform var(--duration-slow) var(--ease-out-expo);
 }
 
-.reveal.visible {
+html.js-reveal .reveal.visible {
   opacity: 1;
   transform: none;
 }
 
 /* Variant: fade + rise (default for most sections) */
-.reveal-rise {
+html.js-reveal .reveal-rise {
   transform: translateY(20px);
 }
 
 /* Variant: slide from left */
-.reveal-left {
+html.js-reveal .reveal-left {
   transform: translateX(-32px);
 }
 
 /* Variant: slide from right */
-.reveal-right {
+html.js-reveal .reveal-right {
   transform: translateX(32px);
 }
 
 /* Variant: subtle scale reveal */
-.reveal-scale {
+html.js-reveal .reveal-scale {
   transform: scale(0.97);
 }
 
@@ -258,8 +258,8 @@ button {
 .reveal-delay-4 { transition-delay: 0.5s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .reveal.visible {
+  html.js-reveal .reveal,
+  html.js-reveal .reveal.visible {
     opacity: 1;
     transform: none;
     transition: none;

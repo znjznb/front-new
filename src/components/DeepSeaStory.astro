@@ -10,8 +10,8 @@ const panels = [
       'MarTempo 海得宝，意为"深海中的珍宝"。源于创始人数十年的执着：走遍全球 50 多个纯净海域，历经 13 年研发和上万次测试，最终在全球不到 1% 的纯净海域中发现了珍稀贻贝。',
       '通过独创的纯物理回流反渗技术，从 10000 只纯净贻贝中精粹出仅 1 克的灵魂成分——贻贝提取物（凯普斯泰 CAPCS<sup>®</sup>）。经全国 1000 家公立皮肤科长达 5 年验证，成为 30 秒舒缓红痒的天然止痒方案。',
     ],
-    image: '/assets/lifestyle-mother.jpg',
-    imageAlt: '海得宝 · 母女温和相伴',
+    image: '/assets/story-origin.jpg',
+    imageAlt: '海得宝 · 呵护序章',
     imageLeft: false,
   },
   {
@@ -22,8 +22,8 @@ const panels = [
       '在全球不到 1% 的纯净海域中孕育的珍稀贻贝，蕴藏着大自然最纯粹的舒缓力量。海得宝坚持极简配方哲学——只添加必要的有效成分，不添加激素、抗生素、防腐剂。',
       '独创的纯物理回流反渗萃取技术，全程无化学溶剂参与。从贻贝中提取的钙离子复合物 CAPCS<sup>®</sup>，通过干扰痒信号传导实现天然止痒，温和而高效。',
     ],
-    image: '/assets/ingredient-honeysuckle.jpg',
-    imageAlt: '海得宝 · 天然草本成分',
+    image: '/assets/lab.jpg',
+    imageAlt: '海得宝 · 实验室研发',
     imageLeft: true,
   },
   {
@@ -34,7 +34,7 @@ const panels = [
       '由生物学博士后团队领衔，13 年自主研发，上万次实验。海得宝的核心成分 CAPCS<sup>®</sup> 发表于《中华皮肤科杂志》与 SCI 期刊，机理与临床双重验证。',
       '北京友谊医院双盲对照研究证实：止痒效果等同于弱效激素，止痒速度优于弱效激素。四川大学华西医院进一步证明，海得宝能提高激素有效率高达 6 倍。',
     ],
-    image: '/assets/product-kids.jpg',
+    image: '/assets/专业线组合-调.jpg',
     imageAlt: '海得宝 · 专业线产品',
     imageLeft: false,
   },
@@ -46,8 +46,8 @@ const panels = [
       '从新生儿的第一管面霜，到妈妈的日常修护，再到老人的换季止痒——海得宝为全家人提供一生相伴的敏感肌护理方案。',
       '全国 1000+ 公立医院皮肤科临床使用，3000+ 皮肤科 / 儿科医生推荐。五维金标准安全检测：经口无毒、入眼无刺激，全家用得安心。',
     ],
-    image: '/assets/专业线组合-调.jpg',
-    imageAlt: '海得宝 · 产品静物',
+    image: '/assets/lifestyle-mother.jpg',
+    imageAlt: '海得宝 · 母女温和相伴',
     imageLeft: true,
   },
 ];
@@ -148,7 +148,7 @@ const panels = [
     grid-area: image;
     display: flex;
     position: relative;
-    min-height: 400px;
+    min-height: 360px;
     overflow: hidden;
   }
 
@@ -197,9 +197,9 @@ const panels = [
     flex: 1;
     width: 100%;
     height: 100%;
-    min-height: 500px;
+    min-height: 360px;
     object-fit: cover;
-    object-position: center;
+    object-position: center 30%;
   }
 
   .story-numbers-row {
@@ -243,7 +243,7 @@ const panels = [
       padding: var(--space-2xl) var(--content-padding);
     }
     .story-image {
-      min-height: 300px;
+      min-height: 220px;
     }
     .story-panel + .story-panel {
       margin-top: var(--space-3xl);

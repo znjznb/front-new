@@ -30,7 +30,6 @@ copyFileSync(resolve(PUBLIC, 'assets/brand-video.mp4'), resolve(OUT, 'assets/bra
 // Helper to generate product cards
 const products = [
   { name:'大白管特护霜', line:'专业线 · Expert Collection', desc:'清爽 / 倍润，适用于干敏肌和受损肌的日常修护', img:'assets/product-professional.png' },
-  { name:'速修精华油', line:'专业线 · Expert Collection', desc:'集中修护，强化屏障，适用于重度敏感和受损肌肤', img:'assets/product-lotion.jpg' },
   { name:'全能修护霜', line:'专业线 · Expert Collection', desc:'轻润 / 滋润双版本，全身可用，适合日常维稳', img:'assets/product-cream.jpg' },
   { name:'五阶面霜', line:'婴童线 · Prima Comfort', desc:'分阶呵护 0-3 岁宝宝娇嫩肌肤，从新生儿到学步期', img:'assets/product-kids.jpg' },
   { name:'唇敏灰绷带', line:'奢护线 · Green Diamond Elixir', desc:'唇炎修护，日夜双效，温和包裹敏感双唇', img:'assets/product-lipbalm.jpg' },
@@ -371,9 +370,8 @@ a{color:inherit;text-decoration:none}
     <div class="footer-grid">
       <div class="footer-brand"><span class="footer-logo">✦ 海得宝</span><p class="footer-tagline">敏感肌家庭的专业守护</p></div>
       <div class="footer-links">
-        <div class="footer-col"><h4 class="footer-col-title">产品系列</h4><a href="#" class="footer-link">专业线</a><a href="#" class="footer-link">婴童线</a><a href="#" class="footer-link">女性线</a><a href="#" class="footer-link">奢护线</a></div>
         <div class="footer-col"><h4 class="footer-col-title">关于</h4><a href="#" class="footer-link">品牌故事</a><a href="#" class="footer-link">CAPCS® 科技</a><a href="#" class="footer-link">临床验证</a></div>
-        <div class="footer-col"><h4 class="footer-col-title">服务</h4><a href="#" class="footer-link">1v1 顾问咨询</a><a href="#" class="footer-link">产品使用指南</a><a href="#" class="footer-link">联系我们</a></div>
+        <div class="footer-col"><h4 class="footer-col-title">服务</h4><a href="#" class="footer-link">1v1护理方案</a><a href="#" class="footer-link">产品使用指南</a><a href="#" class="footer-link">联系我们</a></div>
       </div>
     </div>
     <div class="footer-bottom"><p class="footer-copy">© 2025 海得宝 MarTempo. All rights reserved.</p></div>
