@@ -19,6 +19,7 @@
   --color-bg: oklch(96% 0.008 185);
   --color-bg-alt: oklch(94% 0.01 185);
   --color-bg-cream: oklch(95% 0.015 185);
+  --color-bg-light: oklch(98.5% 0.005 185);
   --color-surface: oklch(99% 0.003 185);
   --color-surface-alt: oklch(97% 0.005 185);
 
@@ -129,6 +130,14 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 button {
