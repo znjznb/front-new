@@ -14,21 +14,27 @@
       <img src="/assets/capcs-ingredient.png" alt="CAPCS® 钙离子舒缓技术成分示意" class="science-image" />
     </div>
 
-    <div class="science-cols reveal reveal-rise">
-      <div class="science-col">
-        <span class="science-col-number" aria-hidden="true">01</span>
-        <h3 class="science-col-title">30 秒快速止痒</h3>
-        <p class="science-col-body">临床验证止痒速度优于弱效激素（氢化可的松），效果等同于弱效激素。切断"搔抓恶性循环"，从根源缓解皮肤问题。</p>
+    <div class="science-points reveal reveal-rise">
+      <div class="science-point">
+        <span class="science-point-num" aria-hidden="true">01</span>
+        <div class="science-point-text">
+          <h3 class="science-point-title">30 秒快速止痒</h3>
+          <p class="science-point-body">临床验证止痒速度优于弱效激素（氢化可的松），效果等同于弱效激素。切断"搔抓恶性循环"，从根源缓解皮肤问题。</p>
+        </div>
       </div>
-      <div class="science-col">
-        <span class="science-col-number" aria-hidden="true">02</span>
-        <h3 class="science-col-title">13 年自主研发</h3>
-        <p class="science-col-body">由生物学博士后团队研发，纯物理回流反渗技术萃取。发表于《中华皮肤科杂志》与 SCI 期刊，机理与临床双重验证。</p>
+      <div class="science-point">
+        <span class="science-point-num" aria-hidden="true">02</span>
+        <div class="science-point-text">
+          <h3 class="science-point-title">13 年自主研发</h3>
+          <p class="science-point-body">由生物学博士后团队研发，纯物理回流反渗技术萃取。发表于《中华皮肤科杂志》与 SCI 期刊，机理与临床双重验证。</p>
+        </div>
       </div>
-      <div class="science-col">
-        <span class="science-col-number" aria-hidden="true">03</span>
-        <h3 class="science-col-title">五维金标准安全</h3>
-        <p class="science-col-body">无激素、无抗生素、无防腐剂。经口无毒、入眼无刺激、人体斑贴无刺激、多次皮肤刺激无刺激、4000+ 争议成分不添加。</p>
+      <div class="science-point">
+        <span class="science-point-num" aria-hidden="true">03</span>
+        <div class="science-point-text">
+          <h3 class="science-point-title">五维金标准安全</h3>
+          <p class="science-point-body">无激素、无抗生素、无防腐剂。经口无毒、入眼无刺激、人体斑贴无刺激、多次皮肤刺激无刺激、4000+ 争议成分不添加。</p>
+        </div>
       </div>
     </div>
 
@@ -100,41 +106,46 @@
     border-radius: 50%;
   }
 
-  /* ── Three-column features ── */
-  .science-cols {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-3xl);
-    margin-bottom: var(--space-4xl);
+  /* ── 编辑式要点列表（居中限宽，序号引导，整条 hairline 分隔）── */
+  .science-points {
+    max-width: 760px;
+    margin: 0 auto var(--space-4xl);
   }
 
-  .science-col {
-    padding-top: var(--space-xl);
+  .science-point {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+    padding: var(--space-xl) 0;
+  }
+
+  .science-point + .science-point {
     border-top: 1px solid var(--color-border-light);
   }
 
-  .science-col-number {
-    display: block;
-    font-size: var(--text-sm);
-    font-weight: 400;
-    letter-spacing: var(--tracking-widest);
-    color: var(--color-brand);
-    margin-bottom: var(--space-md);
+  .science-point-num {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+    background: url('/assets/list-marker.png') center / contain no-repeat;
+    margin-top: 0.2em;
   }
 
-  .science-col-title {
+  .science-point-title {
     font-size: var(--text-lg);
     font-weight: 500;
     color: var(--color-text);
-    margin-bottom: var(--space-md);
     letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-sm);
   }
 
-  .science-col-body {
+  .science-point-body {
     font-size: var(--text-sm);
     font-weight: 300;
     line-height: var(--leading-relaxed);
     color: var(--color-text-soft);
+    max-width: 60ch;
   }
 
   /* ── Data bar ── */
@@ -177,9 +188,16 @@
     .science-image {
       width: 280px;
     }
-    .science-cols {
-      grid-template-columns: 1fr;
-      gap: var(--space-xl);
+    .science-points {
+      margin-bottom: var(--space-3xl);
+    }
+    .science-point {
+      gap: var(--space-md);
+      padding: var(--space-lg) 0;
+    }
+    .science-point-num {
+      width: 20px;
+      height: 20px;
     }
     .science-data {
       flex-direction: column;

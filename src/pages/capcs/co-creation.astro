@@ -115,7 +115,7 @@ import Footer from '../../components/Footer.astro';
   .coco-hero {
     position: relative;
     width: 100%;
-    min-height: 70vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -149,18 +149,19 @@ import Footer from '../../components/Footer.astro';
   .coco-hero-content {
     position: relative;
     z-index: 1;
-    padding-top: 140px;
-    padding-bottom: var(--space-5xl);
+    padding: 140px var(--content-padding) var(--space-5xl);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    min-height: 70vh;
+    min-height: 100vh;
   }
 
   .coco-breadcrumb {
     font-size: var(--text-xs);
+  }
+
+  .coco-hero-text {
+    margin-top: auto;
     margin-bottom: auto;
-    padding-bottom: var(--space-4xl);
   }
 
   .coco-breadcrumb a,
