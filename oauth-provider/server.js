@@ -12,11 +12,10 @@
  *   OAUTH_PORT           本地监听端口（默认 3010，仅 127.0.0.1）
  *   OAUTH_BASE_URL       站点根地址，用于拼 redirect_uri（默认 https://www.martempo.com.cn）
  */
-'use strict';
-const http = require('http');
-const https = require('https');
-const crypto = require('crypto');
-const { URL } = require('url');
+import http from 'node:http';
+import https from 'node:https';
+import crypto from 'node:crypto';
+import { URL } from 'node:url';
 
 const CLIENT_ID = process.env.OAUTH_CLIENT_ID || '';
 const CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET || '';
