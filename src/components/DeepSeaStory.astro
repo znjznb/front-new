@@ -1,243 +1,331 @@
 ---
-// Deep Sea Origin Story: Alternating magazine-style narrative panels
-
-const panels = [
-  {
-    id: 'origin',
-    eyebrow: '深海起源',
-    title: '深海中<br />的珍宝',
-    body: [
-      'MarTempo 海得宝，意为"深海中的珍宝"。源于创始人数十年的执着：走遍全球 50 多个纯净海域，历经 13 年研发和上万次测试，最终在全球不到 1% 的纯净海域中发现了珍稀贻贝。',
-      '通过独创的纯物理回流反渗技术，从 10000 只纯净贻贝中精粹出仅 1 克的灵魂成分——贻贝提取物（凯普斯泰 CAPCS<sup>®</sup>）。经全国 1000 家公立皮肤科长达 5 年验证，成为 30 秒舒缓红痒的天然止痒方案。',
-    ],
-    image: '/assets/story-origin.jpg',
-    imageAlt: '海得宝 · 呵护序章',
-    imageLeft: false,
-  },
-  {
-    id: 'nature',
-    eyebrow: '天然力量',
-    title: '来自深海的<br />自然馈赠',
-    body: [
-      '在全球不到 1% 的纯净海域中孕育的珍稀贻贝，蕴藏着大自然最纯粹的舒缓力量。海得宝坚持极简配方哲学——只添加必要的有效成分，不添加激素、抗生素、防腐剂。',
-      '独创的纯物理回流反渗萃取技术，全程无化学溶剂参与。从贻贝中提取的钙离子复合物 CAPCS<sup>®</sup>，通过干扰痒信号传导实现天然止痒，温和而高效。',
-    ],
-    image: '/assets/lab.jpg',
-    imageAlt: '海得宝 · 实验室研发',
-    imageLeft: true,
-  },
-  {
-    id: 'science',
-    eyebrow: '科研基石',
-    title: '13 年潜心<br />验证于临床',
-    body: [
-      '由生物学博士后团队领衔，13 年自主研发，上万次实验。海得宝的核心成分 CAPCS<sup>®</sup> 发表于《中华皮肤科杂志》与 SCI 期刊，机理与临床双重验证。',
-      '北京友谊医院双盲对照研究证实：止痒效果等同于弱效激素，止痒速度优于弱效激素。四川大学华西医院进一步证明，海得宝能提高激素有效率高达 6 倍。',
-    ],
-    image: '/assets/专业线组合-调.jpg',
-    imageAlt: '海得宝 · 专业线产品',
-    imageLeft: false,
-  },
-  {
-    id: 'family',
-    eyebrow: '家庭之选',
-    title: '200 万家庭<br />的信赖之选',
-    body: [
-      '从新生儿的第一管面霜，到妈妈的日常修护，再到老人的换季止痒——海得宝为全家人提供一生相伴的敏感肌护理方案。',
-      '全国 1000+ 公立医院皮肤科临床使用，3000+ 皮肤科 / 儿科医生推荐。五维金标准安全检测：经口无毒、入眼无刺激，全家用得安心。',
-    ],
-    image: '/assets/lifestyle-mother.jpg',
-    imageAlt: '海得宝 · 母女温和相伴',
-    imageLeft: true,
-  },
-];
+// Brand story editorial panels – Aesop-inspired layout
+// Panel 1: text left 50% / landscape image right 50%
+// Panel 2: near-square image left 40% / text right 60%
+// Panel 3: text left 60% / near-square image right 40%
 ---
 
-<section id="story" class="section story">
-  <div class="story-bg" aria-hidden="true"></div>
-  {panels.map((panel, i) => (
-    <div class="story-panel">
-      <div class="story-grid reveal" class:list={{ 'story-grid-reverse': panel.imageLeft }}>
-        <div class="story-text">
-          {i === 0 ? (
-            <span class="eyebrow">{panel.eyebrow}</span>
-          ) : (
-            <div class="story-eyebrow-alt" aria-hidden="true"></div>
-          )}
-          <h2 class="story-title" set:html={panel.title}></h2>
-          {panel.body.map((p) => (
-            <p class="story-body" set:html={p}></p>
-          ))}
-        </div>
-        <div class="story-visual">
-          <img
-            class="story-image"
-            src={panel.image}
-            alt={panel.imageAlt}
-            loading={i === 0 ? 'eager' : 'lazy'}
-            width="600"
-            height="800"
-          />
-        </div>
-      </div>
+<section id="story" class="story">
+
+  <!-- Panel 1: Our Story — text left, landscape image right -->
+  <div class="story-panel sp1">
+    <div class="sp1-text story-text">
+      <span class="story-eyebrow">我们的故事</span>
+      <p class="story-lead">我们为您带来肌肤、秀发及身体护理的精制配方，务求达至显著功效之余，同时让身体感官得到享受。</p>
+      <p class="story-year">海得宝成立于2014年</p>
+      <p class="story-body">海得宝一直秉持坚定的信念，开发一系列专业肌肤及身体护理产品。我们致力于在科学验证功效的基础上，用独家专利成分贻贝钙肽CAPCS。所有配方有效亦安全。</p>
+      <p class="story-body">因为爱家人，呵护敏感肌家庭。所以不敢有半点含糊，选择最严苛的实验，用科研践行"用心呵护敏感，用爱温暖家庭"的承诺。</p>
     </div>
-  ))}
+    <div class="sp1-visual story-visual reveal">
+      <img class="story-img" src="/assets/story-origin.jpg" alt="海得宝 · 我们的故事" loading="eager" width="972" height="610" />
+    </div>
+  </div>
+
+  <!-- Panel 2: Family — near-square image left, text right -->
+  <div class="story-panel sp2">
+    <div class="sp2-visual story-visual reveal">
+      <img class="story-img" src="/assets/lifestyle-mother.jpg" alt="海得宝 · 家庭温暖呵护" loading="lazy" width="751" height="712" />
+    </div>
+    <div class="sp2-text story-text">
+      <span class="story-eyebrow">家庭的温暖陪伴者</span>
+      <h2 class="story-title">照顾每一个家庭成员的敏感需求</h2>
+      <p class="story-body">敏感问题不分年龄。宝宝的湿疹、妈妈的唇炎、爸爸的皮肤干痒、老人的季节性皮肤问题。</p>
+      <p class="story-body">海得宝的产品线覆盖婴童、女性、成人等全年龄段。以同一核心成分贻贝钙CAPCS<sup>®</sup>为基础，针对不同肤质和使用场景进行研发，实现从面部到身体、从急性舒缓到长期维稳的完整护理方案。</p>
+      <a href="/products/series" class="story-cta">
+        <span>探索产品线</span>
+        <i class="story-cta-arrow">→</i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Panel 3: Trust — text left, near-square image right -->
+  <div class="story-panel sp3">
+    <div class="sp3-text story-text">
+      <span class="story-eyebrow">陪伴式的信赖</span>
+      <h2 class="story-title">对于敏感肌来说，用什么和怎么用同样重要</h2>
+      <p class="story-body">海得宝专业护肤顾问将1v1接待用户，不只是服务，更是倾听，帮助您与家人修护肌肤状态。</p>
+      <p class="story-body">当您在使用中遇到任何困惑，我们都在线，为您提供贴心、增值服务，以提升您的护肤体验。</p>
+      <a href="#" class="story-cta">
+        <span>更多会员服务</span>
+        <i class="story-cta-arrow">→</i>
+      </a>
+    </div>
+    <div class="sp3-visual story-visual reveal">
+      <img class="story-img" src="/assets/lab.jpg" alt="海得宝 · 专业服务" loading="lazy" width="751" height="712" />
+    </div>
+  </div>
+
 </section>
 
 <style>
+  /* ── Section ───────────────────────────────────────────── */
   .story {
     position: relative;
     background: var(--color-surface);
     padding-top: var(--space-6xl);
-    padding-bottom: var(--space-6xl);
+    /* Always full-width — images bleed to viewport edges */
   }
 
-  .story-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 70% 80% at 80% 50%, oklch(90% 0.06 185 / 0.15), transparent);
-    pointer-events: none;
-  }
-
-  .story-panel + .story-panel {
-    margin-top: var(--space-5xl);
-  }
-
-  .story-grid {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    grid-template-areas: "text image";
+  /* ── Panel shared ──────────────────────────────────────── */
+  .story-panel {
+    display: flex;
     align-items: stretch;
+    padding-bottom: var(--space-4xl); /* ~100px */
   }
 
-  .story-text {
-    grid-area: text;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding:
-      var(--space-4xl)
-      var(--space-4xl)
-      var(--space-4xl)
-      max(calc((100vw - 1200px) / 2), var(--content-padding));
+  /* ── Panel 1 ───────────────────────────────────────────── */
+  /* Text left (flex:1), landscape image right (50%, max 800px) */
+  .sp1 {
+    align-items: flex-start;
   }
 
-  .story-visual {
-    grid-area: image;
-    display: flex;
-    position: relative;
-    min-height: 360px;
+  .sp1-text {
+    flex: 1;
+    min-width: 320px;
+    min-height: 400px;
+    padding-top: var(--space-5xl);
+    padding-right: var(--space-4xl);
+    padding-bottom: var(--space-3xl);
+    /* Left aligns with the rest of the page's content grid */
+    padding-left: clamp(var(--space-3xl), calc((100vw - 1200px) / 2), var(--space-6xl));
+  }
+
+  .sp1-visual {
+    width: 50%;
+    max-width: 972px; /* never grows beyond Aesop 1 native size */
+    flex-shrink: 0;
     overflow: hidden;
   }
 
-  .story-grid-reverse {
-    grid-template-areas: "image text";
-    grid-template-columns: 2fr 3fr;
+  .sp1-visual .story-img {
+    /* Landscape ratio matching Aesop 1: 972×610 */
+    aspect-ratio: 972 / 610;
+    width: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
   }
 
-  .story-grid-reverse .story-text {
-    padding:
-      var(--space-4xl)
-      max(calc((100vw - 1200px) / 2), var(--content-padding))
-      var(--space-4xl)
-      var(--space-4xl);
+  /* ── Panel 2 ───────────────────────────────────────────── */
+  /* Near-square image left 40% (max 640px), text right */
+  .sp2-visual {
+    width: 40%;
+    max-width: 751px; /* never grows beyond Aesop 2 native size */
+    flex-shrink: 0;
+    overflow: hidden;
   }
 
-  .story-eyebrow-alt {
-    width: 32px;
-    height: 1px;
-    background: var(--color-brand-subtle);
-    margin-bottom: var(--space-lg);
+  .sp2-visual .story-img {
+    /* Near-square ratio matching Aesop 2: 751×712 */
+    aspect-ratio: 751 / 712;
+    width: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+  }
+
+  .sp2-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: var(--space-4xl);
+    padding-right: clamp(var(--space-3xl), calc((100vw - 1200px) / 2), var(--space-6xl));
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  /* ── Panel 3 ───────────────────────────────────────────── */
+  /* Text left, near-square image right 40% (max 640px) */
+  .sp3 {
+    justify-content: space-between;
+  }
+
+  .sp3-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: clamp(var(--space-3xl), calc((100vw - 1200px) / 2), var(--space-6xl));
+    padding-right: var(--space-4xl);
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  .sp3-visual {
+    width: 40%;
+    max-width: 751px; /* never grows beyond Aesop 3 native size */
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .sp3-visual .story-img {
+    /* Near-square ratio matching Aesop 3: 751×712 */
+    aspect-ratio: 751 / 712;
+    width: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+
+  /* ── Typography ────────────────────────────────────────── */
+  /* Aesop contrast: title ~26px, body ~13px (2:1 ratio) */
+
+  .story-eyebrow {
+    display: block;
+    font-size: 1.875rem;        /* 30px */
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    color: var(--color-text);
+    margin-bottom: var(--space-xl);
+  }
+
+  .story-lead {
+    font-size: 0.9375rem;       /* 15px */
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--color-text-soft);
+    max-width: 380px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .story-year {
+    font-size: 0.9375rem;       /* 15px */
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--color-text-soft);
+    max-width: 380px;
+    margin-bottom: var(--space-xl);
   }
 
   .story-title {
-    font-size: var(--text-3xl);
-    font-weight: 200;
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-wide);
-    margin-bottom: var(--space-xl);
+    font-size: 1.875rem;        /* 30px */
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
     color: var(--color-text);
+    margin-bottom: var(--space-xl);
   }
 
   .story-body {
-    font-size: var(--text-base);
+    font-size: 0.9375rem;       /* 15px */
     font-weight: 300;
-    line-height: var(--leading-relaxed);
+    line-height: 1.75;
     color: var(--color-text-soft);
     margin-bottom: var(--space-lg);
-    max-width: 55ch;
+    max-width: 42ch;
   }
 
-  .story-body:last-child {
+  .story-body:last-of-type {
     margin-bottom: 0;
   }
 
-  .story-image {
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    min-height: 360px;
-    object-fit: cover;
-    object-position: center 30%;
-  }
-
-  .story-numbers-row {
-    display: flex;
+  /* ── CTA button (Aesop-style border button) ────────────── */
+  .story-cta {
+    display: inline-flex;
+    align-items: center;
     justify-content: space-between;
     gap: var(--space-lg);
-    margin-top: var(--space-5xl);
-    padding: var(--space-2xl);
-    background: oklch(97% 0.006 185 / 0.5);
+    margin-top: var(--space-2xl);
+    padding: 0 var(--space-md);
+    height: 40px;
+    width: max-content;
+    min-width: 120px;
+    border: 1px solid rgba(15, 15, 15, 0.2);
+    border-radius: var(--radius);
+    color: var(--color-text);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
-  .story-number {
-    text-align: center;
-    flex: 1;
+  .story-cta:hover {
+    background: var(--color-text);
+    color: var(--color-surface);
   }
 
-  .story-number-value {
-    display: block;
-    font-size: var(--text-4xl);
-    font-weight: 200;
-    color: var(--color-brand);
-    line-height: var(--leading-tight);
-    margin-bottom: var(--space-sm);
+  .story-cta-arrow {
+    font-style: normal;
+    font-size: 0.75rem;
   }
 
-  .story-number-label {
-    font-size: var(--text-sm);
-    font-weight: 300;
-    color: var(--color-text-muted);
+  /* ── Image parallax ────────────────────────────────────── */
+  .story-img {
+    will-change: transform;
+    transition: transform 0.1s linear;
   }
 
+  /* ── Mobile ────────────────────────────────────────────── */
   @media (max-width: 768px) {
-    .story-grid {
-      grid-template-columns: 1fr;
-      grid-template-areas: "text" "image";
+    .story {
+      padding-top: var(--space-4xl);
     }
-    .story-text {
-      padding: var(--space-2xl) var(--content-padding);
+
+    /* All panels stack: image on top, text below */
+    .sp1 { flex-direction: column-reverse; } /* text first in DOM → reverse puts image on top */
+    .sp2 { flex-direction: column; }         /* image first in DOM → column keeps image on top */
+    .sp3 { flex-direction: column-reverse; } /* text first in DOM → reverse puts image on top */
+
+    .sp1-text, .sp2-text, .sp3-text {
+      width: 100%;
+      padding: var(--space-xl) var(--content-padding);
+      min-height: 0;
     }
-    .story-grid-reverse .story-text {
-      padding: var(--space-2xl) var(--content-padding);
+
+    .sp1-visual, .sp2-visual, .sp3-visual {
+      width: 100%;
     }
-    .story-image {
-      min-height: 220px;
+
+    .sp1-visual .story-img,
+    .sp2-visual .story-img,
+    .sp3-visual .story-img {
+      aspect-ratio: auto;
+      height: auto;
     }
-    .story-panel + .story-panel {
-      margin-top: var(--space-3xl);
+
+    .story-panel {
+      padding-bottom: var(--space-3xl);
     }
-    .story-numbers-row {
-      flex-wrap: wrap;
-      gap: var(--space-lg);
-      padding: var(--space-md);
+
+    .story-eyebrow,
+    .story-title {
+      font-size: 1.25rem;
     }
-    .story-number {
-      flex: 1 1 40%;
+
+    .story-body,
+    .story-lead {
+      max-width: 100%;
+      font-size: 0.875rem;
     }
-    .story-number-value {
-      font-size: var(--text-3xl);
+
+    .story-cta {
+      width: 100%;
     }
   }
 </style>
+
+<script>
+  // Subtle parallax on scroll: images translate slightly as page scrolls
+  function updateParallax() {
+    document.querySelectorAll('.story-visual').forEach(function(container) {
+      var img = container.querySelector('.story-img');
+      if (!img) return;
+      var rect = container.getBoundingClientRect();
+      var vh = window.innerHeight;
+      // progress: -1 (above viewport) → 0 (center) → 1 (below)
+      var progress = (rect.top + rect.height / 2 - vh / 2) / (vh * 0.8);
+      var offset = progress * 24; // max 24px shift
+      img.style.transform = 'translateY(' + offset + 'px) scale(1.04)';
+    });
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    window.addEventListener('scroll', updateParallax, { passive: true });
+    updateParallax();
+  }
+</script>
