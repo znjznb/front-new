@@ -1,0 +1,16 @@
+[Unit]
+Description=Decap CMS GitHub OAuth Provider
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/www/wwwroot/martempo/front-new/oauth-provider
+EnvironmentFile=/www/wwwroot/martempo/front-new/oauth-provider/.env
+# node 路径来自 nvm；若 node 版本变化，用 `which node` 更新这一行
+ExecStart=/root/.nvm/versions/node/v22.22.3/bin/node /www/wwwroot/martempo/front-new/oauth-provider/server.js
+Restart=always
+RestartSec=3
+User=root
+
+[Install]
+WantedBy=multi-user.target
