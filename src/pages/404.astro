@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="页面未找到 — 海得宝 MARTEMPO" description="抱歉，您访问的页面不存在。">
+  <Nav />
+  <main class="notfound">
+    <p class="notfound-code">404</p>
+    <h1 class="notfound-title">页面未找到</h1>
+    <p class="notfound-desc">抱歉，您访问的页面不存在或已被移动。</p>
+    <a href="/" class="notfound-home">返回首页</a>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .notfound {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-5xl) var(--content-padding);
+  }
+
+  .notfound-code {
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 200;
+    line-height: 1;
+    color: var(--color-brand);
+    margin-bottom: var(--space-lg);
+  }
+
+  .notfound-title {
+    font-size: var(--text-2xl);
+    font-weight: 300;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .notfound-desc {
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .notfound-home {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 var(--space-xl);
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius);
+    color: var(--color-text);
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .notfound-home:hover {
+    background: var(--color-text);
+    color: var(--color-surface);
+  }
+</style>

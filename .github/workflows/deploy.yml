@@ -26,9 +26,11 @@ jobs:
             export PATH="$PATH:/usr/local/bin:/usr/bin"
             [ -f ~/.nvm/nvm.sh ] && . ~/.nvm/nvm.sh
             cd /www/wwwroot/martempo/front-new
+            # 强制对齐远程，避免本地改动（如 npm 改写 package-lock）导致 git pull 失败而静默部署旧代码
             for i in 1 2 3; do
-              git pull origin main && break
+              git fetch origin main && break
               sleep 3
             done
+            git reset --hard origin/main
             npm install --production
             npm run build
