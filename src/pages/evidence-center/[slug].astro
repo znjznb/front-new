@@ -235,18 +235,20 @@ const faqLd = {
   .ed-report-title { font-size: clamp(1.25rem, 1rem + 1.2vw, 1.625rem); font-weight: 400; line-height: 1.5; color: var(--color-text); margin-bottom: var(--space-xl); padding-bottom: var(--space-md); border-bottom: 2px solid var(--accent); }
   .ed-report-meta { display: flex; flex-direction: column; gap: 6px; padding: var(--space-lg); background: var(--color-bg-light); border-radius: var(--radius); margin-bottom: var(--space-xl); }
   .ed-report-meta span { font-size: 0.8125rem; line-height: 1.6; color: var(--color-text-soft); }
-  .ed-report-h { font-size: 1.25rem; font-weight: 500; color: var(--color-text); margin: var(--space-2xl) 0 var(--space-md); padding-left: var(--space-md); border-left: 3px solid var(--accent); }
+  .ed-report-h { font-size: 1.25rem; font-weight: 500; color: var(--color-text); margin: var(--space-2xl) 0 var(--space-md); }
+  .ed-report-h::before { content: ''; display: block; width: 28px; height: 2px; background: var(--accent); border-radius: 1px; margin-bottom: 12px; }
   .ed-report-sub { font-size: 1rem; font-weight: 600; color: var(--color-text); margin: var(--space-lg) 0 var(--space-sm); }
   .ed-report-p { font-size: 1rem; line-height: 1.9; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-md); }
   .ed-report-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); margin: var(--space-sm) 0 var(--space-md); }
   .ed-report-list li { position: relative; padding-left: var(--space-lg); font-size: 0.9375rem; line-height: 1.75; color: var(--color-text-soft); font-weight: 300; }
   .ed-report-list li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-  .ed-report-note { font-size: 0.8125rem; line-height: 1.7; color: var(--color-text-muted); margin-top: var(--space-xl); padding: var(--space-md) var(--space-lg); background: var(--color-bg-light); border-left: 3px solid var(--color-border); border-radius: var(--radius-sm); }
+  .ed-report-note { font-size: 0.8125rem; line-height: 1.7; color: var(--color-text-muted); margin-top: var(--space-xl); padding: var(--space-md) var(--space-lg); background: var(--color-bg-light); border-radius: var(--radius-sm); }
 
   /* Article */
   .ed-article { margin-bottom: var(--space-3xl); }
   .ed-sec { margin-bottom: var(--space-2xl); }
-  .ed-sec h2 { font-size: 1.375rem; font-weight: 400; color: var(--color-text); margin-bottom: var(--space-md); padding-left: var(--space-md); border-left: 3px solid var(--accent); }
+  .ed-sec h2 { font-size: 1.375rem; font-weight: 400; color: var(--color-text); margin-bottom: var(--space-md); }
+  .ed-sec h2::before { content: ''; display: block; width: 28px; height: 2px; background: var(--accent); border-radius: 1px; margin-bottom: 12px; }
   .ed-sec p { font-size: 1rem; line-height: 1.9; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-md); }
   .ed-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-sm); }
   .ed-list li { position: relative; padding-left: var(--space-lg); font-size: 0.9375rem; line-height: 1.75; color: var(--color-text-soft); font-weight: 300; }
@@ -279,7 +281,7 @@ const faqLd = {
   /* Related */
   .ed-related h2 { font-size: 1.25rem; font-weight: 400; color: var(--color-text); margin-bottom: var(--space-lg); }
   .ed-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-bottom: var(--space-xl); }
-  .ed-related-card { display: flex; flex-direction: column; gap: 6px; padding: var(--space-lg); background: #fff; border: 1px solid var(--color-border-light); border-top: 3px solid var(--accent); border-radius: var(--radius); transition: transform 0.4s var(--ease-out-quint); }
+  .ed-related-card { display: flex; flex-direction: column; gap: 6px; padding: var(--space-lg); background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius); transition: transform 0.4s var(--ease-out-quint); }
   .ed-related-card:hover { transform: translateY(-3px); border-color: var(--accent); }
   .ed-related-tag { font-size: 0.7rem; color: var(--accent); font-weight: 600; }
   .ed-related-title { font-size: 0.875rem; color: var(--color-text); line-height: 1.4; }
