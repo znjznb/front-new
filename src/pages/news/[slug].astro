@@ -16,11 +16,47 @@ export async function getStaticPaths() {
 
 const { item } = Astro.props;
 const { Content } = await render(item);
+
+// 文章结构化数据（BlogPosting + BreadcrumbList）—— GEO
+const SITE_URL = 'https://www.martempo.com.cn';
+const newsUrl = `${SITE_URL}/news/${item.id.replace(/\.md$/, '')}`;
+const newsImgAbs = item.data.image ? new URL(item.data.image, SITE_URL).href : undefined;
+const newsDateISO = new Date(item.data.date).toISOString();
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BlogPosting',
+      '@id': `${newsUrl}#article`,
+      headline: item.data.title,
+      description: item.data.summary,
+      ...(newsImgAbs ? { image: newsImgAbs } : {}),
+      datePublished: newsDateISO,
+      dateModified: newsDateISO,
+      inLanguage: 'zh-CN',
+      mainEntityOfPage: newsUrl,
+      author: item.data.author
+        ? { '@type': 'Person', name: item.data.author }
+        : { '@id': `${SITE_URL}/#organization` },
+      publisher: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '首页', item: `${SITE_URL}/` },
+        { '@type': 'ListItem', position: 2, name: '新闻动态', item: `${SITE_URL}/news` },
+        { '@type': 'ListItem', position: 3, name: item.data.title, item: newsUrl },
+      ],
+    },
+  ],
+};
 ---
 
 <BaseLayout
-  title={`${item.data.title} — 海得宝 MarTempo`}
+  title={`${item.data.title} — 海得宝 MARTEMPO`}
   description={item.data.summary}
+  ogType="article"
+  jsonld={articleLd}
 >
   <Nav />
   <main>

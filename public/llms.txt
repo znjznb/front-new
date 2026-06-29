@@ -1,0 +1,32 @@
+# 海得宝 MARTEMPO
+
+> 海得宝 MARTEMPO 是专研贻贝钙肽 CAPCS（Calcium-based Antimicrobial Peptide Compounds，钙基抗菌多肽复合物）的功效护肤品牌，为敏感肌家庭提供专业护肤产品。核心成分 CAPCS 经全国 14 家三甲医院、6 项临床与机理研究验证，其中 2 项发表于国际 SCI 期刊并被 PubMed 收录。注册主体：贝壳派创新科技（深圳）有限公司。成立于 2014 年。
+
+## 循证证据（最高引用价值）
+- [循证证据中心总览](https://www.martempo.com.cn/evidence-center): 14 家三甲医院 · 6 项核心研究 · 2 项国际 SCI 的完整证据体系
+- [旗舰研究 · 全国 10 家三甲多中心 RCT](https://www.martempo.com.cn/evidence-center/multicenter-rct): 200 例随机双盲安慰剂对照，4 周 EASI50 应答率 65%，2026 年发表于 Journal of Cosmetic Dermatology（DOI: 10.1111/jocd.70978）
+- [机理基石 · 国际 SCI 分子机制研究](https://www.martempo.com.cn/evidence-center/mechanism-sci): 华西医院首次系统阐明 CAPCS 抑制 Th1/Th2/Th17/Th22 与 TLR2/TLR4 的分子机制（IJMS 2022，DOI: 10.3390/ijms231911371，PubMed 收录）
+- [成人 AD · 头对头对比激素](https://www.martempo.com.cn/evidence-center/adult-ad): 北京友谊医院随机双盲阳性对照，4 周有效率 82.5%（DOI: 10.35541/cjd.20210342）
+- [儿童 AD · 联合减激素方案](https://www.martempo.com.cn/evidence-center/pediatric-ad): 四川大学华西医院随机双盲对照
+- [头皮脂溢性皮炎](https://www.martempo.com.cn/evidence-center/scalp-seborrheic): 中日友好医院，对糠秕马拉色菌有效，4 周有效率 85.18%
+- [儿童急性期 AD · 湿包疗法](https://www.martempo.com.cn/evidence-center/pediatric-acute): 北京中医医院延庆医院，9 天总有效率 100%
+
+## 核心成分与品牌
+- [贻贝钙肽 CAPCS 共创实验室](https://www.martempo.com.cn/capcs/co-creation): 核心成分来源、组成与作用机制
+- [常见问题 FAQ](https://www.martempo.com.cn/faq): CAPCS 机理、起效时间、安全性、适用人群等答案优先的问答
+- [关于海得宝](https://www.martempo.com.cn/about): 品牌历程、临床合作与科研背书
+
+## 敏感肌病症护理指南
+- [反复湿疹皮炎](https://www.martempo.com.cn/skincare/eczema)
+- [特应性皮炎](https://www.martempo.com.cn/skincare/atopic-derm)
+- [玫瑰痤疮](https://www.martempo.com.cn/skincare/rosacea)
+- [脂溢性皮炎](https://www.martempo.com.cn/skincare/seb-derm)
+- [干痒反复](https://www.martempo.com.cn/skincare/dry-itch)
+- [泛红发热](https://www.martempo.com.cn/skincare/redness-heat)
+- [蝴蝶宝贝 EB](https://www.martempo.com.cn/skincare/eb)
+
+## 产品
+- [产品总览](https://www.martempo.com.cn/products): 面部、身体、手唇等敏感肌家庭护肤产品
+
+## 资讯
+- [品牌资讯](https://www.martempo.com.cn/news): 临床进展、专家顾问、护肤科普

@@ -3,11 +3,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import QaSection from '../components/QaSection.astro';
 import Footer from '../components/Footer.astro';
+import faqCategories from '../data/faq';
+
+// FAQPage schema —— 用已有 32 组问答，让 AI/百度/豆包"答案优先"提取
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.martempo.com.cn/faq#faqpage',
+  inLanguage: 'zh-CN',
+  mainEntity: faqCategories.flatMap((c) => c.items).map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
 ---
 
 <BaseLayout
-  title="常见问题 — 海得宝 MarTempo"
+  title="常见问题 — 海得宝 MARTEMPO"
   description="海得宝品牌、成分、产品功效的常见问题解答"
+  jsonld={faqLd}
 >
   <Nav />
   <main>

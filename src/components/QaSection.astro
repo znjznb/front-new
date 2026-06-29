@@ -35,10 +35,12 @@ if (maxItems && maxItems > 0) {
       <div class="qa-col">
         {allItems.filter((_, i) => i % 2 === 0).map((item, index) => (
           <div class="qa-item">
-            <button class="qa-btn" data-index={index * 2} aria-expanded="false">
-              <span class="qa-icon" aria-hidden="true">Q</span>
-              <span class="qa-question">{item.q}</span>
-            </button>
+            <h3 class="qa-q-heading">
+              <button class="qa-btn" data-index={index * 2} aria-expanded="false">
+                <span class="qa-icon" aria-hidden="true">Q</span>
+                <span class="qa-question">{item.q}</span>
+              </button>
+            </h3>
             <div class="qa-body">
               <div class="qa-body-inner">
                 <div class="qa-answer">
@@ -53,10 +55,12 @@ if (maxItems && maxItems > 0) {
       <div class="qa-col">
         {allItems.filter((_, i) => i % 2 === 1).map((item, index) => (
           <div class="qa-item">
-            <button class="qa-btn" data-index={index * 2 + 1} aria-expanded="false">
-              <span class="qa-icon" aria-hidden="true">Q</span>
-              <span class="qa-question">{item.q}</span>
-            </button>
+            <h3 class="qa-q-heading">
+              <button class="qa-btn" data-index={index * 2 + 1} aria-expanded="false">
+                <span class="qa-icon" aria-hidden="true">Q</span>
+                <span class="qa-question">{item.q}</span>
+              </button>
+            </h3>
             <div class="qa-body">
               <div class="qa-body-inner">
                 <div class="qa-answer">
@@ -185,6 +189,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   .qa-item:first-child {
     border-top: 1px solid var(--color-border-light);
+  }
+
+  .qa-q-heading {
+    margin: 0;
+    font: inherit;
+    font-weight: inherit;
   }
 
   .qa-btn {

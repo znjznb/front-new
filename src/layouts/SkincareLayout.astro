@@ -19,9 +19,38 @@ const categorySlugs = {
   '敏感肌类型': '/skincare/dry-sensitive',
 };
 const categorySlug = categorySlugs[category] || '/skincare/dry-itch';
+
+// 病症指南结构化数据（MedicalWebPage + BreadcrumbList）—— GEO
+// 注：reviewedBy / lastReviewed 需指定真实医学审核人后补充（属 B 组）
+const SITE_URL = 'https://www.martempo.com.cn';
+const pageUrl = `${SITE_URL}/skincare/${topicSlug}`;
+const skincareLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'MedicalWebPage',
+      '@id': `${pageUrl}#webpage`,
+      name: title,
+      description,
+      url: pageUrl,
+      inLanguage: 'zh-CN',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      publisher: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '首页', item: `${SITE_URL}/` },
+        { '@type': 'ListItem', position: 2, name: '科学护肤', item: `${SITE_URL}/skincare/dry-itch` },
+        { '@type': 'ListItem', position: 3, name: category, item: `${SITE_URL}${categorySlug}` },
+        { '@type': 'ListItem', position: 4, name: title, item: pageUrl },
+      ],
+    },
+  ],
+};
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} jsonld={skincareLd}>
   <Nav />
   <main>
     <div class="skincare-hero">

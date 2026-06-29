@@ -6,6 +6,8 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  ogType?: string;
+  jsonld?: object | object[];
 }
 
 const SITE_URL = 'https://www.martempo.com.cn';
@@ -14,11 +16,54 @@ const {
   title = '海得宝MARTEMPO官网｜敏感肌家庭的专业功效护肤品牌',
   description = '海得宝MARTEMPO，专研贻贝钙肽CAPCS功效护肤品牌。海得宝官网为您提供：敏感肌面部、身体、手唇等家庭护肤产品及最新品牌资讯，欢迎访问官网了解更多详情。',
   image = '/assets/social-share.png',
+  ogType = 'website',
+  jsonld,
 } = Astro.props;
 
 // Open Graph / 社交分享需要绝对 URL（微信、QQ 等爬虫不解析相对路径）
 const canonicalURL = new URL(Astro.url.pathname, SITE_URL).href;
 const ogImageURL = new URL(image, SITE_URL).href;
+
+// 全站实体图谱（GEO：让 AI 能可靠解析"海得宝是谁" + 关联站外足迹）
+const siteGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: '海得宝 MARTEMPO',
+      alternateName: 'MARTEMPO',
+      legalName: '贝壳派创新科技（深圳）有限公司',
+      url: `${SITE_URL}/`,
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon.png`, width: 1945, height: 1942 },
+      image: `${SITE_URL}/favicon.png`,
+      description:
+        '海得宝 MARTEMPO，专研贻贝钙肽 CAPCS 的功效护肤品牌，为敏感肌家庭提供专业护肤产品。',
+      foundingDate: '2014',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: '深圳',
+        addressRegion: '广东省',
+        addressCountry: 'CN',
+      },
+      sameAs: [
+        'https://haidebaomy.tmall.com/',
+        'https://weibo.com/u/6207838250',
+        'https://www.douyin.com/user/MS4wLjABAAAApSGI2TuPE4ArDn927m7m4i0YNg-y5bMbJpkN6Rmg42M',
+        'https://www.xiaohongshu.com/user/profile/5cac6d5c0000000017004d48',
+        'https://baike.baidu.com/item/海得宝/22608008',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: '海得宝 MARTEMPO 官网',
+      inLanguage: 'zh-CN',
+      publisher: { '@id': `${SITE_URL}/#organization` },
+    },
+  ],
+};
 ---
 
 <!DOCTYPE html>
@@ -37,7 +82,7 @@ const ogImageURL = new URL(image, SITE_URL).href;
     <meta name="google-site-verification" content="SePHmp6ddxuGumZvFoDGxwSNBWRfcEtpVCiZTp7CoSs" />
 
     <!-- Open Graph（微信、QQ、微博、Facebook 等分享卡片） -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="海得宝 MARTEMPO" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -46,10 +91,15 @@ const ogImageURL = new URL(image, SITE_URL).href;
     <meta property="og:locale" content="zh_CN" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- 结构化数据：全站实体图谱 + 页面级 schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(siteGraph)} />
+    {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" />

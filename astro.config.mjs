@@ -10,6 +10,11 @@ export default defineConfig({
     sitemap({
       // 排除 CMS 后台，不让它进搜索引擎
       filter: (page) => !page.includes('/admin'),
+      // 为每个 URL 加 lastmod（构建时间）—— 新鲜度 / 重抓信号
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
     }),
   ],
 });

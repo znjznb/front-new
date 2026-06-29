@@ -39,6 +39,33 @@ const activeColor = accentColor;
 const defaultStatus = skus && skus[0] && skus[0].status ? skus[0].status : (product.status || '');
 const buyUrl = getProductBuyUrl(product);
 
+// 产品结构化数据（Product + BreadcrumbList）—— GEO
+const SITE_URL = 'https://www.martempo.com.cn';
+const productUrl = `${SITE_URL}/products/detail/${getProductSlug(product)}`;
+const productImgAbs = productImages && productImages[0] ? new URL(productImages[0], SITE_URL).href : undefined;
+const productLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Product',
+      name: product.name,
+      ...(productImgAbs ? { image: productImgAbs } : {}),
+      description: product.nickname || product.desc || `${product.name} — ${lineName}产品`,
+      brand: { '@type': 'Brand', name: '海得宝 MARTEMPO' },
+      category: lineName,
+      url: productUrl,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '首页', item: `${SITE_URL}/` },
+        { '@type': 'ListItem', position: 2, name: '产品', item: `${SITE_URL}/products` },
+        { '@type': 'ListItem', position: 3, name: product.name, item: productUrl },
+      ],
+    },
+  ],
+};
+
 // Parse ingredients into array
 function parseIngredients(raw) {
   if (!raw || raw === '/' || raw === '') return [];
@@ -200,8 +227,10 @@ const detailDescription = product.detail_description || '';
 ---
 
 <BaseLayout
-  title={`${product.name} — 海得宝 MarTempo`}
+  title={`${product.name} — 海得宝 MARTEMPO`}
   description={product.nickname || product.desc || `${product.name} — ${getLineDisplayName(product.line)}产品`}
+  ogType="product"
+  jsonld={productLd}
 >
   <Nav />
   <main>
