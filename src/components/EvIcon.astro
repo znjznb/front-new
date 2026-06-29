@@ -1,0 +1,31 @@
+---
+// 精细单线图标集（替换 emoji）。stroke=currentColor，1.5px，24 viewBox
+export interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+}
+const { name, size = 24, class: cls = '' } = Astro.props;
+
+const P = {
+  hospital: '<path d="M4 21V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v15"/><path d="M3 21h18"/><path d="M12 7v4M10 9h4"/><path d="M9 21v-4h6v4"/>',
+  journal: '<path d="M4 5a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1v15H6a2 2 0 0 1-2-2z"/><path d="M8 4v14"/><path d="M11 8h5M11 11h5"/>',
+  globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.5 5.3 3.5 8.5s-1.1 6.2-3.5 8.5c-2.4-2.3-3.5-5.3-3.5-8.5S9.6 5.8 12 3.5z"/>',
+  microscope: '<path d="M6 20h11"/><path d="M9 17a5 5 0 0 0 7-4.6"/><path d="M9.5 14.5 8 16M11 6l3 3-2.5 2.5-3-3z"/><path d="M10 5l1.5-1.5 2 2L12 7"/>',
+  verified: '<circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/>',
+  openaccess: '<rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 7.5-1.9"/><circle cx="12" cy="15.5" r="1.3"/>',
+  users: '<circle cx="9" cy="8.5" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 6.2a3 3 0 0 1 0 5.6M16.5 14a5.5 5.5 0 0 1 4 5"/>',
+  calendar: '<rect x="4" y="5.5" width="16" height="15" rx="1.5"/><path d="M4 9.5h16M8 3.5v4M16 3.5v4"/><path d="M8.5 14h2M13.5 14h2M8.5 17h2M13.5 17h2"/>',
+  shell: '<path d="M12 20C6 16 3.5 11 5 7c4-2 10-2 14 0 1.5 4-1 9-7 13z"/><path d="M12 20c0-5-1-9-3-13M12 20c0-5 1-9 3-13M12 20c0-5 0-9 0-13"/>',
+  molecule: '<circle cx="6" cy="17" r="2.2"/><circle cx="18" cy="17" r="2.2"/><circle cx="12" cy="6.5" r="2.2"/><path d="M7.8 15.6 10.4 8M13.6 8l2.6 7.6M8.2 17h7.6"/>',
+  exclude: '<circle cx="12" cy="12" r="8.5"/><path d="M8 12h8"/>',
+  document: '<path d="M7 3.5h6l5 5V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1z"/><path d="M13 3.5V9h5"/><path d="M9 13h6M9 16h6"/>',
+  arrow: '<path d="M5 12h13M13 6l6 6-6 6"/>',
+};
+const inner = P[name] || '';
+---
+<svg class={`evicon ${cls}`} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={inner}></svg>
+
+<style>
+  .evicon { display: inline-block; flex-shrink: 0; vertical-align: middle; }
+</style>

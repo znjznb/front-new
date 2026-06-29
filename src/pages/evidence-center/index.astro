@@ -1,0 +1,1099 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import EvidenceMap from '../../components/EvidenceMap.astro';
+import MechanismDiagram from '../../components/MechanismDiagram.astro';
+import EvIcon from '../../components/EvIcon.astro';
+import { EVIDENCE_META, MATRIX, STUDIES, getStudy } from '../../data/evidence.js';
+
+const rct = getStudy('multicenter-rct');
+const sci = getStudy('mechanism-sci');
+const support = STUDIES.filter((s) => !s.flagship);
+const chart = rct.chart;
+
+// ── 模块 3 旗舰研究正文（逐字，来自项目文档，不改写文字内容）──
+const flagIntro = {
+  h: '这项研究做了什么？',
+  blocks: [
+    { p: '2023 年 10 月到 2025 年 6 月，由上海皮肤病医院牵头，联合北京大学第三医院、华西医院的姐妹机构等全国 10 家三级甲等医院，对 200 位 18–55 岁的轻度特应性皮炎患者开展了一项多中心、随机、双盲、安慰剂对照临床试验。' },
+    { p: '这是国内同类品类罕有的研究规格——它的方法学严谨度与国际新药临床试验的标准相当。' },
+    { p: '患者被随机分为两组（每组 100 人）：' },
+    { list: [
+      '试验组：使用含贻贝钙肽 CAPCS 的海得宝身体乳（HBL，即俗称的"大白管特护霜""5X 身体乳"）',
+      '对照组：使用不含贻贝钙肽 CAPCS 的同款基质（外观、质地、使用方式完全一致——这是医学界用来排除"心理作用"和"基础保湿效果"的关键设计）',
+    ] },
+    { p: '每天 3 次，连续 4 周。所有受试者和研究者均不知道自己分配到哪一组（双盲）。' },
+  ],
+};
+const flagFindings = [
+  { h: '皮损改善：远超安慰剂', blocks: [
+    { p: '衡量 AD 严重程度最权威的国际指标是 EASI 评分。"EASI50"意味着皮损减轻 50% 以上，"EASI75"意味着减轻 75% 以上——这是新药临床试验的金标准。' },
+    { list: [
+      '第 2 周：HBL 组 37% 的患者达到 EASI50，对照组只有 19%',
+      '第 4 周：HBL 组 65% 达到 EASI50（对照组 41%）',
+      '第 4 周：HBL 组 42% 达到 EASI75（对照组 19%）',
+    ] },
+    { p: '4 周后，每 10 个使用海得宝身体乳（大白管特护霜）的患者中，约 6.5 人皮损减轻一半以上，4.2 人皮损减轻 75% 以上。' },
+  ] },
+  { h: '瘙痒缓解：从"难以忍受"到"几乎不痒"', blocks: [
+    { p: '瘙痒是 AD 最让人崩溃的症状。研究用 0–10 分的 NRS 瘙痒评分（数字评分量表，数字越大越痒）来衡量。' },
+    { list: [
+      'HBL 组瘙痒评分从基线下降 2.9 分',
+      '对照组只下降 1.6 分',
+      '组间差异 1.3 分（P < 0.001，有强统计学意义）',
+    ] },
+    { p: '如果之前是"非常痒"（7 分），用了 4 周后大多数患者降到了"基本不痒"（2 分以下）。' },
+  ] },
+  { h: '生活质量：6.7 分的巨大提升', blocks: [
+    { p: '皮肤病生活质量指数 DLQI 评估皮肤病对日常生活、社交、睡眠、心理的影响。' },
+    { list: [
+      'HBL 组 DLQI 评分下降 6.7 分（对照组 3.7 分）',
+      '这意味着患者从"皮肤病严重影响生活"恢复到"基本不影响生活"',
+    ] },
+  ] },
+  { h: '安全性：与"无活性安慰剂"一样安全', blocks: [
+    { list: [
+      'HBL 组不良反应率：1%（1/100）',
+      '对照组不良反应率：1%（1/100）',
+      '两组完全一致，零严重不良事件，零退出',
+    ] },
+    { p: '含贻贝钙肽 CAPCS 的海得宝身体乳和"什么都没有的基础保湿剂"一样温和。' },
+  ] },
+];
+const flagMeaning = {
+  h: '这项研究的特别意义',
+  blocks: [
+    { p: '这项研究还首次揭示了一个有趣的发现：' },
+    { p: '女性患者获益更显著——女性受试者在 EASI50 和 EASI75 应答率上都明显高于男性。研究团队给出的科学解释是：女性体内的雌激素会增强 Th2 细胞活性、上调内源性抗菌肽（如 LL-37）的表达、促进皮肤屏障修复，而贻贝钙肽 CAPCS 中的抗菌肽和钙离子刚好与这些女性内源性的修复机制形成协同。' },
+    { p: '此外，研究中面部和头部 AD 患者占 HBL 组的 30%——这是个特别重要的群体，因为长期在面部使用强效激素会导致口周皮炎、毛细血管扩张、痤疮，眼周长期使用甚至可能引起白内障和青光眼。含贻贝钙肽 CAPCS 的海得宝身体乳（大白管特护霜）为面部和颈部的长期管理提供了一个安全的非激素替代方案。' },
+  ],
+};
+
+// ── 模块 4 机理基石正文（逐字，来自项目文档，不改写文字内容）──
+const mechSub = '四川大学华西医院在国际 SCI 期刊首次系统阐明贻贝钙肽 CAPCS 的分子作用机制';
+const mechIntro = [
+  '2022 年 9 月，四川大学华西医院皮肤性病科的研究团队（黎静宜教授等）在国际 SCI 期刊《International Journal of Molecular Sciences》（影响因子 6.208，PubMed/MEDLINE 收录）发表了一项国际首次系统阐明 CAPCS 作用机制的研究。',
+  '这项研究填补了海得宝核心成分贻贝钙肽 CAPCS 的科学机制空白，也让海得宝从"经验性产品"跨入"循证产品"的行列。',
+];
+const mechFindings = [
+  { h: '研究发现了什么？', blocks: [
+    { p: '研究人员用 DNFB（一种化学物质）诱导小鼠产生特应性皮炎样的皮肤病变，然后比较 4 组小鼠：什么都不做的、只涂基质的、涂 CAPCS 的、涂弱效激素（地奈德）的。结果发现：' },
+  ] },
+  { h: '发现 1：贻贝钙肽 CAPCS 全面抑制 4 大炎症通路', blocks: [
+    { p: '特应性皮炎的本质是免疫系统过度反应。免疫系统中有 4 种"T 细胞兵种"——Th1、Th2、Th17、Th22——它们分泌的多种炎症因子（IFN-γ、IL-4、IL-5、IL-13、IL-31、IL-17、IL-22）在 AD 患者皮肤上"开战"，造成红斑、瘙痒、糜烂。' },
+    { p: '研究证实：贻贝钙肽 CAPCS 能同时降低这 4 类兵种产生的所有炎症因子，抗炎广度与弱效激素地奈德相当。' },
+  ] },
+  { h: '发现 2：贻贝钙肽 CAPCS 调节关键 TLR 信号', blocks: [
+    { p: 'AD 患者皮肤上的 TLR2 和 TLR4 受体表达异常——这是为什么 AD 患者特别容易感染金黄色葡萄球菌的核心原因。贻贝钙肽 CAPCS 能够直接调节这两个受体的表达，纠正 AD 患者特有的免疫异常。' },
+  ] },
+  { h: '发现 3：贻贝钙肽 CAPCS 的"双重杀菌"机制（首次详细阐述）', blocks: [
+    { p: '贻贝钙肽 CAPCS 的杀菌方式很特别，论文中是这样描述的：' },
+    { ol: [
+      '抗菌肽（AMP）在细菌细胞膜上开"通道"',
+      '钙离子通过这些通道快速涌入细菌细胞',
+      '细胞内钙离子浓度急剧升高，代谢系统崩溃',
+      '细胞器泄漏，细菌死亡',
+    ] },
+    { p: '这种"开门 + 涌入"的协同杀菌方式，比单独使用抗菌肽或钙离子的效果更彻底。' },
+  ] },
+  { h: '发现 4：止痒效果显著', blocks: [
+    { p: '用"抓挠次数"来衡量瘙痒——这是动物实验的金标准：' },
+    { list: [
+      '模型组（涂基质）：10 分钟抓挠 33 次',
+      '贻贝钙肽 CAPCS 组：10 分钟抓挠 0.67 次（几乎完全消除）',
+      '地奈德激素组：10 分钟抓挠 0 次',
+    ] },
+  ] },
+  { h: '贻贝钙肽 CAPCS 的安全性证据', blocks: [
+    { p: '论文中也详细披露了 CAPCS 的多项毒理学测试结果——全部为阴性：' },
+    { checks: [
+      '染色体畸变测试 — 无',
+      '体外细胞毒性 — 无',
+      '小鼠急性系统毒性 — 无',
+      '大鼠亚急性系统毒性 — 无',
+      '豚鼠皮肤致敏 — 无',
+      '兔皮下与皮内反应 — 无',
+    ] },
+    { p: '结论：贻贝钙肽 CAPCS 在正常皮肤上未观察到任何副作用。' },
+  ] },
+];
+
+// ── 模块 5：4 项支撑临床证据（逐字，来自项目文档，不改写文字内容）──
+const clinicalCards = [
+  {
+    slug: 'adult-ad', color: '#3a6ea5', org: '北京友谊医院', year: '2022',
+    title: '凯普斯泰冷敷凝胶治疗成人轻中度特应性皮炎的随机双盲对照研究',
+    special: [
+      '这是凯普斯泰（贻贝钙肽 CAPCS）中唯一一项直接对比激素的"头对头"研究——80 例成人轻中度 AD 患者，随机分为两组，一组用凯普斯泰冷敷凝胶，另一组用氢化可的松乳膏（弱效激素）。',
+      '同时，本研究已在中国临床试验注册中心正式注册（注册号：ChiCTR2000030216），方案对全球公开，证据透明度极高。',
+    ],
+    resultLabel: '关键结果（4 周后）',
+    results: [
+      '凯普斯泰（贻贝钙肽 CAPCS）组有效率：82.5%',
+      '氢化可的松组有效率：57.5%',
+      '两组安全性均"零药物相关不良反应"',
+    ],
+    meaning: '凯普斯泰（贻贝钙肽 CAPCS）单药使用 4 周后，效果显著优于经典的弱效激素，且止痒效果从第 1 周起就明显领先（瘙痒下降幅度是激素组的 2.7 倍）。',
+    paper: '中华皮肤科杂志 2022, 55(4): 345-348（开放获取）　DOI：10.35541/cjd.20210342',
+    paperUrl: 'http://www.pifukezazhi.com/CN/10.35541/cjd.20210342',
+  },
+  {
+    slug: 'pediatric-ad', color: '#e07a3f', org: '四川大学华西医院', year: '2021',
+    title: '凯普斯泰冷敷凝胶联合地奈德乳膏治疗儿童特应性皮炎的随机双盲对照研究',
+    special: [
+      '60 例 2–12 岁儿童特应性皮炎患儿，研究的核心问题是：如果给孩子用激素后联用凯普斯泰（贻贝钙肽 CAPCS），能不能减少激素的总用量、同时保证疗效？',
+      '答案是肯定的。',
+    ],
+    resultLabel: '关键结果（2 周后）',
+    results: [
+      '联合用药组有效率：42.9%（28 例中 12 例有效）',
+      '单用激素组有效率：7.1%',
+      '瘙痒评分从 6.21 降至 1.57（激素组从 5.61 升到 5.86）',
+      '仅 1 例轻度局部刺激，与对照组完全一致',
+    ],
+    meaning: '对家长来说最实用的信息：用了 3 天激素后，可以转为单独使用凯普斯泰（贻贝钙肽 CAPCS），疗效持续累积，避免了长期激素的副作用。',
+    paper: '中华皮肤科杂志 2021, 54(11): 1010-1014　DOI：10.35541/cjd.20201042',
+    paperUrl: 'https://doi.org/10.35541/cjd.20201042',
+  },
+  {
+    slug: 'scalp-seborrheic', color: '#7b5ea7', org: '中日友好医院', year: '2021',
+    title: '钙基抗菌多肽复合物凝胶治疗头皮脂溢性皮炎的疗效观察',
+    special: [
+      '这是首项证明贻贝钙肽 CAPCS 对头皮真菌有效的研究——头皮脂溢性皮炎与糠秕马拉色菌（Malassezia furfur）过度增殖密切相关。这项研究既做了体外抑菌实验，也做了 60 例患者临床研究。',
+    ],
+    resultLabel: '关键结果',
+    results: [
+      '对糠秕马拉色菌最低抑菌浓度（MIC）：0.3 mg/ml（明确抑菌活性）',
+      '临床有效率：85.18%（基质对照组 52.17%）',
+      '真菌镜检阴转率：66.67%（对照组 17.19%）',
+      '零不良反应',
+    ],
+    meaning: '对于困扰很多人的头皮屑多、头皮油、头皮痒、脂溢性脱发等问题，凯普斯泰提供了一个不含抗真菌药物、不刺激头皮的安全选择。',
+    paper: '中国现代医学杂志 2021, 31(23): 96-100　DOI：10.3969/j.issn.1005-8982.2021.23.017',
+    paperUrl: 'https://doi.org/10.3969/j.issn.1005-8982.2021.23.017',
+  },
+  {
+    slug: 'pediatric-acute', color: '#c0392b', org: '北京中医医院延庆医院', year: '2024',
+    title: '凯普斯泰联合丁酸氢化可的松治疗特应性皮炎的疗效观察',
+    special: [
+      '这是凯普斯泰（贻贝钙肽 CAPCS）水贴剂型（贻贝速修全域贴）的首项临床研究。当孩子 AD 急性期出现大量渗出、糜烂时，单纯涂膏不行，需要"湿包疗法"——这正是中国《特应性皮炎诊疗指南》推荐的方法。',
+      '60 例 2–12 岁急性期 AD 患儿，分 3 组对比：凯普斯泰水贴 vs 硼酸冷敷贴 vs 蒸馏水冷敷贴（均联合中效激素丁酸氢化可的松）。',
+    ],
+    resultLabel: '关键结果（9 天后）',
+    results: [
+      '凯普斯泰水贴（贻贝钙肽）组总有效率：100%',
+      '硼酸冷敷贴组：73.7%',
+      '蒸馏水冷敷贴组：68.7%',
+      '不良反应：凯普斯泰组 0%，硼酸组 10.5%，蒸馏水组 18.8%',
+    ],
+    meaning: '对于面临 AD 急性大爆发的儿童家长，凯普斯泰水贴剂型提供了一种符合医学指南、起效快速、刺激更低的湿敷选择。',
+    paper: '中文科技期刊数据库（全文版）医药卫生：60-63',
+    paperUrl: '',
+  },
+];
+const closeLoop = {
+  h: '4 项研究 + 1 项旗舰 + 1 项机理 = 完整闭环',
+  intro: '这 6 项研究形成了一个完整的证据闭环：',
+  items: [
+    { k: '机理（华西机理研究）', v: '回答"为什么有效"' },
+    { k: '临床（其他 5 项）', v: '回答"对真实患者有效"' },
+    { k: '儿童（华西儿童 AD + 北京中医）', v: '覆盖儿童群体' },
+    { k: '成人（北京友谊 + 上海多中心）', v: '覆盖成人群体' },
+    { k: '头部（中日友好）', v: '覆盖特殊部位' },
+    { k: '不同剂型', v: '凝胶、水贴、身体乳全覆盖' },
+    { k: '不同病程', v: '急性、亚急性、慢性、维持期全覆盖' },
+  ],
+};
+
+// ── 模块 6：核心成分 CAPCS（逐字，来自项目文档）──
+const capcsIntro = [
+  '您可能已经注意到了——上面 6 项研究里，反复出现一个英文缩写：CAPCS。',
+  '它的全称是 Calcium-based Antimicrobial Peptide Compounds（钙基抗菌多肽复合物），又称贻贝钙肽，是海得宝所有产品的核心成分，也是研究人员关注的焦点。',
+];
+const capcsSource = [
+  { t: '活性钙', d: '经过物理化和纳米化处理，得到含碳酸钙多孔体的纳米体，提供生物可吸收的钙离子' },
+  { t: '多肽', d: '天然生物体抵御外界感染时产生的小分子蛋白片段，是人体免疫系统的"第二防线"' },
+];
+// 4 个作用通路（逐字，来自项目文档表格：作用 / 通俗解释 / 科学机制）
+const capcsPathways = [
+  { icon: 'shell', t: '修屏障', plain: '让皮肤恢复"防水墙"功能', mech: '表皮钙离子梯度调节角质形成细胞分化' },
+  { icon: 'verified', t: '抗炎', plain: '让发红、肿胀消下去', mech: '抑制 Th1/Th2/Th17/Th22 多通路炎症因子' },
+  { icon: 'microscope', t: '抑菌', plain: '不让坏菌（金葡菌、马拉色菌）繁殖', mech: 'AMP 开"通道"+ 钙离子涌入"致死"' },
+  { icon: 'molecule', t: '止痒', plain: '让神经不再"乱叫"', mech: '钙离子调节 G 蛋白偶联受体 + AMP 诱导信号素 3A' },
+];
+const capcsNone = ['激素', '抗生素', '防腐剂', '香精', '色素'];
+
+// 决策场景（模块 7）— 逐字，来自项目文档
+const scenarios = [
+  {
+    title: '场景 1：我家宝宝（2 岁以上）有湿疹/特应性皮炎',
+    refs: '四川大学华西医院儿童 AD 研究（2021）+ 北京中医医院延庆医院儿童急性期 AD 研究（2024）',
+    answer: '可以。两项针对 2–12 岁儿童的临床研究都证实了 CAPCS 系列在儿童中的安全性和有效性。',
+    rows: [
+      { label: '建议剂型', list: ['平时管理 → 凯普斯泰水凝胶/速修精华液', '急性渗出期 → 凯普斯泰速修全域贴 + 配合医生开的弱效/中效激素'] },
+    ],
+    notice: '2 岁以下婴幼儿、对钙制剂过敏者请先咨询儿科或皮肤科医生。',
+    studies: ['pediatric-ad', 'pediatric-acute'],
+  },
+  {
+    title: '场景 2：我是成人，有轻度特应性皮炎/湿疹',
+    refs: '北京友谊医院成人 AD 研究（2022）+ 上海多中心 HBL 研究（2026）',
+    answer: '可以。两项针对成人的研究证实了显著疗效。',
+    rows: [
+      { label: '建议剂型', list: ['局部皮损治疗 → 凯普斯泰冷敷凝胶', '大面积日常管理 → 海得宝身体乳（大白管特护霜）'] },
+      { label: '核心数据', text: '4 周后约 65%–82% 患者达到 EASI50 改善。' },
+    ],
+    studies: ['adult-ad', 'multicenter-rct'],
+  },
+  {
+    title: '场景 3：我头皮油、头皮痒、头皮屑多',
+    refs: '中日友好医院头皮脂溢性皮炎研究（2021）',
+    answer: '可以。研究证实凯普斯泰对引起头皮脂溢性皮炎的糠秕马拉色菌有抑制作用。',
+    rows: [
+      { label: '核心数据', text: '4 周后 85.18% 患者有效，真菌镜检阴转率 66.67%。' },
+      { label: '建议', text: '直接涂抹于头皮患处，每日 3 次。' },
+    ],
+    studies: ['scalp-seborrheic'],
+  },
+  {
+    title: '场景 4：我有湿疹，但担心长期用激素的副作用',
+    refs: '北京友谊医院头对头研究（2022）',
+    answer: '海得宝是经过临床验证的非激素方案。在成人轻中度 AD 患者中，单药使用 4 周后疗效优于弱效激素氢化可的松。',
+    rows: [
+      { label: '特别适合', list: ['不愿长期用激素的患者', '面部、皮肤褶皱部位使用', '维持期长期管理', '对激素不耐受的人群'] },
+    ],
+    studies: ['adult-ad'],
+  },
+  {
+    title: '场景 5：我家孩子 AD 急性大爆发，渗出、糜烂',
+    refs: '北京中医医院延庆医院儿童急性期 AD 研究（2024）',
+    answer: '建议采用湿包疗法——这是中国《特应性皮炎诊疗指南》推荐的方法。凯普斯泰速修全域贴是首选湿敷材料。',
+    rows: [
+      { label: '核心数据', text: '9 天有效率 100%。' },
+      { label: '使用方式', text: '先湿敷速修全域贴 15–20 分钟，再涂抹医生开的弱效激素（如丁酸氢化可的松）。' },
+    ],
+    notice: '急性期严重渗出请先咨询皮肤科医生制定方案。',
+    studies: ['pediatric-acute'],
+  },
+  {
+    title: '场景 6：我皮肤敏感，但没有诊断 AD',
+    answer: '海得宝贻贝钙肽 CAPCS 系列产品配方温和（无激素、无抗生素、无防腐剂、无香精），临床研究中安全性表现优异（多项研究中不良反应率 0%–1%）。',
+    rows: [
+      { label: '建议', text: '可作为敏感肌日常修护产品使用，首次使用建议先在耳后或手腕内侧做小范围测试 24 小时。' },
+    ],
+    studies: [],
+  },
+];
+
+// JSON-LD：聚合 6 项研究 + 主页 FAQ
+const articleList = STUDIES.map((s, i) => ({
+  '@type': 'ListItem',
+  position: i + 1,
+  url: `${'https://www.martempo.com.cn'}/evidence-center/${s.slug}`,
+  name: s.cardTitle,
+}));
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: EVIDENCE_META.title,
+  description: EVIDENCE_META.description,
+  url: 'https://www.martempo.com.cn/evidence-center',
+  mainEntity: { '@type': 'ItemList', itemListElement: articleList },
+};
+---
+
+<BaseLayout title={EVIDENCE_META.title} description={EVIDENCE_META.description}>
+  <Nav />
+  <main class="ev">
+    <!-- ── 模块 1：Hero ── -->
+    <section class="ev-hero">
+      <div class="ev-wrap">
+        <span class="ev-eyebrow">海得宝循证证据中心</span>
+        <h1 class="ev-hero-title">当您为反复发作的皮肤问题焦虑时，<br />请先看看医生们怎么说</h1>
+        <div class="ev-hero-lead">
+          <p>在过去 5 年里，<strong>14 家三甲医院</strong>为海得宝的核心成分做了 <strong>6 项临床与机理研究</strong>，<strong>2 项已发表于国际 SCI 期刊</strong>并被全球医学数据库 PubMed 收录。</p>
+          <p>我们把这些研究整理在这里，不是为了说"我们最好"，而是为了让您在做决定之前，能看到真实的、可验证的、可以追溯到原始论文的证据。</p>
+        </div>
+        <div class="ev-badges">
+          {EVIDENCE_META.badges.map((b) => (
+            <div class="ev-badge">
+              <EvIcon name={b.icon} size={22} class="ev-badge-icon" />
+              <span class="ev-badge-value">{b.value}</span>
+              <span class="ev-badge-label">{b.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- 发表与收录 logo 带 -->
+        <div class="ev-publogos">
+          <span class="ev-publogos-label">研究发表于国际 SCI 期刊，并被 PubMed / MEDLINE 收录</span>
+          <div class="ev-publogos-row">
+            <span class="ev-publogo"><img src="/assets/pubmed-logo.png" alt="PubMed" /></span>
+            <span class="ev-publogo ev-publogo-wm">Wiley</span>
+            <span class="ev-publogo ev-publogo-wm small">Journal of Cosmetic Dermatology</span>
+            <span class="ev-publogo"><img src="/assets/mdpi-logo.svg" alt="MDPI" /></span>
+            <span class="ev-publogo"><img class="ev-publogo-ijms" src="/assets/ijms-logo.png" alt="International Journal of Molecular Sciences" /></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 模块 2：证据全景 ── -->
+    <section class="ev-section">
+      <div class="ev-wrap">
+        <header class="ev-head reveal reveal-rise">
+          <h2 class="ev-h2">6 项研究，回答 3 个核心问题</h2>
+          <p class="ev-sub">我们的循证证据体系，不是零散地证明"某一次有效"，而是系统地回答 3 个问题。</p>
+        </header>
+
+        <div class="ev-q3 reveal reveal-rise">
+          <div class="ev-q3-item">
+            <span class="ev-q3-no"><EvIcon name="microscope" size={20} />问题一</span>
+            <h3>为什么有效？</h3>
+            <p>2022 年发表于国际 SCI 期刊《International Journal of Molecular Sciences》（影响因子 6.208，PubMed 收录）的分子机理研究，国际首次系统阐明了海得宝核心成分贻贝钙肽CAPCS（钙基抗菌多肽复合物）如何在分子层面治疗特应性皮炎（AD/湿疹）——通过调节 Th1/Th2/Th17/Th22 四大免疫通路、抑制 TLR2/TLR4 信号、修复皮肤屏障。</p>
+          </div>
+          <div class="ev-q3-item">
+            <span class="ev-q3-no"><EvIcon name="hospital" size={20} />问题二</span>
+            <h3>对真实患者有效吗？</h3>
+            <p>5 项临床研究覆盖了从 2 岁儿童到 75 岁老年、从急性渗出期到慢性稳定期、从头皮到全身的各种使用场景，均显示出确切的疗效与良好的安全性。</p>
+          </div>
+          <div class="ev-q3-item">
+            <span class="ev-q3-no"><EvIcon name="globe" size={20} />问题三</span>
+            <h3>经得起国际同行评议吗？</h3>
+            <p>2 项研究发表于国际 SCI 期刊，被全球医学数据库 PubMed 收录，全球研究者可免费下载全文（CC BY 4.0 开放获取协议）。其中 2026 年发表的全国 10 家三甲医院多中心 RCT 是国内同类品类罕有的高规格研究。</p>
+          </div>
+        </div>
+
+        <!-- 矩阵：横向 6 列（6 研究）× 纵向 5 行（关键维度），单元格用图标/彩色标记 -->
+        <div class="ev-matrix-wrap reveal reveal-rise">
+          <table class="ev-matrix">
+            <thead>
+              <tr>
+                <th class="ev-matrix-corner">{MATRIX.cornerLabel}</th>
+                {MATRIX.columns.map((c) => (
+                  <th><a href={`/evidence-center/${c.slug}`}>{c.short}</a></th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {MATRIX.rows.map((row) => (
+                <tr>
+                  <th scope="row">{row.label}</th>
+                  {row.cells.map((cell, ci) => (
+                    <td>{row.sci && row.sci[ci] && <EvIcon name="globe" size={13} class="ev-matrix-sci" />}{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 中国地图 -->
+        <div class="ev-mapblock reveal reveal-rise">
+          <h3 class="ev-map-title">14 家三甲医院 · 全国东西南北中覆盖</h3>
+          <EvidenceMap />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 模块 3：旗舰研究 ── -->
+    <section class="ev-section ev-flagship-section">
+      <div class="ev-wrap">
+        <div class="ev-flagship reveal reveal-rise">
+          <div class="ev-flag-head">
+            <figure class="ev-flag-cover">
+              <img src="/assets/flagship-journal-cover.jpg" alt="Journal of Cosmetic Dermatology 期刊封面" width="1794" height="2359" loading="lazy" />
+              <figcaption>Journal of Cosmetic Dermatology<br />2026 · 发表期刊封面</figcaption>
+            </figure>
+            <div class="ev-flag-headtext">
+              <span class="ev-flag-tag">旗舰研究</span>
+              <h2 class="ev-flag-title">{rct.cardTitle}</h2>
+              <p class="ev-flag-meta">{rct.hospital}　|　{rct.journal}（{rct.journalNote}）</p>
+            </div>
+          </div>
+
+          <div class="ev-statrow">
+            {rct.keyStats.map((s) => (
+              <div class="ev-stat">
+                <span class="ev-stat-v">{s.value}</span>
+                <span class="ev-stat-l">{s.label}</span>
+                {s.sub && <span class="ev-stat-sub">{s.sub}</span>}
+              </div>
+            ))}
+          </div>
+
+          <!-- 这项研究做了什么 -->
+          <div class="ev-flag-sec">
+            <h3>{flagIntro.h}</h3>
+            {flagIntro.blocks.map((bl) => (
+              bl.p ? <p>{bl.p}</p> :
+              bl.list ? <ul class="ev-flag-list">{bl.list.map((li) => <li>{li}</li>)}</ul> : null
+            ))}
+          </div>
+
+          <!-- 研究结果 + 柱状图（进入视口时生长） -->
+          <div class="ev-flag-sec">
+            <h3>研究结果说明了什么？</h3>
+            <div class="ev-chart" data-chart>
+              <div class="ev-chart-head">
+                <span class="ev-chart-title">{chart.title}</span>
+                <div class="ev-chart-legend">
+                  <span><i class="lg-a"></i>{chart.legendA}</span>
+                  <span><i class="lg-b"></i>{chart.legendB}</span>
+                </div>
+              </div>
+              {chart.groups.map((g) => {
+                const max = g.scale || 100;
+                return (
+                  <div class="ev-bargroup">
+                    <span class="ev-bar-label">{g.label}</span>
+                    <div class="ev-bars">
+                      <div class="ev-bar-track">
+                        <div class="ev-bar a" style={`--target:${(g.a / max) * 100}%`}><span>{g.a}{g.suffix}</span></div>
+                      </div>
+                      <div class="ev-bar-track">
+                        <div class="ev-bar b" style={`--target:${(g.b / max) * 100}%`}><span>{g.b}{g.suffix}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <!-- 4 项指标 -->
+          {flagFindings.map((sec) => (
+            <div class="ev-flag-sec">
+              <h3>{sec.h}</h3>
+              {sec.blocks.map((bl) => (
+                bl.p ? <p>{bl.p}</p> :
+                bl.list ? <ul class="ev-flag-list">{bl.list.map((li) => <li>{li}</li>)}</ul> : null
+              ))}
+            </div>
+          ))}
+
+          <!-- 特别意义 -->
+          <div class="ev-flag-sec">
+            <h3>{flagMeaning.h}</h3>
+            {flagMeaning.blocks.map((bl) => (
+              bl.p ? <p>{bl.p}</p> :
+              bl.list ? <ul class="ev-flag-list">{bl.list.map((li) => <li>{li}</li>)}</ul> : null
+            ))}
+          </div>
+
+          <!-- 论文获取 -->
+          <div class="ev-flag-sec">
+            <h3>论文获取</h3>
+            <ul class="ev-flag-list">
+              <li>期刊：Journal of Cosmetic Dermatology（Wiley 出版）</li>
+              <li>DOI：10.1111/jocd.70978</li>
+              <li>全文链接：<a href="https://doi.org/10.1111/jocd.70978" target="_blank" rel="noopener">https://doi.org/10.1111/jocd.70978</a>（开放获取，任何人可免费下载）</li>
+              <li>配套研究方案：JMIR Research Protocols 2025;14:e71255</li>
+            </ul>
+          </div>
+
+          <a href={`/evidence-center/${rct.slug}`} class="ev-cta-btn">查看完整逐字报道<i>→</i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 模块 4：机理基石 ── -->
+    <section class="ev-mechanism">
+      <div class="ev-wrap">
+        <header class="ev-mech-header reveal reveal-rise">
+          <span class="ev-flag-tag dark">机理基石</span>
+          <h2 class="ev-h2 light">不只是"有效"，而是"为什么有效"</h2>
+          <p class="ev-mech-sub">{mechSub}</p>
+          <div class="ev-mech-intro">
+            {mechIntro.map((para) => <p>{para}</p>)}
+          </div>
+          <div class="ev-mech-logos">
+            <span class="ev-mech-logo"><img src="/assets/pubmed-logo.png" alt="PubMed 收录" /></span>
+            <span class="ev-mech-logo"><img src="/assets/mdpi-logo.svg" alt="MDPI 出版" /></span>
+            <span class="ev-mech-logo-text">PubMed / MEDLINE 收录 · MDPI 出版 · CC BY 4.0 开放获取</span>
+          </div>
+        </header>
+
+        <div class="ev-mech-diagram reveal reveal-rise">
+          <MechanismDiagram />
+        </div>
+
+        <div class="ev-mech-body reveal reveal-rise">
+          {mechFindings.map((sec) => (
+            <div class="ev-mech-sec">
+              <h3>{sec.h}</h3>
+              {sec.blocks.map((bl) => (
+                bl.p ? <p>{bl.p}</p> :
+                bl.list ? <ul class="ev-mech-ul">{bl.list.map((li) => <li>{li}</li>)}</ul> :
+                bl.ol ? <ol class="ev-mech-ol">{bl.ol.map((li) => <li>{li}</li>)}</ol> :
+                bl.checks ? (
+                  <ul class="ev-mech-checks">
+                    {bl.checks.map((c) => <li><EvIcon name="verified" size={17} class="ev-mech-check-icon" />{c}</li>)}
+                  </ul>
+                ) : null
+              ))}
+            </div>
+          ))}
+
+          <!-- 论文获取 -->
+          <div class="ev-mech-sec">
+            <h3>论文获取</h3>
+            <ul class="ev-mech-ul">
+              <li>期刊：International Journal of Molecular Sciences（IF 6.208）</li>
+              <li>DOI：10.3390/ijms231911371</li>
+              <li>PubMed 收录 + 开放获取（CC BY 4.0）</li>
+              <li>全文链接：<a href="https://doi.org/10.3390/ijms231911371" target="_blank" rel="noopener">https://doi.org/10.3390/ijms231911371</a></li>
+            </ul>
+          </div>
+
+          <a href={`/evidence-center/${sci.slug}`} class="ev-cta-btn light ev-mech-cta">查看完整机理研究<i>→</i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 模块 5：4 项支撑临床证据 ── -->
+    <section class="ev-section" id="clinical-evidence">
+      <div class="ev-wrap">
+        <header class="ev-head reveal reveal-rise">
+          <h2 class="ev-h2">4 项支撑临床证据 · 全人群 / 全病程覆盖</h2>
+          <p class="ev-sub">除了 2026 年的旗舰研究和 2022 年的机理研究外，还有 4 项核心临床研究，分别在不同患者群体中验证了海得宝核心成分的疗效与安全性。</p>
+        </header>
+        <div class="ev-clinic-grid">
+          {clinicalCards.map((c) => (
+            <article class="ev-clinic-card reveal reveal-rise" style={`--accent:${c.color}`}>
+              <div class="ev-clinic-head">{c.org} · {c.year}</div>
+              <h3 class="ev-clinic-title"><a href={`/evidence-center/${c.slug}`}>{c.title}</a></h3>
+
+              <div class="ev-clinic-block">
+                <p class="ev-clinic-label">这项研究的特别之处</p>
+                {c.special.map((p) => <p>{p}</p>)}
+              </div>
+
+              <div class="ev-clinic-block">
+                <p class="ev-clinic-label">{c.resultLabel}</p>
+                <ul class="ev-clinic-list">{c.results.map((r) => <li>{r}</li>)}</ul>
+              </div>
+
+              <div class="ev-clinic-block">
+                <p class="ev-clinic-label">这意味着什么</p>
+                <p>{c.meaning}</p>
+              </div>
+
+              <div class="ev-clinic-paper">
+                <p class="ev-clinic-label">论文</p>
+                <p>{c.paper}</p>
+                {c.paperUrl
+                  ? <a class="ev-clinic-doi" href={c.paperUrl} target="_blank" rel="noopener">立即阅读全文<EvIcon name="arrow" size={15} /></a>
+                  : <a class="ev-clinic-doi" href={`/evidence-center/${c.slug}`}>查看完整研究<EvIcon name="arrow" size={15} /></a>}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- 收尾：完整证据闭环 -->
+        <div class="ev-closeloop reveal reveal-rise">
+          <h3 class="ev-closeloop-h">{closeLoop.h}</h3>
+          <p class="ev-closeloop-intro">{closeLoop.intro}</p>
+          <ul class="ev-closeloop-list">
+            {closeLoop.items.map((it) => (
+              <li><strong>{it.k}：</strong>{it.v}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 模块 6：核心成分 CAPCS ── -->
+    <section class="ev-section ev-capcs">
+      <div class="ev-wrap">
+        <header class="ev-head reveal reveal-rise">
+          <h2 class="ev-h2">把 6 项研究都串起来的，是一种叫贻贝钙肽 CAPCS 的成分</h2>
+          <div class="ev-capcs-intro">
+            {capcsIntro.map((p) => <p>{p}</p>)}
+          </div>
+        </header>
+
+        <div class="ev-capcs-blocks">
+          <!-- 来自哪里 -->
+          <div class="ev-capcs-block reveal reveal-rise">
+            <h3 class="ev-capcs-h"><span class="ev-ic-brand"><EvIcon name="shell" size={22} /></span>贻贝钙肽 CAPCS 来自哪里？</h3>
+            <div class="ev-capcs-origin">
+              <figure class="ev-capcs-fig">
+                <img src="/assets/capcs-ingredient-art.png" alt="贻贝钙肽 CAPCS 成分解构示意：海洋贻贝提取活性钙与抗菌肽" width="1107" height="1080" loading="lazy" />
+              </figure>
+              <div class="ev-capcs-origin-text">
+                <p>CAPCS 的原材料来自海洋天然贻贝。</p>
+                <p>研究团队从天然贻贝中提取两种天然成分：</p>
+                <div class="ev-capcs-source">
+                  {capcsSource.map((s, i) => (
+                    <div class="ev-capcs-source-item">
+                      <span class="ev-capcs-source-no">{i + 1}</span>
+                      <div><strong>{s.t}</strong><p>{s.d}</p></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 在皮肤上做了什么 -->
+          <div class="ev-capcs-block reveal reveal-rise">
+            <h3 class="ev-capcs-h"><span class="ev-ic-brand"><EvIcon name="molecule" size={22} /></span>贻贝钙肽 CAPCS 在皮肤上做了什么？</h3>
+            <div class="ev-capcs-paths">
+              {capcsPathways.map((p) => (
+                <div class="ev-capcs-path">
+                  <span class="ev-ic-brand"><EvIcon name={p.icon} size={22} /></span>
+                  <strong>{p.t}</strong>
+                  <span class="ev-capcs-path-plain">{p.plain}</span>
+                  <span class="ev-capcs-path-mech">{p.mech}</span>
+                </div>
+              ))}
+            </div>
+            <p class="ev-capcs-summary">这就是为什么贻贝钙肽 CAPCS 能同时对 AD、脂溢性皮炎、急性渗出皮损、敏感肌护理有效——它不是"一招制敌"，而是"四线作战"，覆盖了皮肤问题的多种根本原因。</p>
+          </div>
+
+          <!-- 没有什么 -->
+          <div class="ev-capcs-block reveal reveal-rise">
+            <h3 class="ev-capcs-h"><span class="ev-ic-brand"><EvIcon name="exclude" size={22} /></span>贻贝钙肽 CAPCS 没有什么？</h3>
+            <p>配方设计上，CAPCS 系列产品不含：</p>
+            <div class="ev-capcs-none">
+              {capcsNone.map((n) => (
+                <span class="ev-capcs-none-item"><span class="ev-ic-mute"><EvIcon name="exclude" size={16} /></span>{n}</span>
+              ))}
+            </div>
+            <p class="ev-capcs-safe">这也是为什么从 2 岁儿童到 75 岁老人都能在临床研究中安全使用。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 模块 7：决策辅助 ── -->
+    <section class="ev-section">
+      <div class="ev-wrap">
+        <header class="ev-head reveal reveal-rise">
+          <h2 class="ev-h2">我属于哪种情况？海得宝适合我吗？</h2>
+          <p class="ev-sub">与其让您从头读完所有研究，不如直接告诉您：根据您的情况，海得宝对您可能有多大帮助。下面 6 个常见场景，请对号入座。</p>
+        </header>
+        <div class="ev-scenarios">
+          {scenarios.map((sc) => (
+            <details class="ev-scenario reveal reveal-rise">
+              <summary>{sc.title}</summary>
+              <div class="ev-sc-body">
+                <p class="ev-sc-answer">{sc.answer}</p>
+                {sc.rows && sc.rows.map((r) => (
+                  <div class="ev-sc-row">
+                    <span class="ev-sc-rowlabel">{r.label}</span>
+                    {r.text && <p>{r.text}</p>}
+                    {r.list && <ul class="ev-sc-list">{r.list.map((li) => <li>{li}</li>)}</ul>}
+                  </div>
+                ))}
+                {sc.notice && <p class="ev-sc-notice"><strong>重要提醒：</strong>{sc.notice}</p>}
+                {sc.studies.length > 0 && (
+                  <div class="ev-sc-links">
+                    {sc.studies.map((sl) => {
+                      const st = getStudy(sl);
+                      return <a href={`/evidence-center/${sl}`}>查看研究：{st.navTitle} →</a>;
+                    })}
+                  </div>
+                )}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 模块 8：CTA ── -->
+    <section class="ev-section ev-ctas">
+      <div class="ev-wrap">
+        <header class="ev-head reveal reveal-rise">
+          <h2 class="ev-h2">接下来您可以做什么？</h2>
+        </header>
+        <div class="ev-cta-grid">
+          <div class="ev-cta-card reveal reveal-rise">
+            <h3><span class="ev-ic-brand"><EvIcon name="document" size={22} /></span>阅读完整论文</h3>
+            <p class="ev-cta-lead">如果您是医生、研究者或希望深入了解的患者——</p>
+            <p>所有论文都在公开期刊上，可以通过 DOI 链接直接访问。其中 3 项研究为开放获取，可免费下载全文：</p>
+            <ul class="ev-doi-list">
+              <li>
+                <a class="ev-doi-link" href="https://doi.org/10.1111/jocd.70978" target="_blank" rel="noopener">2026 旗舰研究（开放获取）<EvIcon name="arrow" size={15} /></a>
+                <span class="ev-doi-num">DOI：10.1111/jocd.70978</span>
+              </li>
+              <li>
+                <a class="ev-doi-link" href="https://doi.org/10.3390/ijms231911371" target="_blank" rel="noopener">2022 机理研究（开放获取）<EvIcon name="arrow" size={15} /></a>
+                <span class="ev-doi-num">DOI：10.3390/ijms231911371</span>
+              </li>
+              <li>
+                <a class="ev-doi-link" href="http://www.pifukezazhi.com/CN/10.35541/cjd.20210342" target="_blank" rel="noopener">2022 成人 AD 研究（开放获取）<EvIcon name="arrow" size={15} /></a>
+                <span class="ev-doi-num">DOI：10.35541/cjd.20210342</span>
+              </li>
+            </ul>
+            <a class="ev-cta-foot" href="#clinical-evidence">查看完整研究清单与全部 DOI 链接<EvIcon name="arrow" size={15} /></a>
+          </div>
+          <div class="ev-cta-card reveal reveal-rise">
+            <h3><span class="ev-ic-brand"><EvIcon name="users" size={22} /></span>加入海得宝用户社群</h3>
+            <p class="ev-cta-lead">如果您正在或考虑使用海得宝产品——</p>
+            <p>您不是一个人在面对皮肤问题。海得宝用户社群里，有：</p>
+            <ul class="ev-doi-list plain">
+              <li>定期开放的皮肤科医生在线答疑</li>
+              <li>真实用户的使用经验和心得分享</li>
+              <li>最新研究进展的第一时间科普推送</li>
+              <li>用户专属福利与产品试用</li>
+            </ul>
+            <div class="ev-qr">
+              <div class="ev-qr-box">社群二维码<br />待放置</div>
+              <div class="ev-qr-meta">
+                <strong>扫码加入用户社群</strong>
+                <span>提供二维码图片后即可替换此处占位</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ev-footer-info">
+          <div class="ev-footer-col">
+            <h4>关于本页面</h4>
+            <ul>
+              <li><strong>页面更新日期</strong>：2026 年</li>
+              <li><strong>维护团队</strong>：海得宝医学事务部</li>
+              <li><strong>内容承诺</strong>：本页所有研究数据均来源于公开发表的同行评议论文，可通过 DOI 链接独立验证。</li>
+              <li><strong>免责声明</strong>：本页面为科普与证据展示用途，不构成医疗建议。具体使用请咨询皮肤科医生。</li>
+            </ul>
+          </div>
+          <div class="ev-footer-col">
+            <h4>不属于本页内容</h4>
+            <p>本页<strong>不包含</strong>：</p>
+            <ul>
+              <li>用户证言或"前后对比图"</li>
+              <li>任何未发表的"内部数据"</li>
+              <li>对竞品的具体点评</li>
+              <li>治愈承诺或绝对化表述</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
+
+  <script>
+    // 内容定制动效：柱状图生长 + 地图标点依次点亮。无 JS / reduced-motion 时内容默认可见。
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && 'IntersectionObserver' in window) {
+      // 1) 柱状图生长
+      document.querySelectorAll('[data-chart]').forEach((chart) => {
+        chart.classList.add('js-grow');
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.3 });
+        io.observe(chart);
+      });
+      // 2) 地图标点依次点亮
+      const map = document.querySelector('.evmap-svg');
+      if (map) {
+        const pins = map.querySelectorAll('.evmap-pin');
+        pins.forEach((p, i) => { p.style.opacity = '0'; p.style.setProperty('--d', i * 70 + 'ms'); });
+        const mio = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              pins.forEach((p) => {
+                p.style.transition = 'opacity .5s ease var(--d), transform .5s var(--d)';
+                p.style.opacity = '1';
+              });
+              mio.disconnect();
+            }
+          });
+        }, { threshold: 0.25 });
+        mio.observe(map);
+      }
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  .ev { background: var(--color-surface); }
+  .ev-wrap { max-width: var(--content-max-width); margin: 0 auto; padding: 0 var(--content-padding); }
+
+  /* Hero */
+  .ev-hero { padding: calc(82px + var(--space-5xl)) 0 var(--space-4xl); background: linear-gradient(180deg, var(--color-bg-cream), var(--color-surface)); }
+  .ev-eyebrow { display: inline-block; font-size: 0.8125rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-brand); font-weight: 600; margin-bottom: var(--space-lg); }
+  .ev-hero-title { font-size: clamp(1.75rem, 1.2rem + 2.6vw, 3rem); font-weight: 300; line-height: 1.3; color: var(--color-text); margin-bottom: var(--space-xl); letter-spacing: 0.01em; }
+  .ev-hero-lead { max-width: 760px; margin-bottom: var(--space-2xl); }
+  .ev-hero-lead p { font-size: 1.0625rem; line-height: 1.85; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-md); }
+  .ev-hero-lead strong { color: var(--color-text); font-weight: 600; }
+  .ev-badges { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--space-sm); }
+  .ev-badge { display: flex; flex-direction: column; align-items: center; text-align: center; padding: var(--space-lg) var(--space-sm); background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-lg); }
+  .ev-badge-icon { color: var(--color-brand-dark); margin-bottom: 10px; }
+  .ev-badge-value { font-size: 1.5rem; font-weight: 600; color: var(--color-brand-dark); line-height: 1; }
+  .ev-badge-label { font-size: 0.75rem; color: var(--color-text-soft); margin-top: 6px; }
+
+  /* 发表与收录 logo 带 */
+  .ev-publogos { margin-top: var(--space-2xl); }
+  .ev-publogos-label { display: block; font-size: 0.8125rem; color: var(--color-text-muted); margin-bottom: var(--space-md); }
+  .ev-publogos-row { display: flex; flex-wrap: wrap; align-items: stretch; gap: var(--space-sm); }
+  .ev-publogo { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 18px; background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius); }
+  .ev-publogo img { height: 24px; width: auto; display: block; }
+  .ev-publogo-ijms { height: 20px; }
+  .ev-publogo-wm { font-weight: 700; font-size: 1rem; letter-spacing: 0.01em; color: var(--color-text); }
+  .ev-publogo-wm.small { max-width: 230px; font-weight: 500; font-size: 0.8125rem; line-height: 1.3; text-align: center; color: var(--color-text-soft); }
+  @media (max-width: 560px) {
+    .ev-publogo { height: 42px; padding: 0 14px; }
+    .ev-publogo-wm.small { max-width: 180px; }
+  }
+
+  /* Sections */
+  .ev-section { padding: var(--space-5xl) 0; }
+  .ev-head { max-width: 760px; margin: 0 auto var(--space-3xl); text-align: center; }
+  .ev-kicker { display: inline-block; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-brand); font-weight: 600; margin-bottom: var(--space-md); }
+  .ev-h2 { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); font-weight: 300; line-height: 1.4; color: var(--color-text); margin-bottom: var(--space-md); }
+  .ev-h2.light { color: #fff; }
+  .ev-sub { font-size: 1rem; line-height: 1.8; color: var(--color-text-soft); font-weight: 300; }
+
+  /* 3 questions */
+  .ev-q3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2xl); margin-bottom: var(--space-4xl); }
+  .ev-q3-item { padding-top: var(--space-lg); border-top: 1px solid var(--color-text); }
+  .ev-q3-no { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8125rem; font-weight: 600; color: var(--color-brand-dark); letter-spacing: 0.04em; }
+  .ev-q3-item h3 { font-size: 1.375rem; font-weight: 400; margin: var(--space-md) 0 var(--space-md); color: var(--color-text); }
+  .ev-q3-item p { font-size: 0.9375rem; line-height: 1.85; color: var(--color-text-soft); font-weight: 300; }
+
+  /* Matrix */
+  .ev-matrix-wrap { overflow-x: auto; margin-bottom: var(--space-4xl); -webkit-overflow-scrolling: touch; }
+  .ev-matrix { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 0.8125rem; }
+  .ev-matrix th, .ev-matrix td { padding: 16px 18px; text-align: center; border: none; border-bottom: 1px solid var(--color-border-light); vertical-align: middle; }
+  .ev-matrix thead th { font-weight: 500; color: var(--color-text); border-bottom: 1.5px solid var(--color-text); }
+  .ev-matrix thead a { display: inline-block; color: var(--color-text); line-height: 1.4; }
+  .ev-matrix thead a:hover { color: var(--color-brand); }
+  .ev-matrix-corner { text-align: left !important; color: var(--color-text-muted) !important; font-weight: 600 !important; }
+  .ev-matrix tbody th { text-align: left; background: transparent; font-weight: 500; color: var(--color-text); white-space: nowrap; }
+  .ev-matrix tbody td { color: var(--color-text-soft); }
+  .ev-matrix tbody tr:last-child th, .ev-matrix tbody tr:last-child td { border-bottom: none; }
+  .ev-matrix-sci { color: var(--color-brand-dark); margin-right: 5px; vertical-align: -2px; }
+
+  .ev-map-title { text-align: center; font-size: 1.25rem; font-weight: 400; color: var(--color-text); margin-bottom: var(--space-xl); }
+
+  /* Flagship */
+  .ev-flagship-section { background: var(--color-bg-cream); }
+  .ev-flagship { background: #fff; border: 1px solid var(--color-border); border-top: 4px solid var(--color-brand); border-radius: var(--radius-lg); padding: var(--space-3xl); }
+  .ev-flag-head { display: flex; gap: var(--space-2xl); align-items: flex-start; margin-bottom: var(--space-2xl); }
+  .ev-flag-cover { flex-shrink: 0; width: 172px; margin: 0; }
+  .ev-flag-cover img { display: block; width: 100%; height: auto; border-radius: var(--radius); box-shadow: 0 10px 28px rgba(31, 122, 140, 0.18); }
+  .ev-flag-cover figcaption { margin-top: 10px; font-size: 0.7rem; line-height: 1.5; color: var(--color-text-muted); text-align: center; }
+  .ev-flag-headtext { flex: 1; min-width: 0; }
+  .ev-flag-headtext .ev-flag-meta { margin-bottom: 0; }
+  @media (max-width: 680px) {
+    .ev-flag-head { flex-direction: column; align-items: center; }
+    .ev-flag-cover { width: 150px; }
+    .ev-flag-headtext { text-align: center; }
+  }
+  .ev-flag-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; color: var(--color-brand-dark); background: var(--color-brand-subtle); padding: 5px 14px; border-radius: var(--radius-pill); margin-bottom: var(--space-lg); }
+  .ev-flag-tag.dark { color: #fff; background: rgba(255,255,255,0.16); }
+  .ev-flag-title { font-size: clamp(1.375rem, 1rem + 1.6vw, 2rem); font-weight: 300; line-height: 1.4; color: var(--color-text); margin-bottom: var(--space-sm); }
+  .ev-flag-meta { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--space-2xl); }
+  .ev-flag-sec { margin-top: var(--space-2xl); }
+  .ev-flag-sec > h3 { font-size: 1.125rem; font-weight: 500; color: var(--color-text); margin-bottom: var(--space-md); padding-left: var(--space-md); border-left: 3px solid var(--color-brand); }
+  .ev-flag-sec p { font-size: 0.9375rem; line-height: 1.85; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-md); }
+  .ev-flag-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-sm); }
+  .ev-flag-list li { position: relative; padding-left: var(--space-lg); font-size: 0.9375rem; line-height: 1.75; color: var(--color-text-soft); font-weight: 300; }
+  .ev-flag-list li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-brand); }
+  .ev-flag-list a { color: var(--color-brand-dark); word-break: break-all; }
+  .ev-flagship > .ev-cta-btn { margin-top: var(--space-2xl); }
+
+  .ev-statrow { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-md); margin-bottom: var(--space-2xl); }
+  .ev-stat { text-align: center; padding: var(--space-lg) var(--space-sm); background: var(--color-bg-light); border-radius: var(--radius); }
+  .ev-stat-v { display: block; font-size: 1.75rem; font-weight: 600; color: var(--color-brand-dark); line-height: 1; }
+  .ev-stat-l { display: block; font-size: 0.8125rem; color: var(--color-text); margin-top: 8px; }
+  .ev-stat-sub { display: block; font-size: 0.7rem; color: var(--color-text-muted); margin-top: 2px; }
+
+  /* Chart */
+  .ev-chart { margin-bottom: var(--space-2xl); }
+  .ev-chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg); }
+  .ev-chart-title { font-size: 0.9375rem; font-weight: 500; color: var(--color-text); }
+  .ev-chart-legend { display: flex; gap: var(--space-lg); font-size: 0.75rem; color: var(--color-text-soft); }
+  .ev-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .ev-chart-legend i { width: 12px; height: 12px; border-radius: 3px; }
+  .lg-a { background: var(--color-brand); }
+  .lg-b { background: var(--color-border); }
+  .ev-bargroup { margin-bottom: var(--space-md); }
+  .ev-bar-label { display: block; font-size: 0.8125rem; color: var(--color-text-soft); margin-bottom: 6px; }
+  .ev-bars { display: flex; flex-direction: column; gap: 6px; }
+  .ev-bar-track { background: var(--color-bg-alt); border-radius: var(--radius-sm); overflow: hidden; }
+  .ev-bar { height: 26px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; border-radius: var(--radius-sm); min-width: 36px; width: var(--target); }
+  .ev-bar span { font-size: 0.75rem; font-weight: 600; color: #fff; }
+  .ev-bar.a { background: var(--color-brand); }
+  .ev-bar.b { background: var(--color-bowu-gray); }
+  .ev-bar.b span { color: var(--color-text); }
+  /* 进入视口时生长（无 JS / reduced-motion 时直接满宽显示） */
+  .ev-chart.js-grow .ev-bar { width: 0; transition: width 1.1s var(--ease-out-expo); }
+  .ev-chart.js-grow.in-view .ev-bar { width: var(--target); }
+
+  /* CTA buttons */
+  .ev-cta-btn { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 var(--space-xl); background: var(--color-text); color: var(--color-surface); border-radius: var(--radius); font-size: 0.875rem; letter-spacing: 0.04em; transition: transform 0.3s ease, background 0.3s ease; }
+  .ev-cta-btn i { font-style: normal; }
+  .ev-cta-btn:hover { transform: scale(1.03); background: var(--color-brand-dark); }
+  .ev-cta-btn.light { background: #fff; color: var(--color-text); }
+
+  /* Mechanism (dark) */
+  .ev-mechanism { padding: var(--space-5xl) 0; background: linear-gradient(135deg, #2b3a67, #1f2a4d); color: #fff; }
+  .ev-mech-header { max-width: 760px; margin: 0 auto var(--space-3xl); }
+  .ev-mech-sub { font-size: 1.0625rem; line-height: 1.6; color: #fff; font-weight: 400; margin: var(--space-md) 0 var(--space-lg); }
+  .ev-mech-intro p { font-size: 0.9375rem; line-height: 1.85; color: rgba(255,255,255,0.74); font-weight: 300; margin-bottom: var(--space-md); }
+  .ev-mech-logos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); margin-top: var(--space-xl); }
+  .ev-mech-logo { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; background: #fff; border-radius: var(--radius-sm); }
+  .ev-mech-logo img { height: 22px; width: auto; display: block; }
+  .ev-mech-logo-text { font-size: 0.8125rem; color: rgba(255,255,255,0.6); }
+  .ev-mech-diagram { max-width: 880px; margin: 0 auto var(--space-3xl); }
+  .ev-mech-body { max-width: 760px; margin: 0 auto; }
+  .ev-mech-sec { margin-top: var(--space-2xl); }
+  .ev-mech-sec > h3 { font-size: 1.125rem; font-weight: 500; color: #fff; margin-bottom: var(--space-md); padding-left: var(--space-md); border-left: 3px solid var(--color-brand); }
+  .ev-mech-sec p { font-size: 0.9375rem; line-height: 1.85; color: rgba(255,255,255,0.78); font-weight: 300; margin-bottom: var(--space-md); }
+  .ev-mech-ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); margin: var(--space-sm) 0 var(--space-md); }
+  .ev-mech-ul li { position: relative; padding-left: var(--space-lg); font-size: 0.9375rem; line-height: 1.75; color: rgba(255,255,255,0.78); font-weight: 300; }
+  .ev-mech-ul li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-brand); }
+  .ev-mech-ul a { color: #fff; text-decoration: underline; text-underline-offset: 3px; word-break: break-all; }
+  .ev-mech-ol { list-style: none; counter-reset: mech; display: flex; flex-direction: column; gap: var(--space-sm); margin: var(--space-sm) 0 var(--space-md); }
+  .ev-mech-ol li { counter-increment: mech; position: relative; padding-left: 2.2em; font-size: 0.9375rem; line-height: 1.75; color: rgba(255,255,255,0.82); font-weight: 300; }
+  .ev-mech-ol li::before { content: counter(mech); position: absolute; left: 0; top: 0.05em; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: #fff; background: var(--color-brand); border-radius: 50%; }
+  .ev-mech-checks { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px var(--space-lg); margin: var(--space-sm) 0 var(--space-md); }
+  .ev-mech-checks li { display: flex; align-items: center; gap: 9px; font-size: 0.9375rem; line-height: 1.5; color: rgba(255,255,255,0.86); font-weight: 300; }
+  .ev-mech-checks :global(.ev-mech-check-icon) { color: var(--color-brand); flex-shrink: 0; }
+  .ev-mech-cta { margin-top: var(--space-2xl); }
+
+  /* 支撑临床证据卡片（2×2，每张按人群配色） */
+  .ev-clinic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-xl); }
+  .ev-clinic-card { display: flex; flex-direction: column; padding: var(--space-2xl); background: #fff; border: 1px solid var(--color-border-light); border-top: 3px solid var(--accent); border-radius: var(--radius-lg); transition: transform 0.4s var(--ease-out-quint), border-color 0.4s ease; }
+  .ev-clinic-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .ev-clinic-head { display: flex; align-items: center; gap: 9px; font-size: 0.8125rem; font-weight: 600; color: var(--accent); margin-bottom: var(--space-sm); }
+  .ev-clinic-head::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .ev-clinic-title { font-size: 1.0625rem; font-weight: 500; line-height: 1.55; color: var(--color-text); margin-bottom: var(--space-md); }
+  .ev-clinic-title a { color: inherit; transition: color 0.2s ease; }
+  .ev-clinic-title a:hover { color: var(--accent); }
+  .ev-clinic-block { margin-top: var(--space-md); }
+  .ev-clinic-label { font-size: 0.8125rem; font-weight: 600; color: var(--color-text); margin-bottom: 6px; }
+  .ev-clinic-card p { font-size: 0.875rem; line-height: 1.8; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-sm); }
+  .ev-clinic-card p:last-child { margin-bottom: 0; }
+  .ev-clinic-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .ev-clinic-list li { position: relative; padding-left: var(--space-md); font-size: 0.875rem; line-height: 1.7; color: var(--color-text-soft); font-weight: 300; }
+  .ev-clinic-list li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+  .ev-clinic-paper { margin-top: auto; padding-top: var(--space-lg); }
+  .ev-clinic-paper > p { font-size: 0.8125rem; color: var(--color-text-muted); line-height: 1.6; }
+  .ev-clinic-doi { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8125rem; font-weight: 500; color: var(--accent); margin-top: 4px; }
+
+  /* 收尾：完整证据闭环 */
+  .ev-closeloop { max-width: 860px; margin: var(--space-3xl) auto 0; padding: var(--space-2xl) var(--space-3xl); background: var(--color-bg-cream); border: 1px solid var(--color-border-light); border-radius: var(--radius-lg); }
+  .ev-closeloop-h { font-size: 1.25rem; font-weight: 500; line-height: 1.5; color: var(--color-text); margin-bottom: var(--space-md); }
+  .ev-closeloop-intro { font-size: 0.9375rem; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-lg); }
+  .ev-closeloop-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); }
+  .ev-closeloop-list li { position: relative; padding-left: var(--space-lg); font-size: 0.9375rem; line-height: 1.7; color: var(--color-text-soft); font-weight: 300; }
+  .ev-closeloop-list li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-brand); }
+  .ev-closeloop-list strong { color: var(--color-text); font-weight: 600; }
+
+  /* CAPCS 核心成分 */
+  .ev-capcs { background: var(--color-bg-cream); }
+  .ev-capcs-intro { max-width: 760px; margin: var(--space-md) auto 0; text-align: left; }
+  .ev-capcs-intro p { font-size: 1rem; line-height: 1.85; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-sm); }
+  .ev-capcs-blocks { display: flex; flex-direction: column; gap: var(--space-xl); max-width: 900px; margin: 0 auto; }
+  .ev-capcs-block { background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-lg); padding: var(--space-2xl); }
+  .ev-ic-brand { color: var(--color-brand-dark); display: inline-flex; align-items: center; }
+  .ev-ic-mute { color: var(--color-text-muted); display: inline-flex; align-items: center; }
+  .ev-capcs-h { display: flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 500; color: var(--color-text); margin-bottom: var(--space-md); }
+  .ev-capcs-block > p { font-size: 0.9375rem; line-height: 1.85; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-sm); }
+  .ev-capcs-block > p.ev-capcs-summary { color: var(--color-text); font-weight: 400; margin-top: var(--space-md); margin-bottom: 0; }
+  .ev-capcs-block > p.ev-capcs-safe { margin-bottom: 0; }
+
+  /* 来源解构图 + 文案 */
+  .ev-capcs-origin { display: grid; grid-template-columns: 260px 1fr; gap: var(--space-2xl); align-items: center; }
+  .ev-capcs-fig { margin: 0; }
+  .ev-capcs-fig img { display: block; width: 100%; height: auto; }
+  .ev-capcs-origin-text > p:first-child { margin-top: 0; }
+  @media (max-width: 720px) {
+    .ev-capcs-origin { grid-template-columns: 1fr; gap: var(--space-lg); }
+    .ev-capcs-fig { max-width: 240px; margin: 0 auto; }
+  }
+
+  /* 来源 2 项 */
+  .ev-capcs-source { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-top: var(--space-md); }
+  .ev-capcs-source-item { display: flex; gap: var(--space-md); padding: var(--space-lg); background: var(--color-bg-cream); border-radius: var(--radius); }
+  .ev-capcs-source-no { flex-shrink: 0; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 600; color: #fff; background: var(--color-brand); border-radius: 50%; }
+  .ev-capcs-source-item strong { display: block; font-size: 1rem; color: var(--color-text); margin-bottom: 4px; }
+  .ev-capcs-source-item p { font-size: 0.875rem; line-height: 1.7; color: var(--color-text-soft); font-weight: 300; }
+
+  /* 4 作用通路 */
+  .ev-capcs-paths { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin: var(--space-md) 0; }
+  .ev-capcs-path { display: flex; flex-direction: column; gap: 6px; padding: var(--space-lg); background: var(--color-bg-cream); border-radius: var(--radius); border-top: 2px solid var(--color-brand); }
+  .ev-capcs-path strong { font-size: 1rem; color: var(--color-text); }
+  .ev-capcs-path-plain { font-size: 0.9375rem; line-height: 1.55; color: var(--color-text); font-weight: 400; }
+  .ev-capcs-path-mech { font-size: 0.75rem; line-height: 1.6; color: var(--color-text-muted); font-weight: 300; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--color-border-light); }
+
+  /* 不含 */
+  .ev-capcs-none { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin: var(--space-sm) 0 var(--space-md); }
+  .ev-capcs-none-item { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; background: var(--color-bg-light); border: 1px solid var(--color-border-light); border-radius: var(--radius-pill); font-size: 0.875rem; color: var(--color-text); }
+
+  /* Scenarios */
+  .ev-scenarios { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-sm); }
+  .ev-scenario { border: 1px solid var(--color-border-light); border-radius: var(--radius); background: #fff; overflow: hidden; }
+  .ev-scenario summary { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); font-size: 1rem; font-weight: 500; color: var(--color-text); cursor: pointer; list-style: none; }
+  .ev-scenario summary::-webkit-details-marker { display: none; }
+  .ev-scenario summary::after { content: '+'; margin-left: auto; font-size: 1.3rem; color: var(--color-text-muted); }
+  .ev-scenario[open] summary::after { content: '−'; color: var(--color-brand); }
+  .ev-sc-body { padding: 0 var(--space-lg) var(--space-lg); }
+  .ev-sc-body p { font-size: 0.875rem; line-height: 1.8; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-sm); }
+  .ev-sc-body p:last-child { margin-bottom: 0; }
+  .ev-sc-answer strong, .ev-sc-refs strong, .ev-sc-notice strong { color: var(--color-text); font-weight: 600; }
+  .ev-sc-body p.ev-sc-refs { font-size: 0.8125rem; color: var(--color-text-muted); }
+  .ev-sc-row { margin: var(--space-sm) 0; }
+  .ev-sc-rowlabel { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; color: var(--color-brand-dark); margin-bottom: 5px; }
+  .ev-sc-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .ev-sc-list li { position: relative; padding-left: var(--space-md); font-size: 0.875rem; line-height: 1.7; color: var(--color-text-soft); font-weight: 300; }
+  .ev-sc-list li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--color-brand); }
+  .ev-sc-body p.ev-sc-notice { font-size: 0.8125rem; color: var(--color-text-soft); background: var(--color-bg-cream); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: var(--space-md); }
+  .ev-sc-links { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--color-border-light); }
+  .ev-sc-links a { font-size: 0.8125rem; color: var(--color-brand-dark); font-weight: 500; }
+
+  /* CTA section */
+  .ev-ctas { background: var(--color-bg-cream); }
+  .ev-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); margin-bottom: var(--space-2xl); }
+  .ev-cta-card { display: flex; flex-direction: column; padding: var(--space-2xl); background: #fff; border-radius: var(--radius-lg); }
+  .ev-cta-card h3 { display: flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 500; margin-bottom: var(--space-sm); color: var(--color-text); }
+  .ev-cta-card p { font-size: 0.9375rem; line-height: 1.8; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-lg); }
+  .ev-cta-card p.ev-cta-lead { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--space-sm); }
+  .ev-doi-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-md); }
+  .ev-doi-list li { display: flex; flex-direction: column; gap: 2px; }
+  .ev-doi-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; color: var(--color-brand-dark); font-weight: 500; }
+  .ev-doi-num { font-size: 0.75rem; color: var(--color-text-muted); }
+  .ev-doi-list.plain li { display: list-item; position: relative; padding-left: var(--space-md); font-size: 0.875rem; color: var(--color-text-soft); }
+  .ev-doi-list.plain li::before { content: ''; position: absolute; left: 0; top: 0.7em; width: 5px; height: 5px; border-radius: 50%; background: var(--color-brand); }
+  .ev-cta-foot { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid var(--color-border-light); font-size: 0.875rem; font-weight: 600; color: var(--color-text); }
+  .ev-cta-foot:hover { color: var(--color-brand-dark); }
+  /* 社群二维码占位 */
+  .ev-qr { display: flex; align-items: center; gap: var(--space-lg); margin-top: auto; padding-top: var(--space-lg); }
+  .ev-qr-box { flex-shrink: 0; width: 96px; height: 96px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 0.75rem; line-height: 1.5; color: var(--color-text-muted); background: var(--color-bg-cream); border: 1px dashed var(--color-border); border-radius: var(--radius); }
+  .ev-qr-meta { display: flex; flex-direction: column; gap: 4px; }
+  .ev-qr-meta strong { font-size: 0.9375rem; color: var(--color-text); font-weight: 600; }
+  .ev-qr-meta span { font-size: 0.8125rem; color: var(--color-text-muted); font-weight: 300; line-height: 1.5; }
+  .ev-footer-info { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-2xl); max-width: 900px; margin: 0 auto; padding-top: var(--space-xl); border-top: 1px solid var(--color-border-light); }
+  .ev-footer-col h4 { font-size: 0.9375rem; font-weight: 600; color: var(--color-text); margin-bottom: var(--space-md); }
+  .ev-footer-col p { font-size: 0.8125rem; color: var(--color-text-soft); margin-bottom: var(--space-sm); }
+  .ev-footer-col ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); }
+  .ev-footer-col li { font-size: 0.8125rem; line-height: 1.7; color: var(--color-text-soft); }
+  .ev-footer-col strong { color: var(--color-text); font-weight: 600; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .ev-q3 { grid-template-columns: 1fr; }
+    .ev-clinic-grid, .ev-cta-grid, .ev-footer-info { grid-template-columns: 1fr; }
+    .ev-capcs-paths { grid-template-columns: repeat(2, 1fr); }
+    .ev-badges { grid-template-columns: repeat(3, 1fr); }
+    .ev-statrow { grid-template-columns: repeat(2, 1fr); }
+    .ev-closeloop { padding: var(--space-xl); }
+  }
+  @media (max-width: 560px) {
+    .ev-mech-checks, .ev-capcs-source, .ev-capcs-paths { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .ev-badges { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

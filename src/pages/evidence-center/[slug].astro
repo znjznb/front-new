@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { STUDIES, getStudy } from '../../data/evidence.js';
+import { REPORTS } from '../../data/evidence-reports.js';
+
+export function getStaticPaths() {
+  return STUDIES.map((s) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params;
+const study = getStudy(slug);
+const report = REPORTS[slug]; // 逐字全文（已转写的报道）
+const others = STUDIES.filter((s) => s.slug !== slug).slice(0, 3);
+const chart = study.chart;
+
+// JSON-LD：MedicalScholarlyArticle + FAQPage
+const site = 'https://www.martempo.com.cn';
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalScholarlyArticle',
+  headline: study.cardTitle,
+  name: study.metaTitle,
+  description: study.metaDesc,
+  inLanguage: 'zh-CN',
+  datePublished: study.year,
+  url: `${site}/evidence-center/${study.slug}`,
+  ...(study.openAccess ? { isAccessibleForFree: true } : {}),
+  author: { '@type': 'Organization', name: study.hospital },
+  publisher: { '@type': 'Organization', name: study.journal },
+  isPartOf: { '@type': 'Periodical', name: study.journal },
+  studyDesign: study.design,
+  ...(study.doi ? { identifier: { '@type': 'PropertyValue', propertyID: 'DOI', value: study.doi } } : {}),
+  ...(study.doiUrl ? { sameAs: study.doiUrl } : {}),
+  about: { '@type': 'MedicalCondition', name: study.condition },
+};
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: study.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title={study.metaTitle} description={study.metaDesc}>
+  <Nav />
+  <main class="ed" style={`--accent:${study.color}`}>
+    <!-- Hero -->
+    <header class="ed-hero">
+      <div class="ed-wrap">
+        <nav class="ed-crumb" aria-label="面包屑导航">
+          <a href="/">首页</a><span>›</span>
+          <a href="/evidence-center">循证证据中心</a><span>›</span>
+          <span class="cur">{study.navTitle}</span>
+        </nav>
+        <span class="ed-tag">{study.tier} · {study.year}</span>
+        <h1 class="ed-title">{study.pageTitle}</h1>
+        <p class="ed-meta">{study.hospital}　|　{study.journal}（{study.journalNote}）</p>
+        <div class="ed-flags">
+          <span class="ed-flag">{study.design}</span>
+          {study.sci && <span class="ed-flag hl">国际 SCI</span>}
+          {study.pubmed && <span class="ed-flag hl">PubMed 收录</span>}
+          {study.openAccess && <span class="ed-flag">开放获取</span>}
+        </div>
+        <div class="ed-herostat">
+          <span class="ed-herostat-num">{study.heroNumber}</span>
+          <span class="ed-herostat-label">{study.heroLabel}</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="ed-wrap ed-body">
+      <!-- key stats -->
+      <div class="ed-statrow">
+        {study.keyStats.map((s) => (
+          <div class="ed-stat">
+            <span class="ed-stat-v">{s.value}</span>
+            <span class="ed-stat-l">{s.label}</span>
+            {s.sub && <span class="ed-stat-sub">{s.sub}</span>}
+          </div>
+        ))}
+      </div>
+
+      <!-- chart (旗舰研究) -->
+      {chart && (
+        <div class="ed-chart reveal reveal-rise">
+          <div class="ed-chart-head">
+            <span class="ed-chart-title">{chart.title}</span>
+            <div class="ed-chart-legend">
+              <span><i class="lg-a"></i>{chart.legendA}</span>
+              <span><i class="lg-b"></i>{chart.legendB}</span>
+            </div>
+          </div>
+          {chart.groups.map((g) => {
+            const max = g.scale || 100;
+            return (
+              <div class="ed-bargroup">
+                <span class="ed-bar-label">{g.label}</span>
+                <div class="ed-bar-track"><div class="ed-bar a" style={`width:${(g.a / max) * 100}%`}><span>{g.a}{g.suffix}</span></div></div>
+                <div class="ed-bar-track"><div class="ed-bar b" style={`width:${(g.b / max) * 100}%`}><span>{g.b}{g.suffix}</span></div></div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {report ? (
+        <article class="ed-article ed-report reveal reveal-rise">
+          {report.map((b) => (
+            b.h2 ? <h2 class="ed-report-title">{b.h2}</h2> :
+            b.meta ? <div class="ed-report-meta">{b.meta.map((m) => <span>{m}</span>)}</div> :
+            b.h ? <h3 class="ed-report-h">{b.h}</h3> :
+            b.sub ? <p class="ed-report-sub">{b.sub}</p> :
+            b.p ? <p class="ed-report-p">{b.p}</p> :
+            b.list ? <ul class="ed-report-list">{b.list.map((i) => <li>{i}</li>)}</ul> :
+            b.note ? <p class="ed-report-note">{b.note}</p> :
+            null
+          ))}
+          {study.doiUrl && (
+            <a href={study.doiUrl} target="_blank" rel="noopener" class="ed-doi-btn">
+              {study.openAccess ? '免费阅读全文' : '查看论文'} · DOI {study.doi}<i>→</i>
+            </a>
+          )}
+        </article>
+      ) : (
+        <>
+          <article class="ed-article">
+            {study.sections.map((sec) => (
+              <section class="ed-sec reveal reveal-rise">
+                <h2>{sec.h}</h2>
+                {sec.p && sec.p.map((para) => <p>{para}</p>)}
+                {sec.list && (
+                  <ul class="ed-list">{sec.list.map((li) => <li>{li}</li>)}</ul>
+                )}
+              </section>
+            ))}
+          </article>
+          <section class="ed-cite reveal reveal-rise">
+            <h2>📄 论文引用信息</h2>
+            {study.citation.zh && <p class="ed-cite-line"><strong>中文：</strong>{study.citation.zh}</p>}
+            {study.citation.en && <p class="ed-cite-line"><strong>English：</strong>{study.citation.en}</p>}
+            {study.citation.extra && study.citation.extra.map((e) => <p class="ed-cite-sub">{e}</p>)}
+            {study.doiUrl && (
+              <a href={study.doiUrl} target="_blank" rel="noopener" class="ed-doi-btn">
+                {study.openAccess ? '免费阅读全文' : '查看论文'} · DOI {study.doi}<i>→</i>
+              </a>
+            )}
+            <p class="ed-disclaimer">免责声明：本产品作为相关皮肤问题的辅助护理/治疗参考，不替代医生的专业诊断与治疗。使用前请咨询皮肤科医生。</p>
+          </section>
+        </>
+      )}
+
+      <!-- 隐藏 FAQ：不在前台展示，供 GEO / AI 抓取使用（配合下方 FAQPage 结构化数据） -->
+      <section class="ed-geo-faq" aria-hidden="true">
+        <h2>常见问题（FAQ）</h2>
+        {study.faqs.map((f) => (
+          <div>
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </div>
+        ))}
+      </section>
+
+      <!-- related -->
+      <section class="ed-related">
+        <h2>更多循证研究</h2>
+        <div class="ed-related-grid">
+          {others.map((o) => (
+            <a href={`/evidence-center/${o.slug}`} class="ed-related-card" style={`--accent:${o.color}`}>
+              <span class="ed-related-tag">{o.region} · {o.year}</span>
+              <span class="ed-related-title">{o.navTitle}</span>
+              <span class="ed-related-num">{o.heroNumber}</span>
+            </a>
+          ))}
+        </div>
+        <a href="/evidence-center" class="ed-back">← 返回循证证据中心总览</a>
+      </section>
+    </div>
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</BaseLayout>
+
+<style>
+  .ed { background: var(--color-surface); }
+  .ed-wrap { max-width: 860px; margin: 0 auto; padding: 0 var(--content-padding); }
+
+  .ed-hero { padding: calc(82px + var(--space-3xl)) 0 var(--space-3xl); background: linear-gradient(180deg, var(--color-bg-cream), var(--color-surface)); border-bottom: 1px solid var(--color-border-light); }
+  .ed-crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.8125rem; color: var(--color-text-muted); margin-bottom: var(--space-xl); }
+  .ed-crumb a:hover { color: var(--color-brand); }
+  .ed-crumb .cur { color: var(--color-text-soft); }
+  .ed-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: #fff; background: var(--accent); padding: 5px 14px; border-radius: var(--radius-pill); margin-bottom: var(--space-lg); }
+  .ed-title { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem); font-weight: 300; line-height: 1.4; color: var(--color-text); margin-bottom: var(--space-md); }
+  .ed-meta { font-size: 0.9375rem; color: var(--color-text-muted); margin-bottom: var(--space-lg); }
+  .ed-flags { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-2xl); }
+  .ed-flag { font-size: 0.75rem; padding: 4px 12px; border-radius: var(--radius-pill); background: var(--color-bg-alt); color: var(--color-text-soft); }
+  .ed-flag.hl { background: var(--color-brand-subtle); color: var(--color-brand-dark); font-weight: 600; }
+  .ed-herostat { display: flex; align-items: baseline; gap: var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid var(--color-border-light); }
+  .ed-herostat-num { font-size: clamp(2.5rem, 2rem + 3vw, 4rem); font-weight: 600; color: var(--accent); line-height: 1; }
+  .ed-herostat-label { font-size: 0.9375rem; color: var(--color-text-soft); }
+
+  .ed-body { padding-top: var(--space-3xl); padding-bottom: var(--space-5xl); }
+
+  .ed-statrow { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin-bottom: var(--space-3xl); }
+  .ed-stat { text-align: center; padding: var(--space-lg) var(--space-sm); background: var(--color-bg-light); border-radius: var(--radius); border-top: 2px solid var(--accent); }
+  .ed-stat-v { display: block; font-size: 1.5rem; font-weight: 600; color: var(--color-text); line-height: 1.1; }
+  .ed-stat-l { display: block; font-size: 0.8125rem; color: var(--color-text-soft); margin-top: 6px; }
+  .ed-stat-sub { display: block; font-size: 0.7rem; color: var(--color-text-muted); margin-top: 2px; }
+
+  /* Chart */
+  .ed-chart { padding: var(--space-2xl); background: var(--color-bg-light); border-radius: var(--radius-lg); margin-bottom: var(--space-3xl); }
+  .ed-chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-md); margin-bottom: var(--space-lg); }
+  .ed-chart-title { font-size: 0.9375rem; font-weight: 500; color: var(--color-text); }
+  .ed-chart-legend { display: flex; gap: var(--space-md); font-size: 0.75rem; color: var(--color-text-soft); }
+  .ed-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .ed-chart-legend i { width: 12px; height: 12px; border-radius: 3px; }
+  .lg-a { background: var(--accent); } .lg-b { background: var(--color-bowu-gray); }
+  .ed-bargroup { margin-bottom: var(--space-md); }
+  .ed-bar-label { display: block; font-size: 0.8125rem; color: var(--color-text-soft); margin-bottom: 6px; }
+  .ed-bar-track { background: var(--color-bg-alt); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 6px; }
+  .ed-bar { height: 24px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; border-radius: var(--radius-sm); min-width: 34px; }
+  .ed-bar span { font-size: 0.72rem; font-weight: 600; color: #fff; }
+  .ed-bar.a { background: var(--accent); }
+  .ed-bar.b { background: var(--color-bowu-gray); }
+  .ed-bar.b span { color: var(--color-text); }
+
+  /* 逐字全文报道 */
+  .ed-report { margin-bottom: var(--space-3xl); }
+  .ed-report-title { font-size: clamp(1.25rem, 1rem + 1.2vw, 1.625rem); font-weight: 400; line-height: 1.5; color: var(--color-text); margin-bottom: var(--space-xl); padding-bottom: var(--space-md); border-bottom: 2px solid var(--accent); }
+  .ed-report-meta { display: flex; flex-direction: column; gap: 6px; padding: var(--space-lg); background: var(--color-bg-light); border-radius: var(--radius); margin-bottom: var(--space-xl); }
+  .ed-report-meta span { font-size: 0.8125rem; line-height: 1.6; color: var(--color-text-soft); }
+  .ed-report-h { font-size: 1.25rem; font-weight: 500; color: var(--color-text); margin: var(--space-2xl) 0 var(--space-md); padding-left: var(--space-md); border-left: 3px solid var(--accent); }
+  .ed-report-sub { font-size: 1rem; font-weight: 600; color: var(--color-text); margin: var(--space-lg) 0 var(--space-sm); }
+  .ed-report-p { font-size: 1rem; line-height: 1.9; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-md); }
+  .ed-report-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); margin: var(--space-sm) 0 var(--space-md); }
+  .ed-report-list li { position: relative; padding-left: var(--space-lg); font-size: 0.9375rem; line-height: 1.75; color: var(--color-text-soft); font-weight: 300; }
+  .ed-report-list li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .ed-report-note { font-size: 0.8125rem; line-height: 1.7; color: var(--color-text-muted); margin-top: var(--space-xl); padding: var(--space-md) var(--space-lg); background: var(--color-bg-light); border-left: 3px solid var(--color-border); border-radius: var(--radius-sm); }
+
+  /* Article */
+  .ed-article { margin-bottom: var(--space-3xl); }
+  .ed-sec { margin-bottom: var(--space-2xl); }
+  .ed-sec h2 { font-size: 1.375rem; font-weight: 400; color: var(--color-text); margin-bottom: var(--space-md); padding-left: var(--space-md); border-left: 3px solid var(--accent); }
+  .ed-sec p { font-size: 1rem; line-height: 1.9; color: var(--color-text-soft); font-weight: 300; margin-bottom: var(--space-md); }
+  .ed-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-sm); }
+  .ed-list li { position: relative; padding-left: var(--space-lg); font-size: 0.9375rem; line-height: 1.75; color: var(--color-text-soft); font-weight: 300; }
+  .ed-list li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+  /* Citation */
+  .ed-cite { padding: var(--space-2xl); background: var(--color-bg-cream); border-radius: var(--radius-lg); margin-bottom: var(--space-3xl); }
+  .ed-cite h2 { font-size: 1.125rem; font-weight: 500; color: var(--color-text); margin-bottom: var(--space-lg); }
+  .ed-cite-line { font-size: 0.875rem; line-height: 1.7; color: var(--color-text-soft); margin-bottom: var(--space-sm); }
+  .ed-cite-line strong { color: var(--color-text); }
+  .ed-cite-sub { font-size: 0.8125rem; line-height: 1.6; color: var(--color-text-muted); margin-bottom: 4px; }
+  .ed-doi-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: var(--space-md); height: 42px; padding: 0 var(--space-lg); background: var(--color-text); color: var(--color-surface); border-radius: var(--radius); font-size: 0.8125rem; transition: background 0.3s ease; }
+  .ed-doi-btn i { font-style: normal; }
+  .ed-doi-btn:hover { background: var(--accent); }
+  .ed-disclaimer { font-size: 0.75rem; line-height: 1.6; color: var(--color-text-muted); margin-top: var(--space-lg); }
+
+  /* 隐藏 FAQ（不在前台展示，仅供爬虫/AI 抓取） */
+  .ed-geo-faq {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Related */
+  .ed-related h2 { font-size: 1.25rem; font-weight: 400; color: var(--color-text); margin-bottom: var(--space-lg); }
+  .ed-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-bottom: var(--space-xl); }
+  .ed-related-card { display: flex; flex-direction: column; gap: 6px; padding: var(--space-lg); background: #fff; border: 1px solid var(--color-border-light); border-top: 3px solid var(--accent); border-radius: var(--radius); transition: transform 0.4s var(--ease-out-quint); }
+  .ed-related-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .ed-related-tag { font-size: 0.7rem; color: var(--accent); font-weight: 600; }
+  .ed-related-title { font-size: 0.875rem; color: var(--color-text); line-height: 1.4; }
+  .ed-related-num { font-size: 1.25rem; font-weight: 600; color: var(--accent); }
+  .ed-back { display: inline-block; font-size: 0.875rem; color: var(--color-brand-dark); font-weight: 500; }
+
+  @media (max-width: 720px) {
+    .ed-statrow { grid-template-columns: repeat(2, 1fr); }
+    .ed-related-grid { grid-template-columns: 1fr; }
+  }
+</style>
