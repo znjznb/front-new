@@ -12,6 +12,20 @@ const sci = getStudy('mechanism-sci');
 const support = STUDIES.filter((s) => !s.flagship);
 const chart = rct.chart;
 
+// 参与研究的三甲医院 logo（用户提供，已确认无授权风险）
+const hospitalLogos = [
+  { name: '上海市皮肤病医院', src: '/assets/hospitals/shanghai-skin.jpg' },
+  { name: '北京大学第三医院', src: '/assets/hospitals/pku3.jpg' },
+  { name: '南方医科大学', src: '/assets/hospitals/nfmu.jpg' },
+  { name: '安徽中医药大学第一附属医院', src: '/assets/hospitals/anhui-tcm.jpg' },
+  { name: '昆明医科大学第一附属医院', src: '/assets/hospitals/kunming-mu1.jpg' },
+  { name: '杭州市第一人民医院', src: '/assets/hospitals/hangzhou1.png' },
+  { name: '武汉市第一医院', src: '/assets/hospitals/wuhan1.jpg' },
+  { name: '江西省皮肤病医院', src: '/assets/hospitals/jiangxi-skin.png' },
+  { name: '福建医科大学附属第一医院', src: '/assets/hospitals/fujian-mu1.png' },
+  { name: '重庆医科大学附属第三医院', src: '/assets/hospitals/cqmu3.png' },
+];
+
 // ── 模块 3 旗舰研究正文（逐字，来自项目文档，不改写文字内容）──
 const flagIntro = {
   h: '这项研究做了什么？',
@@ -334,6 +348,19 @@ const jsonld = {
             <span class="ev-publogo ev-publogo-wm small">Journal of Cosmetic Dermatology</span>
             <span class="ev-publogo"><img src="/assets/mdpi-logo.svg" alt="MDPI" /></span>
             <span class="ev-publogo"><img class="ev-publogo-ijms" src="/assets/ijms-logo.png" alt="International Journal of Molecular Sciences" /></span>
+          </div>
+        </div>
+
+        <!-- 参与研究的三甲医院 logo 墙 -->
+        <div class="ev-hosplogos">
+          <span class="ev-hosplogos-label">部分参与研究的三级甲等医院</span>
+          <div class="ev-hosplogos-grid">
+            {hospitalLogos.map((h) => (
+              <figure class="ev-hosplogo" title={h.name}>
+                <span class="ev-hosplogo-img"><img src={h.src} alt={h.name} loading="lazy" /></span>
+                <figcaption>{h.name}</figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </div>
@@ -843,6 +870,18 @@ const jsonld = {
   @media (max-width: 560px) {
     .ev-publogo { height: 42px; padding: 0 14px; }
     .ev-publogo-wm.small { max-width: 180px; }
+  }
+
+  /* 参与研究的医院 logo 墙 */
+  .ev-hosplogos { margin-top: var(--space-xl); }
+  .ev-hosplogos-label { display: block; font-size: 0.8125rem; color: var(--color-text-muted); margin-bottom: var(--space-md); }
+  .ev-hosplogos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-sm); }
+  .ev-hosplogo { margin: 0; display: flex; flex-direction: column; align-items: center; padding: var(--space-md) var(--space-sm) var(--space-sm); background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius); }
+  .ev-hosplogo-img { display: flex; align-items: center; justify-content: center; height: 56px; }
+  .ev-hosplogo-img img { max-height: 48px; max-width: 100%; width: auto; object-fit: contain; display: block; }
+  .ev-hosplogo figcaption { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--color-border-light); width: 100%; text-align: center; font-size: 0.75rem; line-height: 1.4; color: var(--color-text-soft); }
+  @media (max-width: 560px) {
+    .ev-hosplogos-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   /* Sections */
