@@ -12,22 +12,27 @@ const sci = getStudy('mechanism-sci');
 const support = STUDIES.filter((s) => !s.flagship);
 const chart = rct.chart;
 
-// 参与研究的医疗机构 logo（用户提供，已确认无授权风险）
+// 参与研究的 14 家三甲医院 logo（用户提供权威版，按区域排列，与模块2地图一致）
 const hospitalLogos = [
-  { name: '上海市皮肤病医院', src: '/assets/hospitals/shanghai-skin.jpg' },
-  { name: '北京大学第三医院', src: '/assets/hospitals/pku3.jpg' },
-  { name: '北京友谊医院', src: '/assets/hospitals/bj-friendship.jpg' },
+  // 华北
   { name: '中日友好医院', src: '/assets/hospitals/crf.jpeg' },
-  { name: '四川大学华西医院', src: '/assets/hospitals/huaxi.jpg' },
-  { name: '中山大学', src: '/assets/hospitals/zhongshan.png' },
-  { name: '南方医科大学', src: '/assets/hospitals/nfmu.jpg' },
+  { name: '北京中医医院延庆医院', src: '/assets/hospitals/bj-tcm-yanqing.jpg' },
+  { name: '北京友谊医院', src: '/assets/hospitals/bj-friendship.jpg' },
+  { name: '北京大学第三医院', src: '/assets/hospitals/pku3.webp' },
+  // 华东
+  { name: '上海市皮肤病医院', src: '/assets/hospitals/shanghai-skin.webp' },
   { name: '安徽中医药大学第一附属医院', src: '/assets/hospitals/anhui-tcm.jpg' },
-  { name: '昆明医科大学第一附属医院', src: '/assets/hospitals/kunming-mu1.jpg' },
-  { name: '杭州市第一人民医院', src: '/assets/hospitals/hangzhou1.png' },
+  { name: '杭州市第一人民医院', src: '/assets/hospitals/hangzhou1.jpg' },
+  // 华中
   { name: '武汉市第一医院', src: '/assets/hospitals/wuhan1.jpg' },
-  { name: '江西省皮肤病医院', src: '/assets/hospitals/jiangxi-skin.png' },
-  { name: '福建医科大学附属第一医院', src: '/assets/hospitals/fujian-mu1.png' },
-  { name: '重庆医科大学附属第三医院', src: '/assets/hospitals/cqmu3.png' },
+  { name: '江西省皮肤病专科医院', src: '/assets/hospitals/jiangxi-skin.png' },
+  { name: '河南中医药大学第一附属医院', src: '/assets/hospitals/henan-tcm.png' },
+  // 西南
+  { name: '四川大学华西医院', src: '/assets/hospitals/huaxi.jpg' },
+  { name: '昆明医科大学第一附属医院', src: '/assets/hospitals/kunming-mu1.webp' },
+  { name: '重庆医科大学附属第三医院', src: '/assets/hospitals/cqmu3.webp' },
+  // 东北
+  { name: '黑龙江省医院', src: '/assets/hospitals/heilongjiang.webp' },
 ];
 
 // ── 模块 3 旗舰研究正文（逐字，来自项目文档，不改写文字内容）──
@@ -357,7 +362,7 @@ const jsonld = {
 
         <!-- 参与研究的三甲医院 logo 墙 -->
         <div class="ev-hosplogos">
-          <span class="ev-hosplogos-label">参与研究的医疗机构（部分）</span>
+          <span class="ev-hosplogos-label">参与研究的 14 家三级甲等医院</span>
           <div class="ev-hosplogos-grid">
             {hospitalLogos.map((h) => (
               <figure class="ev-hosplogo" title={h.name}>
