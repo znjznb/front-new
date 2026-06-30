@@ -10,9 +10,23 @@ import NewsSection from '../components/NewsSection.astro';
 import VideoSection from '../components/VideoSection.astro';
 import CtaSection from '../components/CtaSection.astro';
 import Footer from '../components/Footer.astro';
+import faqCategories from '../data/faq';
+
+// 首页 FAQPage schema —— 与可见的前 8 条问答一致（QaSection maxItems={8}）
+const homeFaqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.martempo.com.cn/#homefaq',
+  inLanguage: 'zh-CN',
+  mainEntity: faqCategories.flatMap((c) => c.items).slice(0, 8).map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
 ---
 
-<BaseLayout>
+<BaseLayout jsonld={homeFaqLd}>
   <Nav />
   <main>
     <Hero />

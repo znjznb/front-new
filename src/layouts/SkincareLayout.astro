@@ -13,17 +13,12 @@ export interface Props {
 
 const { title, description, category, topicSlug } = Astro.props;
 
-// Build breadcrumb links for skincare pages
-const categorySlugs = {
-  '敏感肌问题': '/skincare/dry-itch',
-  '敏感肌类型': '/skincare/dry-sensitive',
-};
-const categorySlug = categorySlugs[category] || '/skincare/dry-itch';
-
 // 病症指南结构化数据（MedicalWebPage + BreadcrumbList）—— GEO
 // 注：reviewedBy / lastReviewed 需指定真实医学审核人后补充（属 B 组）
 const SITE_URL = 'https://www.martempo.com.cn';
 const pageUrl = `${SITE_URL}/skincare/${topicSlug}`;
+const HUB_URL = `${SITE_URL}/skincare/knowledge`; // 科学护肤总览页（真实存在）
+const crumbName = title.replace(/\s*—\s*海得宝科学护肤$/, ''); // 去掉标题后缀，面包屑只显示病症名
 const skincareLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -38,12 +33,12 @@ const skincareLd = {
       publisher: { '@id': `${SITE_URL}/#organization` },
     },
     {
+      // 清晰三级层级（无自指 / 无重复目标）：首页 › 科学护肤 › 当前病症
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: '首页', item: `${SITE_URL}/` },
-        { '@type': 'ListItem', position: 2, name: '科学护肤', item: `${SITE_URL}/skincare/dry-itch` },
-        { '@type': 'ListItem', position: 3, name: category, item: `${SITE_URL}${categorySlug}` },
-        { '@type': 'ListItem', position: 4, name: title, item: pageUrl },
+        { '@type': 'ListItem', position: 2, name: '科学护肤', item: HUB_URL },
+        { '@type': 'ListItem', position: 3, name: crumbName, item: pageUrl },
       ],
     },
   ],
@@ -58,11 +53,9 @@ const skincareLd = {
         <nav class="breadcrumb" aria-label="面包屑导航">
           <a href="/">首页</a>
           <span class="sep">›</span>
-          <a href="/skincare/dry-itch">科学护肤</a>
+          <a href="/skincare/knowledge">科学护肤</a>
           <span class="sep">›</span>
-          <a href={categorySlug}>{category}</a>
-          <span class="sep">›</span>
-          <span class="current">{title}</span>
+          <span class="current">{crumbName}</span>
         </nav>
       </div>
     </div>

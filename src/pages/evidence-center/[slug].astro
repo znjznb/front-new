@@ -34,6 +34,7 @@ const articleLd = {
   ...(study.doi ? { identifier: { '@type': 'PropertyValue', propertyID: 'DOI', value: study.doi } } : {}),
   ...(study.doiUrl ? { sameAs: study.doiUrl } : {}),
   about: { '@type': 'MedicalCondition', name: study.condition },
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.ed-report-title', '.ed-report-h'] },
 };
 const faqLd = {
   '@context': 'https://schema.org',

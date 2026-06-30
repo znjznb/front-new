@@ -15,24 +15,24 @@ const chart = rct.chart;
 // 参与研究的 14 家三甲医院 logo（用户提供权威版，按区域排列，与模块2地图一致）
 const hospitalLogos = [
   // 华北
-  { name: '中日友好医院', src: '/assets/hospitals/crf.jpeg' },
-  { name: '北京中医医院延庆医院', src: '/assets/hospitals/bj-tcm-yanqing.jpg' },
-  { name: '北京友谊医院', src: '/assets/hospitals/bj-friendship.jpg' },
-  { name: '北京大学第三医院', src: '/assets/hospitals/pku3.webp' },
+  { name: '中日友好医院', src: '/assets/hospitals/crf.jpeg', w: 800, h: 800 },
+  { name: '北京中医医院延庆医院', src: '/assets/hospitals/bj-tcm-yanqing.jpg', w: 800, h: 760 },
+  { name: '北京友谊医院', src: '/assets/hospitals/bj-friendship.jpg', w: 900, h: 500 },
+  { name: '北京大学第三医院', src: '/assets/hospitals/pku3.webp', w: 1080, h: 1080 },
   // 华东
-  { name: '上海市皮肤病医院', src: '/assets/hospitals/shanghai-skin.webp' },
-  { name: '安徽中医药大学第一附属医院', src: '/assets/hospitals/anhui-tcm.jpg' },
-  { name: '杭州市第一人民医院', src: '/assets/hospitals/hangzhou1.jpg' },
+  { name: '上海市皮肤病医院', src: '/assets/hospitals/shanghai-skin.webp', w: 1080, h: 1054 },
+  { name: '安徽中医药大学第一附属医院', src: '/assets/hospitals/anhui-tcm.jpg', w: 411, h: 411 },
+  { name: '杭州市第一人民医院', src: '/assets/hospitals/hangzhou1.jpg', w: 741, h: 467 },
   // 华中
-  { name: '武汉市第一医院', src: '/assets/hospitals/wuhan1.jpg' },
-  { name: '江西省皮肤病专科医院', src: '/assets/hospitals/jiangxi-skin.png' },
-  { name: '河南中医药大学第一附属医院', src: '/assets/hospitals/henan-tcm.png' },
+  { name: '武汉市第一医院', src: '/assets/hospitals/wuhan1.jpg', w: 411, h: 411 },
+  { name: '江西省皮肤病专科医院', src: '/assets/hospitals/jiangxi-skin.png', w: 300, h: 300 },
+  { name: '河南中医药大学第一附属医院', src: '/assets/hospitals/henan-tcm.png', w: 800, h: 800 },
   // 西南
-  { name: '四川大学华西医院', src: '/assets/hospitals/huaxi.jpg' },
-  { name: '昆明医科大学第一附属医院', src: '/assets/hospitals/kunming-mu1.webp' },
-  { name: '重庆医科大学附属第三医院', src: '/assets/hospitals/cqmu3.webp' },
+  { name: '四川大学华西医院', src: '/assets/hospitals/huaxi.jpg', w: 1024, h: 1024 },
+  { name: '昆明医科大学第一附属医院', src: '/assets/hospitals/kunming-mu1.webp', w: 500, h: 500 },
+  { name: '重庆医科大学附属第三医院', src: '/assets/hospitals/cqmu3.webp', w: 736, h: 736 },
   // 东北
-  { name: '黑龙江省医院', src: '/assets/hospitals/heilongjiang.webp' },
+  { name: '黑龙江省医院', src: '/assets/hospitals/heilongjiang.webp', w: 749, h: 500 },
 ];
 
 // ── 模块 3 旗舰研究正文（逐字，来自项目文档，不改写文字内容）──
@@ -352,11 +352,11 @@ const jsonld = {
         <div class="ev-publogos">
           <span class="ev-publogos-label">研究发表于国际 SCI 期刊，并被 PubMed / MEDLINE 收录</span>
           <div class="ev-publogos-row">
-            <span class="ev-publogo"><img src="/assets/pubmed-logo.png" alt="PubMed" /></span>
+            <span class="ev-publogo"><img src="/assets/pubmed-logo.png" alt="PubMed" width="960" height="342" /></span>
             <span class="ev-publogo ev-publogo-wm">Wiley</span>
             <span class="ev-publogo ev-publogo-wm small">Journal of Cosmetic Dermatology</span>
-            <span class="ev-publogo"><img src="/assets/mdpi-logo.svg" alt="MDPI" /></span>
-            <span class="ev-publogo"><img class="ev-publogo-ijms" src="/assets/ijms-logo.png" alt="International Journal of Molecular Sciences" /></span>
+            <span class="ev-publogo"><img src="/assets/mdpi-logo.svg" alt="MDPI" width="599" height="395" /></span>
+            <span class="ev-publogo"><img class="ev-publogo-ijms" src="/assets/ijms-logo.png" alt="International Journal of Molecular Sciences" width="650" height="140" /></span>
           </div>
         </div>
 
@@ -366,7 +366,7 @@ const jsonld = {
           <div class="ev-hosplogos-grid">
             {hospitalLogos.map((h) => (
               <figure class="ev-hosplogo" title={h.name}>
-                <span class="ev-hosplogo-img"><img src={h.src} alt={h.name} loading="lazy" /></span>
+                <span class="ev-hosplogo-img"><img src={h.src} alt={h.name} width={h.w} height={h.h} loading="lazy" /></span>
                 <figcaption>{h.name}</figcaption>
               </figure>
             ))}
@@ -942,7 +942,7 @@ const jsonld = {
   .ev-hosplogos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-sm); }
   .ev-hosplogo { margin: 0; display: flex; flex-direction: column; align-items: center; padding: var(--space-md) var(--space-sm) var(--space-sm); background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius); }
   .ev-hosplogo-img { display: flex; align-items: center; justify-content: center; height: 56px; }
-  .ev-hosplogo-img img { max-height: 48px; max-width: 100%; width: auto; object-fit: contain; display: block; }
+  .ev-hosplogo-img img { max-height: 48px; max-width: 100%; width: auto; height: auto; object-fit: contain; display: block; }
   .ev-hosplogo figcaption { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--color-border-light); width: 100%; text-align: center; font-size: 0.75rem; line-height: 1.4; color: var(--color-text-soft); }
   @media (max-width: 560px) {
     .ev-hosplogos-grid { grid-template-columns: repeat(2, 1fr); }
