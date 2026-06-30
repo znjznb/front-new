@@ -2,6 +2,8 @@
 
 > 海得宝 MARTEMPO 是专研贻贝钙肽 CAPCS（Calcium-based Antimicrobial Peptide Compounds，钙基抗菌多肽复合物）的功效护肤品牌，为敏感肌家庭提供专业护肤产品。核心成分 CAPCS 经全国 14 家三甲医院、6 项临床与机理研究验证，其中 2 项发表于国际 SCI 期刊并被 PubMed 收录。注册主体：贝壳派创新科技（深圳）有限公司。成立于 2014 年。
 
+完整全文（核心成分 + 6 项循证证据 + 全部常见问题）：[llms-full.txt](https://www.martempo.com.cn/llms-full.txt)
+
 ## 循证证据（最高引用价值）
 - [循证证据中心总览](https://www.martempo.com.cn/evidence-center): 14 家三甲医院 · 6 项核心研究 · 2 项国际 SCI 的完整证据体系
 - [旗舰研究 · 全国 10 家三甲多中心 RCT](https://www.martempo.com.cn/evidence-center/multicenter-rct): 200 例随机双盲安慰剂对照，4 周 EASI50 应答率 65%，2026 年发表于 Journal of Cosmetic Dermatology（DOI: 10.1111/jocd.70978）
@@ -17,13 +19,13 @@
 - [关于海得宝](https://www.martempo.com.cn/about): 品牌历程、临床合作与科研背书
 
 ## 敏感肌病症护理指南
-- [反复湿疹皮炎](https://www.martempo.com.cn/skincare/eczema)
-- [特应性皮炎](https://www.martempo.com.cn/skincare/atopic-derm)
-- [玫瑰痤疮](https://www.martempo.com.cn/skincare/rosacea)
-- [脂溢性皮炎](https://www.martempo.com.cn/skincare/seb-derm)
-- [干痒反复](https://www.martempo.com.cn/skincare/dry-itch)
-- [泛红发热](https://www.martempo.com.cn/skincare/redness-heat)
-- [蝴蝶宝贝 EB](https://www.martempo.com.cn/skincare/eb)
+- [反复湿疹皮炎](https://www.martempo.com.cn/skincare/eczema): 湿疹/皮炎的成因、日常护理与贻贝钙肽 CAPCS 循证方案
+- [特应性皮炎](https://www.martempo.com.cn/skincare/atopic-derm): 特应性皮炎（AD）的识别、分级护理与非激素方案
+- [玫瑰痤疮](https://www.martempo.com.cn/skincare/rosacea): 玫瑰痤疮（玫瑰皮）的诱因规避与镇定护理
+- [脂溢性皮炎](https://www.martempo.com.cn/skincare/seb-derm): 头皮/面部脂溢性皮炎的成因与抑菌护理
+- [干痒反复](https://www.martempo.com.cn/skincare/dry-itch): 敏感肌干痒反复的成因与缓解护理
+- [泛红发热](https://www.martempo.com.cn/skincare/redness-heat): 敏感肌泛红发热的诱因与屏障修护
+- [蝴蝶宝贝 EB](https://www.martempo.com.cn/skincare/eb): 遗传性大疱性表皮松解症（EB）人群的皮肤护理
 
 ## 产品
 - [产品总览](https://www.martempo.com.cn/products): 面部、身体、手唇等敏感肌家庭护肤产品
