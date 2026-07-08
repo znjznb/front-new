@@ -126,6 +126,26 @@ import Footer from '../../components/Footer.astro';
       </div>
     </section>
 
+    <!-- ── 公益包装 ── -->
+    <section class="charity-section reveal reveal-rise">
+      <div class="charity-prose charity-prose--center">
+        <p class="charity-kicker">春光计划 · 公益包装</p>
+        <h2 class="charity-h2 charity-h2--tight">让善意，随包裹抵达</h2>
+        <p class="charity-p charity-p--muted">每一份「春光计划」包裹，都印着蝴蝶与「向光而行」的女孩。您的包裹正赶往春天——拆开一份柔软的呵护，也守护蝴蝶宝贝的日常；本单所得部分收益，将通过海得宝「春光计划」传递至蝴蝶宝贝关爱中心。</p>
+      </div>
+      <div class="charity-pkg-grid">
+        <figure class="charity-pkg-item">
+          <img src="/assets/charity/spring-box-0180.webp" alt="「春光计划」公益包装：印有蝴蝶与向光而行女孩的快递箱" loading="lazy" />
+        </figure>
+        <figure class="charity-pkg-item">
+          <img src="/assets/charity/spring-box-0182.webp" alt="「春光计划」包装内页寄语：您的包裹正赶往春天" loading="lazy" />
+        </figure>
+        <figure class="charity-pkg-item">
+          <img src="/assets/charity/spring-box-0173.webp" alt="海得宝 MARTEMPO 春光计划系列公益包装" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
     <!-- ── 全宽出血图 ── -->
     <figure class="charity-bleed reveal">
       <img src="/assets/charity/img3.jpg" alt="公益活动现场" loading="lazy" />
@@ -370,6 +390,35 @@ import Footer from '../../components/Footer.astro';
     border-radius: var(--radius);
   }
 
+  /* 公益包装画廊 */
+  .charity-pkg-grid {
+    max-width: var(--content-max-width);
+    margin: var(--space-3xl) auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .charity-pkg-item {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-alt);
+  }
+
+  .charity-pkg-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 70%;
+    transition: transform var(--duration-medium) var(--ease-out-expo);
+  }
+
+  .charity-pkg-item:hover img {
+    transform: scale(1.03);
+  }
+
   /* 视频 */
   .charity-video-wrap {
     max-width: 880px;
@@ -501,6 +550,13 @@ import Footer from '../../components/Footer.astro';
 
     .charity-list-item {
       gap: var(--space-md);
+    }
+
+    .charity-pkg-grid {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+      gap: var(--space-md);
+      margin-top: var(--space-2xl);
     }
   }
 </style>
