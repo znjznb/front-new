@@ -167,12 +167,117 @@ const articleLd = {
   .news-detail-body {
     font-size: var(--text-base);
     font-weight: 400;
-    line-height: var(--leading-relaxed);
+    line-height: 1.9;
     color: var(--color-text);
   }
 
-  .news-detail-body p {
-    margin-bottom: var(--space-lg);
+  /* 说明：正文由 markdown（<Content />）渲染，需用 :global 穿透 Astro 作用域 */
+
+  /* 段落：首行缩进 2 个中文字符 + 舒适段距 */
+  .news-detail-body :global(p) {
+    margin: 0 0 var(--space-lg);
+    text-indent: 2em;
+  }
+  .news-detail-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* 强调 */
+  .news-detail-body :global(strong),
+  .news-detail-body :global(b) {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  /* 链接 */
+  .news-detail-body :global(a) {
+    color: var(--color-brand-dark);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--duration-fast) ease;
+  }
+  .news-detail-body :global(a:hover) {
+    border-bottom-color: currentColor;
+  }
+
+  /* 小标题 */
+  .news-detail-body :global(h2),
+  .news-detail-body :global(h3),
+  .news-detail-body :global(h4) {
+    text-indent: 0;
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    color: var(--color-text);
+  }
+  .news-detail-body :global(h2) {
+    font-size: var(--text-xl);
+    margin: var(--space-3xl) 0 var(--space-lg);
+  }
+  .news-detail-body :global(h3) {
+    font-size: var(--text-lg);
+    margin: var(--space-2xl) 0 var(--space-md);
+  }
+  .news-detail-body :global(h4) {
+    font-size: var(--text-base);
+    margin: var(--space-xl) 0 var(--space-sm);
+  }
+  .news-detail-body :global(h2:first-child),
+  .news-detail-body :global(h3:first-child),
+  .news-detail-body :global(h4:first-child) {
+    margin-top: 0;
+  }
+
+  /* 列表 */
+  .news-detail-body :global(ul),
+  .news-detail-body :global(ol) {
+    margin: 0 0 var(--space-lg);
+    padding-left: 1.6em;
+  }
+  .news-detail-body :global(li) {
+    text-indent: 0;
+    margin-bottom: var(--space-sm);
+    line-height: 1.85;
+  }
+
+  /* 引用 */
+  .news-detail-body :global(blockquote) {
+    text-indent: 0;
+    margin: var(--space-xl) 0;
+    padding: var(--space-sm) var(--space-lg);
+    border-left: 3px solid var(--color-brand);
+    background: var(--color-surface-alt);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--color-text-soft);
+  }
+  .news-detail-body :global(blockquote p) {
+    text-indent: 0;
+    margin-bottom: var(--space-sm);
+  }
+  .news-detail-body :global(blockquote p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* 图片：居中、圆角、上下留白，不受首行缩进影响 */
+  .news-detail-body :global(img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: var(--space-2xl) auto;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 20px oklch(0% 0 0 / 0.06);
+  }
+  .news-detail-body :global(p:has(img)) {
+    text-indent: 0;
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  /* 分隔线 */
+  .news-detail-body :global(hr) {
+    border: none;
+    height: 1px;
+    background: var(--color-border-light);
+    margin: var(--space-3xl) 0;
   }
 
   .news-detail-nav {
