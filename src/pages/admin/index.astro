@@ -75,11 +75,20 @@
             format: 'frontmatter',
             slug: '{{slug}}',
             preview_path: 'news/{{slug}}/',
+            media_folder: 'public/images/news',
+            public_folder: '/images/news',
+            editor: {
+              preview: false,
+            },
             fields: [
               { label: '标题', name: 'title', widget: 'string' },
               { label: '发布日期', name: 'date', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false },
               { label: '摘要', name: 'summary', widget: 'text', hint: '首页新闻卡片上显示的一两句话，建议不超过100字' },
-              { label: '正文', name: 'body', widget: 'markdown', hint: '新闻详情页的完整内容，支持多段落' },
+              { label: '来源媒体', name: 'author', widget: 'string', required: false, hint: '如：新华网、美妆头条、青眼、化妆品观察' },
+              { label: '原文链接', name: 'sourceUrl', widget: 'string', required: false, hint: '文章原始出处URL，填写后详情页底部显示"阅读原文"按钮' },
+              { label: '封面图', name: 'image', widget: 'image', required: false, hint: '新闻列表页和详情页顶部展示的大图，建议宽度1200px以上' },
+              { label: '封面图替代文本', name: 'imageAlt', widget: 'string', required: false, hint: '图片无法加载时的说明文字，也用于SEO' },
+              { label: '正文', name: 'body', widget: 'markdown', hint: '完整文章内容。支持 Markdown 格式，可用工具栏插入图片。' },
             ],
           },
           {
