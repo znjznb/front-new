@@ -50,20 +50,71 @@
     window.CMS_MANUAL_INIT = true;
   </script>
   <script is:inline src="https://unpkg.com/decap-cms@3.13.0/dist/decap-cms.js"></script>
+  <!-- HTML→Markdown 转换库，用于「原始模式」下粘贴图文时保留格式与图片 -->
+  <script is:inline src="https://unpkg.com/turndown@7.2.0/dist/turndown.js"></script>
+  <script is:inline src="https://unpkg.com/turndown-plugin-gfm@1.0.2/dist/turndown-plugin-gfm.js"></script>
   <script is:inline>
-    // 拦截 Slate 富文本编辑器的粘贴事件，防止崩溃
-    // Decap CMS 的 Slate 编辑器粘贴含 HTML（尤其图片）时会解构报错
+    // ── 粘贴处理 ──
+    // 原始模式(CodeMirror)：把剪贴板 HTML 转成 Markdown 再插入，图文一起带进来
+    // 富文本模式(Slate)：直接吃图片 HTML 会崩溃，只插纯文本防崩
+    var _turndown = null;
+    function getTurndown() {
+      if (_turndown) return _turndown;
+      if (!window.TurndownService) return null;
+      _turndown = new window.TurndownService({
+        headingStyle: 'atx',
+        hr: '---',
+        bulletListMarker: '-',
+        codeBlockStyle: 'fenced',
+        emDelimiter: '*',
+        linkStyle: 'inlined',
+      });
+      if (window.turndownPluginGfm && window.turndownPluginGfm.gfm) {
+        _turndown.use(window.turndownPluginGfm.gfm);
+      }
+      _turndown.remove(['script', 'style', 'noscript', 'head']);
+      // base64 内嵌图片(data:URI)体积巨大会撑爆内容文件，替换为提示
+      _turndown.addRule('dropDataImage', {
+        filter: function (node) {
+          return node.nodeName === 'IMG' && /^data:/i.test(node.getAttribute('src') || '');
+        },
+        replacement: function () { return '（此处有图片，请用底部图片按钮上传）'; },
+      });
+      return _turndown;
+    }
+    function htmlToMarkdown(html) {
+      var td = getTurndown();
+      if (!td) return '';
+      try { return td.turndown(html).trim(); } catch (err) { return ''; }
+    }
+
     document.addEventListener('paste', function (e) {
       var el = e.target;
-      // 只拦截 Slate 富文本编辑器内的粘贴（属性 data-slate-editor）
-      if (el && el.closest && el.closest('[data-slate-editor]')) {
-        // 让浏览器稍后处理，但我们阻止默认行为，手动插入纯文本
+      if (!el || !el.closest) return;
+
+      var cmEl = el.closest('.CodeMirror');            // 原始 Markdown 模式
+      var slateEl = el.closest('[data-slate-editor]'); // 富文本模式
+      if (!cmEl && !slateEl) return;
+
+      var cd = e.clipboardData || window.clipboardData;
+      if (!cd) return;
+      var html = cd.getData('text/html');
+      var plain = cd.getData('text/plain');
+
+      // 原始模式：HTML → Markdown 后插入（保留标题/加粗/列表/链接/图片）
+      if (cmEl && cmEl.CodeMirror) {
         e.preventDefault();
         e.stopPropagation();
-        var text = (e.clipboardData || window.clipboardData).getData('text/plain');
-        if (text) {
-          document.execCommand('insertText', false, text);
-        }
+        var md = html ? htmlToMarkdown(html) : '';
+        cmEl.CodeMirror.replaceSelection(md || plain || '');
+        return;
+      }
+
+      // 富文本模式：只插纯文本，防止 Slate 解析图片 HTML 时崩溃
+      if (slateEl) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (plain) document.execCommand('insertText', false, plain);
       }
     }, true);
 
@@ -102,7 +153,7 @@
               { label: '摘要', name: 'summary', widget: 'text', hint: '首页新闻卡片上显示的一两句话，建议不超过100字' },
               { label: '来源媒体', name: 'author', widget: 'string', required: false, hint: '如：新华网、美妆头条、青眼、化妆品观察' },
               { label: '原文链接', name: 'sourceUrl', widget: 'string', required: false, hint: '文章原始出处URL，填写后详情页底部显示"阅读原文"按钮' },
-              { label: '正文', name: 'body', widget: 'markdown', editor: { preview: false }, hint: '文章正文。粘贴：先切换到原始模式（右下角</>）再粘贴可保留纯文本，图片请使用底部图片按钮上传。' },
+              { label: '正文', name: 'body', widget: 'markdown', editor: { preview: false }, hint: '文章正文。粘贴图文：先点右下角 </> 切到「原始模式」再粘贴，可保留文字格式和图片。注意图片会引用原网站地址，若原站删图会失效；需长期保存的重要图片建议再用底部图片按钮上传替换。' },
             ],
           },
           {
