@@ -154,7 +154,7 @@ import Footer from '../../components/Footer.astro';
   .eco-hero {
     position: relative;
     width: 100%;
-    min-height: clamp(420px, 66vh, 620px);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -444,12 +444,8 @@ import Footer from '../../components/Footer.astro';
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
-    .eco-hero {
-      min-height: clamp(360px, 58vh, 520px);
-    }
-
     .eco-hero-content {
-      padding: 100px var(--content-padding) var(--space-2xl);
+      padding: 100px var(--content-padding) var(--space-4xl);
     }
 
     .eco-main {
