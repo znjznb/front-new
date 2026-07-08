@@ -24,7 +24,11 @@
 
   <div class="section-inner science-body">
 
-    <div class="science-points reveal reveal-rise">
+    <div class="science-points-layout reveal reveal-rise">
+      <figure class="science-figure">
+        <img src="/assets/capcs-droplet.webp" alt="贻贝钙肽 CAPCS® 成分——富含钙离子的活性凝胶水滴" loading="lazy" width="440" height="429" />
+      </figure>
+      <div class="science-points">
       <div class="science-point">
         <span class="science-point-num" aria-hidden="true">01</span>
         <div class="science-point-text">
@@ -45,6 +49,7 @@
           <h3 class="science-point-title">五维金标准安全</h3>
           <p class="science-point-body">无激素、无抗生素、无防腐剂。经口无毒、入眼无刺激、人体斑贴无刺激、多次皮肤刺激无刺激、4000+ 争议成分不添加。</p>
         </div>
+      </div>
       </div>
     </div>
 
@@ -72,7 +77,7 @@
 <style>
   .science {
     background: var(--color-bg);
-    padding-top: var(--space-4xl);
+    padding-top: 0;
     padding-bottom: var(--space-6xl);
     overflow: hidden;
   }
@@ -145,10 +150,31 @@
     max-width: 46ch;
   }
 
-  /* ── 要点列表（编辑式，居中限宽）── */
+  /* ── 要点区：左成分图 + 右编辑式要点 ── */
+  .science-points-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+    gap: clamp(var(--space-2xl), 6vw, var(--space-5xl));
+    align-items: center;
+    max-width: 1040px;
+    margin: 0 auto var(--space-5xl);
+  }
+
+  .science-figure {
+    margin: 0;
+  }
+
+  .science-figure img {
+    display: block;
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    margin: 0 auto;
+  }
+
   .science-points {
-    max-width: 760px;
-    margin: 0 auto var(--space-4xl);
+    max-width: none;
+    margin: 0;
   }
 
   .science-point {
@@ -247,8 +273,13 @@
     .science-hero-content {
       align-self: flex-end;
     }
-    .science-points {
+    .science-points-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
       margin-bottom: var(--space-3xl);
+    }
+    .science-figure img {
+      max-width: 260px;
     }
     .science-point {
       gap: var(--space-md);
