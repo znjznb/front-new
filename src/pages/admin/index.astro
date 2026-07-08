@@ -86,7 +86,7 @@
               { label: '摘要', name: 'summary', widget: 'text', hint: '首页新闻卡片上显示的一两句话，建议不超过100字' },
               { label: '来源媒体', name: 'author', widget: 'string', required: false, hint: '如：新华网、美妆头条、青眼、化妆品观察' },
               { label: '原文链接', name: 'sourceUrl', widget: 'string', required: false, hint: '文章原始出处URL，填写后详情页底部显示"阅读原文"按钮' },
-              { label: '正文', name: 'body', widget: 'markdown', hint: '完整文章内容。支持 Markdown 格式，可用下方工具栏插入图片。' },
+              { label: '正文', name: 'body', widget: 'markdown', buttons: ['bold', 'italic', 'link', 'heading', 'code', 'quote', 'bulleted-list', 'numbered-list'], editor: { preview: false }, hint: '文章正文。点击右下角"</>"切换到原始Markdown模式，底部出现图片上传按钮后可插入图片。建议直接在原始模式编写。' },
             ],
           },
           {
