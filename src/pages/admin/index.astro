@@ -51,6 +51,22 @@
   </script>
   <script is:inline src="https://unpkg.com/decap-cms@3.13.0/dist/decap-cms.js"></script>
   <script is:inline>
+    // 拦截 Slate 富文本编辑器的粘贴事件，防止崩溃
+    // Decap CMS 的 Slate 编辑器粘贴含 HTML（尤其图片）时会解构报错
+    document.addEventListener('paste', function (e) {
+      var el = e.target;
+      // 只拦截 Slate 富文本编辑器内的粘贴（属性 data-slate-editor）
+      if (el && el.closest && el.closest('[data-slate-editor]')) {
+        // 让浏览器稍后处理，但我们阻止默认行为，手动插入纯文本
+        e.preventDefault();
+        e.stopPropagation();
+        var text = (e.clipboardData || window.clipboardData).getData('text/plain');
+        if (text) {
+          document.execCommand('insertText', false, text);
+        }
+      }
+    }, true);
+
     CMS.init({
       config: {
         load_config_file: false,
@@ -86,7 +102,7 @@
               { label: '摘要', name: 'summary', widget: 'text', hint: '首页新闻卡片上显示的一两句话，建议不超过100字' },
               { label: '来源媒体', name: 'author', widget: 'string', required: false, hint: '如：新华网、美妆头条、青眼、化妆品观察' },
               { label: '原文链接', name: 'sourceUrl', widget: 'string', required: false, hint: '文章原始出处URL，填写后详情页底部显示"阅读原文"按钮' },
-              { label: '正文', name: 'body', widget: 'markdown', editor: { preview: false }, hint: '文章正文。点击右下角"</>"切换到原始Markdown模式，底部出现图片上传按钮后可插入图片。建议直接在原始模式编写。' },
+              { label: '正文', name: 'body', widget: 'markdown', editor: { preview: false }, hint: '文章正文。粘贴：先切换到原始模式（右下角</>）再粘贴可保留纯文本，图片请使用底部图片按钮上传。' },
             ],
           },
           {
