@@ -168,8 +168,8 @@
               { label: '摘要', name: 'summary', widget: 'text', hint: '首页新闻卡片上显示的一两句话，建议不超过100字' },
               { label: '来源媒体', name: 'author', widget: 'string', required: false, hint: '如：新华网、美妆头条、青眼、化妆品观察' },
               { label: '原文链接', name: 'sourceUrl', widget: 'string', required: false, hint: '文章原始出处URL，填写后详情页底部显示"阅读原文"按钮' },
-              { label: '正文配图上传', name: 'body_images', widget: 'list', required: false, allow_add: true, hint: '把要插入正文的图片传到这里（建议先把文件名改成 1.jpg、2.jpg 这类简单名字）。上传后，图片的引用路径就是 /images/news/你的文件名，在下方正文对应位置写 ![](/images/news/1.jpg) 即可显示。此处只负责上传，不直接展示在页面上。', field: { label: '图片', name: 'src', widget: 'image' } },
-              { label: '正文', name: 'body', widget: 'text', hint: '文章正文（Markdown 源码框，稳定不崩、可自由删改）。粘贴：直接从网页复制粘贴即可，标题/加粗/列表/链接会自动转为 Markdown。图片：从微信公众号复制的图片进不来（微信防盗链限制），会显示为「图片」二字标记位置——请先用上方「正文配图上传」把图片传上去，再在此处对应位置写 ![](/images/news/文件名)。' },
+              { label: '正文配图上传（备用）', name: 'body_images', widget: 'list', required: false, allow_add: true, hint: '备用上传通道。正常情况下请直接用正文框上方的「🖼 在光标处插入图片」按钮，会自动上传并插入。此处仅在按钮不可用时备用：上传后在正文写 ![](/images/news/文件名) 引用。', field: { label: '图片', name: 'src', widget: 'image' } },
+              { label: '正文', name: 'body', widget: 'text', hint: '文章正文（Markdown 源码框，稳定不崩、可自由删改）。粘贴：直接从网页复制粘贴即可，标题/加粗/列表/链接会自动转为 Markdown。插入图片：把图片存到电脑后，点正文框上方的「🖼 在光标处插入图片」按钮选图即可，自动在光标处插入、无需手写代码。（微信复制的图片会显示为「图片」二字，用来标记该插图的位置。）' },
             ],
           },
           {
@@ -238,6 +238,133 @@
       var obs = new MutationObserver(function () { if (ready()) { obs.disconnect(); hide(); } });
       obs.observe(document.body, { childList: true, subtree: true });
       setTimeout(function () { obs.disconnect(); hide(); }, 12000);
+    })();
+  </script>
+  <script is:inline>
+    // ── 正文「在光标处插入图片」按钮 ──
+    // 选择本地图片 → 用登录令牌直传 GitHub 仓库 → 在正文光标处插入 ![](路径)
+    (function () {
+      var REPO = 'znjznb/front-new';
+      var BRANCH = 'main';
+      var UPLOAD_DIR = 'public/images/news';   // 图片提交到的仓库目录
+      var PUBLIC_PREFIX = '/images/news';       // 正文引用前缀（对应 public 目录）
+
+      function getToken() {
+        try {
+          var u = JSON.parse(localStorage.getItem('decap-cms-user') || 'null');
+          return (u && (u.token || (u.data && u.data.token))) || null;
+        } catch (e) { return null; }
+      }
+
+      // 通过 label 文本「正文」精确定位正文文本框
+      function findBodyTextarea() {
+        var labels = document.querySelectorAll('label');
+        for (var i = 0; i < labels.length; i++) {
+          if (labels[i].textContent.trim() !== '正文') continue;
+          var forId = labels[i].getAttribute('for');
+          if (forId) {
+            var ta = document.getElementById(forId);
+            if (ta && ta.tagName === 'TEXTAREA') return ta;
+          }
+          var wrap = labels[i].parentNode;
+          for (var d = 0; d < 4 && wrap; d++) {
+            var t = wrap.querySelector && wrap.querySelector('textarea');
+            if (t) return t;
+            wrap = wrap.parentNode;
+          }
+        }
+        return null;
+      }
+
+      var lastSel = { start: null, end: null };
+      function trackCursor(ta) {
+        function save() { lastSel.start = ta.selectionStart; lastSel.end = ta.selectionEnd; }
+        ['keyup', 'mouseup', 'select', 'blur', 'input', 'click'].forEach(function (ev) {
+          ta.addEventListener(ev, save);
+        });
+      }
+      function insertAtCursor(ta, text) {
+        ta.focus();
+        var s = lastSel.start, e = lastSel.end;
+        if (s == null) { s = e = ta.value.length; }
+        ta.setSelectionRange(s, e);
+        document.execCommand('insertText', false, text); // 触发 React onChange
+        lastSel.start = lastSel.end = s + text.length;
+      }
+      function extOf(name) {
+        var m = /\.([a-zA-Z0-9]+)$/.exec(name || '');
+        var ext = m ? m[1].toLowerCase() : 'jpg';
+        return ext === 'jpeg' ? 'jpg' : ext;
+      }
+
+      function uploadAndInsert(file, ta, statusEl, btn) {
+        var token = getToken();
+        if (!token) { statusEl.textContent = '未取到登录令牌，请重新登录后台再试'; return; }
+        var filename = 'img_' + Date.now() + '.' + extOf(file.name);
+        var path = UPLOAD_DIR + '/' + filename;
+        btn.disabled = true;
+        statusEl.textContent = '上传中…';
+        var reader = new FileReader();
+        reader.onload = function () {
+          var base64 = String(reader.result).split(',')[1];
+          fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
+            method: 'PUT',
+            headers: {
+              'Authorization': 'token ' + token,
+              'Accept': 'application/vnd.github+json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: 'CMS上传正文图片 ' + filename, content: base64, branch: BRANCH }),
+          }).then(function (res) {
+            if (!res.ok) return res.text().then(function (t) { throw new Error(res.status + ' ' + t.slice(0, 120)); });
+            return res.json();
+          }).then(function () {
+            insertAtCursor(ta, '\n\n![](' + PUBLIC_PREFIX + '/' + filename + ')\n\n');
+            statusEl.textContent = '已在光标处插入 ✓';
+            btn.disabled = false;
+            setTimeout(function () { statusEl.textContent = ''; }, 4000);
+          }).catch(function (err) {
+            statusEl.textContent = '上传失败：' + (err && err.message ? err.message : err);
+            btn.disabled = false;
+          });
+        };
+        reader.onerror = function () { statusEl.textContent = '读取图片失败'; btn.disabled = false; };
+        reader.readAsDataURL(file);
+      }
+
+      function injectButton(ta) {
+        if (ta.__imgBtnInjected) return;
+        ta.__imgBtnInjected = true;
+        trackCursor(ta);
+
+        var bar = document.createElement('div');
+        bar.style.cssText = 'display:flex;align-items:center;gap:10px;margin:6px 0;';
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = '🖼 在光标处插入图片';
+        btn.style.cssText = 'padding:6px 12px;font-size:13px;cursor:pointer;border:1px solid #c4c6d0;border-radius:5px;background:#fff;color:#333;';
+        var fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.style.display = 'none';
+        var status = document.createElement('span');
+        status.style.cssText = 'font-size:12px;color:#888;';
+
+        btn.addEventListener('click', function () { fileInput.value = ''; fileInput.click(); });
+        fileInput.addEventListener('change', function () {
+          if (fileInput.files && fileInput.files[0]) uploadAndInsert(fileInput.files[0], ta, status, btn);
+        });
+        bar.appendChild(btn); bar.appendChild(status); bar.appendChild(fileInput);
+        ta.parentNode.insertBefore(bar, ta);
+      }
+
+      var obs = new MutationObserver(function () {
+        var ta = findBodyTextarea();
+        if (ta) injectButton(ta);
+      });
+      obs.observe(document.body, { childList: true, subtree: true });
+      var t0 = findBodyTextarea();
+      if (t0) injectButton(t0);
     })();
   </script>
 </body>
