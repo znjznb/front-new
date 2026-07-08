@@ -32,39 +32,13 @@ import Footer from '../../components/Footer.astro';
           <div class="eco-hero-accent" aria-hidden="true"></div>
           <h1 class="eco-hero-title">环保可持续</h1>
           <p class="eco-hero-subtitle">海得宝 × 空瓶回收计划</p>
+          <blockquote class="eco-hero-quote">让每一个空瓶，都有一个回归海洋的使命。</blockquote>
+          <p class="eco-hero-body">海得宝的核心成分贻贝钙肽CAPCS源自全球不到1%的纯净海域——这片珍稀水域是我们成分品质的根基，也是品牌灵魂的起点。</p>
+          <p class="eco-hero-body">我们希望，在从大海中汲取天然力量的同时，也为海洋的可持续发展奉献一份力所能及的责任。海得宝邀您一同，从一支小小的空瓶开始，守护我们共同的蓝色家园。</p>
         </div>
       </div>
     </section>
 
-    <!-- ── Split: text + image（保持不变）── -->
-    <div class="eco-main">
-      <div class="section-inner">
-        <div class="eco-split">
-          <div class="eco-split-text">
-            <p class="eco-split-kicker">海得宝 × 空瓶回收计划</p>
-            <div class="eco-split-content">
-              <blockquote class="eco-intro-quote">
-                让每一个空瓶，都有一个回归海洋的使命。
-              </blockquote>
-              <p class="eco-intro-body">
-                海得宝的核心成分贻贝钙肽CAPCS源自全球不到1%的纯净海域——这片珍稀水域是我们成分品质的根基，也是品牌灵魂的起点。
-              </p>
-              <p class="eco-intro-body">
-                我们希望，在从大海中汲取天然力量的同时，也为海洋的可持续发展奉献一份力所能及的责任。海得宝邀您一同，从一支小小的空瓶开始，守护我们共同的蓝色家园。
-              </p>
-            </div>
-          </div>
-          <div class="eco-split-image">
-            <img
-              src="/assets/eco-hero.jpg"
-              alt="贝壳中的瓶盖，海得宝空瓶回收计划"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- ── 为什么发起 ── -->
     <section class="eco-section reveal reveal-rise">
@@ -184,9 +158,10 @@ import Footer from '../../components/Footer.astro';
     inset: 0;
     background: linear-gradient(
       to bottom,
-      oklch(10% 0.02 185 / 0.2) 0%,
-      oklch(10% 0.02 185 / 0.48) 58%,
-      oklch(10% 0.02 185 / 0.72) 100%
+      oklch(10% 0.02 185 / 0.15) 0%,
+      oklch(10% 0.02 185 / 0.4) 40%,
+      oklch(10% 0.02 185 / 0.72) 72%,
+      oklch(10% 0.02 185 / 0.84) 100%
     );
   }
 
@@ -216,6 +191,7 @@ import Footer from '../../components/Footer.astro';
 
   .eco-hero-text {
     margin-top: auto;
+    max-width: 640px;
   }
 
   .eco-hero-accent {
@@ -240,77 +216,29 @@ import Footer from '../../components/Footer.astro';
     color: oklch(95% 0.02 185 / 0.9);
   }
 
-  /* ── Main split area ── */
-  .eco-main {
-    padding: var(--space-5xl) var(--content-padding) var(--space-6xl);
-    background: #ffffff;
-  }
-
-  .eco-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-left: calc(-1 * var(--content-padding));
-    margin-right: calc(-1 * var(--content-padding));
-    align-items: start;
-  }
-
-  .eco-split-text {
-    align-self: center;
-    justify-self: center;
-    padding: var(--space-3xl) 0;
-    max-width: 480px;
-  }
-
-  .eco-split-kicker {
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--color-brand);
-    letter-spacing: var(--tracking-wide);
-    margin-bottom: var(--space-lg);
-  }
-
-  .eco-split-content {
-    font-size: var(--text-base);
-    font-weight: 300;
-    line-height: var(--leading-relaxed);
-    color: var(--color-text);
-  }
-
-  .eco-intro-quote {
-    font-size: var(--text-lg);
+  /* 叠在 hero 图上的引言与正文 */
+  .eco-hero-quote {
+    font-size: var(--text-xl);
     font-weight: 300;
     line-height: var(--leading-snug);
     letter-spacing: var(--tracking-wide);
-    color: var(--color-text);
-    margin: 0 0 var(--space-xl);
+    color: #ffffff;
+    margin: var(--space-2xl) 0 var(--space-lg);
     padding: 0;
     border: none;
     quotes: none;
   }
 
-  .eco-intro-body {
-    font-size: var(--text-sm);
+  .eco-hero-body {
+    font-size: var(--text-base);
     font-weight: 300;
     line-height: var(--leading-relaxed);
-    color: var(--color-text-soft);
+    color: oklch(96% 0.01 185 / 0.86);
     margin-bottom: var(--space-md);
   }
 
-  .eco-intro-body:last-child { margin-bottom: 0; }
-
-  .eco-split-image {
-    overflow: hidden;
-    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
-    max-width: 855px;
-  }
-
-  .eco-split-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    object-position: center center;
+  .eco-hero-body:last-child {
+    margin-bottom: 0;
   }
 
   /* ── 正文：编辑式版面（全白 · 居中文章流 · 编号列表）── */
@@ -478,35 +406,19 @@ import Footer from '../../components/Footer.astro';
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
+    /* 文字较多，移动端让 hero 随内容增高，避免底部正文被裁切 */
+    .eco-hero {
+      min-height: 100svh;
+      height: auto;
+    }
+
     .eco-hero-content {
       padding: 100px var(--content-padding) var(--space-4xl);
     }
 
-    .eco-main {
-      padding: var(--space-3xl) var(--content-padding) var(--space-5xl);
-    }
-
-    .eco-split {
-      grid-template-columns: 1fr;
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .eco-split-text {
-      padding: 0 0 var(--space-2xl);
-      max-width: none;
-    }
-
-    .eco-split-title {
-      font-size: var(--text-2xl);
-    }
-
-    .eco-split-image {
-      width: calc(100% + 2 * var(--content-padding));
-      max-width: none;
-      margin-left: calc(-1 * var(--content-padding));
-      margin-right: calc(-1 * var(--content-padding));
-      border-radius: 0;
+    .eco-hero-quote {
+      font-size: var(--text-lg);
+      margin-top: var(--space-xl);
     }
 
     .eco-section {
