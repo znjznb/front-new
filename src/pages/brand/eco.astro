@@ -98,35 +98,40 @@ import Footer from '../../components/Footer.astro';
       </div>
     </section>
 
-    <!-- ── 如何参与 ── -->
+    <!-- ── 如何参与（左图右文）── -->
     <section class="eco-section reveal reveal-rise">
-      <div class="eco-prose">
-        <p class="eco-kicker">空瓶回收计划</p>
-        <h2 class="eco-h2 eco-h2--tight">如何参与</h2>
-        <p class="eco-p eco-p--muted">三步行动，守护蓝色家园。</p>
-        <ol class="eco-list">
-          <li class="eco-list-item">
-            <span class="eco-list-num">01</span>
-            <div class="eco-list-text">
-              <h3 class="eco-list-title">收集空瓶</h3>
-              <p class="eco-list-body">将用完的海得宝产品空瓶清洗干净，保留原包装，积攒一定数量后即可参与回收。</p>
-            </div>
-          </li>
-          <li class="eco-list-item">
-            <span class="eco-list-num">02</span>
-            <div class="eco-list-text">
-              <h3 class="eco-list-title">联系寄回</h3>
-              <p class="eco-list-body">通过微信公众号「海得宝 MARTEMPO」联系客服，获取回收地址，将空瓶寄回至指定回收点。</p>
-            </div>
-          </li>
-          <li class="eco-list-item">
-            <span class="eco-list-num">03</span>
-            <div class="eco-list-text">
-              <h3 class="eco-list-title">获得回馈</h3>
-              <p class="eco-list-body">每次回收均可获得品牌专属回馈权益，与我们共同记录每一个为海洋而做的小小行动。</p>
-            </div>
-          </li>
-        </ol>
+      <div class="eco-card-split">
+        <div class="eco-card-image">
+          <img src="/assets/eco/recycle-card.webp" alt="海得宝「空瓶回收计划」卡片：空瓶返积分，兑换正装产品" loading="lazy" />
+        </div>
+        <div class="eco-card-text">
+          <p class="eco-kicker">空瓶回收计划</p>
+          <h2 class="eco-h2 eco-h2--tight">如何参与</h2>
+          <p class="eco-p eco-p--muted">三步行动，守护蓝色家园。</p>
+          <ol class="eco-list">
+            <li class="eco-list-item">
+              <span class="eco-list-num">01</span>
+              <div class="eco-list-text">
+                <h3 class="eco-list-title">收集空瓶</h3>
+                <p class="eco-list-body">将用完的海得宝产品空瓶清洗干净，保留原包装，积攒一定数量后即可参与回收。</p>
+              </div>
+            </li>
+            <li class="eco-list-item">
+              <span class="eco-list-num">02</span>
+              <div class="eco-list-text">
+                <h3 class="eco-list-title">联系寄回</h3>
+                <p class="eco-list-body">通过微信公众号「海得宝 MARTEMPO」联系客服，获取回收地址，将空瓶寄回至指定回收点。</p>
+              </div>
+            </li>
+            <li class="eco-list-item">
+              <span class="eco-list-num">03</span>
+              <div class="eco-list-text">
+                <h3 class="eco-list-title">获得回馈</h3>
+                <p class="eco-list-body">每次回收均可获得品牌专属回馈权益，与我们共同记录每一个为海洋而做的小小行动。</p>
+              </div>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
@@ -412,6 +417,35 @@ import Footer from '../../components/Footer.astro';
     color: var(--color-text-soft);
   }
 
+  /* 空瓶回收卡（图文左右，等高） */
+  .eco-card-split {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4xl);
+    align-items: stretch;
+  }
+
+  .eco-card-image {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-alt);
+    min-height: 420px;
+  }
+
+  .eco-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 52%;
+  }
+
+  .eco-card-text .eco-list {
+    margin-top: var(--space-lg);
+  }
+
   /* 承诺 */
   .eco-pledge {
     max-width: 560px;
@@ -481,6 +515,22 @@ import Footer from '../../components/Footer.astro';
 
     .eco-list-item {
       gap: var(--space-md);
+    }
+
+    .eco-card-split {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    .eco-card-image {
+      min-height: 0;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .eco-card-image img {
+      aspect-ratio: 4 / 5;
+      height: auto;
     }
   }
 </style>
