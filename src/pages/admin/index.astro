@@ -92,14 +92,29 @@
       var el = e.target;
       if (!el || !el.closest) return;
 
-      var cmEl = el.closest('.CodeMirror');            // 原始 Markdown 模式
-      var slateEl = el.closest('[data-slate-editor]'); // 富文本模式
-      if (!cmEl && !slateEl) return;
+      var cmEl = el.closest('.CodeMirror');            // CodeMirror 源码编辑器
+      var slateEl = el.closest('[data-slate-editor]'); // Slate 富文本编辑器
+      var textarea = el.tagName === 'TEXTAREA' ? el : null; // 普通文本框（正文 text 组件）
+      if (!cmEl && !slateEl && !textarea) return;
 
       var cd = e.clipboardData || window.clipboardData;
       if (!cd) return;
       var html = cd.getData('text/html');
       var plain = cd.getData('text/plain');
+
+      // 普通文本框（正文源码框）：剪贴板带富文本 HTML 时转 Markdown 插入，
+      // 否则不拦截、交给浏览器默认粘贴纯文本（不影响摘要等其它文本框）
+      if (textarea) {
+        if (html) {
+          var mdT = htmlToMarkdown(html);
+          if (mdT) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.execCommand('insertText', false, mdT);
+          }
+        }
+        return;
+      }
 
       // 原始模式：HTML → Markdown 后插入（保留标题/加粗/列表/链接/图片）
       if (cmEl && cmEl.CodeMirror) {
@@ -153,7 +168,7 @@
               { label: '摘要', name: 'summary', widget: 'text', hint: '首页新闻卡片上显示的一两句话，建议不超过100字' },
               { label: '来源媒体', name: 'author', widget: 'string', required: false, hint: '如：新华网、美妆头条、青眼、化妆品观察' },
               { label: '原文链接', name: 'sourceUrl', widget: 'string', required: false, hint: '文章原始出处URL，填写后详情页底部显示"阅读原文"按钮' },
-              { label: '正文', name: 'body', widget: 'markdown', editor: { preview: false }, hint: '文章正文。粘贴图文：先打开编辑器右上角的「Markdown」开关切到源码模式，再粘贴，可保留文字格式和图片。注意图片会引用原网站地址，若原站删图会失效；需长期保存的重要图片建议再用底部图片按钮上传替换。' },
+              { label: '正文', name: 'body', widget: 'text', hint: '文章正文（Markdown 源码框，稳定不崩、可自由删改）。粘贴：直接从网页复制粘贴即可，标题/加粗/列表/链接会自动转为 Markdown。图片：从微信公众号复制的图片进不来（微信防盗链限制），会显示为「图片」二字标记位置——请将图片另存后用顶部媒体库上传，再在对应位置写 ![](图片路径)。' },
             ],
           },
           {
