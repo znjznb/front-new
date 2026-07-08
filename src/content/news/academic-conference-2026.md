@@ -4,7 +4,7 @@ date: 2026-04-28
 summary: 海得宝连续八年受邀参加中国中西医结合学会皮肤性病专业委员会学术年会，贻贝钙肽CAPCS®技术获尚普咨询认定"行业领创者"。
 image: /images/news/academic-conference-2026.jpg
 imageAlt: 海得宝亮相中国中西医结合学会皮肤性病专业委员会学术年会
-author: 新华网
+author: 新华社
 sourceUrl: https://h.xinhuaxmt.com/vh512/share/13075052?docid=13075052&newstype=1001&d=135264b&channel=weixinp
 ---
 在4月23日至26日举行的2026中国中西医结合学会皮肤性病专业委员会学术年会上，连续八年受邀参会的敏感肌护肤品牌海得宝MARTEMPO，凭借独创贻贝钙肽CAPCS®的最新临床研究成果引发广泛关注。值得一提的是，尚普咨询近期颁发声明，海得宝荣获“敏感肌钙肽修护技术行业领创者”，标志着本土敏感肌修护技术跻身行业领先地位。
