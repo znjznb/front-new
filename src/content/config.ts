@@ -8,6 +8,8 @@ const newsCollection = defineCollection({
     summary: z.string(),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
+    // 正文配图上传区：仅用于把图片传进仓库，正文里用 ![](路径) 引用，本身不参与渲染
+    body_images: z.array(z.string()).optional(),
   }),
 });
 

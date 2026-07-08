@@ -168,7 +168,8 @@
               { label: '摘要', name: 'summary', widget: 'text', hint: '首页新闻卡片上显示的一两句话，建议不超过100字' },
               { label: '来源媒体', name: 'author', widget: 'string', required: false, hint: '如：新华网、美妆头条、青眼、化妆品观察' },
               { label: '原文链接', name: 'sourceUrl', widget: 'string', required: false, hint: '文章原始出处URL，填写后详情页底部显示"阅读原文"按钮' },
-              { label: '正文', name: 'body', widget: 'text', hint: '文章正文（Markdown 源码框，稳定不崩、可自由删改）。粘贴：直接从网页复制粘贴即可，标题/加粗/列表/链接会自动转为 Markdown。图片：从微信公众号复制的图片进不来（微信防盗链限制），会显示为「图片」二字标记位置——请将图片另存后用顶部媒体库上传，再在对应位置写 ![](图片路径)。' },
+              { label: '正文配图上传', name: 'body_images', widget: 'list', required: false, allow_add: true, hint: '把要插入正文的图片传到这里（建议先把文件名改成 1.jpg、2.jpg 这类简单名字）。上传后，图片的引用路径就是 /images/news/你的文件名，在下方正文对应位置写 ![](/images/news/1.jpg) 即可显示。此处只负责上传，不直接展示在页面上。', field: { label: '图片', name: 'src', widget: 'image' } },
+              { label: '正文', name: 'body', widget: 'text', hint: '文章正文（Markdown 源码框，稳定不崩、可自由删改）。粘贴：直接从网页复制粘贴即可，标题/加粗/列表/链接会自动转为 Markdown。图片：从微信公众号复制的图片进不来（微信防盗链限制），会显示为「图片」二字标记位置——请先用上方「正文配图上传」把图片传上去，再在此处对应位置写 ![](/images/news/文件名)。' },
             ],
           },
           {
