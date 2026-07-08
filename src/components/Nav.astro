@@ -17,7 +17,7 @@
         <a href="#story" class="nav-link">品牌探索</a>
         <div class="mega-menu">
           <div class="mega-menu-inner">
-            <div class="mega-menu-grid grid-2col">
+            <div class="mega-menu-grid grid-2col-compact">
               <div class="mega-menu-column">
                 <a href="/about/" class="mega-link">品牌故事</a>
                 <a href="#" class="mega-link">品牌好友</a>
@@ -369,6 +369,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   .grid-2col {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* 两列按内容宽度、左对齐、紧凑间距（用于短列表，如品牌探索）*/
+  .grid-2col-compact {
+    grid-template-columns: max-content max-content;
+    justify-content: start;
+    column-gap: var(--space-4xl);
   }
 
   .grid-3col {
