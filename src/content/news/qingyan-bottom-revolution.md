@@ -4,11 +4,16 @@ date: 2026-04-27
 summary: 海得宝携核心成分贻贝钙肽CAPCS®，以"从底层解决敏感肌问题"的理念，在敏感肌赛道中开辟出一条独特的医学循证之路。
 author: 青眼
 sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
+body_images: []
 ---
 在功效护肤赛道，从来不缺“成分”故事，缺的是能够始终如一坚定地从打地基开始，将一个成分吃透的品牌。
 
   
 海得宝MARTEMPO正是这样一个敢啃硬骨头的长期主义者。
+
+
+![](/images/news/img_1783497619665.webp)
+
 
   
 任凭成分风口如何流转，它用十余年的时间蛰伏深耕，坚定地锚定贻贝钙肽CAPCS®这个核心成分，在敏感肌赛道里默默扎根，长出了属于自己的科研根系。
@@ -17,17 +22,15 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 
 而这份“扎根”的成果，并非自说自话。4月23-26日，在国内皮肤学领域的殿堂级盛会——2026中国中西医结合学会皮肤性病专业委员会学术年会（以下简称：学术年会）上，海得宝MARTEMPO连续8年受邀参与。本届会议中，品牌基于贻贝钙肽CAPCS®的最新相关学术研究成果与临床经验，再次向行业展示了其深厚的科研积淀。
 
-  
 
 连续八年参会，它也向行业传递出一个明显的信号：海得宝MARTEMPO是一个以临床研究为根基、以学术共识为支撑的品牌。这样的站位，支撑着品牌穿越周期、持续生长，也让行业无法再继续忽视这个“低调但并不简单”的品牌。
 
-  
+  ![](/images/news/img_1783497043454.webp)
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/BkgnEf8kAicMXGbXGGWibffYFtCS3RUk0yhdlicAZiaQibrxj7ku6PAJPQVKDr8Zryp7QpRDw8p8u0ficMu4k2ibPCJiaSCQmZU6uX6k3wicOv3zY5Ew/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0)
 
-  
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_jpg/BkgnEf8kAicObepTdt3fB7Zictwia9pXVUj3zicwG4j3W0C5NHtWlxcSHH1133fzMbuXAvQJSIXpABqc2mlmMSA4txqPPA5KjEPJsnA66VLEm7k/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1)
+![](/images/news/img_1783497201937.webp)
+
 
   
 
@@ -38,15 +41,12 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 这套话语体系简单、直观，也确实完成了初期的市场教育。但问题是，敏感肌真的只是“皮肤屏障”的问题吗？显然并非如此。
 
   
+![](/images/news/img_1783497227013.webp)
 
-![图片](https://mmbiz.qpic.cn/mmbiz_jpg/BkgnEf8kAicNskED3IDSWoBvTdDaoiavIILiaUbt9B80Hrg8aA1jbv9kh2ruqgUIfJSoQXMYEu9esQ7MicnmnxNDficMCIiaKvgSyH04B11H7BLuc/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=2)
-
-  
 
 在社交平台上，大量敏感肌用户反馈，使用了屏障修护产品后，皮肤的干、红、痒等症状虽然能得到暂时缓解，但只要遇到换季、压力、环境污染等刺激，一切问题又会卷土重来。
 
   
-
 这是因为，真正的“病根”其实藏在皮肤的底层，那些未被有效抑制的慢性炎症，才是不断破坏屏障，导致敏感症状反复发作的元凶。
 
   
@@ -57,11 +57,11 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 
 贻贝钙肽CAPCS®，正是海得宝向敏感肌赛道掷出的那柄尖刀。相较于传统舒缓修护成分多停留在“皮肤屏障修补”，贻贝钙肽CAPCS®的独创价值在于它完成了两个维度的跃迁。
 
-  
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BkgnEf8kAicN74PFsw5wdMOvkviccQc2m7MyZiah6IWZziagp5eUNN3G4yTaInUBcoVlJKpHB2JM9GUjJT61mpEFED0oYAkicDl4K9nnW1yyiaQRw/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=3)
 
-  
+![](/images/news/img_1783497464002.webp)
+
+
 
 其一，它是全球首个实现“外用钙离子有效透皮”的成分，开创了外用钙离子舒缓的全新时代。海得宝运用独家纯物理回流反渗萃取技术，从天然贻贝中定向捕获高活性的钙离子，并协同多种类天然多肽，通过创新技术稳定复合，最终形成专利活性钙肽复合物，并将其命名为贻贝钙肽CAPCS®。
 
@@ -73,13 +73,16 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 
 其二，底气之硬。贻贝钙肽CAPCS®敢于与弱效激素“对打”，该成分通过靶向调控Th2炎症通路、抑制TLR2/TLR4炎症因子的过度表达，能够从分子层面掐断“炎症-屏障受损-更敏感”的恶性循环。但需要强调的是，贻贝钙肽CAPCS®不是激素的变种，而是在“安全”与“高效”之间架起了一座此前不存在的桥梁。
 
+
   
 
 这种机理清晰、靶点明确、无激素依赖的成分路径，在中国敏感肌护肤赛道中尚属首创，这既是学术界的一大跨越，也意味着敏感肌护肤迈入了精准干预、根源阻断的全新阶段。
 
   
 
-![图片](https://mmbiz.qpic.cn/mmbiz_jpg/BkgnEf8kAicOhmJsHXkhJKNUdhtfZ38dJE2hYszUUWWEhrw8QcBvwZDyf3ZKBwvAmlfaPJmPww66ng8EoWET499e8pqUYOkSudzIic3yJFPww/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=4)
+![](/images/news/img_1783497517019.webp)
+
+
 
   
 
@@ -99,11 +102,10 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 
   
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/BkgnEf8kAicOod8qU7wsoxzFDn5QbVxkJnpkTdSFibtj2r57txhOU8GO8094tC37jyelAncvefZfRUUFyRUb5ibv0dvia4ibMFbBXvzqXKyZiaByw/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=5)
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BkgnEf8kAicPJxDLwRn6Pt8DMwwicibOY0HaGuyicosjVRM3Mm2PR3ZfU8M3DtNY7c8rBW7W02LbNdAiac5icQJZxtzDUiaVLQLac0uCib5mV8WiaB6E/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=6)
+![](/images/news/img_1783497552051.webp)
 
-▍图片可左右滑动观看
+
 
 为了将成分的功效验证推向更严苛的标准，海得宝MARTEMPO做了一件在化妆品行业极为罕见的事，将临床医学研究的“金标准”随机双盲对照试验，引入了成分功效验证，建立起一条专业可信的证据链。
 
@@ -115,8 +117,9 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 
 值得一提的是，本届学术年会上，重庆医科大学附属第一医院皮肤科主任医师蔡涛教授进一步分享了贻贝钙肽CAPCS®在慢性唇炎治疗中的临床应用研究成果，为贻贝钙肽CAPCS®临床应用增添了新的有力佐证。
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BkgnEf8kAicMtfiaZVqK4iauaP0M91QGYKDE2Oqb7TCEjgUSf2DYWNAicmbbKtHgaA3AUzn3iajjBpICT5rUdyhrJS1iareWuxBKicjekk6y8feSicI/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=7)
 
+
+![](/images/news/img_1783497569880.webp)
 ▍重庆医科大学附属第一医院皮肤科主任医师蔡涛教授
 
 当然，再权威的认证、再严谨的数据，最终都要回到一个根本问题：它能不能真正帮助到那些被敏感肌困扰的人？答案是肯定的。
@@ -139,15 +142,12 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 
   
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/BkgnEf8kAicMlbSWH58PPEYK0yjOlMBko8BKJDCrrComvKJ7gKFprnaMLASq1XJv7WlVypUTDzlZXu6z1aniaEESSQK9lZnf1O3Ytviazr5at0/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=8)
+![](/images/news/img_1783497596568.webp)
+
 
   
 
 这些来自权威机构、顶级医院、专业学会和权威主流媒体的多重认可，层层叠加，共同构筑起海得宝MARTEMPO在敏感肌赛道难以逾越的信任高墙与行业拔尖地位。
-
-  
-
-![图片](https://mmbiz.qpic.cn/mmbiz_jpg/BkgnEf8kAicNIPCmOkcnYticZLLPWhfyMn3GLkTxsbNMvKn7GxOZRHHYUqWUNjhBQBkjK44bA0MBYBlCJ5xFaV0jgkBuBBuVibSLI6dtqVIvDg/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=9)
 
   
 
@@ -161,10 +161,7 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 
 基于在院线渠道十余年的深厚沉淀，海得宝MARTEMPO开始向更广阔的大众市场发力，将“敏感肌家庭的专业功效护肤品牌”这一理念，植入到万千家庭的日常生活中。
 
-  
-
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BkgnEf8kAicMJgAh2x7tnMtzabGyeG76RibTh7oGN5QiaHKkSsg7Vhlc2Tb2Ch9e60xT3VnibXncOJibtRzkg7w07EpsGOGzt3QOibpibe9EsxZLJk/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=10)
-
+ 
   
 
 以“家庭”为单元，而非锁定单一用户，这背后是海得宝MARTEMPO对真实生活场景的深刻体察。在一个家庭中，皮肤敏感问题往往具有“聚集性”：照顾湿疹宝宝的妈妈，日夜颠倒、身心俱疲之下，自己很可能也会发展成为敏感肌；随着年龄增长，家中老人的皮肤干痒问题也会日益凸显。
@@ -175,17 +172,8 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 
   
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BkgnEf8kAicMNmquXDIMnQlTZrjXRKkS2eVJlD1t36HuWVEFaYw2EBibUn3NukBicIwzqt8a2UWDBj6icemc6SGWRF8n6sf10R2nX7a5Qiawo7yU/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=11)
-
-  
-
 此次学术年会上，海得宝MARTEMPO全线产品集体亮相，海得宝MARTEMPO大白管特护霜、贻贝唇敏修护唇膏、全愈系列面霜等经典单品，为与会者带来了一场从成分科学到家庭护肤的完整解决方案展示。
 
-  
-
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BkgnEf8kAicNGKFtac9jqKp3ZG4tjRKMyJwiaxskFkLaPXficoXdiaicpfSWjmibW6ShXIgYGYC7Jy3uQOazhe8r9vPQFiaUIesI6zyy6aQhdZjLDk/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=12)
-
-  
 
 从院线到家庭，从特应性皮炎群体到大众用户，海得宝MARTEMPO的每一步都在诠释着“用心治愈敏感，用爱呵护家庭”的品牌理念。这份理念不只停留在产品上，也延伸到了那些更需要被看见的角落，比如蝴蝶宝贝。
 
@@ -201,8 +189,10 @@ sourceUrl: https://mp.weixin.qq.com/s/CU7HX3Dk0UumgVsnW1CNug
 
 不仅如此，在本届学术年会上，海得宝MARTEMPO专门设置了一场专题会，邀请上海德博蝴蝶宝贝关爱中心主任孙春阳分享《从临床痛点到居家实践：蝴蝶宝贝的长期照护挑战与协同路径》，呼吁整个皮肤学界共同关注这一医疗与功效护肤的双重难题，更是将他们推到了行业前台，让这个长期被忽视的群体被看见、被正视。
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/BkgnEf8kAicMgiaBI6WefqNEibFW1FbI9fuOJTGz1TwxZWOvMC3Lic5Q6Nia26Pc4j2qRtcVyV9G70aVfgsiaibmX7xg0B0KlD2dgJ9IfUXia4b4vq4/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=13)
 
+
+
+![](/images/news/img_1783497668504.webp)
 ▍上海德博蝴蝶宝贝关爱中心主任孙春阳
 
 这不仅是海得宝MARTEMPO品牌温度的体现，更是在用行动告诉行业：专业不是高高在上的炫技，而是俯下身去，为最需要的人提供解决方案；不是只服务好大众人群，而是敢于去啃最硬的骨头、去回应被忽视的呼声。
