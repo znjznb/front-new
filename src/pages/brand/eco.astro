@@ -8,9 +8,19 @@ import Footer from '../../components/Footer.astro';
   <Nav />
   <main>
 
-    <!-- ── Breadcrumb header（保持不变）── -->
-    <div class="eco-header">
-      <div class="eco-header-inner">
+    <!-- ── Hero ── -->
+    <section class="eco-hero">
+      <div class="eco-hero-img-wrap">
+        <img
+          src="/assets/eco/cape-hero.webp"
+          alt="南非好望角纯净海域"
+          class="eco-hero-img"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="eco-hero-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="eco-hero-content section-inner">
         <nav class="eco-breadcrumb" aria-label="面包屑导航">
           <a href="/">首页</a>
           <span class="sep">›</span>
@@ -18,16 +28,20 @@ import Footer from '../../components/Footer.astro';
           <span class="sep">›</span>
           <span class="current">环保可持续</span>
         </nav>
+        <div class="eco-hero-text">
+          <div class="eco-hero-accent" aria-hidden="true"></div>
+          <h1 class="eco-hero-title">环保可持续</h1>
+          <p class="eco-hero-subtitle">海得宝 × 空瓶回收计划</p>
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- ── Split: text + image（保持不变）── -->
     <div class="eco-main">
       <div class="section-inner">
         <div class="eco-split">
           <div class="eco-split-text">
-            <h1 class="eco-split-title">环保可持续</h1>
-            <p class="eco-split-subtitle">海得宝 × 空瓶回收计划</p>
+            <p class="eco-split-kicker">海得宝 × 空瓶回收计划</p>
             <div class="eco-split-content">
               <blockquote class="eco-intro-quote">
                 让每一个空瓶，都有一个回归海洋的使命。
@@ -136,39 +150,89 @@ import Footer from '../../components/Footer.astro';
 </BaseLayout>
 
 <style>
-  /* ── Header breadcrumb ── */
-  .eco-header {
-    padding: 100px var(--content-padding) var(--space-xl);
-    background: #ffffff;
+  /* ── Hero ── */
+  .eco-hero {
+    position: relative;
+    width: 100%;
+    min-height: clamp(420px, 66vh, 620px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
-  .eco-header-inner {
-    max-width: var(--content-max-width);
-    margin: 0 auto;
+  .eco-hero-img-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .eco-hero-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+  }
+
+  .eco-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      oklch(10% 0.02 185 / 0.2) 0%,
+      oklch(10% 0.02 185 / 0.48) 58%,
+      oklch(10% 0.02 185 / 0.72) 100%
+    );
+  }
+
+  .eco-hero-content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 140px var(--content-padding) var(--space-4xl);
   }
 
   .eco-breadcrumb {
     font-size: var(--text-xs);
   }
 
-  .eco-breadcrumb a {
-    color: oklch(50% 0.01 260 / 0.6);
-    text-decoration: none;
-    transition: color var(--duration-fast) ease;
-  }
-
-  .eco-breadcrumb a:hover {
-    color: var(--color-brand);
-  }
-
-  .eco-breadcrumb .sep {
-    margin: 0 6px;
-    color: oklch(50% 0.01 260 / 0.5);
-  }
-
+  .eco-breadcrumb a,
+  .eco-breadcrumb .sep,
   .eco-breadcrumb .current {
-    color: oklch(35% 0.015 260 / 0.7);
-    font-weight: 500;
+    color: oklch(95% 0.01 185 / 0.78);
+    text-decoration: none;
+  }
+
+  .eco-breadcrumb a:hover { color: #fff; }
+  .eco-breadcrumb .sep { margin: 0 6px; }
+  .eco-breadcrumb .current { font-weight: 500; }
+
+  .eco-hero-text {
+    margin-top: auto;
+  }
+
+  .eco-hero-accent {
+    width: 40px;
+    height: 2px;
+    background: var(--color-brand);
+    margin-bottom: var(--space-xl);
+  }
+
+  .eco-hero-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 200;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-wide);
+    color: #ffffff;
+    margin-bottom: var(--space-md);
+  }
+
+  .eco-hero-subtitle {
+    font-size: var(--text-xl);
+    font-weight: 300;
+    color: oklch(95% 0.02 185 / 0.9);
   }
 
   /* ── Main split area ── */
@@ -192,21 +256,12 @@ import Footer from '../../components/Footer.astro';
     max-width: 480px;
   }
 
-  .eco-split-title {
-    font-size: var(--text-3xl);
-    font-weight: 200;
-    line-height: var(--leading-tight);
+  .eco-split-kicker {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-brand);
     letter-spacing: var(--tracking-wide);
-    color: var(--color-text);
-    margin-bottom: var(--space-md);
-  }
-
-  .eco-split-subtitle {
-    font-size: var(--text-base);
-    font-weight: 300;
-    color: var(--color-text-soft);
-    margin-bottom: var(--space-2xl);
-    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-lg);
   }
 
   .eco-split-content {
@@ -389,8 +444,12 @@ import Footer from '../../components/Footer.astro';
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
-    .eco-header {
-      padding: 90px var(--content-padding) var(--space-lg);
+    .eco-hero {
+      min-height: clamp(360px, 58vh, 520px);
+    }
+
+    .eco-hero-content {
+      padding: 100px var(--content-padding) var(--space-2xl);
     }
 
     .eco-main {
