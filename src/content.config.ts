@@ -7,6 +7,10 @@ const news = defineCollection({
     title: z.string(),
     date: z.date(),
     summary: z.string(),
+    author: z.string().optional(),
+    sourceUrl: z.string().optional(),
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
   }),
 });
 

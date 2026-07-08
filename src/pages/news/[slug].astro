@@ -70,6 +70,12 @@ const articleLd = {
       </nav>
 
       <time class="news-detail-date">{new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(item.data.date)}</time>
+      {item.data.author && (
+        <div class="news-detail-source">
+          <p class="news-detail-source-line">*本文为「{item.data.author}」原创内容</p>
+          <p class="news-detail-source-url">{item.data.author}：{item.data.sourceUrl}</p>
+        </div>
+      )}
       <h1 class="news-detail-title">{item.data.title}</h1>
 
       {item.data.image && (
@@ -82,7 +88,12 @@ const articleLd = {
         <Content />
       </div>
 
-      <a href="/news/" class="news-detail-back">← 返回新闻列表</a>
+      <div class="news-detail-nav">
+        <a href="/news/" class="news-detail-back">← 返回新闻列表</a>
+        {item.data.sourceUrl && (
+          <a href={item.data.sourceUrl} class="news-detail-original" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+        )}
+      </div>
     </div>
   </article>
   </main>
@@ -131,6 +142,26 @@ const articleLd = {
     margin-bottom: var(--space-lg);
   }
 
+  .news-detail-source {
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-surface-alt, #f8f8f8);
+    border-left: 3px solid var(--color-brand);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .news-detail-source-line {
+    margin-bottom: 4px;
+  }
+
+  .news-detail-source-url {
+    word-break: break-all;
+    font-size: var(--text-xs);
+  }
+
   .news-detail-title {
     font-size: var(--text-3xl);
     font-weight: 200;
@@ -163,16 +194,23 @@ const articleLd = {
     margin-bottom: var(--space-lg);
   }
 
-  .news-detail-back {
-    display: inline-block;
+  .news-detail-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: var(--space-3xl);
+  }
+
+  .news-detail-back,
+  .news-detail-original {
     font-size: var(--text-sm);
     font-weight: 400;
     color: var(--color-brand-dark);
     text-decoration: none;
   }
 
-  .news-detail-back:hover {
+  .news-detail-back:hover,
+  .news-detail-original:hover {
     text-decoration: underline;
   }
 </style>
