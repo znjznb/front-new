@@ -166,7 +166,7 @@
               { label: '标题', name: 'title', widget: 'string' },
               { label: '发布日期', name: 'date', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false },
               { label: '摘要', name: 'summary', widget: 'text', hint: '首页新闻卡片上显示的一两句话，建议不超过100字' },
-              { label: '来源媒体', name: 'author', widget: 'string', required: false, hint: '如：新华网、美妆头条、青眼、化妆品观察' },
+              { label: '来源媒体', name: 'author', widget: 'string', required: false, hint: '如：新华社、美妆头条、青眼、化妆品观察' },
               { label: '原文链接', name: 'sourceUrl', widget: 'string', required: false, hint: '文章原始出处URL，填写后详情页底部显示"阅读原文"按钮' },
               { label: '正文配图上传（备用）', name: 'body_images', widget: 'list', required: false, allow_add: true, hint: '备用上传通道。正常情况下请直接用正文框上方的「🖼 在光标处插入图片」按钮，会自动上传并插入。此处仅在按钮不可用时备用：上传后在正文写 ![](/images/news/文件名) 引用。', field: { label: '图片', name: 'src', widget: 'image' } },
               { label: '正文', name: 'body', widget: 'text', hint: '文章正文（Markdown 源码框，稳定不崩、可自由删改）。粘贴：直接从网页复制粘贴即可，标题/加粗/列表/链接会自动转为 Markdown。插入图片：把图片存到电脑后，点正文框上方的「🖼 在光标处插入图片」按钮选图即可，自动在光标处插入、无需手写代码。（微信复制的图片会显示为「图片」二字，用来标记该插图的位置。）' },
